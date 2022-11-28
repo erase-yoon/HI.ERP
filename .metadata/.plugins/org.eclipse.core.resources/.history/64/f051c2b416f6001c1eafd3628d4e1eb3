@@ -1,0 +1,414 @@
+package net.naver.erp;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+class Employee{
+	
+	private int emp_no;
+	private String emp_name;
+	private String jumin_num;
+	private String jikup;
+	private String birthday;
+	
+	public int getEmp_no() {
+		return emp_no;
+	}
+	public void setEmp_no(int emp_no) {
+		this.emp_no = emp_no;
+	}
+	public String getEmp_name() {
+		return emp_name;
+	}
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+	public String getJumin_num() {
+		return jumin_num;
+	}
+	public void setJumin_num(String jumin_num) {
+		this.jumin_num = jumin_num;
+	}
+	public String getJikup() {
+		return jikup;
+	}
+	public void setJikup(String jikup) {
+		this.jikup = jikup;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	
+	
+}
+
+class Oracle {
+	
+	// -----------------------
+	// 속성변수 선언
+	// -----------------------
+		// ArrayList형 변수 empList 선언 후 ArrayList 객체 생성하고 메모리 위치 주소 값 저장
+		// ----------------------------------------------------------------------------------
+		// <1> ArrayList 객체의 메모리 위치 주소 값이 저장될 변수 empList 선언
+		// <2> 수입한 클래스 중에 ArrayList() 생성자 클래스를 찾아 메모리 공간에 올려 객체화
+		// <3> 메모리 공간에 올려 객체의 생성자 ArrayList() 호출
+		// <4> 객체의 메모리 위치 주소 값 리턴
+		// <5> 객체의 메모리 위치 주소 값을 변수 empList에 저장
+	private ArrayList empList = new ArrayList();
+	
+	// ---------------------------------------
+	// 직원번호가 저장되는 속성변수 선언하기
+	// ---------------------------------------
+	private int num = 0;
+	
+	// ---------------------------------------
+	// 삭제된 직원번호가 누적되는 ArrayList 선언하기
+	// ---------------------------------------
+//	private ArrayList del_noList = new ArrayList();
+
+	// -----------------------
+	// 생성자
+	// -----------------------
+	public Oracle() {
+		
+	}
+	
+	// -----------------------
+	// 메소드
+	// -----------------------
+	// 속성변수 empList에 저장된 ArrayList 객체 안에 HashMap 객체를 저장하는 메소드 선언
+	public void insert(String emp_name, String jikup, String birthday, String jumin_num) {
+		
+//		del_noList 먼저 확인 후 안에 내용물 있으면 먼저 사용
+		
+		num = num + 1;
+		
+		// ----------------------------------------------------------------------------------
+		// 변수 empList 선언 후 HashMap 객체 생성하고 메모리 위치 주소 값을 저장
+		// ----------------------------------------------------------------------------------
+		HashMap map = new HashMap();
+		
+		// ----------------------------------------------------------------------------------
+		// 매개변수로 들어온 데이터에 키값을 붙여 HashMap 객체에 저장
+		// ----------------------------------------------------------------------------------
+		map.put("emp_no", "" + num);
+//		map.put("emp_no", "" + (empList.size() + 1));
+		map.put("emp_name", emp_name);
+		map.put("jikup", jikup);
+		map.put("birthday", birthday);
+		map.put("jumin_num", jumin_num);
+		
+		// ----------------------------------------------------------------------------------
+		// HashMap 객체를 ArrayList 객체에 저장
+		// ----------------------------------------------------------------------------------
+		empList.add(map);
+		
+	}
+	
+	// 속성변수 empList에 저장된 ArrayList 객체 안에 HashMap 객체를 수정하는 메소드 선언
+	public void update_jikup(String emp_no, String jikup) {
+		int cnt = 0;
+		
+		// ----------------------------------------------------------------------------------
+		// ArrayList 객체 안의 저장된 HashMap 객체를 1개씩 꺼내서
+		// 매개변수로 들어온 직원번호와 일치한 HashMap 객체 안의 직급을
+		// 매개변수로 들어온 직급으로 수정하기
+		// ----------------------------------------------------------------------------------
+		for(int i=0; i<empList.size(); i++) {
+			
+			// ArrayList 객체 안에 i번째에 저장된 HashMap 객체를 꺼내서 변수 map에 저장
+			HashMap map = (HashMap)empList.get(i);
+			
+			// 꺼낸 HashMap 객체 안에서 키값 emp_no에 대응하는 데이터를 꺼내서 변수 emp_no2에 저장
+			String emp_no2 = (String)map.get("emp_no");
+			
+			// 매개변수로 들어온 직원번호와 변수 emp_no2가 일치하면 HashMap 객체 안의 직급을 수정
+			if(emp_no.equals(emp_no2)) {
+				map.put("jikup", jikup);
+				cnt = cnt + 1;
+				System.out.println("직원번호 " + emp_no + "의 직급을 \"" + jikup + "\"으로 수정합니다.");
+				break;
+			}
+		}
+		if(cnt == 0) {
+			System.out.println("직원번호 " + emp_no + "는 존재하지 않는 직원번호입니다.");
+		}
+	}
+	
+//	public void update_jikup(String emp_no, String jikup) {
+//		for(int i=0; i<empList.size(); i++) {
+//			
+//			// ArrayList 객체 안에 i번째에 저장된 HashMap 객체를 꺼내서 변수 map에 저장
+//			HashMap map = (HashMap)empList.get(i);
+//			
+//			// 꺼낸 HashMap 객체 안에서 키값 emp_no에 대응하는 데이터를 꺼내서 변수 emp_no2에 저장
+//			String emp_no2 = (String)map.get("emp_no");
+//			
+//			// 매개변수로 들어온 직원번호와 변수 emp_no2가 일치하면 HashMap 객체 안의 직급을 수정
+//			if(emp_no.equals(emp_no2)) {
+//				map.put("jikup", jikup);
+//				break;
+//			}
+//			if(i+1 == empList.size()) {
+//				System.out.println("직원번호 " + emp_no + "는 존재하지 않는 직원번호입니다.");
+//			}
+//		}
+//	}
+	
+	// 속성변수 empList에 저장된 ArrayList 객체 안에 HashMap 객체를 수정하는 메소드 선언
+	public void update_name(String emp_no, String emp_name) {
+		int cnt = 0;
+		for(int i=0; i<empList.size(); i++) {
+			
+			// ArrayList 객체 안에 i번째에 저장된 HashMap 객체를 꺼내서 변수 map에 저장
+			HashMap map = (HashMap)empList.get(i);
+			
+			// 꺼낸 HashMap 객체 안에서 키값 emp_no에 대응하는 데이터를 꺼내서 변수 emp_no2에 저장
+			String emp_no2 = (String)map.get("emp_no");
+			
+			// 매개변수로 들어온 직원번호와 변수 emp_no2가 일치하면 HashMap 객체 안의 직급을 수정
+			if(emp_no.equals(emp_no2)) {
+				map.put("emp_name", emp_name);
+				cnt = cnt + 1;
+				System.out.println("직원번호 " + emp_no + "의 이름을 \"" + emp_name + "\"으로 수정합니다.");
+				break;
+			}
+		}
+		if(cnt == 0) {
+			System.out.println("직원번호 " + emp_no + "는 존재하지 않는 직원번호입니다.");
+		}
+	}
+	 
+	// 속성변수 empList에 저장된 ArrayList 객체 안에 HashMap 객체를 삭제하는 메소드 선언
+	public void delete(String emp_no) {
+		
+		int cnt = 0;
+		for(int i=0; i<empList.size(); i++) {
+			
+			// ArrayList 객체 안에 i번째에 저장된 HashMap 객체를 꺼내서 변수 map에 저장
+			HashMap map = (HashMap)empList.get(i);
+			
+			// 꺼낸 HashMap 객체 안에서 키값 emp_no에 대응하는 데이터를 꺼내서 변수 emp_no2에 저장
+			String emp_no2 = (String)map.get("emp_no");
+			
+			// 매개변수로 들어온 직원번호와 변수 emp_no2가 일치하면 HashMap 객체를 삭제
+			if(emp_no.equals(emp_no2)) {
+				cnt++;
+				empList.remove(i);
+				break;
+			}
+		}
+		if(cnt == 0) {
+			System.out.println("직원번호 " + emp_no + "는 존재하지 않는 직원번호입니다.");
+		}	
+	}
+	
+//	삭제 후 직원번호를 del_noList에 저장
+	
+	// 속성변수 empList에 저장된 ArrayList 객체 안에 HashMap 객체를 검색하여 출력하는 메소드 선언
+	public void select(String keyword) {
+		
+		// ----------------------------------------------------------------------------------
+		// 검색 결과물이 저장되는 ArrayList 객체 생성하고 메모리 위치 주소 값을 변수 list에 저장
+		// ----------------------------------------------------------------------------------
+		ArrayList list = new ArrayList();
+		
+		// ----------------------------------------------------------------------------------
+		// ArrayList 객체에 저장된 HashMap 객체를 차례대로 꺼내서
+		// 매개변수로 들어온 문자가 일부라도 들어있으면
+		// 새롭게 생성한 ArrayList객체에 저장
+		// ----------------------------------------------------------------------------------
+		for(int i=0; i<empList.size(); i++) {
+			
+			// ArrayList 객체 안에 i번째에 저장된 HashMap 객체를 꺼내서 변수 map에 저장
+			HashMap map = (HashMap)empList.get(i);
+			
+			String emp_no = (String) map.get("emp_no");
+			String emp_name = (String) map.get("emp_name");
+			String jikup = (String) map.get("jikup");
+			String birthday = (String) map.get("birthday");
+			String jumin_num = (String) map.get("jumin_num");
+			
+			// 만약 매개변수 keyword 안의 데이터가 emp_name 변수 안에 일부라도 들어있으면
+			if(emp_name.indexOf(keyword) >= 0) {
+				list.add(map);
+			}
+			
+			// 만약 매개변수 keyword 안의 데이터가 jikup 변수 안에 일부라도 들어있으면
+			else if(jikup.indexOf(keyword) >= 0) {
+				list.add(map);
+			}
+			
+			// 만약 매개변수 keyword 안의 데이터가 birthday 변수 안에 일부라도 들어있으면
+			else if(birthday.indexOf(keyword) >= 0) {
+				list.add(map);
+			}
+			
+			// 만약 매개변수 keyword 안의 데이터가 jumin_num 변수 안에 일부라도 들어있으면
+			else if(jumin_num.indexOf(keyword) >= 0) {
+				list.add(map);
+			}
+			
+//			// 만약 매개변수 keyword 안의 데이터가 emp_no 변수 안에 일부라도 들어있으면
+//			else if(emp_no.indexOf(keyword) >= 0) {
+//				list.add(map);
+//			}
+			
+		}
+		
+		// 만약 검색 결과물이 저장된 ArrayList 객체가 비어있으면(=검색결과물이 없다면)
+		if(list.size() == 0) {
+			System.out.println("검색 결과물이 없습니다.");
+		}
+		
+		// 만약 검색 결과물이 저장된 ArrayList 객체가 비어있지 않으면(=검색결과물이 있다면)
+		else {
+			print(list);
+		}		
+	}
+	
+	public void select_men() {
+		
+		// ----------------------------------------------------------------------------------
+		// 검색 결과물이 저장되는 ArrayList 객체 생성하고 메모리 위치 주소 값을 변수 list에 저장
+		// ----------------------------------------------------------------------------------
+		ArrayList list = new ArrayList();
+		
+		// ----------------------------------------------------------------------------------
+		// ArrayList 객체에 저장된 HashMap 객체를 차례대로 꺼내서
+		// 매개변수로 들어온 문자가 일부라도 들어있으면
+		// 새롭게 생성한 ArrayList객체에 저장
+		// ----------------------------------------------------------------------------------
+		for(int i=0; i<empList.size(); i++) {
+			
+			// ArrayList 객체 안에 i번째에 저장된 HashMap 객체를 꺼내서 변수 map에 저장
+			HashMap map = (HashMap)empList.get(i);
+			
+			String jumin_num = (String) map.get("jumin_num");
+			
+			// 만약 매개변수 keyword 안의 데이터가 jumin_num 변수 안에 일부라도 들어있으면
+			if(jumin_num.indexOf("-1") >= 0) {
+				list.add(map);
+			}
+			else if(jumin_num.indexOf("-3") >= 0) {
+				list.add(map);
+			}
+		}
+		
+		// 만약 검색 결과물이 저장된 ArrayList 객체가 비어있으면(=검색결과물이 없다면)
+		if(list.size() == 0) {
+			System.out.println("검색 결과물이 없습니다.");
+		}
+		
+		// 만약 검색 결과물이 저장된 ArrayList 객체가 비어있지 않으면(=검색결과물이 있다면)
+		else {
+			System.out.println("남자");
+			print(list);
+		}
+	}
+	
+	public void select_women() {
+		
+		// ----------------------------------------------------------------------------------
+		// 검색 결과물이 저장되는 ArrayList 객체 생성하고 메모리 위치 주소 값을 변수 list에 저장
+		// ----------------------------------------------------------------------------------
+		ArrayList list = new ArrayList();
+		
+		// ----------------------------------------------------------------------------------
+		// ArrayList 객체에 저장된 HashMap 객체를 차례대로 꺼내서
+		// 매개변수로 들어온 문자가 일부라도 들어있으면
+		// 새롭게 생성한 ArrayList객체에 저장
+		// ----------------------------------------------------------------------------------
+		for(int i=0; i<empList.size(); i++) {
+			
+			// ArrayList 객체 안에 i번째에 저장된 HashMap 객체를 꺼내서 변수 map에 저장
+			HashMap map = (HashMap)empList.get(i);
+			
+			String jumin_num = (String) map.get("jumin_num");
+			
+			// 만약 매개변수 keyword 안의 데이터가 jumin_num 변수 안에 일부라도 들어있으면
+			if(jumin_num.indexOf("-2") >= 0) {
+				list.add(map);
+			}
+			else if(jumin_num.indexOf("-4") >= 0) {
+				list.add(map);
+			}
+		}
+		
+		// 만약 검색 결과물이 저장된 ArrayList 객체가 비어있으면(=검색결과물이 없다면)
+		if(list.size() == 0) {
+			System.out.println("검색 결과물이 없습니다.");
+		}
+		
+		// 만약 검색 결과물이 저장된 ArrayList 객체가 비어있지 않으면(=검색결과물이 있다면)
+		else {
+			System.out.println("여자");
+			print(list);
+		}
+	}
+
+	
+	// 속성변수 empList에 저장된 ArrayList 객체 안에 HashMap 객체를 검색하여 출력하는 메소드 선언
+	public void print() {
+		print(empList);
+	}
+	
+	//***************************************************************************************************
+	// 매개변수로 들어오는 ArrayList 객체 안의 데이터를 도스창에 출력하기
+	//***************************************************************************************************
+	public void print(ArrayList list) {
+		System.out.println( "======================================================" );
+		System.out.println( "번호	이름	직급	생일		주민번호" );
+		System.out.println( "======================================================" );
+		for(int i=0 ; i<list.size() ; i++){
+			// ArrayList 객체 안에 i 번째에 저장된  HashMap 객체를 꺼내서 변수 map 에 저장하기
+			HashMap map = (HashMap)list.get(i);
+			// 꺼낸 HashMap 객체 안에서 키값 emp_no 에 대응하는 데이터를 꺼내서 변수 emp_no 에 저장하기
+			String emp_no= (String)map.get("emp_no");
+			// 꺼낸 HashMap 객체 안에서 키값 emp_name 에 대응하는 데이터를 꺼내서 변수 emp_name 에 저장하기
+			String emp_name= (String)map.get("emp_name");
+			// 꺼낸 HashMap 객체 안에서 키값 jikup 에 대응하는 데이터를 꺼내서 변수 jikup 에 저장하기
+			String jikup= (String)map.get("jikup");
+			// 꺼낸 HashMap 객체 안에서 키값 birthday 에 대응하는 데이터를 꺼내서 변수 birthday 에 저장하기
+			String birthday= (String)map.get("birthday");
+			// 꺼낸 HashMap 객체 안에서 키값 jumin_num 에 대응하는 데이터를 꺼내서 변수 jumin_num 에 저장하기
+			String jumin_num= (String)map.get("jumin_num");
+			// 도스창에 꺼낸 문자들을 출력하기
+			System.out.println(emp_no + "	" + emp_name + "	" + jikup + "	" + birthday + "	" + jumin_num );
+		}
+		System.out.println( "======================================================" );
+	}
+}
+
+public class OracleExe {
+
+	public static void main(String[] args) {
+		
+		Oracle oracle = new Oracle();
+		oracle.insert("오나라", "대리", "2000-12-25", "001225-4018333");
+		oracle.insert("이성진", "과장", "1995-12-20", "951220-1018334");
+		oracle.insert("유인나", "사원", "1993-11-19", "931119-2018335");
+		oracle.insert("구진성", "경비", "1991-10-18", "911018-1018336");
+		oracle.insert("조이현", "주임", "1989-09-17", "890917-2018337");
+		oracle.insert("김사랑", "인턴", "1987-08-16", "870816-2018338");
+		oracle.insert("강미나", "부장", "1986-07-15", "860715-2018339");
+		oracle.insert("노지선", "차장", "1985-06-14", "850614-2018343");
+		oracle.insert("마대희", "이사", "1984-05-13", "840513-1018353");
+		oracle.insert("박보영", "대표", "1983-04-12", "830412-2018363");
+		oracle.insert("이지은", "사장", "1983-03-11", "830311-2018373");
+		oracle.insert("박성재", "알바", "1983-05-11", "830511-1018373");
+		oracle.insert("권영민", "사원", "2005-11-15", "051115-3015573");
+		oracle.print();
+		oracle.update_jikup("1", "과장");
+		oracle.update_name("1", "박민영");
+		oracle.delete("10");
+		oracle.print();
+		oracle.update_jikup("20", "과장");
+		oracle.select("-4");
+		oracle.select_men();
+		oracle.select_women();
+	}
+}

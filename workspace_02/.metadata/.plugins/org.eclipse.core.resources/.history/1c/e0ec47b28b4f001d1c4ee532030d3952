@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper 태그 선언 -->
+<!-- mapper 태그 안의 namespace 값은 -->
+<!--[원하는 인터페이스 저장 패키지 경로]와 동일해야 한다. -->
+<mapper namespace="com.naver.erp.LoginDAO">
+
+	<select id="getCntLogin" parameterType="hashmap" resultType="int">
+
+		select count(*) from member where mid=#{mid} and pwd=#{pwd}
+
+	</select>
+
+</mapper>

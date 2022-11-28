@@ -1,0 +1,523 @@
+package com.kh.erp.ad.notice;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class AdNoticeController {
+	
+	// adNoticeDAO 속성변수에
+	// adNoticeDAO 인터페이스를 구현한 클래스를 객체화 하여
+	// 객체의 메모리 위치 주소 값을 저장한다.
+	@Autowired
+	private AdNoticeDAO adNoticeDAO;
+	// Autowired로 [ = new ~;]을 생략하고 선언하면
+	// adNoticeDAO 인터페이스를 구현할 클래스를 찾을 때(호출할 때?)
+	// 그 클래스의 이름은 무엇이든 상관없다.
+	// 단 adNoticeDAO 인터페이스를 구현한 클래스는 1개만 생성해야 한다.
+	
+	// adNoticeService 속성변수에
+	// adNoticeService 인터페이스를 구현한 클래스를 객체화 하여
+	// 객체의 메모리 위치 주소 값을 저장한다.
+	@Autowired
+	private AdNoticeService adNoticeService;
+	// Autowired로 [ = new ~;]을 생략하고 선언하면
+	// adNoticeService 인터페이스를 구현할 클래스를 찾을 때(호출할 때?)
+	// 그 클래스의 이름은 무엇이든 상관없다.
+	// 단 adNoticeService 인터페이스를 구현한 클래스는 1개만 생성해야 한다.
+	
+	// ---------------------------------------------------------------
+	// 가상주소 /adNoticeList.do로 접근하면 호출되는 메소드 선언
+	// @RequestMapping 내부에 method="RequestMethod.POST"가 없으므로
+	// 가상주소 /adNoticeList.do로 접근 시 get 또는 post 접근 모두 허용
+	// ---------------------------------------------------------------
+	@RequestMapping(value="/adNotice.do")
+	public ModelAndView adNoticeListForm( 
+			
+			// 파라미터값을 저장할 [adNoticeSearchDTO 객체]를 매개변수로 선언
+			AdNoticeSearchDTO adNoticeSearchDTO
+			// [파라미터명]과 [adNoticeSearchDTO 객체]의 [속성변수명]이 같을 경우
+			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
+			
+//			미 로그인 시 보여줄 창 띄우기(직접설정)
+//			, HttpSession session
+	) {
+		
+//		if(adNoticeSearchDTO.getDate()!=null) {
+//			for(int i=0; i<adNoticeSearchDTO.getDate().size(); i++){
+//				System.out.println(adNoticeSearchDTO.getDate().get(i));
+//			}
+//		}
+//		System.out.println("getKeyword1 : " + adNoticeSearchDTO.getKeyword1());
+//		System.out.println("getSelectPageNo : " + adNoticeSearchDTO.getSelectPageNo());
+//		System.out.println("getRowCntPerPage : " + adNoticeSearchDTO.getRowCntPerPage());
+//		System.out.println("getPageNoPerPage : " + adNoticeSearchDTO.getPageNoPerPage());
+		
+//		미 로그인 시 보여줄 창 띄우기(직접설정)
+//		String mid = (String)session.getAttribute("mid");
+//		if(mid==null) {
+//			ModelAndView mav = new ModelAndView();
+//			
+//			mav.addObject("msg", "로그인을 먼저 해주세요.");
+//			mav.setViewName("error.jsp");
+//			
+//			return mav;
+//		}
+		
+		// adNoticeDAOImpl 객체의 
+		// getadNoticeListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
+		int adNoticeTotAllCnt = this.adNoticeDAO.getAdNoticeListTotAllCnt(adNoticeSearchDTO);
+		
+		// adNoticeDAOImpl 객체의 
+		// getadNoticeListTotCnt 메소드 호출로 [검색된 게시판 행의 개수] 얻기
+		int adNoticeTotCnt = this.adNoticeDAO.getAdNoticeListTotCnt(adNoticeSearchDTO);
+		
+		// Util 객체의 
+		// getPagingMap 메소드 호출로 
+		// paging 처리와 관련된 데이터와
+		// 기타 데이터가 저장되어 있는 HashMap 객체 얻기
+			// 기타 데이터 : DB 연동 시 필요한 데이터, 보정된 선택 페이지 번호 등
+		Map<String, Integer> pagingMap = Util.getPagingMap(
+				
+			// 선택된 페이지 번호
+			adNoticeSearchDTO.getSelectPageNo()
+			
+			// 한 화면에 보여지는 행의 개수
+			, adNoticeSearchDTO.getRowCntPerPage()
+			
+			// 검색된 게시판 행의 총 개수 
+			, adNoticeTotCnt
+		);
+		
+		// adNoticeSearchDTO 객체의 
+		// setSelectPageNo 메소드 호출로 [선택된 페이지 번호] 보정
+		adNoticeSearchDTO.setSelectPageNo((int)pagingMap.get("selectPageNo"));
+		
+		// adNoticeSearchDTO 객체의 
+		// setBegin_rowNo 메소드 호출로 [보여지는 시작 페이지 번호] 보정
+		adNoticeSearchDTO.setBegin_rowNo((int)pagingMap.get("begin_rowNo"));
+		
+		// adNoticeSearchDTO 객체의 
+		// setEnd_rowNo 메소드 호출로 [보여지는 끝 페이지 번호] 보정
+		adNoticeSearchDTO.setEnd_rowNo((int)pagingMap.get("end_rowNo"));
+		
+		// adNoticeDAOImpl 객체의 
+		// getadNoticeList 메소드 호출로 [게시판 목록] 얻기
+		List<Map<String, String>> adNoticeList = this.adNoticeDAO.getAdNoticeList(adNoticeSearchDTO);
+		
+		// [ModelAndView 객체] 생성
+		ModelAndView mav = new ModelAndView();
+		
+		// [ModelAndView 객체]에 
+		// [게시판 목록 검색 결과]를 저장
+		mav.addObject("adNoticeList", adNoticeList);
+		// [ModelAndView 객체]에 저장된 객체는
+		// HttpServletRequest 객체에도 저장된다.
+		
+		// [ModelAndView 객체]에 
+		// [게시판 목록 검색 결과 개수]를 저장
+		mav.addObject("adNoticeTotCnt", adNoticeTotCnt);
+		
+		// [ModelAndView 객체]에 
+		// [게시판 목록 검색 총 결과]를 저장
+		mav.addObject("adNoticeTotAllCnt", adNoticeTotAllCnt);
+		
+		// [ModelAndView 객체]에 
+		// [페이징 처리 관련 HashMap 객체]를 저장
+		mav.addObject("pagingMap", pagingMap);
+		
+		// [ModelAndView 객체]에 
+		// [보정된 선택 페이지 번호]를 저장
+		 mav.addObject("selectPageNo", (int)pagingMap.get("selectPageNo"));
+//		해당 코딩을 쓰지 않으면 adNoticeList.jsp에서
+//		formObj.find(".selectPageNo").val("${requestScope.selectPageNo}"); 대신
+//		formObj.find(".selectPageNo").val("${requestScope.pagingMap.selectPageNo}"); 사용하여야 함
+
+
+		// [ModelAndView 객체]의
+		// setViewName 메소드를 호출하여
+		// [호출할 JSP 페이지명]을 문자로 저장
+		// [호출할 JSP 페이지명] 앞, 뒤에 붙는 위치 경로 및 확장자는
+		// application.properties에서 
+		// spring.mvc.view.prefix=위치 경로
+		// spring.mvc.view.suffix=확장자
+		// 로 설정 가능하다.
+		// <참고> 기본 저장 경로에서 webapp까지는 설정되어 있다.
+		mav.setViewName("boardList.jsp");
+		
+		// [ModelAndView 객체] 리턴
+		return mav;
+		// Spring은 ModelAndView 객체 리턴 시
+		// 저장된 [JSP 페이지명]에 있는 [JSP 페이지]를 호출한다.
+	}
+	
+	@RequestMapping(value="/adNotice2.do")
+	public ModelAndView adNoticeListForm2( 
+			
+			// 파라미터값을 저장할 [adNoticeSearchDTO 객체]를 매개변수로 선언
+			AdNoticeSearchDTO adNoticeSearchDTO
+			// [파라미터명]과 [adNoticeSearchDTO 객체]의 [속성변수명]이 같을 경우
+			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
+			
+//			미 로그인 시 보여줄 창 띄우기(직접설정)
+//			, HttpSession session
+	) {
+		
+//		if(adNoticeSearchDTO.getDate()!=null) {
+//			for(int i=0; i<adNoticeSearchDTO.getDate().size(); i++){
+//				System.out.println(adNoticeSearchDTO.getDate().get(i));
+//			}
+//		}
+//		System.out.println("getKeyword1 : " + adNoticeSearchDTO.getKeyword1());
+//		System.out.println("getSelectPageNo : " + adNoticeSearchDTO.getSelectPageNo());
+//		System.out.println("getRowCntPerPage : " + adNoticeSearchDTO.getRowCntPerPage());
+//		System.out.println("getPageNoPerPage : " + adNoticeSearchDTO.getPageNoPerPage());
+		
+//		미 로그인 시 보여줄 창 띄우기(직접설정)
+//		String mid = (String)session.getAttribute("mid");
+//		if(mid==null) {
+//			ModelAndView mav = new ModelAndView();
+//			
+//			mav.addObject("msg", "로그인을 먼저 해주세요.");
+//			mav.setViewName("error.jsp");
+//			
+//			return mav;
+//		}
+		
+		// adNoticeDAOImpl 객체의 
+		// getadNoticeListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
+		int adNoticeTotAllCnt = this.adNoticeDAO.getAdNoticeListTotAllCnt(adNoticeSearchDTO);
+		
+		// adNoticeDAOImpl 객체의 
+		// getadNoticeListTotCnt 메소드 호출로 [검색된 게시판 행의 개수] 얻기
+		int adNoticeTotCnt = this.adNoticeDAO.getAdNoticeListTotCnt(adNoticeSearchDTO);
+		
+		// Util 객체의 
+		// getPagingMap 메소드 호출로 
+		// paging 처리와 관련된 데이터와
+		// 기타 데이터가 저장되어 있는 HashMap 객체 얻기
+			// 기타 데이터 : DB 연동 시 필요한 데이터, 보정된 선택 페이지 번호 등
+		Map<String, Integer> pagingMap = Util.getPagingMap(
+				
+			// 선택된 페이지 번호
+			adNoticeSearchDTO.getSelectPageNo()
+			
+			// 한 화면에 보여지는 행의 개수
+			, adNoticeSearchDTO.getRowCntPerPage()
+			
+			// 검색된 게시판 행의 총 개수 
+			, adNoticeTotCnt
+		);
+		
+		// adNoticeSearchDTO 객체의 
+		// setSelectPageNo 메소드 호출로 [선택된 페이지 번호] 보정
+		adNoticeSearchDTO.setSelectPageNo((int)pagingMap.get("selectPageNo"));
+		
+		// adNoticeSearchDTO 객체의 
+		// setBegin_rowNo 메소드 호출로 [보여지는 시작 페이지 번호] 보정
+		adNoticeSearchDTO.setBegin_rowNo((int)pagingMap.get("begin_rowNo"));
+		
+		// adNoticeSearchDTO 객체의 
+		// setEnd_rowNo 메소드 호출로 [보여지는 끝 페이지 번호] 보정
+		adNoticeSearchDTO.setEnd_rowNo((int)pagingMap.get("end_rowNo"));
+		
+		// adNoticeDAOImpl 객체의 
+		// getadNoticeList 메소드 호출로 [게시판 목록] 얻기
+		List<Map<String, String>> adNoticeList = this.adNoticeDAO.getAdNoticeList(adNoticeSearchDTO);
+		
+		// [ModelAndView 객체] 생성
+		ModelAndView mav = new ModelAndView();
+		
+		// [ModelAndView 객체]에 
+		// [게시판 목록 검색 결과]를 저장
+		mav.addObject("adNoticeList", adNoticeList);
+		// [ModelAndView 객체]에 저장된 객체는
+		// HttpServletRequest 객체에도 저장된다.
+		
+		// [ModelAndView 객체]에 
+		// [게시판 목록 검색 결과 개수]를 저장
+		mav.addObject("adNoticeTotCnt", adNoticeTotCnt);
+		
+		// [ModelAndView 객체]에 
+		// [게시판 목록 검색 총 결과]를 저장
+		mav.addObject("adNoticeTotAllCnt", adNoticeTotAllCnt);
+		
+		// [ModelAndView 객체]에 
+		// [페이징 처리 관련 HashMap 객체]를 저장
+		mav.addObject("pagingMap", pagingMap);
+		
+		// [ModelAndView 객체]에 
+		// [보정된 선택 페이지 번호]를 저장
+		 mav.addObject("selectPageNo", (int)pagingMap.get("selectPageNo"));
+//		해당 코딩을 쓰지 않으면 adNoticeList.jsp에서
+//		formObj.find(".selectPageNo").val("${requestScope.selectPageNo}"); 대신
+//		formObj.find(".selectPageNo").val("${requestScope.pagingMap.selectPageNo}"); 사용하여야 함
+
+
+		// [ModelAndView 객체]의
+		// setViewName 메소드를 호출하여
+		// [호출할 JSP 페이지명]을 문자로 저장
+		// [호출할 JSP 페이지명] 앞, 뒤에 붙는 위치 경로 및 확장자는
+		// application.properties에서 
+		// spring.mvc.view.prefix=위치 경로
+		// spring.mvc.view.suffix=확장자
+		// 로 설정 가능하다.
+		// <참고> 기본 저장 경로에서 webapp까지는 설정되어 있다.
+		mav.setViewName("boardList2.jsp");
+		
+		// [ModelAndView 객체] 리턴
+		return mav;
+		// Spring은 ModelAndView 객체 리턴 시
+		// 저장된 [JSP 페이지명]에 있는 [JSP 페이지]를 호출한다.
+	}
+	
+	// ---------------------------------------------------------------
+	// 가상주소 /adNoticeRegForm.do로 접근하면 호출되는 메소드 선언
+	// @RequestMapping 내부에 method="RequestMethod.POST"가 없으므로
+	// 가상주소 /adNoticeRegForm.do로 접근 시 get 또는 post 접근 모두 허용
+	// ---------------------------------------------------------------
+	@RequestMapping(value="/adNoticeRegForm.do")
+	public ModelAndView adNoticeRegForm(){
+
+		// [ModelAndView 객체] 생성
+		ModelAndView mav = new ModelAndView();
+		
+		// [ModelAndView 객체]의
+		// setViewName 메소드를 호출하여
+		// [호출할 JSP 페이지명]을 문자로 저장
+		// [호출할 JSP 페이지명] 앞, 뒤에 붙는 위치 경로 및 확장자는
+		// application.properties에서 
+		// spring.mvc.view.prefix=위치 경로
+		// spring.mvc.view.suffix=확장자
+		// 로 설정 가능하다.
+		// <참고> 기본 저장 경로에서 webapp까지는 설정되어 있다.
+		mav.setViewName("adNoticeRegForm.jsp");
+
+		// [ModelAndView 객체] 리턴
+		return mav;
+		// Spring은 ModelAndView 객체 리턴 시
+		// 저장된 [JSP 페이지명]에 있는 [JSP 페이지]를 호출한다.
+	}
+	
+	// ---------------------------------------------------------------
+	// /adNoticeRegProc.do로 접근하면 호출되는 메소드 선언
+	// ---------------------------------------------------------------
+	@RequestMapping( 
+			value="/adNoticeRegProc.do" 
+			,method=RequestMethod.POST
+			,produces="application/json;charset=UTF-8"
+	)
+	@ResponseBody
+	public int adNoticeRegProc( 
+			
+			// 파라미터값을 저장할 [adNoticeDTO 객체]를 매개변수로 선언
+			AdNoticeDTO adNoticeDTO
+			// [파라미터명]과 [adNoticeDTO 객체]의 [속성변수명]이 같을 경우
+			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
+	){
+		
+		// [adNoticeServiceDAOImpl 객체]의 insertadNotice 메소드를 호출하여 
+		// 게시판 글을 입력하고 [입력이 적용될 행의 개수] 얻기
+		int adNoticeRegCnt = this.adNoticeService.insertAdNotice(adNoticeDTO);
+			
+		// [입력 적용행의 개수] 얻기
+		return adNoticeRegCnt;
+	}
+	
+	// ---------------------------------------------------------------
+	// /adNoticeDetailForm.do로 접근하면 호출되는 메소드 선언
+	// ---------------------------------------------------------------
+	@RequestMapping(value="/adNoticeDetailForm.do")
+	public ModelAndView adNoticeDetailForm(
+			
+		// "b_no"라는 파라미터 명에 해당하는 파라미터 값을 꺼내 int b_no에 저장
+		@RequestParam(value = "b_no") int b_no
+		// 상세보기 할 게시판 고유번호가 들어오는 매개변수 선언
+	){
+		
+		// [adNoticeServiceImpl 객체]의 getadNotice 메소드를 호출하여 
+		// [1개의 게시판 글]을 adNoticeDTO 객체에 담아오기
+		AdNoticeDTO adNoticeDTO = this.adNoticeService.getAdNotice(b_no, true);
+		// adNoticeDTO adNoticeDTO를 adNoticeVO adNoticeVO로도 사용
+		// VO : Value Object
+		// DTO : Data Transfer Object
+
+		// [ModelAndView 객체] 생성
+		ModelAndView mav = new ModelAndView();
+		
+		// [ModelAndView 객체]의
+		// setViewName 메소드를 호출하여
+		// [호출할 JSP 페이지명]을 문자로 저장
+		mav.setViewName("adNoticeDetailForm.jsp");
+		
+		// [ModelAndView 객체]에 1개의 게시판 글을 저장한
+		// adNoticeDTO 객체 저장하기
+		mav.addObject("adNoticeDTO", adNoticeDTO);
+
+		// [ModelAndView 객체] 리턴
+		return mav;
+		// Spring은 ModelAndView 객체 리턴 시
+		// 저장된 [JSP 페이지명]에 있는 [JSP 페이지]를 호출한다.
+	}
+	
+	// ---------------------------------------------------------------
+	// /adNoticeUpDelForm.do로 접근하면 호출되는 메소드 선언
+	// ---------------------------------------------------------------
+	@RequestMapping(value="/adNoticeUpDelForm.do")
+	public ModelAndView adNoticeUpDelForm(
+			
+		// "b_no"라는 파라미터 명에 해당하는 파라미터 값을 꺼내 int b_no에 저장
+		@RequestParam(value = "b_no") int b_no
+		// 수정/삭제 할 게시판 고유번호가 들어오는 매개변수 선언
+	){
+		
+		// [adNoticeServiceImpl 객체]의 getadNotice 메소드를 호출하여 
+		// [1개의 게시판 글]을 adNoticeDTO 객체에 담아오기
+		AdNoticeDTO adNoticeDTO = this.adNoticeService.getAdNotice(b_no, false);
+		// adNoticeDTO adNoticeDTO를 adNoticeVO adNoticeVO로도 사용
+		// VO : Value Object
+		// DTO : Data Transfer Object
+
+		// [ModelAndView 객체] 생성
+		ModelAndView mav = new ModelAndView();
+		
+		// [ModelAndView 객체]의
+		// setViewName 메소드를 호출하여
+		// [호출할 JSP 페이지명]을 문자로 저장
+		mav.setViewName("adNoticeUpDelForm.jsp");
+		
+		// [ModelAndView 객체]에 1개의 게시판 글을 저장한
+		// adNoticeDTO 객체 저장하기
+		mav.addObject("adNoticeDTO", adNoticeDTO);
+
+		// [ModelAndView 객체] 리턴
+		return mav;
+		// Spring은 ModelAndView 객체 리턴 시
+		// 저장된 [JSP 페이지명]에 있는 [JSP 페이지]를 호출한다.
+	}
+	
+	// ---------------------------------------------------------------
+	// /adNoticeUpProc.do로 접근하면 호출되는 메소드 선언
+	// ---------------------------------------------------------------
+	@RequestMapping( 
+			value="/adNoticeUpProc.do" 
+			,method=RequestMethod.POST
+			,produces="application/json;charset=UTF-8"
+	)
+	@ResponseBody
+	public int adNoticeUpProc( 
+			
+			// 파라미터값을 저장할 [adNoticeDTO 객체]를 매개변수로 선언
+			AdNoticeDTO adNoticeDTO
+			// [파라미터명]과 [adNoticeDTO 객체]의 [속성변수명]이 같을 경우
+			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
+	){
+		// [adNoticeDAOImpl 객체]의 updateadNotice 메소드를 호출하여 
+		// 게시판 글을 수정하고 [수정이 적용될 행의 개수] 얻기
+		int updateadNoticeCnt = this.adNoticeService.updateAdNotice(adNoticeDTO);
+		
+		// [수정 적용행의 개수] 얻기
+		return updateadNoticeCnt;
+	}
+	
+	// ---------------------------------------------------------------
+	// /adNoticeDelProc.do로 접근하면 호출되는 메소드 선언
+	// ---------------------------------------------------------------
+	@RequestMapping( 
+			value="/adNoticeDelProc.do" 
+			,method=RequestMethod.POST
+			,produces="application/json;charset=UTF-8"
+	)
+	@ResponseBody
+	public int adNoticeDelProc( 
+			
+			// 파라미터값을 저장할 [adNoticeDTO 객체]를 매개변수로 선언
+			AdNoticeDTO adNoticeDTO
+			// [파라미터명]과 [adNoticeDTO 객체]의 [속성변수명]이 같을 경우
+			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
+	){
+		// [adNoticeDAOImpl 객체]의 updateadNotice 메소드를 호출하여 
+		// 게시판 글을 삭제하고 [삭제가 적용될 행의 개수] 얻기
+		int deleteadNoticeCnt = this.adNoticeService.deleteAdNotice(adNoticeDTO);
+		
+		// [삭제 적용행의 개수] 얻기
+		return deleteadNoticeCnt;
+	}
+	
+//	// ---------------------------------------------------------------
+//	// 가상주소 /adNoticeReplyForm.do로 접근하면 호출되는 메소드 선언
+//	// @RequestMapping 내부에 method="RequestMethod.POST"가 없으므로
+//	// 가상주소 /adNoticeReplyForm.do로 접근 시 get 또는 post 접근 모두 허용
+//	// ---------------------------------------------------------------
+//	@RequestMapping(value="/adNoticeReplyForm.do")
+//	public ModelAndView adNoticeReplyForm(
+//			
+//		// "b_no"라는 파라미터 명에 해당하는 파라미터 값을 꺼내 int b_no에 저장
+//		@RequestParam(value = "b_no") int b_no
+//		// 답글을 달 게시판 고유번호가 들어오는 매개변수 선언
+//			
+//	){
+//		
+//		// [adNoticeServiceImpl 객체]의 getadNotice 메소드를 호출하여 
+//		// [1개의 게시판 글]을 adNoticeDTO 객체에 담아오기
+//		adNoticeDTO adNoticeDTO = this.adNoticeService.getadNotice(b_no, false);
+//		// adNoticeDTO adNoticeDTO를 adNoticeVO adNoticeVO로도 사용
+//		// VO : Value Object
+//		// DTO : Data Transfer Object
+//
+//		// [ModelAndView 객체] 생성
+//		ModelAndView mav = new ModelAndView();
+//		
+//		// [ModelAndView 객체]의
+//		// setViewName 메소드를 호출하여
+//		// [호출할 JSP 페이지명]을 문자로 저장
+//		mav.setViewName("adNoticeReplyForm.jsp");
+//		
+//		// [ModelAndView 객체]에 1개의 게시판 글을 저장한
+//		// adNoticeDTO 객체 저장하기
+//		mav.addObject("adNoticeDTO", adNoticeDTO);
+//		
+//		// [ModelAndView 객체] 리턴
+//		return mav;
+//		// Spring은 ModelAndView 객체 리턴 시
+//		// 저장된 [JSP 페이지명]에 있는 [JSP 페이지]를 호출한다.
+//	}
+//		
+//	// ---------------------------------------------------------------
+//	// /adNoticeReplyRegProc.do로 접근하면 호출되는 메소드 선언
+//	// ---------------------------------------------------------------
+//	@RequestMapping( 
+//			value="/adNoticeReplyRegProc.do" 
+//			,method=RequestMethod.POST
+//			,produces="application/json;charset=UTF-8"
+//	)
+//	@ResponseBody
+//	public int adNoticeReplyRegProc( 
+//			
+//			// 파라미터값을 저장할 [adNoticeDTO 객체]를 매개변수로 선언
+//			adNoticeDTO adNoticeDTO
+//			// [파라미터명]과 [adNoticeDTO 객체]의 [속성변수명]이 같을 경우
+//			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
+//	){
+//		
+//		this.adNoticeDAO.updatePrintNo(adNoticeDTO.getB_no());
+//		
+//		// [adNoticeDAOImpl 객체]의 insertReplyadNotice 메소드를 호출하여 
+//		// 게시판 글을 입력하고 [입력이 적용될 행의 개수] 얻기
+//		int adNoticeReplyRegCnt = this.adNoticeDAO.insertReplyadNotice(adNoticeDTO);
+//		
+//		// [입력 적용행의 개수] 얻기
+//		return adNoticeReplyRegCnt;
+//	}
+	
+}

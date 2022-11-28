@@ -1,0 +1,27 @@
+1669535067977	Rename package 'com.naver.erp'
+1669535145589	Rename package 'com.naver.erp'
+1669535356271	Rename package 'com.naver.erp'
+1669535424077	Rename package 'com.naver.erp'
+1669541959190	Move folder
+1669546893939	Delete element
+1669546988498	Move compilation units
+1669547329483	Copy compilation units
+1669547356758	Copy compilation units
+1669547390260	Move compilation units
+1669547431592	Delete element
+1669547438619	Move compilation unit
+1669547675135	Rename type 'BoardController'
+1669547678762	Rename type 'BoardDAO'
+1669547683745	Rename type 'BoardDAOImpl'
+1669547688257	Rename type 'BoardDTO'
+1669547700005	Rename type 'AdNoticeBoardDTO'
+1669547704716	Rename type 'BoardSearchDTO'
+1669547708123	Rename type 'BoardService'
+1669547711180	Rename type 'BoardServiceImpl'
+1669548334904	Delete element
+1669548540597	Rename resource 'boardList.jsp'
+1669548547403	Rename resource 'boardList2.jsp'
+1669548638076	Copy files
+1669548646331	Delete elements
+1669548755394	Rename resource 'adNotice.jsp'
+1669548759998	Rename resource 'adNotice2.jsp'

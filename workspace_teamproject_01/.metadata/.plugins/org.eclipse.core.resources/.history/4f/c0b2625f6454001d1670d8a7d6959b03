@@ -1,0 +1,109 @@
+package com.naver.erp;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class BoardController {
+	
+	// loginDAO 속성변수에
+	// LoginDAO 인터페이스를 구현한 클래스를 객체화 하여
+	// 객체의 메모리 위치 주소 값을 저장한다.
+	@Autowired
+	private BoardDAO boardDAO;
+	// Autowired로 [ = new ~;]을 생략하고 선언하면
+	// LoginDAO 인터페이스를 구현할 클래스를 찾을 때(호출할 때?)
+	// 그 클래스의 이름은 무엇이든 상관없다.
+	// 단 BoardDAO 인터페이스를 구현한 클래스는 1개만 생성해야 한다.
+	
+	// ---------------------------------------------------------------
+	// 가상주소 /boardList.do로 접근하면 호출되는 메소드 선언
+	// @RequestMapping 내부에 method="RequestMethod.POST"가 없으므로
+	// 가상주소 /boardList.do로 접근 시 get 또는 post 접근 모두 허용
+	// ---------------------------------------------------------------
+	@RequestMapping(value="/boardList.do")
+	public ModelAndView boardListForm() {
+		
+		// [ModelAndView 객체] 생성
+		ModelAndView mav = new ModelAndView();
+		
+		// BoardDAOImpl 객체의 
+		//getBoardList 메소드 호출로 [게시판 목록] 얻기
+		List<Map<String, String>> boardList = this.boardDAO.getBoardList();
+		
+		// [ModelAndView 객체]에 
+		// [게시판 목록 검색 결과]를 저장
+		mav.addObject("boardList", boardList);
+		// [ModelAndView 객체]에 저장된 객체는
+		// HttpServletRequest 객체에도 저장된다.
+		
+		mav.addObject("boardTotCnt", boardList.size());
+		
+		// [ModelAndView 객체]의
+		// setViewName 메소드를 호출하여
+		// [호출할 JSP 페이지명]을 문자로 저장
+		// [호출할 JSP 페이지명] 앞, 뒤에 붙는 위치 경로 및 확장자는
+		// application.properties에서 
+		// spring.mvc.view.prefix=위치 경로
+		// spring.mvc.view.suffix=확장자
+		// 로 설정 가능하다.
+		// <참고> 기본 저장 경로에서 webapp까지는 설정되어 있다.
+		mav.setViewName("boardList.jsp");
+		
+		// [ModelAndView 객체] 리턴
+		return mav;
+		// Spring은 ModelAndView 객체 리턴 시
+		// 저장된 [JSP 페이지명]에 있는 [JSP 페이지]를 호출한다.
+	}
+	
+	//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+	// 가상주소 /boardRegForm.do 로 접근하면 호출되는 메소드 선언
+	//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+	@RequestMapping( value="/boardRegForm.do")
+	public ModelAndView boardRegForm( ){
+
+		//*******************************************
+		// [ModelAndView 객체] 생성하기
+		// [ModelAndView 객체]에 [호출 JSP 페이지명]을 저장하기
+		// [ModelAndView 객체] 리턴하기
+		//*******************************************
+		ModelAndView mav = new ModelAndView( );
+		mav.setViewName( "boardRegForm.jsp");
+		return mav;
+	}
+	
+	//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+	// /boardRegProc.do 로 접근하면 호출되는 메소드 선언하기
+	//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+	@RequestMapping( 
+			value="/boardRegProc.do" 
+			,method=RequestMethod.POST
+			,produces="application/json;charset=UTF-8"
+	)
+	@ResponseBody
+	public int boardRegProc( 
+			//*******************************************
+			// 파라미터값을 저장할 [BoardDTO 객체]를 매개변수로 선언
+			//*******************************************
+				// [파라미터명]과 [BoardDTO 객체]의 [속성변수명]이 같으면
+				// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
+			BoardDTO boardDTO
+	){
+		
+		//*******************************************
+		// [BoardDAOImpl 객체]의 insertBoard 메소드 호출로 
+		// 게시판 글 입력하고 [입력 적용행의 개수] 얻기
+		//*******************************************
+		int boardRegCnt = this.boardDAO.insertBoard(boardDTO);
+			
+		//*******************************************
+		// [입력 적용행의 개수] 얻기
+		//*******************************************
+		return boardRegCnt;
+	}
+}

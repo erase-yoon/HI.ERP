@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*"%>
+    
+<!--mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm-->
+<!--JSP 페이지에서 사용할 [사용자 정의 태그]의 한 종류인 [JSTL의 C 코어 태그]를 사용하겠다고 선언-->
+<!--mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm-->
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Insert title here</title>
+    </head>
+    <body>
+        <table border="1" cellpadding="5" style="border-collapse: collapse;">
+            <tr bgcolor="lightblue">
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>등록일</th>
+            </tr>
+            <%
+        
+            // HttpServletRequst 객체에 게시판 목록을 꺼내서 출력 
+            List<Map<String, String>> boardList = (List<Map<String, String>>)request.getAttribute("boardList");
+            
+            if(boardList!=null){
+                out.println("<caption>총 개수 : " + boardList.size() + "개</caption>");
+
+            	for(int i=0; i<boardList.size(); i++){
+            		Map<String, String> map = boardList.get(i);
+            		String b_no = map.get("b_no");
+            		String subject = map.get("subject");
+            		String writer = map.get("writer");
+            		String readcount = map.get("readcount");
+            		String reg_date = map.get("reg_date");
+
+                    if(i%2==1){
+                       out.println("<tr bgcolor='lightgray'>");
+                    }else{
+                        out.println("<tr>");
+                    }
+            		out.println("<td>" + b_no + "</td><td>" + subject + "</td><td>" + writer + "</td><td>" + readcount + "</td><td>" + reg_date + "</td></tr>");
+
+                    // if(i%2==1){
+                    //      out.println("<tr bgcolor='lightgray'><td>" + b_no + "</td><td>" + subject + "</td><td>" + writer + "</td><td>" + readcount + "</td><td>" + reg_date + "</td></tr>");
+                    // }else{
+                    //      out.println("<tr><td>" + b_no + "</td><td>" + subject + "</td><td>" + writer + "</td><td>" + readcount + "</td><td>" + reg_date + "</td></tr>");
+                    // }.
+                    
+
+                    // out.println("<tr bgcolor='" + (i%2==1?"lightgray":"") + "'><td>" + b_no + "</td><td>" + subject + "</td><td>" + writer + "</td><td>" + readcount + "</td><td>" + reg_date + "</td></tr>");
+
+            	}
+            }
+
+            %>
+            
+            <c:forEach var="board" items="${requestScope.boardList}" varStatus="loopTagStatus">
+            
+        </table>
+    </body>
+</html>

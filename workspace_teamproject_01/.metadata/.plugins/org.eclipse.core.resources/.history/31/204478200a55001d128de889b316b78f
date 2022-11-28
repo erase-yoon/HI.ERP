@@ -1,0 +1,79 @@
+package com.naver.erp;
+
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+// ---------------------------------------------------------------
+// [BoardDAOBoardDAOImpl 클래스] 선언
+// ---------------------------------------------------------------
+ @Repository
+public class BoardDAOImpl implements BoardDAO {
+	
+	// ---------------------------------------------------------------
+	// 속성변수 sqlSession에 SqlSessionTemplate 객체를 생성하여 저장
+	// ---------------------------------------------------------------
+	// @Autowired 어노테이션을 붙이면
+	// 속성변수의 자료형에 맞는 SqlSessionTemplate 객체를 생성한 후
+	// 객체의 메모리 위치 주소 값을 속성변수에 저장한다.
+	// ---------------------------------------------------------------
+	// SqlSessionTemplate 객체는 DB 연동 시 사용하는 객체이다.
+	// xml 파일에 있는 SQL 구문을 읽어 DB에 SQL 명령을 내린 후
+	// 그 결과값을 받아오는 객체이다.
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
+	// ---------------------------------------------------------------
+	// [검색한 게시판 목록]을 리턴하는 메소드 선언
+	// ---------------------------------------------------------------
+	public List<Map<String, String>> getBoardList(){
+		
+		// SqlSessionTemplate 객체의 selectList 메소드 호출로
+		// n행 m열 게시판 글을 List<Map<String, String>>으로 받아오기
+		List<Map<String, String>> boardList = this.sqlSession.selectList(
+				
+			// 실행할 SQL SELECT 구문의 위치 지정
+			"com.naver.erp.BoardDAO.getBoardList"
+			// SQL 구문의 위치 : *.xml 파일 내부
+			// <mapper namespace="com.naver.erp.BoardBAO">
+			// <select id="getBoardList"> SELECT 구문 </select>
+			// </mapper>
+		);
+		
+//		List<Map<String, String>> boardList = new ArrayList<String, String>();
+//		Map<String, String> map1 = new HashMap<String, String>();
+//		map1.put("b_no", 1);
+//		map1.put("subject", "제목1");
+//		map1.put("content", "내용1");
+//		boardList.add(map1);
+		
+		return boardList;
+	}
+	
+	// ---------------------------------------------------------------
+	// [게시판 글 입력 후 적용될 행의 개수]를 리턴하는 메소드 선언
+	// ---------------------------------------------------------------
+	public int insertBoard(BoardDTO boardDTO){
+		
+		// SqlSessionTemplate 객체의 selectList 메소드 호출로
+		// 게시판 글을 입력하는 SQL 구문을 실행하고 입력 성공한 행의 개수 얻기
+		int boardRegCnt = sqlSession.insert(
+				
+			// 실행할 SQL INSERT 구문의 위치 지정
+			"com.naver.erp.BoardDAO.insertBoard"
+			// SQL 구문의 위치 : *.xml 파일 내부
+			// <mapper namespace="com.naver.erp.BoardBAO">
+			// <insert id="insertBoard"> INSERT 구문 </insert>
+			// </mapper>
+				
+			// 실행할 SQL 구문에서 사용할 데이터 지정
+			, boardDTO
+		);
+		
+		return boardRegCnt;
+	}
+
+}

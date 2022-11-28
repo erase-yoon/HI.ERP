@@ -1,0 +1,30 @@
+
+public class aaa {
+
+	public static void main(String[] args) {
+
+		int[] stu_nos1 = new int[5];
+		stu_nos1[0] = 1;
+		stu_nos1[1] = 3;
+		stu_nos1[2] = 5;
+		stu_nos1[3] = 7;
+		stu_nos1[4] = 9;
+		
+		int stu_nos2[] = new int[5];
+		stu_nos2[0] = 1;
+		stu_nos2[1] = 3;
+		stu_nos2[2] = 5;
+		stu_nos2[3] = 7;
+		stu_nos2[4] = 9;
+		
+		for(int i=0; i<stu_nos1.length; i++) {
+			System.out.print(stu_nos1[i]);
+			// 0 0 0 0 0 출력
+		}
+		for(int i=0; i<stu_nos2.length; i++) {
+			System.out.print(stu_nos2[i]);
+			// 0 0 0 0 0 출력
+		}
+	}
+
+}

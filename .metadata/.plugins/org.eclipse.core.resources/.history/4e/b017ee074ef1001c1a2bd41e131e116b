@@ -1,0 +1,25 @@
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+public class aaa {
+
+	public static void main(String[] args) {
+		
+		// 현재 날짜를 관리하는 Date 객체를 생성하기
+		Date today = new Date();
+		System.out.println(str);
+
+		// "2022년 6월 21일 7시 15분 20초"라는 패턴으로
+		// 날짜의 패턴을 관리하는 SimpleDateFormat 객체를 생성하기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초")
+
+		// SimpleDateFormat 객체의 메소드 format을 호출하여 날짜를 문자열로 얻기
+		String str = sdf.format(today);
+
+		System.out.println(str);
+		
+		
+		
+	}
+
+}

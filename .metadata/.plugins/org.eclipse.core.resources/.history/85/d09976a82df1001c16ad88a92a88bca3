@@ -1,0 +1,745 @@
+// MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+// 아래 클래스의 소속 패키지를 선언.
+// 모든  클래스의 최 상단에는 무조건 패키지 선언이 등장한다.
+// MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+package com.daum.test;
+
+// MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+// Test_03 이라는 클래스 선언.
+// 자바는 클래스(class) 또는 인터페이스(interface)라는 최소 단위 프로그램들로 구성된다.
+// 클래스 이름은 관용적으로 대문자로 시작한다.
+// 클래스 이름은 의미 있게 주어야한다.(=가독성)
+// MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+public class Test_03_conditional {
+
+	// mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+	// 자바 가상머신(JVM)이 찾아서 호출하는 main 메소드 선언.
+	// main 메소드에 붙어 있는 public static void 의 키워드는 나중에
+	// 배울테니 당분간 main 메소드 안의 코딩에 집중하자.
+	// mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+	public static void main(String[] args) {
+		
+		// -------------------------------------------
+		// 변수 kor, eng, math 선언하고 점수 입력하기
+		// -------------------------------------------
+		int kor = 90;
+		int eng = 80;
+		int math = 75;
+			// <참고> 위 3개의 변수 선언 시 변수의 자료형이 동일할 경우 아래처럼 한줄로도 가능하다.
+			// int kor = 90, eng = 80, math = 75;
+		
+		// -------------------------------------------
+		// 변수 tot 선언하고 kor, eng, math 변수 안의 데이터 더한 후 저장하기
+		// -------------------------------------------
+		int tot = kor + eng + math;
+		
+		// -------------------------------------------
+		// 변수 avg 선언하고 kor, eng, math 변수 안의 데이터의 평균 데이터 저장하기
+		// -------------------------------------------
+		double avg = tot / 3.0;
+		// 또는 double avg = (double)tot / 3; 또는 double avg = (double)tot / 3.0;
+		
+		// -------------------------------------------
+		// 학점이 저장되는 변수 hakjum 선언하고 F 저장하기
+		// -------------------------------------------
+		char hakjum = 'F';
+		
+		// -------------------------------------------
+		// 만약 avg 변수 안의 데이터가 90이상 100이하면
+		// hakjum 변수 안에 문자 A 저장하기
+		// -------------------------------------------
+		if(90 <= avg && avg <= 100) {
+			hakjum = 'A';
+		}
+		
+		// -------------------------------------------
+		// 만약 avg 변수 안의 데이터가 80이상 90미만이면
+		// hakjum 변수 안에 문자 B 저장하기
+		// -------------------------------------------
+		if(80 <= avg && avg < 90) {
+			hakjum = 'B';
+		}
+		
+		// -------------------------------------------
+		// 만약 avg 변수 안의 데이터가 70이상 80미만이면
+		// hakjum 변수 안에 문자 C 저장하기
+		// -------------------------------------------
+		if(70 <= avg && avg < 80) {
+			hakjum = 'C';
+		}
+		
+		// -------------------------------------------
+		// 만약 avg 변수 안의 데이터가 60이상 70미만이면
+		// hakjum 변수 안에 문자 D 저장하기
+		// -------------------------------------------
+		if(60 <= avg && avg < 70) {
+			hakjum = 'D';
+		}
+		
+		System.out.println("총점 : " + tot);
+		System.out.println("평균 : " + avg);
+		System.out.println("학점 : " + hakjum);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// 만약 avg 변수 안의 데이터가 90이상 100이하면
+		// hakjum 변수 안에 문자 A 저장하기
+		// -------------------------------------------
+		if( 90 <= avg && avg <=100) {
+			hakjum = 'A';
+		}
+		// -------------------------------------------
+		// 그렇지 않고 만약 (=위 조건식이 false면)
+		// avg 변수 안의 데이터가 80이상 90미만이면
+		// hakjum 변수 안에 문자 B 저장하기
+		// -------------------------------------------
+		else if (80 <= avg && avg <90) {
+			hakjum = 'B';
+		}
+		// -------------------------------------------
+		// 그렇지 않고 만약 (=위 조건식이 false면)
+		// avg 변수 안의 데이터가 70이상 80미만이면
+		// hakjum 변수 안에 문자 C 저장하기
+		// -------------------------------------------
+		else if (70 <= avg && avg <80) {
+			hakjum = 'C';
+		}
+		// -------------------------------------------
+		// 그렇지 않고 만약 (=위 조건식이 false면)
+		// avg 변수 안의 데이터가 60이상 70미만이면
+		// hakjum 변수 안에 문자 D 저장하기
+		// -------------------------------------------
+		else if (60 <= avg && avg <70) {
+			hakjum = 'D';
+		}
+		
+		System.out.println("총점 : " + tot);
+		System.out.println("평균 : " + avg);
+		System.out.println("학점 : " + hakjum);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// flag 변수 선언하고 true 저장하기
+		// -------------------------------------------
+		boolean flag = true;
+		// -------------------------------------------
+		// 만약 avg 변수 안의 데이터가 100이상이면
+		// "경고 : 평균이 100보다 큽니다."를 출력하고 
+		// flag 변수에 false 저장하기
+		// -------------------------------------------
+		if(100 < avg) {
+			System.out.println("경고 : 평균이 100보다 큽니다.");
+			flag = false;
+		}
+		// -------------------------------------------
+		// 그렇지 않고 만약 (=위 조건식이 false면)
+		// avg 변수 안의 데이터가 90이상이면
+		// hakjum 변수 안에 문자 A 저장하기
+		// -------------------------------------------
+		else if(90 <= avg) {
+			hakjum = 'A';
+		}
+		// -------------------------------------------
+		// 그렇지 않고 만약 (=위 조건식이 false면)
+		// avg 변수 안의 데이터가 80이상이면
+		// hakjum 변수 안에 문자 B 저장하기
+		// -------------------------------------------
+		else if(80 <= avg) {
+			hakjum = 'B';
+		}
+		// -------------------------------------------
+		// 그렇지 않고 만약 (=위 조건식이 false면)
+		// avg 변수 안의 데이터가 70이상이면
+		// hakjum 변수 안에 문자 C 저장하기
+		// -------------------------------------------
+		else if(70 <= avg) {
+			hakjum = 'C';
+		}
+		// -------------------------------------------
+		// 그렇지 않고 만약 (=위 조건식이 false면)
+		// avg 변수 안의 데이터가 60이상이면
+		// hakjum 변수 안에 문자 D 저장하기
+		// -------------------------------------------
+		else if(60 <= avg) {
+			hakjum = 'D';
+		}
+		// -------------------------------------------
+		// 그렇지 않고 만약 (= 위 조건식이 false면)
+		// avg 변수 안의 데이터가 0이상이면
+		// hakjum 변수 안에 문자 F 저장하기
+		// -------------------------------------------
+		else if(0 <= avg) {
+			hakjum = 'F';
+		}
+		// -------------------------------------------
+		// 위의 모든 조건식이 false인 경우
+		// "경고 : 평균이 0보다 작습니다."를 출력하고 
+		// flag 변수에 false 저장하기
+		// -------------------------------------------
+		else {
+			System.out.println("경고 : 평균이 0보다 작습니다.");
+			flag = false;
+		}
+		
+		// -------------------------------------------
+		// 만약 flag 변수 안의 데이터가 true면
+		// 아래 출력문을 출력한다. 
+		// -------------------------------------------
+		if(flag) {
+		// if(flag == false) {
+			System.out.println("총점 : " + tot);
+			System.out.println("평균 : " + avg);
+			System.out.println("학점 : " + hakjum);
+			System.out.println("---------------------------------------------");
+		}
+
+		// -------------------------------------------
+		// <문제>
+		// -------------------------------------------
+		// 평균이 80이상이면 "합격" 문자를 출력하고
+		// 평균이 80미만이면 "불합격" 문자를 출력 
+		// -------------------------------------------
+		if(avg >= 80) {
+			System.out.println("합격");
+		}
+		if(avg < 80) {
+			System.out.println("불합격");	
+		}
+		System.out.println("---------------------------------------------");
+		// -------------------------------------------
+		if(avg >= 80) {
+			System.out.println("합격");
+		}else if(avg < 80){
+			System.out.println("불합격");
+		}
+		System.out.println("---------------------------------------------");
+		// -------------------------------------------
+		if(avg >= 80) {
+			System.out.println("합격");
+		}else {
+			System.out.println("불합격");
+		}
+		System.out.println("---------------------------------------------");
+		// -------------------------------------------
+		if(avg < 80) {
+			System.out.println("불합격");
+		}else {
+			System.out.println("합격");
+		}
+		System.out.println("---------------------------------------------");
+		// -------------------------------------------
+		String result = "합격";
+		if(avg >= 80) {
+			result = "불합격";
+		}
+		System.out.println(result);
+		System.out.println("---------------------------------------------");
+		// -------------------------------------------
+		result = "불합격";
+		if(avg < 80) {
+			result = "합격";
+		}
+		System.out.println(result);
+		System.out.println("---------------------------------------------");
+		// -------------------------------------------
+		result = (avg >= 80)? "합격" : "불합격";
+		if(avg < 80) {
+			result = "합격";
+		}
+		System.out.println(result);
+		System.out.println("---------------------------------------------");
+		
+		// *********************************************************************
+		// 아래 조건을 만족하면 "합격" 출력하고, 만족하지 못하면 "불합격" 출력하기.
+		// 조건은 국어, 영어, 수학 점수의 평균 60점이상. 각 과목이 40점 이상.
+		// *********************************************************************
+		// -------------------------------------------
+		// <정답1>
+		// -------------------------------------------
+		result = "합격";
+		if(avg >= 60 && kor >= 40 && eng >= 40 && math >= 40) {
+				result = "합격";
+		}else {
+			result = "불합격";
+		}
+		System.out.println("정답1 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답2>
+		// -------------------------------------------
+		result = "합격";
+		if(avg < 60 || kor < 40 || eng < 40 || math < 40) {
+				result = "불합격";
+		}else {
+			result = "합격";
+		}
+		System.out.println("정답2 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답3>
+		// -------------------------------------------
+		result = "합격";
+		if(!(avg >= 60 && kor >= 40 && eng >= 40 && math >= 40)) {
+			result = "불합격";
+		}else {
+			result = "합격";
+		}
+		System.out.println("정답3 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답4>
+		// -------------------------------------------
+		result = "합격";
+		if(!(avg < 60 || kor < 40 || eng < 40 || math < 40)) {
+			result = "합격";
+		}else {
+			result = "불합격";
+		}
+		System.out.println("정답4 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답5>
+		// -------------------------------------------
+		result = "합격";
+		if(avg < 60) {
+			result = "불합격";
+		}else if(kor < 40) {
+			result = "불합격";
+		}else if(eng < 40) {
+			result = "불합격";
+		}else if(math < 40) {
+			result = "불합격";
+		}else {
+			result = "합격";
+		}
+		
+		System.out.println("정답5 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답6>
+		// -------------------------------------------
+		result = "불합격";
+		if(avg >= 60) {
+			if(kor >= 40) {
+				if(eng >= 40) {
+					if(math >= 40) {
+						result = "합격";
+					}
+				}
+			}
+		}
+		System.out.println("정답6 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답7>
+		// -------------------------------------------
+		result = "불합격";
+		if(avg >= 60) {
+			if(kor >= 40 && eng >= 40 && math >= 40) {
+						result = "합격";
+			}
+		}
+		System.out.println("정답7 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답8>
+		// -------------------------------------------
+		result = (avg >= 60 && kor >= 40 && eng >= 40 && math >= 40)? "합격" : "불합격";
+		System.out.println("정답8 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답9>
+		// -------------------------------------------
+		boolean is_pass = avg >= 60 && kor >= 40 && eng >= 40 && math >= 40;
+		if(is_pass) {
+			result = "합격";
+		}else {
+			result = "불합격";
+		}
+		System.out.println("정답9 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답10>
+		// -------------------------------------------
+		boolean is_pass1 = avg >= 60;
+		boolean is_pass2 = kor >= 40 && eng >= 40 && math >= 40;
+		if(is_pass1 && is_pass2) {
+			result = "합격";
+		}else {
+			result = "불합격";
+		}
+		System.out.println("정답10 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답11>
+		// -------------------------------------------
+		result = "합격";
+		int cnt = 0;
+		if(avg >= 60) {
+			cnt = cnt + 1;
+		}
+		if(kor >= 70) {
+			cnt = cnt + 1;
+		}
+		if(math >= 70) {
+			cnt = cnt + 1;
+		}
+		if(eng >= 70) {
+			cnt = cnt + 1;
+		}
+		result = (cnt == 4)? "합격" : "불합격";
+		System.out.println("정답11 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// *********************************************************************
+		// 아래 조건을 만족하면 "합격" 출력하고, 만족하지 못하면 "불합격" 출력하기.
+		// 조건은 평균 60점이상. 두 과목이 70점 이상.
+		// *********************************************************************
+		result = "합격";
+		cnt = 0;
+		if(kor >= 70) {
+			cnt = cnt + 1;
+		}
+		if(math >= 70) {
+			cnt = cnt++;
+		}
+		if(eng >= 70) {
+			cnt += 1;
+		}
+		if (avg >= 60 && cnt>=2) {
+			result = "합격";
+		}else {
+			result = "불합격";
+		}
+		System.out.println(result);
+		
+		result = "합격";
+		if(avg >= 60 && kor >= 70 && eng >= 70) {
+			result = "합격";
+		}else if(avg >= 60 && kor >= 70 && math >= 70) {
+			result = "합격";
+		}else if(avg >= 60 && eng >= 70 && math >= 70) {
+			result = "합격";
+		}else {
+			result = "불합격";
+		}
+		
+		System.out.println(result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답12>
+		// -------------------------------------------
+		if(avg >= 60 && ((kor >= 70 && eng >= 70) || (kor >= 70 && math >= 70) || (math >= 70 && eng >= 70))) {
+			result = "합격";
+		}else {
+			result = "불합격";
+		}
+		System.out.println("정답12 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답13>
+		// -------------------------------------------
+		result = "불합격";
+		if(avg >= 60) {
+			if((kor >= 70 && eng >= 70) || (kor >= 70 && math >= 70) || (math >= 70 && eng >= 70)) {
+				result = "합격";
+			}
+		}
+		System.out.println("정답13 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답14>
+		// -------------------------------------------
+		result = "불합격";
+		if(avg >= 60) {
+			if(kor >= 70 && eng >= 70) {
+				result = "합격";
+			}
+			else if(kor >= 70 && math >= 70) {
+				result = "합격";
+			}
+			else if(math >= 70 && eng >= 70) {
+				result = "합격";
+			}
+		}
+		System.out.println("정답14 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답15>
+		// -------------------------------------------
+		result = "불합격";
+		cnt = 0;
+		if(kor >= 70) {
+			cnt = cnt + 1;
+		}
+		if(math >= 70) {
+			cnt = cnt + 1;
+		}
+		if(eng >= 70) {
+			cnt = cnt + 1;
+		}
+		if (avg >= 60) {
+			if(cnt <= 2) {
+				result = "합격";
+			}
+		}
+		System.out.println("정답15 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답16>
+		// -------------------------------------------
+		result = "불합격";
+		cnt = 0;
+		if(avg >= 60) {
+			cnt = cnt + 2;
+		}
+		if(kor >= 70) {
+			cnt = cnt + 1;
+		}
+		if(math >= 70) {
+			cnt = cnt + 1;
+		}
+		if(eng >= 70) {
+			cnt = cnt + 1;
+		}
+		if(cnt <= 4) {
+			result = "합격";
+		}
+		System.out.println("정답16 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <문제>
+		// -------------------------------------------
+		// switch 구문을 사용하여
+		// 평균이 80이상이면 "합격" 문자를 도스창에 출력하고
+		// 평균이 80미만이면 "불합격" 문자를 도스창에 출력하기
+		// -------------------------------------------
+		result = "불합격";
+		int avg1 = (int)avg;
+		switch(avg1) {
+		case 100 : case 99 : case 98 : case 97 : case 96 :
+		case 95 : case 94 : case 93 : case 92 : case 91 :
+		case 90 : case 89 : case 88 : case 87 : case 86 :
+		case 85 : case 84 : case 83 : case 82 : case 81 : case 80 :
+			result = "합격";
+		}
+		System.out.println(result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답17> 무식한 방법
+		// -------------------------------------------
+		switch(avg1) {
+		case 100 : result = "합격"; break;
+		case 99 : result = "합격"; break;
+		case 98 : result = "합격"; break;
+		case 97 : result = "합격"; break;
+		case 96 : result = "합격"; break;
+		case 95 : result = "합격"; break;
+		case 94 : result = "합격"; break;
+		case 93 : result = "합격"; break;
+		case 92 : result = "합격"; break;
+		case 91 : result = "합격"; break;
+		case 90 : result = "합격"; break;
+		case 89 : result = "합격"; break;
+		case 88 : result = "합격"; break;
+		case 87 : result = "합격"; break;
+		case 86 : result = "합격"; break;
+		case 85 : result = "합격"; break;
+		case 84 : result = "합격"; break;
+		case 83 : result = "합격"; break;
+		case 82 : result = "합격"; break;
+		case 81 : result = "합격"; break;
+		case 80 : result = "합격"; break;
+		case 79 : result = "불합격"; break;
+		case 78 : result = "불합격"; break;
+		case 77 : result = "불합격"; break;
+		case 76 : result = "불합격"; break;
+		case 75 : result = "불합격"; break;
+		case 74 : result = "불합격"; break;
+		case 73 : result = "불합격"; break;
+		case 72 : result = "불합격"; break;
+		case 71 : result = "불합격"; break;
+		case 70 : result = "불합격"; break;
+		case 69 : result = "불합격"; break;
+		case 68 : result = "불합격"; break;
+		case 67 : result = "불합격"; break;
+		case 66 : result = "불합격"; break;
+		case 65 : result = "불합격"; break;
+		case 64 : result = "불합격"; break;
+		case 63 : result = "불합격"; break;
+		case 62 : result = "불합격"; break;
+		case 61 : result = "불합격"; break;
+		case 60 : result = "불합격"; break;
+		case 59 : result = "불합격"; break;
+		case 58 : result = "불합격"; break;
+		case 57 : result = "불합격"; break;
+		case 56 : result = "불합격"; break;
+		case 55 : result = "불합격"; break;
+		case 54 : result = "불합격"; break;
+		case 53 : result = "불합격"; break;
+		case 52 : result = "불합격"; break;
+		case 51 : result = "불합격"; break;
+		case 50 : result = "불합격"; break;
+		case 49 : result = "불합격"; break;
+		case 48 : result = "불합격"; break;
+		case 47 : result = "불합격"; break;
+		case 46 : result = "불합격"; break;
+		case 45 : result = "불합격"; break;
+		case 44 : result = "불합격"; break;
+		case 43 : result = "불합격"; break;
+		case 42 : result = "불합격"; break;
+		case 41 : result = "불합격"; break;
+		case 40 : result = "불합격"; break;
+		case 39 : result = "불합격"; break;
+		case 38 : result = "불합격"; break;
+		case 37 : result = "불합격"; break;
+		case 36 : result = "불합격"; break;
+		case 35 : result = "불합격"; break;
+		case 34 : result = "불합격"; break;
+		case 33 : result = "불합격"; break;
+		case 32 : result = "불합격"; break;
+		case 31 : result = "불합격"; break;
+		case 30 : result = "불합격"; break;
+		case 29 : result = "불합격"; break;
+		case 28 : result = "불합격"; break;
+		case 27 : result = "불합격"; break;
+		case 26 : result = "불합격"; break;
+		case 25 : result = "불합격"; break;
+		case 24 : result = "불합격"; break;
+		case 23 : result = "불합격"; break;
+		case 22 : result = "불합격"; break;
+		case 21 : result = "불합격"; break;
+		case 20 : result = "불합격"; break;
+		case 19 : result = "불합격"; break;
+		case 18 : result = "불합격"; break;
+		case 17 : result = "불합격"; break;
+		case 16 : result = "불합격"; break;
+		case 15 : result = "불합격"; break;
+		case 14 : result = "불합격"; break;
+		case 13 : result = "불합격"; break;
+		case 12 : result = "불합격"; break;
+		case 11 : result = "불합격"; break;
+		case 10 : result = "불합격"; break;
+		case 9 : result = "불합격"; break;
+		case 8 : result = "불합격"; break;
+		case 7 : result = "불합격"; break;
+		case 6 : result = "불합격"; break;
+		case 5 : result = "불합격"; break;
+		case 4 : result = "불합격"; break;
+		case 3 : result = "불합격"; break;
+		case 2 : result = "불합격"; break;
+		case 1 : result = "불합격"; break;
+		case 0 : result = "불합격"; break;
+		default : result = "평균 점수 에러";
+		}
+		System.out.println("정답 17 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답18> 덜 무식한 방법
+		// -------------------------------------------
+		switch(avg1) {
+		case 100 :		case 99 :		case 98 :		case 97 :		case 96 :
+		case 95 :		case 94 :		case 93 :		case 92 :		case 91 :
+		case 90 :		case 89 :		case 88 :		case 87 :		case 86 :
+		case 85 :		case 84 :		case 83 :		case 82 :		case 81 :
+		case 80 : result = "합격"; break;
+		case 79 : 		case 78 :		case 77 :		case 76 :		case 75 :
+		case 74 : 		case 73 : 		case 72 : 		case 71 :		case 70 : 
+		case 69 : 		case 68 : 		case 67 : 		case 66 : 		case 65 : 
+		case 64 : 		case 63 : 		case 62 : 		case 61 : 		case 60 : 
+		case 59 : 		case 58 : 		case 57 : 		case 56 : 		case 55 : 
+		case 54 : 		case 53 : 		case 52 : 		case 51 : 		case 50 : 
+		case 49 : 		case 48 :		case 47 :		case 46 :		case 45 : 
+		case 44 : 		case 43 :		case 42 :		case 41 :		case 40 : 
+		case 39 : 		case 38 :		case 37 :		case 36 :		case 35 : 
+		case 34 : 		case 33 :		case 32 :		case 31 :		case 30 : 
+		case 29 : 		case 28 :		case 27 :		case 26 :		case 25 : 
+		case 24 : 		case 23 :		case 22 :		case 21 :		case 20 : 
+		case 19 : 		case 18 :		case 17 :		case 16 :		case 15 : 
+		case 14 : 		case 13 :		case 12 :		case 11 :		case 10 : 
+		case 9 : 		case 8 :		case 7 :		case 6 :		case 5 : 
+		case 4 : 		case 3 :		case 2 :		case 1 : 
+		case 0 : result = "불합격"; break;
+		default : result = "평균 점수 에러";
+		}
+		System.out.println("정답 18 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답19> 유식한 방법
+		// -------------------------------------------
+		int num = (int)avg/10;
+		switch(num) {
+		case 10 : result = "합격"; break;
+		case 9 : result = "합격"; break;
+		case 8 : result = "합격"; break;
+		case 7 : result = "불합격"; break;
+		case 6 : result = "불합격"; break;
+		case 5 : result = "불합격"; break;
+		case 4 : result = "불합격"; break;
+		case 3 : result = "불합격"; break;
+		case 2 : result = "불합격"; break;
+		case 1 : result = "불합격"; break;
+		case 0 : result = "불합격"; break;
+		default : result = "평균 점수 에러";
+		}
+		System.out.println("정답 19 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <정답20> 매우 유식한 방법
+		// -------------------------------------------
+		switch(num) {
+		case 10 :	case 9 : 
+		case 8 : result = "합격"; break;
+		case 7 :	case 6 :	case 5 :	case 4 :
+		case 3 :	case 2 :	case 1 :
+		case 0 : result = "불합격"; break;
+		default : result = "평균 점수 에러";
+		}
+		System.out.println("정답 20 : " + result);
+		System.out.println("---------------------------------------------");
+		
+		// -------------------------------------------
+		// <문제>
+		// -------------------------------------------
+		// switch 구문을 사용하여 학점을 도스창에 출력하기
+		// -------------------------------------------
+		
+		// -------------------------------------------
+		// <정답21>
+		// -------------------------------------------
+		switch(num) {
+		case 10 :
+		case 9 : result = "A"; break;
+		case 8 : result = "B"; break;
+		case 7 : result = "C"; break;
+		case 6 : result = "D"; break;
+		case 5 :	case 4 :
+		case 3 :	case 2 :	case 1 :
+		case 0 : result = "F"; break;
+		default : result = "학점 에러";
+		}
+		System.out.println("정답 21 : " + result);
+		System.out.println("---------------------------------------------");
+	}
+
+}

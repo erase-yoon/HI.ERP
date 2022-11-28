@@ -1,0 +1,10 @@
+package com.naver.erp;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class loginDAOImpl {
+	public int getCntLogin() {
+		
+	}
+}
