@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Lithium Design System</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body class="split-mode">
+<div id="wrapper">
+  <div id="contents-wrapper">
+    <div class="content-header">
+      <div class="content-title-bar">
+        <h5>Data Table</h5>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="container">
+
+        <section>
+          <div class="container mg-t-4u"><p class="h7">Default - Medium</p></div>
+          <div class="data-table-wrapper responsive">
+            <div class="data-table-tools">
+              <div class="tools">
+                <div class="tools-group">
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-linecopy"></i></span>
+                  </button>
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-prevcell"></i></span>
+                  </button>
+                </div>
+                <div class="tools-group">
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-add"></i></span>
+                  </button>
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-minus"></i></span>
+                  </button>
+                </div>
+                <div class="tools-group"><span><strong>12</strong> / 99행</span></div>
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-primary btn-ghost btn-xs">
+                  <span class="label">버튼 텍스트</span>
+                </button>
+                <button class="btn btn-primary btn-xs btn-container">
+                  <span class="label">버튼 텍스트</span>
+                </button>
+              </div>
+            </div>
+            <div class="data-table-container">
+              <table class="data-table">
+                <colgroup></colgroup>
+                <thead>
+                <tr>
+                  <th></th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th>1</th>
+                  <td>B57828</td>
+                  <td>2020. 4. 6. 14:29</td>
+                  <td>일반문구텍스트</td>
+                  <td class="txt-right">1,415,000</td>
+                  <td>180</td>
+                </tr>
+                <tr>
+                  <th>2</th>
+                  <td>B57828</td>
+                  <td>2020. 4. 6. 14:29</td>
+                  <td>일반문구텍스트</td>
+                  <td class="txt-right">1,415,000</td>
+                  <td>180</td>
+                </tr>
+                <tr>
+                  <th>3</th>
+                  <td>B57828</td>
+                  <td>2020. 4. 6. 14:29</td>
+                  <td>일반문구텍스트</td>
+                  <td class="txt-right">1,415,000</td>
+                  <td>180</td>
+                </tr>
+                <tr>
+                  <th class="disabled">4</th>
+                  <td class="disabled">B57828</td>
+                  <td class="disabled">2020. 4. 6. 14:29</td>
+                  <td class="disabled">일반문구텍스트</td>
+                  <td class="txt-right disabled">1,415,000</td>
+                  <td class="disabled">180</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="container mg-t-4u"><p class="h7">Default - Small</p></div>
+          <div class="data-table-wrapper responsive">
+            <div class="data-table-tools">
+              <div class="tools">
+                <div class="tools-group">
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-linecopy"></i></span>
+                  </button>
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-prevcell"></i></span>
+                  </button>
+                </div>
+                <div class="tools-group">
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-add"></i></span>
+                  </button>
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-minus"></i></span>
+                  </button>
+                </div>
+                <div class="tools-group"><span><strong>12</strong> / 99행</span></div>
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-primary btn-ghost btn-xs">
+                  <span class="label">버튼 텍스트</span>
+                </button>
+                <button class="btn btn-primary btn-xs btn-container">
+                  <span class="label">버튼 텍스트</span>
+                </button>
+              </div>
+            </div>
+            <div class="data-table-container">
+              <table class="data-table data-table-sm">
+                <colgroup></colgroup>
+                <thead>
+                <tr>
+                  <th></th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th>1</th>
+                  <td>B57828</td>
+                  <td>2020. 4. 6. 14:29</td>
+                  <td>일반문구텍스트</td>
+                  <td class="txt-right">1,415,000</td>
+                  <td>180</td>
+                </tr>
+                <tr>
+                  <th>2</th>
+                  <td>B57828</td>
+                  <td>2020. 4. 6. 14:29</td>
+                  <td>일반문구텍스트</td>
+                  <td class="txt-right">1,415,000</td>
+                  <td>180</td>
+                </tr>
+                <tr>
+                  <th>3</th>
+                  <td>B57828</td>
+                  <td>2020. 4. 6. 14:29</td>
+                  <td>일반문구텍스트</td>
+                  <td class="txt-right">1,415,000</td>
+                  <td>180</td>
+                </tr>
+                <tr>
+                  <th class="disabled">4</th>
+                  <td class="disabled">B57828</td>
+                  <td class="disabled">2020. 4. 6. 14:29</td>
+                  <td class="disabled">일반문구텍스트</td>
+                  <td class="txt-right disabled">1,415,000</td>
+                  <td class="disabled">180</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="container mg-t-4u"><p class="h7">With Component - Medium</p></div>
+          <div class="data-table-wrapper responsive">
+            <div class="data-table-tools">
+              <div class="tools">
+                <div class="tools-group">
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-linecopy"></i></span>
+                  </button>
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-prevcell"></i></span>
+                  </button>
+                </div>
+                <div class="tools-group">
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-add"></i></span>
+                  </button>
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-minus"></i></span>
+                  </button>
+                </div>
+                <div class="tools-group"><span><strong>12</strong> / 99행</span></div>
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-primary btn-ghost btn-xs">
+                  <span class="label">버튼 텍스트</span>
+                </button>
+                <button class="btn btn-primary btn-xs btn-container">
+                  <span class="label">버튼 텍스트</span>
+                </button>
+              </div>
+            </div>
+            <div class="data-table-container">
+              <table class="data-table table-select">
+                <colgroup></colgroup>
+                <thead>
+                <tr>
+                  <th>
+                    <label class="checker-item select-all">
+                      <input type="checkbox" checked>
+                      <span class="label-group">
+                        <span class="icon">
+                          <i class="material-icons">check_box_outline_blank</i>
+                          <i class="material-icons">check_box</i>
+                        </span>
+                        <span class="label"></span>
+                      </span>
+                    </label>
+                  </th>
+                  <th class="with-tools">
+                    Column Header
+                    <div class="tools overflow overflow-sm overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
+                        <span class="icon"><i></i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">없음</a></li>
+                          <li><a href="#" class="overflow-menu-item">오름차순</a></li>
+                          <li><a href="#" class="overflow-menu-item">내림차순</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </th>
+                  <th class="with-tools">
+                    Column Header
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-sorter increase">
+                        <span class="icon"><i></i></span>
+                      </button>
+                    </div>
+                  </th>
+                  <th class="with-tools">
+                    Column Header
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-sorter decrease">
+                        <span class="icon"><i></i></span>
+                      </button>
+                    </div>
+                  </th>
+                  <th class="with-tools">
+                    Column Header
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="Licon ico-filter"></i></span>
+                      </button>
+                    </div>
+                  </th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th>
+                    <label class="checker-item select-all-item">
+                      <input type="checkbox" checked>
+                      <span class="label-group">
+                        <span class="icon">
+                          <i class="material-icons">check_box_outline_blank</i>
+                          <i class="material-icons">check_box</i>
+                        </span>
+                        <span class="label"></span>
+                      </span>
+                    </label>
+                  </th>
+                  <td class="with-tools">
+                    B57828
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-input-box">
+                    <div class="input-container">
+                      <div class="input-group dropdown dropdown-bottom">
+                        <input class="dummy" type="text">
+                        <button class="input-box">options1</button>
+                        <div class="dropdown-menu" style="transform: translate3d(0px, 34px, 0px);">
+                          <div class="dropdown-menu-body">
+                            <ul class="dropdown-menu-options">
+                              <li><button class="dropdown-menu-item" data-value="option1">option 1</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option2">option 2</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option3">option 3</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option4">option 4</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-tools direct-edit">
+                    <span class="direct-edit-target">일반문구텍스트</span>
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-edit">
+                        <span class="icon"><i class="Licon ico-edit"></i></span>
+                      </button>
+                    </div>
+                    <div class="input-container">
+                      <div class="input-group">
+                        <input type="text" placeholder="가이드 텍스트" value="일반문구텍스트" class="input-box" />
+                      </div>
+                    </div>
+                  </td>
+                  <td class="txt-right with-tools">1,415,000
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool" onclick="$.Lithium.popupHandler.open({ full: true, warning: false })">
+                        <span class="icon"><i class="Licon ico-popup"></i></span>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="with-check">
+                    <label class="checker-item">
+                      <input type="checkbox">
+                      <span class="label-group">
+                      <span class="icon">
+                        <i class="material-icons">check_box_outline_blank</i>
+                        <i class="material-icons">check_box</i>
+                      </span>
+                      <span class="label">체크박스 1</span>
+                    </span>
+                    </label>
+                  </td>
+                  <td class="">180</td>
+                  <td class="">
+                    <button class="btn btn-xs btn-secondary btn-ghost btn-full">
+                      <span class="label">Button</span>
+                    </button>
+                  </td>
+                  <td class="with-tools legend-cell negative01">
+                    negative01
+                    <span class="chip"></span>
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label class="checker-item select-all-item">
+                      <input type="checkbox" checked>
+                      <span class="label-group">
+                        <span class="icon">
+                          <i class="material-icons">check_box_outline_blank</i>
+                          <i class="material-icons">check_box</i>
+                        </span>
+                        <span class="label"></span>
+                      </span>
+                    </label>
+                  </th>
+                  <td class="with-tools">
+                    B57828
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-input-box">
+                    <div class="input-container">
+                      <div class="input-group dropdown dropdown-bottom">
+                        <input class="dummy" type="text">
+                        <button class="input-box">options1</button>
+                        <div class="dropdown-menu" style="transform: translate3d(0px, 34px, 0px);">
+                          <div class="dropdown-menu-body">
+                            <ul class="dropdown-menu-options">
+                              <li><button class="dropdown-menu-item" data-value="option1">option 1</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option2">option 2</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option3">option 3</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option4">option 4</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-tools direct-edit">
+                    <span class="direct-edit-target">일반문구텍스트</span>
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-edit">
+                        <span class="icon"><i class="Licon ico-edit"></i></span>
+                      </button>
+                    </div>
+                    <div class="input-container">
+                      <div class="input-group">
+                        <input type="text" placeholder="가이드 텍스트" value="일반문구텍스트" class="input-box" />
+                      </div>
+                    </div>
+                  </td>
+                  <td class="txt-right with-tools">1,415,000
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool" onclick="$.Lithium.popupHandler.open({ full: true, warning: false })">
+                        <span class="icon"><i class="Licon ico-popup"></i></span>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="with-check">
+                    <label class="checker-item">
+                      <input type="checkbox">
+                      <span class="label-group">
+                      <span class="icon">
+                        <i class="material-icons">check_box_outline_blank</i>
+                        <i class="material-icons">check_box</i>
+                      </span>
+                      <span class="label">체크박스 1</span>
+                    </span>
+                    </label>
+                  </td>
+                  <td class="">180</td>
+                  <td class="">
+                    <button class="btn btn-xs btn-secondary btn-ghost btn-full">
+                      <span class="label">Button</span>
+                    </button>
+                  </td>
+                  <td class="with-tools legend-cell negative02">
+                    negative02
+                    <span class="chip"></span>
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label class="checker-item select-all-item">
+                      <input type="checkbox" checked>
+                      <span class="label-group">
+                        <span class="icon">
+                          <i class="material-icons">check_box_outline_blank</i>
+                          <i class="material-icons">check_box</i>
+                        </span>
+                        <span class="label"></span>
+                      </span>
+                    </label>
+                  </th>
+                  <td class="with-tools">
+                    B57828
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-input-box">
+                    <div class="input-container">
+                      <div class="input-group dropdown dropdown-bottom">
+                        <input class="dummy" type="text">
+                        <button class="input-box">options1</button>
+                        <div class="dropdown-menu" style="transform: translate3d(0px, 34px, 0px);">
+                          <div class="dropdown-menu-body">
+                            <ul class="dropdown-menu-options">
+                              <li><button class="dropdown-menu-item" data-value="option1">option 1</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option2">option 2</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option3">option 3</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option4">option 4</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-tools direct-edit">
+                    <span class="direct-edit-target">일반문구텍스트</span>
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-edit">
+                        <span class="icon"><i class="Licon ico-edit"></i></span>
+                      </button>
+                    </div>
+                    <div class="input-container">
+                      <div class="input-group">
+                        <input type="text" placeholder="가이드 텍스트" value="일반문구텍스트" class="input-box" />
+                      </div>
+                    </div>
+                  </td>
+                  <td class="txt-right with-tools">1,415,000
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool" onclick="$.Lithium.popupHandler.open({ full: true, warning: false })">
+                        <span class="icon"><i class="Licon ico-popup"></i></span>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="with-check">
+                    <label class="checker-item">
+                      <input type="checkbox">
+                      <span class="label-group">
+                      <span class="icon">
+                        <i class="material-icons">check_box_outline_blank</i>
+                        <i class="material-icons">check_box</i>
+                      </span>
+                      <span class="label">체크박스 1</span>
+                    </span>
+                    </label>
+                  </td>
+                  <td class="">180</td>
+                  <td class="">
+                    <button class="btn btn-xs btn-secondary btn-ghost btn-full">
+                      <span class="label">Button</span>
+                    </button>
+                  </td>
+                  <td class="with-tools legend-cell negative03">
+                    negative03
+                    <span class="chip"></span>
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label class="checker-item select-all-item">
+                      <input type="checkbox" checked>
+                      <span class="label-group">
+                        <span class="icon">
+                          <i class="material-icons">check_box_outline_blank</i>
+                          <i class="material-icons">check_box</i>
+                        </span>
+                        <span class="label"></span>
+                      </span>
+                    </label>
+                  </th>
+                  <td class="with-tools disabled">
+                    B57828
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-input-box disabled">
+                    <div class="input-container disabled">
+                      <div class="input-group dropdown dropdown-bottom">
+                        <input class="dummy" type="text">
+                        <button class="input-box">options1</button>
+                        <div class="dropdown-menu" style="transform: translate3d(0px, 34px, 0px);">
+                          <div class="dropdown-menu-body">
+                            <ul class="dropdown-menu-options">
+                              <li><button class="dropdown-menu-item" data-value="option1">option 1</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option2">option 2</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option3">option 3</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option4">option 4</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-tools direct-edit disabled">
+                    <span class="direct-edit-target">일반문구텍스트</span>
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-edit">
+                        <span class="icon"><i class="Licon ico-edit"></i></span>
+                      </button>
+                    </div>
+                    <div class="input-container input-container-sm">
+                      <div class="input-group">
+                        <input type="text" placeholder="가이드 텍스트" value="일반문구텍스트" class="input-box" />
+                      </div>
+                    </div>
+                  </td>
+                  <td class="txt-right with-tools disabled">
+                    1,415,000
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool" onclick="$.Lithium.popupHandler.open({ full: true, warning: false })">
+                        <span class="icon"><i class="Licon ico-popup"></i></span>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="with-check disabled">
+                    <label class="checker-item">
+                      <input type="checkbox" disabled>
+                      <span class="label-group">
+                          <span class="icon">
+                            <i class="material-icons">check_box_outline_blank</i>
+                            <i class="material-icons">check_box</i>
+                          </span>
+                          <span class="label">체크박스 1</span>
+                        </span>
+                    </label>
+                  </td>
+                  <td class="disabled">180</td>
+                  <td class="disabled">
+                    <button class="btn btn-xs btn-secondary btn-ghost btn-full" disabled>
+                      <span class="label">Button</span>
+                    </button>
+                  </td>
+                  <td class="with-tools disabled legend-cell negative04">
+                    negative04
+                    <span class="chip"></span>
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="container mg-t-4u"><p class="h7">With Component - Small</p></div>
+          <div class="data-table-wrapper responsive">
+            <div class="data-table-tools">
+              <div class="tools">
+                <div class="tools-group">
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-linecopy"></i></span>
+                  </button>
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-prevcell"></i></span>
+                  </button>
+                </div>
+                <div class="tools-group">
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-add"></i></span>
+                  </button>
+                  <button class="btn btn-icon btn-xs tools-item">
+                    <span class="icon"><i class="Licon ico-minus"></i></span>
+                  </button>
+                </div>
+                <div class="tools-group"><span><strong>12</strong> / 99행</span></div>
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-primary btn-ghost btn-xs">
+                  <span class="label">버튼 텍스트</span>
+                </button>
+                <button class="btn btn-primary btn-xs btn-container">
+                  <span class="label">버튼 텍스트</span>
+                </button>
+              </div>
+            </div>
+            <div class="data-table-container">
+              <table class="data-table data-table-sm table-select">
+                <colgroup></colgroup>
+                <thead>
+                <tr>
+                  <th>
+                    <label class="checker-item select-all">
+                      <input type="checkbox" checked>
+                      <span class="label-group">
+                        <span class="icon">
+                          <i class="material-icons">check_box_outline_blank</i>
+                          <i class="material-icons">check_box</i>
+                        </span>
+                        <span class="label"></span>
+                      </span>
+                    </label>
+                  </th>
+                  <th class="with-tools">
+                    Column Header
+                    <div class="tools overflow overflow-sm overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
+                        <span class="icon"><i></i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">없음</a></li>
+                          <li><a href="#" class="overflow-menu-item">오름차순</a></li>
+                          <li><a href="#" class="overflow-menu-item">내림차순</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </th>
+                  <th class="with-tools">
+                    Column Header
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-sorter increase">
+                        <span class="icon"><i></i></span>
+                      </button>
+                    </div>
+                  </th>
+                  <th class="with-tools">
+                    Column Header
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-sorter decrease">
+                        <span class="icon"><i></i></span>
+                      </button>
+                    </div>
+                  </th>
+                  <th class="with-tools">
+                    Column Header
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="Licon ico-filter"></i></span>
+                      </button>
+                    </div>
+                  </th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                  <th>Column Header</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th>
+                    <label class="checker-item select-all-item">
+                      <input type="checkbox" checked>
+                      <span class="label-group">
+                        <span class="icon">
+                          <i class="material-icons">check_box_outline_blank</i>
+                          <i class="material-icons">check_box</i>
+                        </span>
+                        <span class="label"></span>
+                      </span>
+                    </label>
+                  </th>
+                  <td class="with-tools">
+                    B57828
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-input-box">
+                    <div class="input-container input-container-sm">
+                      <div class="input-group dropdown dropdown-bottom">
+                        <input class="dummy" type="text">
+                        <button class="input-box">options1</button>
+                        <div class="dropdown-menu" style="transform: translate3d(0px, 34px, 0px);">
+                          <div class="dropdown-menu-body">
+                            <ul class="dropdown-menu-options">
+                              <li><button class="dropdown-menu-item" data-value="option1">option 1</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option2">option 2</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option3">option 3</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option4">option 4</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-tools direct-edit">
+                    <span class="direct-edit-target">일반문구텍스트</span>
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-edit">
+                        <span class="icon"><i class="Licon ico-edit"></i></span>
+                      </button>
+                    </div>
+                    <div class="input-container input-container-sm">
+                      <div class="input-group">
+                        <input type="text" placeholder="가이드 텍스트" value="일반문구텍스트" class="input-box" />
+                      </div>
+                    </div>
+                  </td>
+                  <td class="txt-right with-tools">1,415,000
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool" onclick="$.Lithium.popupHandler.open({ full: true, warning: false })">
+                        <span class="icon"><i class="Licon ico-popup"></i></span>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="with-check">
+                    <label class="checker-item">
+                      <input type="checkbox">
+                      <span class="label-group">
+                      <span class="icon">
+                        <i class="material-icons">check_box_outline_blank</i>
+                        <i class="material-icons">check_box</i>
+                      </span>
+                      <span class="label">체크박스 1</span>
+                    </span>
+                    </label>
+                  </td>
+                  <td class="">180</td>
+                  <td class="">
+                    <button class="btn btn-xs btn-secondary btn-ghost btn-full">
+                      <span class="label">Button</span>
+                    </button>
+                  </td>
+                  <td class="with-tools legend-cell positive01">
+                    positive01
+                    <span class="chip"></span>
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label class="checker-item select-all-item">
+                      <input type="checkbox" checked>
+                      <span class="label-group">
+                        <span class="icon">
+                          <i class="material-icons">check_box_outline_blank</i>
+                          <i class="material-icons">check_box</i>
+                        </span>
+                        <span class="label"></span>
+                      </span>
+                    </label>
+                  </th>
+                  <td class="with-tools">
+                    B57828
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-input-box">
+                    <div class="input-container input-container-sm">
+                      <div class="input-group dropdown dropdown-bottom">
+                        <input class="dummy" type="text">
+                        <button class="input-box">options1</button>
+                        <div class="dropdown-menu" style="transform: translate3d(0px, 34px, 0px);">
+                          <div class="dropdown-menu-body">
+                            <ul class="dropdown-menu-options">
+                              <li><button class="dropdown-menu-item" data-value="option1">option 1</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option2">option 2</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option3">option 3</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option4">option 4</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-tools direct-edit">
+                    <span class="direct-edit-target">일반문구텍스트</span>
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-edit">
+                        <span class="icon"><i class="Licon ico-edit"></i></span>
+                      </button>
+                    </div>
+                    <div class="input-container input-container-sm">
+                      <div class="input-group">
+                        <input type="text" placeholder="가이드 텍스트" value="일반문구텍스트" class="input-box" />
+                      </div>
+                    </div>
+                  </td>
+                  <td class="txt-right with-tools">1,415,000
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool" onclick="$.Lithium.popupHandler.open({ full: true, warning: false })">
+                        <span class="icon"><i class="Licon ico-popup"></i></span>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="with-check">
+                    <label class="checker-item">
+                      <input type="checkbox">
+                      <span class="label-group">
+                      <span class="icon">
+                        <i class="material-icons">check_box_outline_blank</i>
+                        <i class="material-icons">check_box</i>
+                      </span>
+                      <span class="label">체크박스 1</span>
+                    </span>
+                    </label>
+                  </td>
+                  <td class="">180</td>
+                  <td class="">
+                    <button class="btn btn-xs btn-secondary btn-ghost btn-full">
+                      <span class="label">Button</span>
+                    </button>
+                  </td>
+                  <td class="with-tools legend-cell positive02">
+                    positive02
+                    <span class="chip"></span>
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label class="checker-item select-all-item">
+                      <input type="checkbox" checked>
+                      <span class="label-group">
+                        <span class="icon">
+                          <i class="material-icons">check_box_outline_blank</i>
+                          <i class="material-icons">check_box</i>
+                        </span>
+                        <span class="label"></span>
+                      </span>
+                    </label>
+                  </th>
+                  <td class="with-tools">
+                    B57828
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-input-box">
+                    <div class="input-container input-container-sm">
+                      <div class="input-group dropdown dropdown-bottom">
+                        <input class="dummy" type="text">
+                        <button class="input-box">options1</button>
+                        <div class="dropdown-menu" style="transform: translate3d(0px, 34px, 0px);">
+                          <div class="dropdown-menu-body">
+                            <ul class="dropdown-menu-options">
+                              <li><button class="dropdown-menu-item" data-value="option1">option 1</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option2">option 2</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option3">option 3</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option4">option 4</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-tools direct-edit">
+                    <span class="direct-edit-target">일반문구텍스트</span>
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-edit">
+                        <span class="icon"><i class="Licon ico-edit"></i></span>
+                      </button>
+                    </div>
+                    <div class="input-container input-container-sm">
+                      <div class="input-group">
+                        <input type="text" placeholder="가이드 텍스트" value="일반문구텍스트" class="input-box" />
+                      </div>
+                    </div>
+                  </td>
+                  <td class="txt-right with-tools">1,415,000
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool" onclick="$.Lithium.popupHandler.open({ full: true, warning: false })">
+                        <span class="icon"><i class="Licon ico-popup"></i></span>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="with-check">
+                    <label class="checker-item">
+                      <input type="checkbox">
+                      <span class="label-group">
+                      <span class="icon">
+                        <i class="material-icons">check_box_outline_blank</i>
+                        <i class="material-icons">check_box</i>
+                      </span>
+                      <span class="label">체크박스 1</span>
+                    </span>
+                    </label>
+                  </td>
+                  <td class="">180</td>
+                  <td class="">
+                    <button class="btn btn-xs btn-secondary btn-ghost btn-full">
+                      <span class="label">Button</span>
+                    </button>
+                  </td>
+                  <td class="with-tools legend-cell positive03">
+                    positive03
+                    <span class="chip"></span>
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label class="checker-item select-all-item">
+                      <input type="checkbox" checked>
+                      <span class="label-group">
+                        <span class="icon">
+                          <i class="material-icons">check_box_outline_blank</i>
+                          <i class="material-icons">check_box</i>
+                        </span>
+                        <span class="label"></span>
+                      </span>
+                    </label>
+                  </th>
+                  <td class="with-tools disabled">
+                    B57828
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-input-box disabled">
+                    <div class="input-container disabled">
+                      <div class="input-group dropdown dropdown-bottom">
+                        <input class="dummy" type="text">
+                        <button class="input-box">options1</button>
+                        <div class="dropdown-menu" style="transform: translate3d(0px, 34px, 0px);">
+                          <div class="dropdown-menu-body">
+                            <ul class="dropdown-menu-options">
+                              <li><button class="dropdown-menu-item" data-value="option1">option 1</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option2">option 2</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option3">option 3</button></li>
+                              <li><button class="dropdown-menu-item" data-value="option4">option 4</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="with-tools direct-edit disabled">
+                    <span class="direct-edit-target">일반문구텍스트</span>
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool btn-edit">
+                        <span class="icon"><i class="Licon ico-edit"></i></span>
+                      </button>
+                    </div>
+                    <div class="input-container input-container-sm">
+                      <div class="input-group">
+                        <input type="text" placeholder="가이드 텍스트" value="일반문구텍스트" class="input-box" />
+                      </div>
+                    </div>
+                  </td>
+                  <td class="txt-right with-tools disabled">
+                    1,415,000
+                    <div class="tools">
+                      <button class="btn btn-icon btn-xs btn-tool" onclick="$.Lithium.popupHandler.open({ full: true, warning: false })">
+                        <span class="icon"><i class="Licon ico-popup"></i></span>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="with-check disabled">
+                    <label class="checker-item">
+                      <input type="checkbox" disabled>
+                      <span class="label-group">
+                          <span class="icon">
+                            <i class="material-icons">check_box_outline_blank</i>
+                            <i class="material-icons">check_box</i>
+                          </span>
+                          <span class="label">체크박스 1</span>
+                        </span>
+                    </label>
+                  </td>
+                  <td class="disabled">180</td>
+                  <td class="disabled">
+                    <button class="btn btn-xs btn-secondary btn-ghost btn-full" disabled>
+                      <span class="label">Button</span>
+                    </button>
+                  </td>
+                  <td class="with-tools disabled legend-cell positive04">
+                    positive04
+                    <span class="chip"></span>
+                    <div class="tools overflow overflow-right">
+                      <button class="btn btn-icon btn-xs btn-tool">
+                        <span class="icon"><i class="material-icons">more_vert</i></span>
+                      </button>
+                      <div class="overflow-menu">
+                        <ul>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                          <li><a href="#" class="overflow-menu-item">옵션</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup-wrapper">
+    <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
+    <!-- option class / popup-warning, popup-full -->
+    <div class="popup">
+      <div class="popup-inner">
+        <div class="popup-title">
+          <div class="title-wrap">
+            <h6 class="title">Title</h6>
+            <p class="sub-title b6">Sub Title</p>
+            <button class="btn close" onclick="$.Lithium.popupHandler.close()"><i class="material-icons">close</i></button>
+          </div>
+        </div>
+        <div class="popup-contents">
+          모달 내용 내용내용내용 모달 내용내용내용내용 모달 내용 내용내용내용 모
+          달 내용 내용내용내용 모달 내용 내용내용내용 모달 내용 내용내용내용모달
+          내용 내용내용내용
+
+          <div class="popup-panel">
+            <div class="input-container input-container-md">
+              <label>레이블<em>*</em></label>
+              <div class="input-group">
+                <input type="text" placeholder="placeholder" class="input-box">
+                <div class="input-group-tools">
+                  <button class="option"><i class="material-icons">error_outline</i></button>
+                  <button class="clear"><i class="material-icons">cancel</i></button>
+                </div>
+              </div>
+              <p class="status-message">에러메세지는 이곳에 쓰여집니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup-tools txt-right">
+          <button class="btn btn-md btn-gray btn-container">
+            <span class="label">Button</span>
+          </button>
+          <button class="btn btn-md btn-primary btn-container mg-l-2u">
+            <span class="label">Button</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

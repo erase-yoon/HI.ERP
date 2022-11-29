@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Lithium Design System</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <div id="contents-wrapper">
+    <div class="content-header">
+      <div class="content-title-bar">
+        <h5>File uploader</h5>
+      </div>
+    </div>
+
+    <div class="content-body">
+      <div class="container">
+
+        <section class="mg-b-10u">
+          <p class="h8 mg-b-2u">파일 선택 업로더</p>
+          <div class="file-uploader">
+            <input class="file-uploader-input" type="file" name="file-uploader-1" multiple />
+            <div class="file-uploader-head">
+              <p class="title">파일 첨부</p>
+              <p class="description">500kB 이하의 jpg, png 파일만 등록할 수 있습니다.</p>
+              <button class="btn btn-primary btn-container btn-uploader">
+                <span class="label">파일 추가</span>
+              </button>
+            </div>
+            <div class="file-uploader-tags">
+              <ul class="tag-group">
+                <li>
+                  <span class="tag tag-with-tools tag-sm">
+                    <span class="label">Document.png</span>
+                    <span class="tools">
+                      <span class="tools-item error"><i class="material-icons">error_outline</i></span>
+                      <button class="tools-item remove"><i class="material-icons">cancel</i></button>
+                    </span>
+                  </span>
+                </li>
+                <li>
+                  <span class="tag tag-with-tools tag-sm">
+                    <span class="label">Imagename.png</span>
+                    <span class="tools">
+                      <span class="tools-item error"><i class="material-icons">error_outline</i></span>
+                      <button class="tools-item remove"><i class="material-icons">cancel</i></button>
+                    </span>
+                  </span>
+                </li>
+                <li>
+                  <span class="tag tag-with-tools tag-sm error">
+                    <span class="label">Document.png</span>
+                    <span class="tools">
+                      <span class="tools-item error"><i class="material-icons">error_outline</i></span>
+                      <button class="tools-item remove"><i class="material-icons">cancel</i></button>
+                    </span>
+                  </span>
+                </li>
+                <li>
+                  <span class="tag tag-with-tools tag-sm loading">
+                    <span class="label">Tag Label</span>
+                    <span class="tools">
+                      <span class="tools-item error"><i class="material-icons">error_outline</i></span>
+                      <!-- loading 완료되면 done class 추가 -->
+                      <button class="tools-item loading"><i></i></button>
+                      <button class="tools-item remove"><i class="material-icons">cancel</i></button>
+                    </span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="mg-b-10u">
+          <p class="h8 mg-b-2u">파일 선택 업로더 - Disabled</p>
+          <div class="file-uploader disabled">
+            <input class="file-uploader-input" type="file" name="file-uploader-1" multiple />
+            <div class="file-uploader-head">
+              <p class="title">파일 첨부</p>
+              <p class="description">500kB 이하의 jpg, png 파일만 등록할 수 있습니다.</p>
+              <button class="btn btn-primary btn-container btn-uploader" disabled>
+                <span class="label">파일 추가</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="mg-b-10u">
+          <p class="h8 mg-b-2u">드롭 다운 파일 업로더</p>
+          <div class="file-uploader">
+            <input class="file-uploader-input" type="file" name="file-uploader-1" multiple />
+            <div class="file-uploader-head">
+              <p class="title">파일 첨부</p>
+              <p class="description">500kB 이하의 jpg, png 파일만 등록할 수 있습니다.</p>
+            </div>
+            <div class="file-uploader-area">
+              <div class="btn-uploader">
+                <a href="#">파일 선택</a>
+                <p>또는 여기로 파일을 끌어오세요</p>
+              </div>
+            </div>
+            <div class="file-uploader-tags">
+              <ul class="tag-group">
+                <li>
+                  <span class="tag tag-with-tools tag-sm">
+                    <span class="label">Document.png</span>
+                    <span class="tools">
+                      <span class="tools-item error"><i class="material-icons">error_outline</i></span>
+                      <button class="tools-item remove"><i class="material-icons">cancel</i></button>
+                    </span>
+                  </span>
+                </li>
+                <li>
+                  <span class="tag tag-with-tools tag-sm">
+                    <span class="label">Imagename.png</span>
+                    <span class="tools">
+                      <span class="tools-item error"><i class="material-icons">error_outline</i></span>
+                      <button class="tools-item remove"><i class="material-icons">cancel</i></button>
+                    </span>
+                  </span>
+                </li>
+                <li>
+                  <span class="tag tag-with-tools tag-sm error">
+                    <span class="label">Document.png</span>
+                    <span class="tools">
+                      <span class="tools-item error"><i class="material-icons">error_outline</i></span>
+                      <button class="tools-item remove"><i class="material-icons">cancel</i></button>
+                    </span>
+                  </span>
+                </li>
+                <li>
+                  <span class="tag tag-with-tools tag-sm loading">
+                    <span class="label">Tag Label</span>
+                    <span class="tools">
+                      <span class="tools-item error"><i class="material-icons">error_outline</i></span>
+                      <!-- loading 완료되면 done class 추가 -->
+                      <button class="tools-item loading"><i></i></button>
+                      <button class="tools-item remove"><i class="material-icons">cancel</i></button>
+                    </span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="mg-b-10u">
+          <p class="h8 mg-b-2u">드롭 다운 파일 업로더 - Disabled</p>
+          <div class="file-uploader disabled">
+            <input class="file-uploader-input" type="file" name="file-uploader-1" multiple />
+            <div class="file-uploader-head">
+              <p class="title">파일 첨부</p>
+              <p class="description">500kB 이하의 jpg, png 파일만 등록할 수 있습니다.</p>
+            </div>
+            <div class="file-uploader-area">
+              <div class="btn-uploader">
+                <a href="#">파일 선택</a>
+                <p>또는 여기로 파일을 끌어오세요</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

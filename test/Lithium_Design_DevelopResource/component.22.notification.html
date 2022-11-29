@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Lithium Design System</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <div id="contents-wrapper">
+    <div class="content-header">
+      <div class="content-title-bar">
+        <h5>Notification</h5>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="container">
+
+        <div class="col-container mg-b-10u">
+          <p class="h8 mg-b-2u">Toast</p>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'toast',
+                status: '',
+                description: {
+                  title: '정보알림',
+                  main: '',
+                  sub: '정보 알림 텍스트는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Call</span>
+            </button>
+          </div>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'toast',
+                status: 'error',
+                description: {
+                  title: '정보알림',
+                  main: '',
+                  sub: '정보 알림 텍스트는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Error Call</span>
+            </button>
+          </div>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'toast',
+                status: 'warning',
+                description: {
+                  title: '정보알림',
+                  main: '',
+                  sub: '정보 알림 텍스트는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Warning Call</span>
+            </button>
+          </div>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'toast',
+                status: 'success',
+                description: {
+                  title: '정보알림',
+                  main: '',
+                  sub: '정보 알림 텍스트는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Success Call</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-container mg-b-10u">
+          <p class="h8 mg-b-2u">Inline - Default</p>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'inline',
+                status: '',
+                description: {
+                  title: '',
+                  main: '정보 알림 텍스트',
+                  sub: '는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Call</span>
+            </button>
+          </div>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'inline',
+                status: 'error',
+                description: {
+                  title: '',
+                  main: '정보 알림 텍스트',
+                  sub: '는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Error Call</span>
+            </button>
+          </div>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'inline',
+                status: 'warning',
+                description: {
+                  title: '',
+                  main: '정보 알림 텍스트',
+                  sub: '는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Warning Call</span>
+            </button>
+          </div>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'inline',
+                status: 'success',
+                description: {
+                  title: '',
+                  main: '정보 알림 텍스트',
+                  sub: '는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Success Call</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-container mg-b-10u">
+          <p class="h8 mg-b-2u">Inline - With Title</p>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'inline',
+                status: '',
+                description: {
+                  title: '정보 알림',
+                  main: '',
+                  sub: '정보 알림 텍스트는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Call</span>
+            </button>
+          </div>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'inline',
+                status: 'error',
+                description: {
+                  title: '정보 알림',
+                  main: '',
+                  sub: '정보 알림 텍스트는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Error Call</span>
+            </button>
+          </div>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'inline',
+                status: 'warning',
+                description: {
+                  title: '정보 알림',
+                  main: '',
+                  sub: '정보 알림 텍스트는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Warning Call</span>
+            </button>
+          </div>
+          <div class="col-xs-12 col-md-3 mg-b-2u">
+            <button
+              class="btn btn-container btn-primary btn-full"
+              onclick="$.Lithium.notification.call({
+                type: 'inline',
+                status: 'success',
+                description: {
+                  title: '정보 알림',
+                  main: '',
+                  sub: '정보 알림 텍스트는 이곳에 표시됩니다.'
+                }
+              })"
+            >
+              <span class="label">Success Call</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="noti-group-inline">
+
+        </div>
+
+        <!--&lt;!&ndash; row 1 &ndash;&gt;
+        <div class="mg-b-6u">
+          <p class="h8 mg-b-2u">Inline - Default</p>
+          <div class="noti noti-inline">
+            <span class="noti-icon"></span>
+            <div class="noti-description">
+              <p class="b3 description"><strong>정보 알림 텍스트</strong>는 이곳에 표시됩니다.</p>
+            </div>
+            <button class="btn btn-icon close">
+              <span class="icon"><i class="material-icons">close</i></span>
+            </button>
+          </div>
+        </div>
+
+        &lt;!&ndash; row 2 &ndash;&gt;
+        <div class="mg-b-6u">
+          <p class="h8 mg-b-2u">Inline - Default: Error</p>
+          <div class="noti noti-inline error">
+            <span class="noti-icon"></span>
+            <div class="noti-description">
+              <p class="b3 description"><strong>정보 알림 텍스트</strong>는 이곳에 표시됩니다.</p>
+            </div>
+            <button class="btn btn-icon close">
+              <span class="icon"><i class="material-icons">close</i></span>
+            </button>
+          </div>
+        </div>
+
+        &lt;!&ndash; row 3 &ndash;&gt;
+        <div class="mg-b-6u">
+          <p class="h8 mg-b-2u">Inline - Default: Warning</p>
+          <div class="noti noti-inline warning">
+            <span class="noti-icon"></span>
+            <div class="noti-description">
+              <p class="b3 description"><strong>정보 알림 텍스트</strong>는 이곳에 표시됩니다.</p>
+            </div>
+            <button class="btn btn-icon close">
+              <span class="icon"><i class="material-icons">close</i></span>
+            </button>
+          </div>
+        </div>
+
+        &lt;!&ndash; row 4 &ndash;&gt;
+        <div class="mg-b-6u">
+          <p class="h8 mg-b-2u">Inline - Default: Success</p>
+          <div class="noti noti-inline success">
+            <span class="noti-icon"></span>
+            <div class="noti-description">
+              <p class="b3 description"><strong>정보 알림 텍스트</strong>는 이곳에 표시됩니다.</p>
+            </div>
+            <button class="btn btn-icon close">
+              <span class="icon"><i class="material-icons">close</i></span>
+            </button>
+          </div>
+        </div>
+
+        &lt;!&ndash; row 5 &ndash;&gt;
+        <div class="mg-b-6u">
+          <p class="h8 mg-b-2u">Inline - With Title</p>
+          <div class="noti noti-inline noti-with-title">
+            <span class="noti-icon"></span>
+            <div class="noti-description">
+              <p class="h8 title">알림</p>
+              <p class="b3 description">텍스트는 이곳에 표시됩니다.</p>
+            </div>
+            <button class="btn btn-icon close">
+              <span class="icon"><i class="material-icons">close</i></span>
+            </button>
+          </div>
+        </div>
+
+        &lt;!&ndash; row 6 &ndash;&gt;
+        <div class="mg-b-6u">
+          <p class="h8 mg-b-2u">Inline - With Title: Error</p>
+          <div class="noti noti-inline noti-with-title error">
+            <span class="noti-icon"></span>
+            <div class="noti-description">
+              <p class="h8 title">알림</p>
+              <p class="b3 description">텍스트는 이곳에 표시됩니다.</p>
+            </div>
+            <button class="btn btn-icon close">
+              <span class="icon"><i class="material-icons">close</i></span>
+            </button>
+          </div>
+        </div>
+
+        &lt;!&ndash; row 7 &ndash;&gt;
+        <div class="mg-b-6u">
+          <p class="h8 mg-b-2u">Inline - With Title: Warning</p>
+          <div class="noti noti-inline noti-with-title warning">
+            <span class="noti-icon"></span>
+            <div class="noti-description">
+              <p class="h8 title">알림</p>
+              <p class="b3 description">텍스트는 이곳에 표시됩니다.</p>
+            </div>
+            <button class="btn btn-icon close">
+              <span class="icon"><i class="material-icons">close</i></span>
+            </button>
+          </div>
+        </div>
+
+        &lt;!&ndash; row 8 &ndash;&gt;
+        <div class="mg-b-6u">
+          <p class="h8 mg-b-2u">Inline - With Title: success</p>
+          <div class="noti noti-inline noti-with-title success">
+            <span class="noti-icon"></span>
+            <div class="noti-description">
+              <p class="h8 title">알림</p>
+              <p class="b3 description">텍스트는 이곳에 표시됩니다.</p>
+            </div>
+            <button class="btn btn-icon close">
+              <span class="icon"><i class="material-icons">close</i></span>
+            </button>
+          </div>
+        </div>-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- noti-group-toast wrapper -->
+<div class="noti-group-toast">
+</div>
+
+</body>
+</html>
