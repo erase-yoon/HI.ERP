@@ -203,11 +203,13 @@
                 <div class="row justify-content-center">
                     <div class="col-md-7 col-lg-5">
                         <div class="login-wrap p-4 p-md-5">
-                            <h1 class="text-center mb-4">Hi ERP</h1>
+                            <div class="login-logo-align">
+                                <img src="/js/img/login/loginLogo.png">
+                            </div>
                             <div class="icon d-flex align-items-center justify-content-center">
                                 <span class="fa fa-user-o"></span>
                             </div>
-                            <h3 class="text-center mb-4">Login</h3>
+                            <br>
                             <form action="/adNotice.do" name="adNotice" method="post"></form>
                             <form action="/empNotice.do" name="empNotice" method="post"></form>
                             <form action="/loginProc.do" name="loginForm">
