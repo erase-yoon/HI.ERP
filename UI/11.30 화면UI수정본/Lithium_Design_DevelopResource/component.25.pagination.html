@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Lithium Design System</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <div id="contents-wrapper">
+    <div class="content-header">
+      <div class="content-title-bar">
+        <h5>Pagination</h5>
+      </div>
+    </div>
+
+    <div class="content-body">
+      <div class="container">
+
+        <section class="mg-b-10u">
+          <p class="h7 mg-b-4u">숫자 페이지네이션</p>
+
+          <div class="mg-b-10u">
+            <p class="h8 mg-b-2u">Default</p>
+
+            <div class="pagination-wrapper">
+              <div class="pagination">
+                <div class="pagination-group direction">
+                  <ul>
+                    <li class="disabled"><a href="#" class="pagination-item prev"><i class="Licon ico-prev"></i></a></li>
+                    <li class="disabled"><a href="#" class="pagination-item left"><i class="Licon ico-left"></i></a></li>
+                  </ul>
+                </div>
+                <div class="pagination-group">
+                  <ul>
+                    <li class="on"><a href="#" class="pagination-item"><i>1</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>2</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>3</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>4</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>5</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>6</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>7</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>8</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>9</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>10</i></a></li>
+                    <li>
+                      <div class="dp-inblock select">
+                        <a href="#" class="pagination-item"><i class="Licon ico-elipsis"></i></a>
+                        <div class="select-menu">
+                          <ul>
+                            <li class="on"><a href="#" class="select-menu-item" data-select-value="20"><p class="label">20</p></a></li>
+                            <li><a href="#" class="select-menu-item" data-select-value="30"><p class="label">30</p></a></li>
+                            <li><a href="#" class="select-menu-item" data-select-value="40"><p class="label">40</p></a></li>
+                            <li><a href="#" class="select-menu-item" data-select-value="50"><p class="label">50</p></a></li>
+                            <li><a href="#" class="select-menu-item" data-select-value="60"><p class="label">60</p></a></li>
+                          </ul>
+                        </div>
+                        <div class="select-dim"></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="pagination-group direction">
+                  <ul>
+                    <li class=""><a href="#" class="pagination-item right"><i class="Licon ico-right"></i></a></li>
+                    <li class=""><a href="#" class="pagination-item next"><i class="Licon ico-next"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mg-b-10u">
+            <p class="h8 mg-b-2u">Default - Disabled</p>
+
+            <div class="pagination-wrapper">
+              <div class="pagination disabled">
+                <div class="pagination-group direction">
+                  <ul>
+                    <li><a href="#" class="pagination-item prev"><i class="Licon ico-prev"></i></a></li>
+                    <li><a href="#" class="pagination-item left"><i class="Licon ico-left"></i></a></li>
+                  </ul>
+                </div>
+                <div class="pagination-group">
+                  <ul>
+                    <li><a href="#" class="pagination-item"><i>1</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>2</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>3</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>4</i></a></li>
+                    <li class="on"><a href="#" class="pagination-item"><i>5</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>6</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>7</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>8</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>9</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>10</i></a></li>
+                    <li>
+                      <div class="dp-inblock select">
+                        <a href="#" class="pagination-item"><i class="Licon ico-elipsis"></i></a>
+                        <div class="select-menu">
+                          <ul>
+                            <li class="on"><a href="#" class="select-menu-item" data-select-value="20"><p class="label">20</p></a></li>
+                            <li><a href="#" class="select-menu-item" data-select-value="30"><p class="label">30</p></a></li>
+                            <li><a href="#" class="select-menu-item" data-select-value="40"><p class="label">40</p></a></li>
+                            <li><a href="#" class="select-menu-item" data-select-value="50"><p class="label">50</p></a></li>
+                            <li><a href="#" class="select-menu-item" data-select-value="60"><p class="label">60</p></a></li>
+                          </ul>
+                        </div>
+                        <div class="select-dim"></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="pagination-group direction">
+                  <ul>
+                    <li><a href="#" class="pagination-item right"><i class="Licon ico-right"></i></a></li>
+                    <li><a href="#" class="pagination-item next"><i class="Licon ico-next"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mg-b-10u">
+            <p class="h8 mg-b-2u">Small</p>
+
+            <div class="pagination-wrapper">
+              <div class="pagination">
+                <div class="pagination-group direction">
+                  <ul>
+                    <li class="disabled"><a href="#" class="pagination-item prev"><i class="Licon ico-prev"></i></a></li>
+                    <li class="disabled"><a href="#" class="pagination-item left"><i class="Licon ico-left"></i></a></li>
+                  </ul>
+                </div>
+                <div class="pagination-group">
+                  <ul>
+                    <li class="on"><a href="#" class="pagination-item"><i>1</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>2</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>3</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>4</i></a></li>
+                    <li class=""><a href="#" class="pagination-item"><i>5</i></a></li>
+                  </ul>
+                </div>
+                <div class="pagination-group direction">
+                  <ul>
+                    <li class=""><a href="#" class="pagination-item right"><i class="Licon ico-right"></i></a></li>
+                    <li class=""><a href="#" class="pagination-item next"><i class="Licon ico-next"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mg-b-10u">
+            <p class="h8 mg-b-2u">Small- Disabled</p>
+
+            <div class="pagination-wrapper">
+              <div class="pagination disabled">
+                <div class="pagination-group direction">
+                  <ul>
+                    <li><a href="#" class="pagination-item prev"><i class="Licon ico-prev"></i></a></li>
+                    <li><a href="#" class="pagination-item left"><i class="Licon ico-left"></i></a></li>
+                  </ul>
+                </div>
+                <div class="pagination-group">
+                  <ul>
+                    <li><a href="#" class="pagination-item"><i>1</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>2</i></a></li>
+                    <li class="on"><a href="#" class="pagination-item"><i>3</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>4</i></a></li>
+                    <li><a href="#" class="pagination-item"><i>5</i></a></li>
+                  </ul>
+                </div>
+                <div class="pagination-group direction">
+                  <ul>
+                    <li><a href="#" class="pagination-item right"><i class="Licon ico-right"></i></a></li>
+                    <li><a href="#" class="pagination-item next"><i class="Licon ico-next"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mg-b-10u">
+          <p class="h7 mg-b-4u">옵션 페이지네이션</p>
+
+          <div class="mg-b-10u">
+            <p class="h8 mg-b-2u">Default</p>
+            <div class="pagination pagination-option">
+              <ul>
+                <li class="float-l">
+                  <div class="pagination-option-item">
+                    <span class="label pd-l-4u">페이지당 항목 수:</span>
+                    <div class="select select-overlap pd-l-3u pd-r-4u">
+                      <input class="select-input" value="50">
+                      <span class="select-text">10</span>
+                      <span class="select-drop mg-l-2u"><i class="Licon size-16 ico-drop"></i></span>
+                      <div class="select-menu">
+                        <ul>
+                          <li class="on"><a href="#" class="select-menu-item" data-select-value="10"><p class="label">10</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="20"><p class="label">20</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="30"><p class="label">30</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="40"><p class="label">40</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="50"><p class="label">50</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="60"><p class="label">60</p></a></li>
+                        </ul>
+                      </div>
+                      <div class="select-dim"></div>
+                    </div>
+                  </div>
+                  <div class="pagination-option-item">
+                    <span class="label pd-l-4u">1,228개 중 1 – 100 항목</span>
+                  </div>
+                </li>
+                <li class="float-r">
+                  <div class="pagination-option-item">
+                    <span class="label">40페이지 중</span>
+                    <div class="select select-overlap pd-l-3u pd-r-4u">
+                      <input class="select-input" value="12">
+                      <span class="select-text v-middle">12</span>
+                      <span class="select-drop mg-l-2u"><i class="Licon size-16 ico-drop"></i></span>
+                      <div class="select-menu">
+                        <ul>
+                          <li class="on"><a href="#" class="select-menu-item" data-select-value="12"><p class="label">12</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="13"><p class="label">13</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="14"><p class="label">14</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="15"><p class="label">15</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="16"><p class="label">16</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="17"><p class="label">17</p></a></li>
+                        </ul>
+                      </div>
+                      <div class="select-dim"></div>
+                    </div>
+                  </div>
+                  <a href="#" class="pagination-option-item pd-h-4u"><i class="Licon ico-left"></i></a>
+                  <a href="#" class="pagination-option-item pd-h-4u"><i class="Licon ico-right"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mg-b-10u">
+            <p class="h8 mg-b-2u">Default - Disabled</p>
+            <div class="pagination pagination-option">
+              <ul>
+                <li class="float-l">
+                  <div class="pagination-option-item">
+                    <span class="label pd-l-4u">페이지당 항목 수:</span>
+                    <div class="select select-overlap pd-l-3u pd-r-4u disabled">
+                      <input class="select-input" value="50" disabled>
+                      <span class="select-text">10</span>
+                      <span class="select-drop mg-l-2u"><i class="Licon size-16 ico-drop"></i></span>
+                      <div class="select-menu">
+                        <ul>
+                          <li class="on"><a href="#" class="select-menu-item" data-select-value="10"><p class="label">10</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="20"><p class="label">20</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="30"><p class="label">30</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="40"><p class="label">40</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="50"><p class="label">50</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="60"><p class="label">60</p></a></li>
+                        </ul>
+                      </div>
+                      <div class="select-dim"></div>
+                    </div>
+                  </div>
+                  <div class="pagination-option-item">
+                    <span class="label pd-l-4u">1,228개 중 1 – 100 항목</span>
+                  </div>
+                </li>
+                <li class="float-r">
+                  <div class="pagination-option-item">
+                    <span class="label">40페이지 중</span>
+                    <div class="select select-overlap pd-l-3u pd-r-4u disabled">
+                      <input class="select-input" value="12" disabled>
+                      <span class="select-text v-middle">12</span>
+                      <span class="select-drop mg-l-2u"><i class="Licon size-16 ico-drop"></i></span>
+                      <div class="select-menu">
+                        <ul>
+                          <li class="on"><a href="#" class="select-menu-item" data-select-value="12"><p class="label">12</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="13"><p class="label">13</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="14"><p class="label">14</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="15"><p class="label">15</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="16"><p class="label">16</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="17"><p class="label">17</p></a></li>
+                        </ul>
+                      </div>
+                      <div class="select-dim"></div>
+                    </div>
+                  </div>
+                  <a href="#" class="pagination-option-item pd-h-4u disabled"><i class="Licon ico-left"></i></a>
+                  <a href="#" class="pagination-option-item pd-h-4u disabled"><i class="Licon ico-right"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

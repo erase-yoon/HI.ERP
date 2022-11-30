@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Lithium Design System</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <div id="contents-wrapper">
+    <div class="content-header">
+      <div class="content-title-bar">
+        <h5>Search</h5>
+      </div>
+    </div>
+
+    <div class="content-body">
+      <div class="container">
+
+        <section class="mg-b-10u">
+          <p class="h7 mg-b-4u">기본 서치</p>
+
+          <div class="mg-b-2u">
+            <p class="h8 mg-b-2u">Small</p>
+            <div class="input-container input-container-sm search-bar">
+              <div class="input-group">
+                <input type="search" placeholder="Menu Search..." class="input-box">
+                <div class="search-history-panel">
+                  <div class="search-history-panel-dim" onclick="$.Lithium.search().closeSearchHistoryPanel()"></div>
+                  <div class="inner">
+                    <div class="list">
+                      <ul>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록1</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록2</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록3</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tools">
+                      <ul>
+                        <li class="float-l">
+                          <button class="tools-item"><span class="v-middle">검색 기록 삭제</span></button>
+                          <button class="tools-item history-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                          <button class="tools-item auto-complete-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                        </li>
+                        <li class="float-r">
+                          <button class="tools-item close" onclick="$.Lithium.search().closeSearchHistoryPanel()">닫기</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group-tools">
+                  <button class="clear"><i class="material-icons">cancel</i></button>
+                  <button class="search"><i class="Licon size-24 ico-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mg-b-2u">
+            <p class="h8 mg-b-2u">Medium</p>
+            <div class="input-container input-container-md search-bar">
+              <div class="input-group">
+                <input type="search" placeholder="Menu Search..." class="input-box">
+                <div class="search-history-panel">
+                  <div class="search-history-panel-dim" onclick="$.Lithium.search().closeSearchHistoryPanel()"></div>
+                  <div class="inner">
+                    <div class="list">
+                      <ul>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록1</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록2</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록3</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tools">
+                      <ul>
+                        <li class="float-l">
+                          <button class="tools-item"><span class="v-middle">검색 기록 삭제</span></button>
+                          <button class="tools-item history-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                          <button class="tools-item auto-complete-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                        </li>
+                        <li class="float-r">
+                          <button class="tools-item close" onclick="$.Lithium.search().closeSearchHistoryPanel()">닫기</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group-tools">
+                  <button class="clear"><i class="material-icons">cancel</i></button>
+                  <button class="search"><i class="Licon size-24 ico-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mg-b-2u">
+            <p class="h8 mg-b-2u">Large</p>
+            <div class="input-container input-container-lg search-bar">
+              <div class="input-group">
+                <input type="search" placeholder="Menu Search..." class="input-box">
+                <div class="search-history-panel">
+                  <div class="search-history-panel-dim" onclick="$.Lithium.search().closeSearchHistoryPanel()"></div>
+                  <div class="inner">
+                    <div class="list">
+                      <ul>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록1</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록2</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록3</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tools">
+                      <ul>
+                        <li class="float-l">
+                          <button class="tools-item"><span class="v-middle">검색 기록 삭제</span></button>
+                          <button class="tools-item history-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                          <button class="tools-item auto-complete-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                        </li>
+                        <li class="float-r">
+                          <button class="tools-item close" onclick="$.Lithium.search().closeSearchHistoryPanel()">닫기</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group-tools">
+                  <button class="clear"><i class="material-icons">cancel</i></button>
+                  <button class="search"><i class="Licon size-24 ico-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mg-b-2u">
+            <p class="h8 mg-b-2u">Disabled</p>
+            <div class="input-container input-container-md search-bar disabled">
+              <div class="input-group">
+                <input type="search" placeholder="Menu Search..." class="input-box" disabled>
+                <div class="search-history-panel">
+                  <div class="search-history-panel-dim" onclick="$.Lithium.search().closeSearchHistoryPanel()"></div>
+                  <div class="inner">
+                    <div class="list">
+                      <ul>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록1</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록2</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록3</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tools">
+                      <ul>
+                        <li class="float-l">
+                          <button class="tools-item"><span class="v-middle">검색 기록 삭제</span></button>
+                          <button class="tools-item history-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                          <button class="tools-item auto-complete-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                        </li>
+                        <li class="float-r">
+                          <button class="tools-item close" onclick="$.Lithium.search().closeSearchHistoryPanel()">닫기</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group-tools">
+                  <button class="clear" disabled><i class="material-icons">cancel</i></button>
+                  <button class="search" disabled><i class="Licon size-24 ico-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="mg-b-10u">
+          <p class="h7 mg-b-4u">검색조건 서치</p>
+
+          <div class="mg-b-2u">
+            <p class="h8 mg-b-2u">Small</p>
+
+            <div class="input-container input-container-sm search-bar fix-width-column right w-130">
+              <div class="input-group">
+                <div class="search-filter-wrapper">
+                  <div class="search-filter">
+                    <button class="btn btn-container no-pd btn-xs select select-overlap">
+                      <input class="select-input" value="옵션1">
+                      <span class="label select-text">옵션1</span>
+                      <span class="icon mg-l-2u"><i class="Licon size-16 ico-drop"></i></span>
+                      <div class="select-menu">
+                        <ul>
+                          <li class="on"><a href="#" class="select-menu-item" data-select-value="옵션1"><p class="label">옵션1</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션2"><p class="label">옵션2</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션3"><p class="label">옵션3</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션4"><p class="label">옵션4</p></a></li>
+                          <li class="disabled"><a href="#" class="select-menu-item" data-select-value="옵션5"><p class="label">옵션5</p></a></li>
+                        </ul>
+                      </div>
+                      <div class="select-dim"></div>
+                    </button>
+                  </div>
+                </div>
+                <input type="search" placeholder="Menu Search..." value="" class="input-box">
+                <div class="search-history-panel">
+                  <div class="search-history-panel-dim" onclick="$.Lithium.search().closeSearchHistoryPanel()"></div>
+                  <div class="inner">
+                    <div class="list">
+                      <ul>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록1</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록2</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록3</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tools">
+                      <ul>
+                        <li class="float-l">
+                          <button class="tools-item"><span class="v-middle">검색 기록 삭제</span></button>
+                          <button class="tools-item history-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                          <button class="tools-item auto-complete-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                        </li>
+                        <li class="float-r">
+                          <button class="tools-item close" onclick="$.Lithium.search().closeSearchHistoryPanel()">닫기</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group-tools">
+                  <button class="clear"><i class="material-icons">cancel</i></button>
+                  <button class="search"><i class="Licon size-24 ico-search"></i></button>
+                </div>
+              </div>
+
+              <div>
+                <a href="#" class="btn btn-sm btn-txt btn-secondary mg-l-1u search-detail">
+                  <span class="label">상세 검색</span>
+                  <span class="icon"><i class="Licon ico-filter"></i></span>
+
+                  <div class="popup">
+                    <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
+                    <div class="popup-inner">
+                      <div class="popup-title">
+                        <div class="title-wrap">
+                          <h6 class="title">Title</h6>
+                          <p class="sub-title b6">Sub Title</p>
+                          <button class="btn close" onclick="$.Lithium.popupHandler.close()"><i class="material-icons">close</i></button>
+                        </div>
+                      </div>
+                      <div class="popup-contents">
+                        모달 내용 내용내용내용 모달 내용내용내용내용 모달 내용 내용내용내용 모
+                        달 내용 내용내용내용 모달 내용 내용내용내용 모달 내용 내용내용내용모달
+                        내용 내용내용내용
+
+                        <div class="popup-panel">
+                          <div class="input-container input-container-md">
+                            <label>레이블<em>*</em></label>
+                            <div class="input-group">
+                              <input type="text" placeholder="placeholder" class="input-box">
+                              <div class="input-group-tools">
+                                <button class="option"><i class="material-icons">error_outline</i></button>
+                                <button class="clear"><i class="material-icons">cancel</i></button>
+                              </div>
+                            </div>
+                            <p class="status-message">에러메세지는 이곳에 쓰여집니다.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="popup-tools txt-right">
+                        <button class="btn btn-md btn-gray btn-container">
+                          <span class="label">Button</span>
+                        </button>
+                        <button class="btn btn-md btn-primary btn-container mg-l-2u">
+                          <span class="label">Button</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mg-b-2u">
+            <p class="h8 mg-b-2u">Medium</p>
+
+            <div class="input-container input-container-md search-bar fix-width-column right w-130">
+              <div class="input-group">
+                <div class="search-filter-wrapper">
+                  <div class="search-filter">
+                    <button class="btn btn-container no-pd btn-xs select select-overlap">
+                      <input class="select-input" value="옵션1">
+                      <span class="label select-text">옵션1</span>
+                      <span class="icon mg-l-2u"><i class="Licon size-16 ico-drop"></i></span>
+                      <div class="select-menu">
+                        <ul>
+                          <li class="on"><a href="#" class="select-menu-item" data-select-value="옵션1"><p class="label">옵션1</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션2"><p class="label">옵션2</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션3"><p class="label">옵션3</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션4"><p class="label">옵션4</p></a></li>
+                          <li class="disabled"><a href="#" class="select-menu-item" data-select-value="옵션5"><p class="label">옵션5</p></a></li>
+                        </ul>
+                      </div>
+                      <div class="select-dim"></div>
+                    </button>
+                  </div>
+                </div>
+                <input type="search" placeholder="Menu Search..." value="" class="input-box">
+                <div class="search-history-panel">
+                  <div class="search-history-panel-dim" onclick="$.Lithium.search().closeSearchHistoryPanel()"></div>
+                  <div class="inner">
+                    <div class="list">
+                      <ul>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록1</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록2</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록3</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tools">
+                      <ul>
+                        <li class="float-l">
+                          <button class="tools-item"><span class="v-middle">검색 기록 삭제</span></button>
+                          <button class="tools-item history-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                          <button class="tools-item auto-complete-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                        </li>
+                        <li class="float-r">
+                          <button class="tools-item close" onclick="$.Lithium.search().closeSearchHistoryPanel()">닫기</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group-tools">
+                  <button class="clear"><i class="material-icons">cancel</i></button>
+                  <button class="search"><i class="Licon size-24 ico-search"></i></button>
+                </div>
+              </div>
+
+              <div>
+                <a href="#" class="btn btn-md btn-txt btn-secondary mg-l-1u search-detail">
+                  <span class="label">상세 검색</span>
+                  <span class="icon"><i class="Licon ico-filter"></i></span>
+
+                  <div class="popup">
+                    <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
+                    <div class="popup-inner">
+                      <div class="popup-title">
+                        <div class="title-wrap">
+                          <h6 class="title">Title</h6>
+                          <p class="sub-title b6">Sub Title</p>
+                          <button class="btn close" onclick="$.Lithium.popupHandler.close()"><i class="material-icons">close</i></button>
+                        </div>
+                      </div>
+                      <div class="popup-contents">
+                        모달 내용 내용내용내용 모달 내용내용내용내용 모달 내용 내용내용내용 모
+                        달 내용 내용내용내용 모달 내용 내용내용내용 모달 내용 내용내용내용모달
+                        내용 내용내용내용
+
+                        <div class="popup-panel">
+                          <div class="input-container input-container-md">
+                            <label>레이블<em>*</em></label>
+                            <div class="input-group">
+                              <input type="text" placeholder="placeholder" class="input-box">
+                              <div class="input-group-tools">
+                                <button class="option"><i class="material-icons">error_outline</i></button>
+                                <button class="clear"><i class="material-icons">cancel</i></button>
+                              </div>
+                            </div>
+                            <p class="status-message">에러메세지는 이곳에 쓰여집니다.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="popup-tools txt-right">
+                        <button class="btn btn-md btn-gray btn-container">
+                          <span class="label">Button</span>
+                        </button>
+                        <button class="btn btn-md btn-primary btn-container mg-l-2u">
+                          <span class="label">Button</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mg-b-2u">
+            <p class="h8 mg-b-2u">Large</p>
+
+            <div class="input-container input-container-lg search-bar fix-width-column right w-140">
+              <div class="input-group">
+                <div class="search-filter-wrapper">
+                  <div class="search-filter">
+                    <button class="btn btn-container no-pd btn-xs select select-overlap">
+                      <input class="select-input" value="옵션1">
+                      <span class="label select-text">옵션1</span>
+                      <span class="icon mg-l-2u"><i class="Licon size-16 ico-drop"></i></span>
+                      <div class="select-menu">
+                        <ul>
+                          <li class="on"><a href="#" class="select-menu-item" data-select-value="옵션1"><p class="label">옵션1</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션2"><p class="label">옵션2</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션3"><p class="label">옵션3</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션4"><p class="label">옵션4</p></a></li>
+                          <li class="disabled"><a href="#" class="select-menu-item" data-select-value="옵션5"><p class="label">옵션5</p></a></li>
+                        </ul>
+                      </div>
+                      <div class="select-dim"></div>
+                    </button>
+                  </div>
+                </div>
+                <input type="search" placeholder="Menu Search..." value="" class="input-box">
+                <div class="search-history-panel">
+                  <div class="search-history-panel-dim" onclick="$.Lithium.search().closeSearchHistoryPanel()"></div>
+                  <div class="inner">
+                    <div class="list">
+                      <ul>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록1</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록2</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록3</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tools">
+                      <ul>
+                        <li class="float-l">
+                          <button class="tools-item"><span class="v-middle">검색 기록 삭제</span></button>
+                          <button class="tools-item history-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                          <button class="tools-item auto-complete-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                        </li>
+                        <li class="float-r">
+                          <button class="tools-item close" onclick="$.Lithium.search().closeSearchHistoryPanel()">닫기</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group-tools">
+                  <button class="clear"><i class="material-icons">cancel</i></button>
+                  <button class="search"><i class="Licon size-24 ico-search"></i></button>
+                </div>
+              </div>
+
+              <div>
+                <a href="#" class="btn btn-lg btn-txt btn-secondary mg-l-1u search-detail">
+                  <span class="label">상세 검색</span>
+                  <span class="icon"><i class="Licon ico-filter"></i></span>
+
+                  <div class="popup">
+                    <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
+                    <div class="popup-inner">
+                      <div class="popup-title">
+                        <div class="title-wrap">
+                          <h6 class="title">Title</h6>
+                          <p class="sub-title b6">Sub Title</p>
+                          <button class="btn close" onclick="$.Lithium.popupHandler.close()"><i class="material-icons">close</i></button>
+                        </div>
+                      </div>
+                      <div class="popup-contents">
+                        모달 내용 내용내용내용 모달 내용내용내용내용 모달 내용 내용내용내용 모
+                        달 내용 내용내용내용 모달 내용 내용내용내용 모달 내용 내용내용내용모달
+                        내용 내용내용내용
+
+                        <div class="popup-panel">
+                          <div class="input-container input-container-md">
+                            <label>레이블<em>*</em></label>
+                            <div class="input-group">
+                              <input type="text" placeholder="placeholder" class="input-box">
+                              <div class="input-group-tools">
+                                <button class="option"><i class="material-icons">error_outline</i></button>
+                                <button class="clear"><i class="material-icons">cancel</i></button>
+                              </div>
+                            </div>
+                            <p class="status-message">에러메세지는 이곳에 쓰여집니다.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="popup-tools txt-right">
+                        <button class="btn btn-md btn-gray btn-container">
+                          <span class="label">Button</span>
+                        </button>
+                        <button class="btn btn-md btn-primary btn-container mg-l-2u">
+                          <span class="label">Button</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mg-b-2u">
+            <p class="h8 mg-b-2u">Disabled</p>
+
+            <div class="input-container input-container-md search-bar fix-width-column right w-130 disabled">
+              <div class="input-group">
+                <div class="search-filter-wrapper">
+                  <div class="search-filter">
+                    <button class="btn btn-container no-pd btn-xs select select-overlap" disabled>
+                      <input class="select-input" value="옵션1">
+                      <span class="label select-text">옵션1</span>
+                      <span class="icon mg-l-2u"><i class="Licon size-16 ico-drop"></i></span>
+                      <div class="select-menu">
+                        <ul>
+                          <li class="on"><a href="#" class="select-menu-item" data-select-value="옵션1"><p class="label">옵션1</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션2"><p class="label">옵션2</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션3"><p class="label">옵션3</p></a></li>
+                          <li><a href="#" class="select-menu-item" data-select-value="옵션4"><p class="label">옵션4</p></a></li>
+                          <li class="disabled"><a href="#" class="select-menu-item" data-select-value="옵션5"><p class="label">옵션5</p></a></li>
+                        </ul>
+                      </div>
+                      <div class="select-dim"></div>
+                    </button>
+                  </div>
+                </div>
+                <input type="search" placeholder="Menu Search..." value="" class="input-box" disabled>
+                <div class="search-history-panel">
+                  <div class="search-history-panel-dim" onclick="$.Lithium.search().closeSearchHistoryPanel()"></div>
+                  <div class="inner">
+                    <div class="list">
+                      <ul>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록1</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록2</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="search-history-item">
+                            <button class="history-call" onclick="$.Lithium.search().closeSearchHistoryPanel()">검색기록3</button>
+                            <button class="history-remove"><i class="material-icons">cancel</i></button>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tools">
+                      <ul>
+                        <li class="float-l">
+                          <button class="tools-item"><span class="v-middle">검색 기록 삭제</span></button>
+                          <button class="tools-item history-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                          <button class="tools-item auto-complete-mode"><span class="v-middle">검색어 저장 끄기</span></button>
+                        </li>
+                        <li class="float-r">
+                          <button class="tools-item close" onclick="$.Lithium.search().closeSearchHistoryPanel()">닫기</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group-tools">
+                  <button class="clear" disabled><i class="material-icons">cancel</i></button>
+                  <button class="search" disabled><i class="Licon size-24 ico-search"></i></button>
+                </div>
+              </div>
+
+              <div>
+                <a href="#" class="btn btn-md btn-txt btn-secondary mg-l-1u search-detail">
+                  <span class="label">상세 검색</span>
+                  <span class="icon"><i class="Licon ico-filter"></i></span>
+
+                  <div class="popup">
+                    <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
+                    <div class="popup-inner">
+                      <div class="popup-title">
+                        <div class="title-wrap">
+                          <h6 class="title">Title</h6>
+                          <p class="sub-title b6">Sub Title</p>
+                          <button class="btn close" onclick="$.Lithium.popupHandler.close()"><i class="material-icons">close</i></button>
+                        </div>
+                      </div>
+                      <div class="popup-contents">
+                        모달 내용 내용내용내용 모달 내용내용내용내용 모달 내용 내용내용내용 모
+                        달 내용 내용내용내용 모달 내용 내용내용내용 모달 내용 내용내용내용모달
+                        내용 내용내용내용
+
+                        <div class="popup-panel">
+                          <div class="input-container input-container-md">
+                            <label>레이블<em>*</em></label>
+                            <div class="input-group">
+                              <input type="text" placeholder="placeholder" class="input-box">
+                              <div class="input-group-tools">
+                                <button class="option"><i class="material-icons">error_outline</i></button>
+                                <button class="clear"><i class="material-icons">cancel</i></button>
+                              </div>
+                            </div>
+                            <p class="status-message">에러메세지는 이곳에 쓰여집니다.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="popup-tools txt-right">
+                        <button class="btn btn-md btn-gray btn-container">
+                          <span class="label">Button</span>
+                        </button>
+                        <button class="btn btn-md btn-primary btn-container mg-l-2u">
+                          <span class="label">Button</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div style="width: 100%; height: 400px"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
