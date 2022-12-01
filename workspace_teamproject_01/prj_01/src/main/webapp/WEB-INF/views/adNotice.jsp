@@ -63,7 +63,7 @@
           <ul class="menu-accordion">
             <li>
               <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
-              <a href="adNotice.html"><span class="label">공지사항</span></a>
+              <a href="adNotice.do"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
               <a href="#"><span class="label">인사관리</span></a>

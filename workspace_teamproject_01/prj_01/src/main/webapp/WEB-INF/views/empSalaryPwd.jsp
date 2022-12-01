@@ -11,14 +11,15 @@
 <%@ include file="common.jsp" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Responsive Viewport & Fixed Scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>공지사항</title>
+    <title>급여명세서</title>
   </head>
+  
   <body class="side-first by-menu popup-menu-open">
     <div id="wrapper">
       <header id="header-bar" class="on-light">
@@ -27,7 +28,7 @@
             <span class="icon"><i class="Licon ico-menu"></i></span>
           </button>
           <div class="logo-area">
-            <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
+              <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
           </div>
           <div class="utility-area">
             <div class="utility-group">
@@ -44,17 +45,18 @@
           </div>
         </div>
       </header>
-  
+
       <aside id="side-bar" class="slim tab">
         <button class="side-bar-toggle tab-item" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU"  onclick="$.Lithium.sideSubMenuToggle().toggleSideBar();">
-          <span class="icon"><i class="Licon ico-menu" ></i></span>
+          <span class="icon"><i class="Licon ico-menu"></i></span>
           <span class="icon"><i class="Licon ico-close"></i></span>
         </button>
         <div class="menu-area">
-          <div class="menu menu-vertical"></div>
+          <div class="menu menu-vertical">
+          </div>
         </div>
       </aside>
-  
+
       <div id="side-bar-sub" class="">
         <div class="tab-contents" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU">
           <!-- search bar -->
@@ -63,30 +65,31 @@
           <ul class="menu-accordion">
             <li>
               <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
-              <a href="empNotice.do"><span class="label">공지사항</span></a>
+              <a href="adNotice.html"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
               <a href="#"><span class="label">인사관리</span></a>
               <ul class="tree-view-menu">
                 <li><a href="adEmpReg.html"><span class="label">사원등록</span></a></li>
                 <li><a href="adUserInfoReg.html"><span class="label">사용자정보등록</span></a></li>
-                <li><a href="adEmpList.html"><span class="label">사원명부</span></a></li>
+                <li><a href="adEmpList.html"><span class="label">사원명부 및 수정/삭제</span></a></li>
               </ul>
             </li>
             <li class="tree-view">
               <a href="#"><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
-                <li><a href="empSalary.do"><span class="label">급여계산</span></a></li>
+                <li><a href="empSalaryPwd.html"><span class="label">급여명세서</span></a></li>
+                <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
               </ul>
             </li>
           </ul>
-        </div>
+        </div>    
       </div>
-  
+
       <div id="contents-wrapper">
         <div class="content-header">
           <div class="content-title-bar">
-            <h5>공지사항<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
+            <h5></h5>
             <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
             <div class="tools responsive-except-desktop" >
               <div class="tools-group" style="cursor:none;">
@@ -100,109 +103,56 @@
                 </button>
                 <button class="tool-item" disabled style="cursor:default;">
                   <span class="icon"><i class="Licon ico-add"></i></span>
-                  <span class="label">추가</span></a>
+                  <span class="label">추가</span>
                 </button>
                 <button class="tool-item" disabled style="cursor:default;">
                   <span class="icon"><i class="Licon ico-minus"></i></span>
                   <span class="label">삭제</span>
                 </button>
               </div>
-            </div>
           </div>
         </div>
-  
-  
-  
-  
+
+
+
+
         <br><br><br><br><br><br><br><br>
-  
-  
-  
-  
-  
-        <table class="table table-md table-top">
-          <thead>
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>작성일</th>
-              <th>조회수</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>
-                <span class="label">5</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2022.11.25</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">4</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2021.11.25</td>
-              <td>523</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">3</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2020.11.25</td>
-              <td>5432</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">2</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2019.11.25</td>
-              <td>56432</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">1</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2018.11.25</td>
-              <td>5423453</td>
-            </tr>
-          </tbody>
-        </table>
 
+      </div>
+      
+  <!-- 메인 -->
 
-        <div class="pagination-wrapper">
-          <div class="pagination">
-            <div class="pagination-group direction">
-              <ul>
-                <li class="disabled"><a href="#" class="pagination-item prev"><i class="Licon ico-prev"></i></a></li>
-                <li class="disabled"><a href="#" class="pagination-item left"><i class="Licon ico-left"></i></a></li>
-              </ul>
-            </div>
-            <div class="pagination-group">
-              <ul>
-                <li class="on"><a href="#" class="pagination-item"><i>1</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>2</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>3</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>4</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>5</i></a></li>
-              </ul>
-            </div>
-            <div class="pagination-group direction">
-              <ul>
-                <li class=""><a href="#" class="pagination-item right"><i class="Licon ico-right"></i></a></li>
-                <li class=""><a href="#" class="pagination-item next"><i class="Licon ico-next"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+  <div style="background-color:white; height:190px; width: 300px; text-align: left; margin-left: auto; margin-right: auto;">
+
+  <br>
+  <div style="text-align:center;">
+  <label >주민등록번호 뒷자리 7자리를 입력해주세요.<em class="txt-error lable-margin" ></em></label>
+  </div>
+  <div class="input-container input-container-md mg-t-4u" style="margin-left:10px; margin-right:10px;">
+    <div class="input-group">
+      <input type="password" class="input-box">
+      <div class="input-group-tools">
+        <button class="option view-password"><i class="material-icons">visibility</i></button>
+        <button class="option error"><i class="Licon size-24 ico-warning"></i></button>
+        <button class="option success"><i class="Licon size-24 ico-check"></i></button>
+        <button class="clear"><i class="material-icons">cancel</i></button>
       </div>
     </div>
+    <p class="status-message">에러메세지는 이곳에 쓰여집니다.</p>
+  </div>
+  <div class="txt-right" style="margin-top:25px; margin-right: 15px; text-align:center; margin-left:auto; margin-right:auto;">
+    
+    <a href="empSalary.html"><button class="btn btn-md btn-primary btn-container" >
+      <span class="label">확인</span>
+    </button></a>
+  </div>
+  </div>
 
 
+
+
+
+    </div>
     <div class="popup-wrapper">
       <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
       <!-- option class / popup-warning, popup-full -->
@@ -231,8 +181,12 @@
                 <td>dbswldn@naver.com</td>
               </tr>
             </table>
+
+            
           </div>
+
           <div class="popup-tools txt-right" style="margin-top:-20px;">
+            
             <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
               <span class="label" >닫기</span>
             </button>

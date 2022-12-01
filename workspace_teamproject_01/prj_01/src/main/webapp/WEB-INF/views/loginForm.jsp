@@ -169,24 +169,11 @@
                     , success : function(idCnt){
                         
                         if(idCnt==1){
-
-                            document.adNotice.submit();
-
-                            // if(midVal=="abc"){
-                            //     document.adNotice.submit();
-                            // }else{
-                            //     document.empNotice.submit();
-                            // }
-                            // alert("로그인 성공");
-
-                            // 웹 서버에 "/boardList.do" URL 주소로 접속 시도
-                            // 사용 메소드 : location.replace("URL 주소");
-                            // 해당 메소드 접속 방식은 get 방식이다.
-                            // location.replace("/boardList.do");
-                            
-                            // POST 방식을 사용하고 싶을 경우
-                            // HTML form 태그 생성 method와 action 값을 준 후
-                            // document.~.submit();으로 접속한다.
+                            if(midVal=="abc"){
+                                document.adNotice.submit();
+                            }else{
+                                document.empNotice.submit();
+                            }
                         }else{
                             alert("로그인 실패");
                             admin_idObj.val("");
