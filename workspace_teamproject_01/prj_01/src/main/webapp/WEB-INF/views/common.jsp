@@ -14,7 +14,7 @@
 <!-- [사용자 정의 태그]를 말한다. -->
 
 <!-- JQuery 라이브러리 수입 -->
-<script src="/jquery-1.11.0.min.js"></script>
+<script src="/js/jquery-1.11.0.min.js"></script>
 
 <!-- icon font -->
 <link rel="stylesheet" href="/assets/fonts/material-icons/material-icons.css" />

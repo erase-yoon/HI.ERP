@@ -21,9 +21,9 @@
         <link rel="stylesheet" href="/css/login/style.css" type="text/css">
         <link rel="stylesheet" href="/css/login/login_bg.css" type="text/css">
         <script src="/js/login/jquery.min.js"></script>
-        <script src="/js/loginjs/popper.js"></script>
-        <script src="/js/loginjs/bootstrap.min.js"></script>
-        <script src="/js/loginjs/main.js"></script>
+        <script src="/js/login/popper.js"></script>
+        <script src="/js/login/bootstrap.min.js"></script>
+        <script src="/js/login/main.js"></script>
         <script>
             // body 태그 안의 모든 코드를 읽은 이후 
             // 호출될 Javascript 코드 설정
