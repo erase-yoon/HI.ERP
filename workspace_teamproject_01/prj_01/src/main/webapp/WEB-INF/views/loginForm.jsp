@@ -86,7 +86,7 @@
                 if(midVal.split(" ").join("")==""){
 
                     // 경고창 띄우기
-                    alert("아이디를 입력해 주세요.");
+                    // alert("아이디를 입력해 주세요.");
 
                     // 비어있는 문자열("")로 변경
                     midObj.val("");
@@ -122,7 +122,7 @@
                 if(pwdVal.split(" ").join("")==""){
 
                     // 경고창 띄우기
-                    alert("암호를 입력해 주세요.");
+                    // alert("암호를 입력해 주세요.");
 
                     // 비어있는 문자열("")로 변경
                     pwdObj.val("");
@@ -166,11 +166,13 @@
                         
                         if(idCnt==1){
 
-                            if(midVal=="abc"){
-                                document.adNotice.submit();
-                            }else{
-                                document.empNotice.submit();
-                            }
+                            document.adNotice.submit();
+
+                            // if(midVal=="abc"){
+                            //     document.adNotice.submit();
+                            // }else{
+                            //     document.empNotice.submit();
+                            // }
                             // alert("로그인 성공");
 
                             // 웹 서버에 "/boardList.do" URL 주소로 접속 시도
@@ -212,7 +214,7 @@
                             <br>
                             <form action="/adNotice.do" name="adNotice" method="post"></form>
                             <form action="/empNotice.do" name="empNotice" method="post"></form>
-                            <form action="/loginProc.do" name="loginForm">
+                            <form action="/loginProc.do" name="loginForm" method="post">
                                 <div class="form-group">
                                     <input type="text" name="mid" class="form-control rounded-left" placeholder="ID">
                                 </div>
