@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Lithium Design System</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <div id="contents-wrapper">
+    <div class="content-header">
+      <div class="content-title-bar">
+        <h5>Slider</h5>
+      </div>
+    </div>
+
+    <div class="content-body">
+      <div class="container">
+
+        <section class="mg-b-6u">
+          <div class="col-container">
+
+            <div class="col-xs-12 col-md-4 mg-b-4u">
+              <div class="input-container input-container-sm">
+                <label>레이블<em>*</em></label>
+                <div class="input-group with-slider">
+                  <div class="input-slider">
+                    <div class="slider-bar">
+                      <input type="range" min="0" max="100" value="18" data-rangeslider>
+                    </div>
+                    <span class="slider-min"></span>
+                    <span class="slider-max"></span>
+                  </div>
+
+                  <input type="number" placeholder="" class="input-box" />
+                </div>
+                <p class="status-message">에러메세지는 이곳에 쓰여집니다.</p>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4 mg-b-4u">
+              <div class="input-container input-container-sm error">
+                <label>레이블<em>*</em></label>
+                <div class="input-group with-slider">
+                  <div class="input-slider">
+                    <div class="slider-bar">
+                      <input type="range" min="0" max="50" value="" data-rangeslider>
+                    </div>
+                    <span class="slider-min"></span>
+                    <span class="slider-max"></span>
+                  </div>
+
+                  <input type="number" placeholder="" class="input-box" />
+                </div>
+                <p class="status-message txt-right">에러메세지는 이곳에 쓰여집니다.</p>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4 mg-b-4u">
+              <div class="input-container input-container-sm disabled">
+                <label>레이블<em>*</em></label>
+                <div class="input-group with-slider">
+                  <div class="input-slider">
+                    <div class="slider-bar">
+                      <input type="range" min="0" max="50" value="" data-rangeslider disabled />
+                    </div>
+                    <span class="slider-min"></span>
+                    <span class="slider-max"></span>
+                  </div>
+
+                  <input type="number" placeholder="" class="input-box" disabled />
+                </div>
+                <p class="status-message txt-right">에러메세지는 이곳에 쓰여집니다.</p>
+              </div>
+            </div>
+
+
+          </div>
+        </section>
+
+
+
+        <section class="mg-b-6u">
+          <div class="col-container">
+
+            <div class="col-xs-12 col-md-4 mg-b-4u">
+              <div class="input-container input-container-md">
+                <label>레이블<em>*</em></label>
+                <div class="input-group with-slider">
+                  <div class="input-slider">
+                    <div class="slider-bar">
+                      <input type="range" min="0" max="100" value="" data-rangeslider>
+                    </div>
+                    <span class="slider-min"></span>
+                    <span class="slider-max"></span>
+                  </div>
+
+                  <input type="number" placeholder="" class="input-box" />
+                </div>
+                <p class="status-message">에러메세지는 이곳에 쓰여집니다.</p>
+              </div>
+            </div>
+
+
+            <div class="col-xs-12 col-md-4 mg-b-4u">
+              <div class="input-container input-container-md error">
+                <label>레이블<em>*</em></label>
+                <div class="input-group with-slider">
+                  <div class="input-slider">
+                    <div class="slider-bar">
+                      <input type="range" min="0" max="50" value="" data-rangeslider>
+                    </div>
+                    <span class="slider-min"></span>
+                    <span class="slider-max"></span>
+                  </div>
+
+                  <input type="number" placeholder="" class="input-box" />
+                </div>
+                <p class="status-message txt-right">에러메세지는 이곳에 쓰여집니다.</p>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4 mg-b-4u">
+              <div class="input-container input-container-md disabled">
+                <label>레이블<em>*</em></label>
+                <div class="input-group with-slider">
+                  <div class="input-slider">
+                    <div class="slider-bar">
+                      <input type="range" min="0" max="100" value="" data-rangeslider disabled>
+                    </div>
+                    <span class="slider-min"></span>
+                    <span class="slider-max"></span>
+                  </div>
+
+                  <input type="number" placeholder="" class="input-box" disabled />
+                </div>
+                <p class="status-message">에러메세지는 이곳에 쓰여집니다.</p>
+              </div>
+            </div>
+
+
+          </div>
+        </section>
+
+
+
+        <section class="mg-b-6u">
+          <div class="col-container">
+
+            <div class="col-xs-12 col-md-4 mg-b-4u">
+              <div class="input-container input-container-lg">
+                <label>레이블<em>*</em></label>
+                <div class="input-group with-slider">
+                  <div class="input-slider">
+                    <div class="slider-bar">
+                      <input type="range" min="0" max="100" value="" data-rangeslider>
+                    </div>
+                    <span class="slider-min"></span>
+                    <span class="slider-max"></span>
+                  </div>
+
+                  <input type="number" placeholder="" class="input-box" />
+                </div>
+                <p class="status-message">에러메세지는 이곳에 쓰여집니다.</p>
+              </div>
+            </div>
+
+
+            <div class="col-xs-12 col-md-4 mg-b-4u">
+              <div class="input-container input-container-lg error">
+                <label>레이블<em>*</em></label>
+                <div class="input-group with-slider">
+                  <div class="input-slider">
+                    <div class="slider-bar">
+                      <input type="range" min="0" max="250" value="" data-rangeslider>
+                    </div>
+                    <span class="slider-min"></span>
+                    <span class="slider-max"></span>
+                  </div>
+
+                  <input type="number" placeholder="" class="input-box" />
+                </div>
+                <p class="status-message txt-right">에러메세지는 이곳에 쓰여집니다.</p>
+              </div>
+            </div>
+
+
+            <div class="col-xs-12 col-md-4 mg-b-4u">
+              <div class="input-container input-container-lg disabled">
+                <label>레이블<em>*</em></label>
+                <div class="input-group with-slider">
+                  <div class="input-slider">
+                    <div class="slider-bar">
+                      <input type="range" min="0" max="250" value="" data-rangeslider disabled />
+                    </div>
+                    <span class="slider-min"></span>
+                    <span class="slider-max"></span>
+                  </div>
+
+                  <input type="number" placeholder="" class="input-box" disabled />
+                </div>
+                <p class="status-message txt-right">에러메세지는 이곳에 쓰여집니다.</p>
+              </div>
+            </div>
+
+
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

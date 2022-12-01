@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>사원명부 및 수정/삭제</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- <link rel="stylesheet" href="/js/assets/fonts/material-icons/material-icons.css" /> 해당 방식으로 경로 모두 추후 변경해야함-->
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body class="side-first by-menu popup-menu-open">
+  <div id="wrapper">
+    <header id="header-bar" class="on-light">
+      <div id="header-bar-main">
+        <button class="menu-toggle float-l" onclick="$('body').addClass('mobile-menu-open')">
+          <span class="icon"><i class="Licon ico-menu"></i></span>
+        </button>
+        <div class="logo-area">
+            <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
+        </div>
+        <div class="utility-area">
+          <div class="utility-group">
+            <a class="utility">
+              <span class="icon"><i class="Licon ico-my " onclick="$.Lithium.popupHandler.open({ full: false, warning: false })" ></i></span>
+            </a>
+            <a class="utility">
+              <span class="icon"><i class="Licon ico-logout"></i></span>
+            </a>
+          </div>
+        </div>
+        <div class="user-area responsive-except-desktop">
+          <span class="user-info">윤지우 (12345)</span>
+        </div>
+      </div>
+    </header>
+
+    <aside id="side-bar" class="slim tab">
+      <button class="side-bar-toggle tab-item" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU"  onclick="$.Lithium.sideSubMenuToggle().toggleSideBar();">
+        <span class="icon"><i class="Licon ico-menu"></i></span>
+        <span class="icon"><i class="Licon ico-close"></i></span>
+      </button>
+      <div class="menu-area">
+        <div class="menu menu-vertical">
+        </div>
+      </div>
+    </aside>
+
+    <div id="side-bar-sub" class="">
+      <div class="tab-contents" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU">
+        <!-- search bar -->
+        <div class="searchbar_con"><img src="assets/images/Biglogo.png"></div>
+        <!-- menu -->
+        <ul class="menu-accordion">
+          <li>
+            <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
+            <a href="adNotice.html"><span class="label">공지사항</span></a>
+          </li>
+          <li class="tree-view">
+            <a href="#"><span class="label">인사관리</span></a>
+            <ul class="tree-view-menu">
+              <li><a href="adEmpReg.html"><span class="label">사원등록</span></a></li>
+              <li><a href="adUserInfoReg.html"><span class="label">사용자정보등록</span></a></li>
+              <li><a href="adEmpList.html"><span class="label">사원명부 및 수정/삭제</span></a></li>
+            </ul>
+          </li>
+          <li class="tree-view">
+            <a href="#"><span class="label">급여관리</span></a>
+            <ul class="tree-view-menu">
+              <li><a href="adSalary.html"><span class="label">급여계산</span></a></li>
+              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="contents-wrapper">
+      <div class="content-header">
+        <div class="content-title-bar">
+          <h5>사원명부 및 수정/삭제<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
+          <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
+          <div class="tools responsive-except-desktop" >
+            <div class="tools-group" style="cursor:none;">
+              <button class="tool-item"  style="cursor:default;">
+                <span class="icon"><i class="Licon ico-datareset"></i></span>
+                <span class="label">조회</span>
+              </button>
+              <button class="tool-item"  style="cursor:default;">
+                <span class="icon"><i class="Licon ico-edit"></i></span>
+                <span class="label">수정</span>
+              </button>
+              <button class="tool-item"  style="cursor:default;">
+                <span class="icon"><i class="Licon ico-add"></i></span>
+                <span class="label">추가</span>
+              </button>
+              <button class="tool-item"  style="cursor:default;">
+                <span class="icon"><i class="Licon ico-minus"></i></span>
+                <span class="label">삭제</span>
+              </button>
+            </div>
+        </div>
+      </div>
+
+
+
+
+      <br><br><br><br><br><br><br><br>
+
+      <!-- 상세검색창 -->
+      <div id="top_11" class="split content detailserch">
+      <div class="selectbox">
+        <!-- 사업장 셀렉트박스 -->
+        
+          <label>사업장 :<em class="txt-error lable-margin" ></em></label>
+          <select name="place" >           
+            <option value="서울">서울</option>
+            <option value="인천">인천</option>
+            <option value="부산">부산</option>
+          </select>
+          <label>/<em class="txt-error" ></em></label>
+        <!-- 부서 셀렉트박스 -->
+        <label  class="select1">부서 :<em class="txt-error lable-margin" ></em></label>
+          <select name="place">
+            <option value="UI개발부">UI개발부</option>
+            <option value="DB개발부">DB개발부</option>
+            <option value="암튼개발부">암튼개발부</option>
+          </select>
+          <label>/<em class="txt-error" ></em></label>
+        <!-- 재직구분 셀렉트박스 -->
+        <label  class="select1">재직구분 :<em class="txt-error lable-margin" ></em></label>
+          <select name="place">      
+            <option value="재직">재직</option>
+            <option value="퇴직">퇴직</option>
+            <option value="휴직">휴직</option>
+          </select>
+          <label>/<em class="txt-error" ></em></label>
+        <!-- 직급 셀렉트박스 -->
+        <label class="select1">직급 :<em class="txt-error lable-margin" ></em></label>
+          <select name="place" >           
+            <option value="대표">대표</option>
+            <option value="이사">이사</option>
+            <option value="부장">부장</option>
+            <option value="차장">차장</option>
+            <option value="과장">과장</option>
+            <option value="대리">대리</option>
+            <option value="사원">사원</option>
+          </select>
+
+          <!-- 검색창 -->
+        <div class="mg-b-2u serch-loc">
+          <div class="input-container input-container-sm search-bar"
+                          id="c_size_default">
+            <div class="input-group">
+              <input type="search" placeholder="Menu Search..." class="input-box">
+              <div class="search-history-panel">
+                <div class="search-history-panel-dim"
+                                onclick="$.Lithium.search().closeSearchHistoryPanel()"></div>
+              </div>
+              <div class="input-group-tools">
+                <button class="clear">
+                  <i class="material-icons">cancel</i>
+                </button>
+                <button class="search">
+                  <i class="Licon size-24 ico-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+            <div class="select-dim"></div>
+          </button>
+        
+      </div>
+        
+      </div>
+      <div class="gutter gutter-vertical" style="height: 12px;"></div><div id="bottom_11" class="split content" style="height: calc(50% - 6px);
+      max-width: 80%; margin-left: auto; margin-right: auto;">
+        <div class="data-table-wrapper">
+          <div class="data-table-container" style="max-width: 80%; margin-left: auto; margin-right: auto;">
+            <table class="data-table data-table-sm" id="c_size_11_bottom">
+              <colgroup></colgroup>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th >사원명</th>
+                  <th >사원번호</th>
+                  <th >입사일</th>
+                  <th >퇴사일</th>
+                  <th >재직구분</th>
+                  <th >부서</th>
+                  <th >직급</th>
+                  <th >이메일</th>
+                  <th >연락처</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>1</th>
+                  <td>강하경</td>
+                  <td>111111</td>
+                  <td>2020.04.06.</td>
+                  <td>-</td>
+                  <td>재직</td>
+                  <td>UI개발부</td>
+                  <td>차장</td>
+                  <td>gkrud@naver.com</td>
+                  <td>010-1111-1111</td>                 
+                </tr>
+                <tr>
+                  <th>2</th>
+                  <td>고지훈</td>
+                  <td>222222</td>
+                  <td>2022.11.01.</td>
+                  <td>2022.11.02.</td>
+                  <td>퇴직</td>
+                  <td>UI개발부</td>
+                  <td>인턴</td>
+                  <td>rhwlgns@naver.com</td>
+                  <td>010-2222-2222</td>
+                </tr>
+                <tr>
+                  <th>3</th>
+                  <td>김영찬</td>
+                  <td>333333</td>
+                  <td>2015.01.01.</td>
+                  <td>-</td>
+                  <td>재직</td>
+                  <td>암튼개발부</td>
+                  <td>부장</td>
+                  <td>rladudcks@hanmail.net</td>
+                  <td>010-3333-3333</td>
+                </tr>
+                <tr>
+                  <th>4</th>
+                  <td>박종윤</td>
+                  <td>444444</td>
+                  <td>2022.05.06</td>
+                  <td>-</td>
+                  <td>재직</td>
+                  <td>DB개발부</td>
+                  <td>사원</td>
+                  <td>qkrwhddbs@gmail.com</td>
+                  <td>010-4444-4444</td>
+                </tr>
+                <tr>
+                  <th>5</th>
+                  <td>유은희</td>
+                  <td>555555</td>
+                  <td>2021.05.06</td>
+                  <td>-</td>
+                  <td>재직</td>
+                  <td>DB개발부</td>
+                  <td>과장</td>
+                  <td>dbdmsgml@gmail.com</td>
+                  <td>010-5555-5555</td>
+                </tr>
+                <tr>
+                  <th>6</th>
+                  <td>윤동림</td>
+                  <td>666666</td>
+                  <td>2022.02.06</td>
+                  <td>-</td>
+                  <td>재직</td>
+                  <td>암튼개발부</td>
+                  <td>대리</td>
+                  <td>dbsehdfla@gmail.com</td>
+                  <td>010-6666-6666</td>
+                </tr>
+                <tr>
+                  <th>7</th>
+                  <td>윤지우</td>
+                  <td>777777</td>
+                  <td>2022.02.06</td>
+                  <td>-</td>
+                  <td>재직</td>
+                  <td>DB개발부</td>
+                  <td>대리</td>
+                  <td>dbswldn@gmail.com</td>
+                  <td>010-7777-7777</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <script>
+        Split([ '#top_11', '#bottom_11' ], {
+          direction : 'vertical',
+          gutterSize : 12,
+          sizes : [ 50, 50 ],
+        })
+      </script>
+      
+        <div class="popup-wrapper">
+          <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
+          <!-- option class / popup-warning, popup-full -->
+          <div class="popup">
+            <div class="popup-inner">
+              <div class="popup-title">
+                <div class="title-wrap">
+                  <h6 class="title">내정보</h6>              
+                </div>
+              </div>
+              <div class="popup-contents" >
+                <table border="0" cellpadding="5" align="center" width="300px" style="font-size:15px; font-weight: bold;">
+                  <tr align="center">
+                    <td><img src="./assets/images/test_img.png"></td>
+                  </tr>
+                  <tr align="center">
+                    <td>윤지우 대리</td>                                     
+                  </tr>
+                  <tr align="center">
+                    <td>(DB개발팀)</td>                                     
+                  </tr>
+                  <tr align="center">
+                    <td>010-1111-2222</td>
+                  </tr>
+                  <tr align="center">
+                    <td>dbswldn@naver.com</td>
+                  </tr>
+                </table>
+      
+                
+              </div>
+      
+              <div class="popup-tools txt-right" style="margin-top:-20px;">
+                
+                <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
+                  <span class="label" >닫기</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+  </div>
+</body>
+</html>

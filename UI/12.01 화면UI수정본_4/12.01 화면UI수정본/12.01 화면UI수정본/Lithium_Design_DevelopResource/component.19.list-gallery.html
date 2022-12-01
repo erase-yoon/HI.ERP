@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Lithium Design System</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <div id="contents-wrapper">
+    <div class="content-header">
+      <div class="content-title-bar">
+        <h5>List: Gallery</h5>
+      </div>
+    </div>
+
+    <div class="content-body">
+      <div class="container">
+
+        <section>
+          <div class="col-container">
+
+            <div class="col-md-12 col-lg-6 mg-b-10u">
+              <p class="h8 mg-b-2u">베이직 갤러리</p>
+              <div class="list-gallery fotorama basic-gallery">
+                <a href="assets/images/sample-photo-1.jpg"><img src="assets/images/sample-photo-1-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-2.jpg"><img src="assets/images/sample-photo-2-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-3.jpg"><img src="assets/images/sample-photo-3-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-4.jpg"><img src="assets/images/sample-photo-4-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-5.jpg"><img src="assets/images/sample-photo-5-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-6.jpg"><img src="assets/images/sample-photo-6-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-7.jpg"><img src="assets/images/sample-photo-7-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-8.jpg"><img src="assets/images/sample-photo-8-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-9.jpg"><img src="assets/images/sample-photo-9-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-10.jpg"><img src="assets/images/sample-photo-10-thumb.jpg" /></a>
+              </div>
+            </div>
+
+            <div class="col-md-12 col-lg-6 mg-b-10u">
+              <p class="h8 mg-b-2u">캘러셀 갤러리</p>
+              <div class="list-gallery fotorama carousel-gallery">
+                <a href="assets/images/sample-photo-1.jpg"><img src="assets/images/sample-photo-1-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-2.jpg"><img src="assets/images/sample-photo-2-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-3.jpg"><img src="assets/images/sample-photo-3-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-4.jpg"><img src="assets/images/sample-photo-4-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-5.jpg"><img src="assets/images/sample-photo-5-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-6.jpg"><img src="assets/images/sample-photo-6-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-7.jpg"><img src="assets/images/sample-photo-7-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-8.jpg"><img src="assets/images/sample-photo-8-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-9.jpg"><img src="assets/images/sample-photo-9-thumb.jpg" /></a>
+                <a href="assets/images/sample-photo-10.jpg"><img src="assets/images/sample-photo-10-thumb.jpg" /></a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <script>
+          $('.basic-gallery').fotorama({
+            maxwidth: '100%',
+            ratio: 16/9,
+            fit: 'cover',
+            arrows: 'always',
+            nav: 'thumbs',
+            thumbwidth: '59px',
+            thumbheight: '59px'
+          });
+          $('.carousel-gallery').fotorama({
+            maxwidth: '100%',
+            ratio: 16/9,
+            fit: 'cover',
+            arrows: 'always',
+            thumbwidth: '59px',
+            thumbheight: '59px'
+          });
+        </script>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
