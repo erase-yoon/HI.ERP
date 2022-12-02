@@ -27,7 +27,7 @@
             <span class="icon"><i class="Licon ico-menu"></i></span>
           </button>
           <div class="logo-area">
-            <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
+              <img src="/assets/images/Hierp_Logo1.png" class="on-light logo_margin">
           </div>
           <div class="utility-area">
             <div class="utility-group">
@@ -51,26 +51,27 @@
           <span class="icon"><i class="Licon ico-close"></i></span>
         </button>
         <div class="menu-area">
-          <div class="menu menu-vertical"></div>
+          <div class="menu menu-vertical">
+          </div>
         </div>
       </aside>
   
       <div id="side-bar-sub" class="">
         <div class="tab-contents" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU">
           <!-- search bar -->
-          <div class="searchbar_con"><img src="assets/images/Biglogo.png"></div>
+          <div class="searchbar_con"><img src="/assets/images/Biglogo.png"></div>
           <!-- menu -->
           <ul class="menu-accordion">
             <li>
               <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
-              <a href="adNotice.do"><span class="label">공지사항</span></a>
+              <a href="adNotice.html"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
               <a href="#"><span class="label">인사관리</span></a>
               <ul class="tree-view-menu">
                 <li><a href="adEmpReg.html"><span class="label">사원등록</span></a></li>
                 <li><a href="adUserInfoReg.html"><span class="label">사용자정보등록</span></a></li>
-                <li><a href="adEmpList.html"><span class="label">사원명부</span></a></li>
+                <li><a href="adEmpList.html"><span class="label">사원명부 및 수정/삭제</span></a></li>
               </ul>
             </li>
             <li class="tree-view">
@@ -109,6 +110,7 @@
                 </button>
               </div>
             </div>
+            
           </div>
         </div>
   
@@ -123,58 +125,56 @@
   
         <table class="table table-md table-top">
           <thead>
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>작성일</th>
-              <th>조회수</th>
-            </tr>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일</th>
+            <th>조회수</th>
+          </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>
-                <span class="label">5</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2022.11.25</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">4</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2021.11.25</td>
-              <td>523</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">3</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2020.11.25</td>
-              <td>5432</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">2</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2019.11.25</td>
-              <td>56432</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">1</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2018.11.25</td>
-              <td>5423453</td>
-            </tr>
+          <tr>
+            <th>
+              <span class="label">5</span>
+            </th>
+            <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
+            <td>2022.11.25</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <th>
+              <span class="label">4</span>
+            </th>
+            <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
+            <td>2021.11.25</td>
+            <td>523</td>
+          </tr>
+          <tr>
+            <th>
+              <span class="label">3</span>
+            </th>
+            <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
+            <td>2020.11.25</td>
+            <td>5432</td>
+          </tr>
+          <tr>
+            <th>
+              <span class="label">2</span>
+            </th>
+            <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
+            <td>2019.11.25</td>
+            <td>56432</td>
+          </tr>
+          <tr>
+            <th>
+              <span class="label">1</span>
+            </th>
+            <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
+            <td>2018.11.25</td>
+            <td>5423453</td>
+          </tr>
           </tbody>
         </table>
-
-
         <div class="pagination-wrapper">
           <div class="pagination">
             <div class="pagination-group direction">
@@ -202,11 +202,8 @@
         </div>
       </div>
     </div>
-
-
     <div class="popup-wrapper">
       <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
-      <!-- option class / popup-warning, popup-full -->
       <div class="popup">
         <div class="popup-inner">
           <div class="popup-title">
@@ -233,6 +230,7 @@
               </tr>
             </table>
           </div>
+
           <div class="popup-tools txt-right" style="margin-top:-20px;">
             <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
               <span class="label" >닫기</span>

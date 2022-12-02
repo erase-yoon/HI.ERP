@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Lithium Design System</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <div id="contents-wrapper">
+    <div class="content-header">
+      <div class="content-title-bar">
+        <h5>Loading</h5>
+      </div>
+    </div>
+
+    <div class="content-body">
+      <div class="container">
+
+        <div class="col-container">
+          <div class="col-xs-12 mg-b-10u">
+            <p class="b4 mg-b-6u">Full Screen Loading</p>
+            <button class="btn btn-primary btn-container" onclick="$.Lithium.loading.call({ sampleTime: 3000 })">
+              <span class="label">Call Full Screen Loading</span>
+            </button>
+          </div>
+          <div class="col-xs-12 mg-b-10u">
+            <p class="b4 mg-b-6u">Simple Loading</p>
+            <span class="loading loading-simple">
+                <span class="spinner"></span>
+              <span>잠시만 기다려주세요...</span>
+            </span>
+          </div>
+          <div class="col-xs-12 mg-b-10u">
+            <p class="b4 mg-b-6u">Loading Bar</p>
+            <div class="loading loading-bar">
+              <div class="info-bar">
+                <ul>
+                  <li class="float-l">Loading Data</li>
+                  <li class="float-r">56%</li>
+                </ul>
+              </div>
+              <div class="progress-rail">
+                <div class="progress" style="width: 56%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="loading loading-full-screen">
+    <div class="loading-dim"></div>
+    <div class="indicator">
+      <div class="progress-rail">
+        <!-- 페이지 로드 완료를 100% 기준으로 프로그레스 인디케이터를 추가하세요 -->
+        <div class="progress" style="width: 40%"></div>
+      </div>
+      <p>Loading...</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

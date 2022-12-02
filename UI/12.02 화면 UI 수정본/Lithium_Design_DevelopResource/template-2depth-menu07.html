@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Responsive Viewport & Fixed Scaling -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Lithium Design System</title>
+<!-- icon font -->
+<link rel="stylesheet"
+	href="assets/fonts/material-icons/material-icons.css" />
+<!-- style -->
+<link rel="stylesheet"
+	href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+<link rel="stylesheet"
+	href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+<link rel="stylesheet"
+	href="assets/js/plugins/fotorama/fotorama.min.css" />
+<link rel="stylesheet" href="assets/css/lithium.css" />
+<link rel="stylesheet" href="assets/css/lithium-ie.css" />
+<!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+<!-- scripts -->
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/prefix.js"></script>
+<script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+<script src="assets/js/plugins/bootstrap/transition.js"></script>
+<script src="assets/js/plugins/bootstrap/collapse.js"></script>
+<script
+	src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+<script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+<script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+<script src="assets/js/plugins/split/split.js"></script>
+<script src="assets/js/lithium.js"></script>
+</head>
+<body
+	class="side-first side-bar-sub-open side-bar-sub-only mobile-menu-open">
+	<div id="wrapper">
+		<header id="header-bar" class="responsive-except-mobile">
+			<div id="header-bar-main">
+				<button class="menu-toggle"
+					onclick="$('body').addClass('mobile-menu-open')">
+					<span class="icon"><i class="Licon ico-menu"></i></span>
+				</button>
+				<div class="logo-area">
+					<a href="#"><img src="assets/images/seah-logo.svg" alt="SEAH"></a>
+				</div>
+				<div class="utility-area switch-mobile">
+					<div class="utility-group">
+						<a class="utility switch-mo"> <span class="icon"><i
+								class="Licon ico-search"></i></span>
+						</a> <a class="utility switch-mo"> <span class="icon"><i
+								class="Licon ico-elipsis"></i></span>
+						</a> <a class="utility switch-dt"> <span class="icon"><i
+								class="Licon ico-solid-logout"></i></span>
+						</a> <a class="utility switch-dt"> <span class="icon"><i
+								class="Licon ico-solid-setting"></i></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div id="side-bar-sub" class="responsive-except-desktop">
+			<div class="bi">
+				<img src="assets/images/seah-logo.svg" alt="SEAH">
+				<h1>
+					LITHIUM<br>DESIGN SYSTEM
+				</h1>
+			</div>
+
+			<ul class="menu-accordion">
+				<li class="tree-view"><a href="#"><span class="label">Menu1</span></a>
+					<ul class="tree-view-menu">
+						<li><a href="#"><span class="label">Menu1-1</span></a></li>
+						<li><a href="#"><span class="label">Menu1-2</span></a></li>
+						<li><a href="#"><span class="label">Menu1-3</span></a></li>
+						<li><a href="#"><span class="label">Menu1-4</span></a></li>
+						<li><a href="#"><span class="label">Menu1-5</span></a></li>
+						<li><a href="#"><span class="label">Menu1-6</span></a></li>
+					</ul></li>
+				<li class="tree-view"><a href="#"><span class="label">Menu2</span></a>
+					<ul class="tree-view-menu">
+						<li><a href="#"><span class="label">Menu2-1</span></a></li>
+						<li><a href="#"><span class="label">Menu2-2</span></a></li>
+						<li><a href="#"><span class="label">Menu2-3</span></a></li>
+						<li><a href="#"><span class="label">Menu2-4</span></a></li>
+						<li><a href="#"><span class="label">Menu2-5</span></a></li>
+						<li><a href="#"><span class="label">Menu2-6</span></a></li>
+					</ul></li>
+				<li class="tree-view open"><a href="#"><span class="label">Menu3</span></a>
+					<ul class="tree-view-menu">
+						<li><a href="#" class="group-label"><span class="label">Group
+									1</span></a></li>
+						<li><a href="#"><span class="label">Group1 Menu1</span></a></li>
+						<li class="active"><a href="#"><span class="label">Group1
+									Menu2</span></a></li>
+						<li><a href="#"><span class="label">Group1 Menu3</span></a></li>
+						<li><a href="#"><span class="label">Group1 Menu4</span></a></li>
+						<li><a href="#" class="group-label"><span class="label">Group
+									2</span></a></li>
+						<li><a href="#"><span class="label">Group2 Menu1</span></a></li>
+						<li><a href="#"><span class="label">Group2 Menu2</span></a></li>
+					</ul></li>
+				<li class="tree-view"><a href="#"><span class="label">Menu4</span></a>
+					<ul class="tree-view-menu">
+						<li><a href="#"><span class="label">Menu4-1</span></a></li>
+						<li><a href="#"><span class="label">Menu4-2</span></a></li>
+						<li><a href="#"><span class="label">Menu4-3</span></a></li>
+						<li><a href="#"><span class="label">Menu4-4</span></a></li>
+						<li><a href="#"><span class="label">Menu4-5</span></a></li>
+						<li><a href="#"><span class="label">Menu4-6</span></a></li>
+					</ul></li>
+				<li class="tree-view"><a href="#"><span class="label">Menu5</span></a>
+					<ul class="tree-view-menu">
+						<li><a href="#"><span class="label">Menu5-1</span></a></li>
+						<li><a href="#"><span class="label">Menu5-2</span></a></li>
+						<li><a href="#"><span class="label">Menu5-3</span></a></li>
+						<li><a href="#"><span class="label">Menu5-4</span></a></li>
+						<li><a href="#"><span class="label">Menu5-5</span></a></li>
+						<li><a href="#"><span class="label">Menu5-6</span></a></li>
+					</ul></li>
+			</ul>
+		</div>
+		<div id="mobile-menu">
+			<div class="dim" onclick="$('body').removeClass('mobile-menu-open')"></div>
+			<div class="panel">
+				<div class="panel-label"></div>
+				<ul class="menu-accordion">
+					<li class="tree-view"><a href="#"><span class="label">Menu1</span></a>
+						<ul class="tree-view-menu">
+							<li><a href="#"><span class="label">Menu1-1</span></a></li>
+							<li><a href="#"><span class="label">Menu1-2</span></a></li>
+							<li><a href="#"><span class="label">Menu1-3</span></a></li>
+							<li><a href="#"><span class="label">Menu1-4</span></a></li>
+							<li><a href="#"><span class="label">Menu1-5</span></a></li>
+							<li><a href="#"><span class="label">Menu1-6</span></a></li>
+						</ul></li>
+					<li class="tree-view"><a href="#"><span class="label">Menu2</span></a>
+						<ul class="tree-view-menu">
+							<li><a href="#"><span class="label">Menu2-1</span></a></li>
+							<li><a href="#"><span class="label">Menu2-2</span></a></li>
+							<li><a href="#"><span class="label">Menu2-3</span></a></li>
+							<li><a href="#"><span class="label">Menu2-4</span></a></li>
+							<li><a href="#"><span class="label">Menu2-5</span></a></li>
+							<li><a href="#"><span class="label">Menu2-6</span></a></li>
+						</ul></li>
+					<li class="tree-view open"><a href="#"><span class="label">Menu3</span></a>
+						<ul class="tree-view-menu">
+							<li><a href="#" class="group-label"><span class="label">Group
+										1</span></a></li>
+							<li><a href="#"><span class="label">Group1 Menu1</span></a></li>
+							<li class="active"><a href="#"><span class="label">Group1
+										Menu2</span></a></li>
+							<li><a href="#"><span class="label">Group1 Menu3</span></a></li>
+							<li><a href="#"><span class="label">Group1 Menu4</span></a></li>
+							<li><a href="#" class="group-label"><span class="label">Group
+										2</span></a></li>
+							<li><a href="#"><span class="label">Group2 Menu1</span></a></li>
+							<li><a href="#"><span class="label">Group2 Menu2</span></a></li>
+						</ul></li>
+					<li class="tree-view"><a href="#"><span class="label">Menu4</span></a>
+						<ul class="tree-view-menu">
+							<li><a href="#"><span class="label">Menu4-1</span></a></li>
+							<li><a href="#"><span class="label">Menu4-2</span></a></li>
+							<li><a href="#"><span class="label">Menu4-3</span></a></li>
+							<li><a href="#"><span class="label">Menu4-4</span></a></li>
+							<li><a href="#"><span class="label">Menu4-5</span></a></li>
+							<li><a href="#"><span class="label">Menu4-6</span></a></li>
+						</ul></li>
+					<li class="tree-view"><a href="#"><span class="label">Menu5</span></a>
+						<ul class="tree-view-menu">
+							<li><a href="#"><span class="label">Menu5-1</span></a></li>
+							<li><a href="#"><span class="label">Menu5-2</span></a></li>
+							<li><a href="#"><span class="label">Menu5-3</span></a></li>
+							<li><a href="#"><span class="label">Menu5-4</span></a></li>
+							<li><a href="#"><span class="label">Menu5-5</span></a></li>
+							<li><a href="#"><span class="label">Menu5-6</span></a></li>
+						</ul></li>
+					<li class="tree-view"><a href="#"><span class="label">Menu6</span></a>
+						<ul class="tree-view-menu">
+							<li><a href="#"><span class="label">Menu6-1</span></a></li>
+							<li><a href="#"><span class="label">Menu6-2</span></a></li>
+							<li><a href="#"><span class="label">Menu6-3</span></a></li>
+							<li><a href="#"><span class="label">Menu6-4</span></a></li>
+							<li><a href="#"><span class="label">Menu6-5</span></a></li>
+							<li><a href="#"><span class="label">Menu6-6</span></a></li>
+						</ul></li>
+					<li class="tree-view"><a href="#"><span class="label">Menu7</span></a>
+						<ul class="tree-view-menu">
+							<li><a href="#"><span class="label">Menu7-1</span></a></li>
+							<li><a href="#"><span class="label">Menu7-2</span></a></li>
+							<li><a href="#"><span class="label">Menu7-3</span></a></li>
+							<li><a href="#"><span class="label">Menu7-4</span></a></li>
+							<li><a href="#"><span class="label">Menu7-5</span></a></li>
+							<li><a href="#"><span class="label">Menu7-6</span></a></li>
+						</ul></li>
+				</ul>
+			</div>
+			<button class="btn btn-lg btn-icon close"
+				onclick="$('body').removeClass('mobile-menu-open')">
+				<span class="icon"><i class="Licon ico-close"></i></span>
+			</button>
+		</div>
+
+		<div id="contents-wrapper">
+			<!-- contents here -->
+			<div style="padding: 100px 0; text-align: center;">window width
+				599px 이하에서 보세요.</div>
+		</div>
+	</div>
+</body>
+</html>
