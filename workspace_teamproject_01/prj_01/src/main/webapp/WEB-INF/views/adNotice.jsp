@@ -27,7 +27,7 @@
             <span class="icon"><i class="Licon ico-menu"></i></span>
           </button>
           <div class="logo-area">
-              <img src="/assets/images/Hierp_Logo1.png" class="on-light logo_margin">
+              <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
           </div>
           <div class="utility-area">
             <div class="utility-group">
@@ -59,12 +59,12 @@
       <div id="side-bar-sub" class="">
         <div class="tab-contents" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU">
           <!-- search bar -->
-          <div class="searchbar_con"><img src="/assets/images/Biglogo.png"></div>
+          <div class="searchbar_con"><img src="assets/images/Biglogo.png"></div>
           <!-- menu -->
           <ul class="menu-accordion">
             <li>
               <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
-              <a href="adNotice.html"><span class="label">공지사항</span></a>
+              <a href="adNotice.do"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
               <a href="#"><span class="label">인사관리</span></a>
@@ -82,13 +82,14 @@
             </li>
           </ul>
         </div>
+  
+        
       </div>
   
       <div id="contents-wrapper">
         <div class="content-header">
           <div class="content-title-bar">
             <h5>공지사항<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
-            <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
             <div class="tools responsive-except-desktop" >
               <div class="tools-group" style="cursor:none;">
                 <button class="tool-item" disabled style="cursor:default;">
@@ -204,6 +205,7 @@
     </div>
     <div class="popup-wrapper">
       <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
+      <!-- option class / popup-warning, popup-full -->
       <div class="popup">
         <div class="popup-inner">
           <div class="popup-title">
@@ -230,7 +232,7 @@
               </tr>
             </table>
           </div>
-
+  
           <div class="popup-tools txt-right" style="margin-top:-20px;">
             <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
               <span class="label" >닫기</span>
