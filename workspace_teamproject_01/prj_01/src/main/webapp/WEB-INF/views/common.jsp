@@ -14,7 +14,28 @@
 <!-- [사용자 정의 태그]를 말한다. -->
 
 <!-- JQuery 라이브러리 수입 -->
-<script src="/jquery-1.11.0.min.js"></script>
+<script src="/js/jquery-1.11.0.min.js"></script>
 
-
-
+<!-- icon font -->
+<link rel="stylesheet" href="/assets/fonts/material-icons/material-icons.css" />
+<!-- style -->
+<link rel="stylesheet" href="/assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" href="/assets/js/plugins/date-rage-picker/daterangepicker.css" />
+<link rel="stylesheet" href="/assets/js/plugins/fotorama/fotorama.min.css" />
+<link rel="stylesheet" href="/assets/css/lithium.css" />
+<link rel="stylesheet" href="/assets/css/lithium-ie.css" />
+<!--[if gte IE 9]>
+<link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+<![endif]-->
+<!-- scripts -->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/prefix.js"></script>
+<script src="/assets/js/plugins/moment/moment-with-locales.js"></script>
+<script src="/assets/js/plugins/bootstrap/transition.js"></script>
+<script src="/assets/js/plugins/bootstrap/collapse.js"></script>
+<script src="/assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+<script src="/assets/js/plugins/fotorama/fotorama.min.js"></script>
+<script src="/assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+<script src="/assets/js/plugins/split/split.js"></script>
+<script src="/assets/js/lithium.js"></script>

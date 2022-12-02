@@ -18,8 +18,12 @@
         <script src="/js/jquery-1.11.0.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/js/css/logincss/style.css" type="text/css">
-        <link rel="stylesheet" href="/js/css/logincss/login_bg.css" type="text/css">
+        <link rel="stylesheet" href="/css/login/style.css" type="text/css">
+        <link rel="stylesheet" href="/css/login/login_bg.css" type="text/css">
+        <script src="/js/login/jquery.min.js"></script>
+        <script src="/js/login/popper.js"></script>
+        <script src="/js/login/bootstrap.min.js"></script>
+        <script src="/js/login/main.js"></script>
         <script>
             // body 태그 안의 모든 코드를 읽은 이후 
             // 호출될 Javascript 코드 설정
@@ -86,7 +90,7 @@
                 if(midVal.split(" ").join("")==""){
 
                     // 경고창 띄우기
-                    alert("아이디를 입력해 주세요.");
+                    // alert("아이디를 입력해 주세요.");
 
                     // 비어있는 문자열("")로 변경
                     midObj.val("");
@@ -122,7 +126,7 @@
                 if(pwdVal.split(" ").join("")==""){
 
                     // 경고창 띄우기
-                    alert("암호를 입력해 주세요.");
+                    // alert("암호를 입력해 주세요.");
 
                     // 비어있는 문자열("")로 변경
                     pwdObj.val("");
@@ -165,22 +169,11 @@
                     , success : function(idCnt){
                         
                         if(idCnt==1){
-
                             if(midVal=="abc"){
                                 document.adNotice.submit();
                             }else{
                                 document.empNotice.submit();
                             }
-                            // alert("로그인 성공");
-
-                            // 웹 서버에 "/boardList.do" URL 주소로 접속 시도
-                            // 사용 메소드 : location.replace("URL 주소");
-                            // 해당 메소드 접속 방식은 get 방식이다.
-                            // location.replace("/boardList.do");
-                            
-                            // POST 방식을 사용하고 싶을 경우
-                            // HTML form 태그 생성 method와 action 값을 준 후
-                            // document.~.submit();으로 접속한다.
                         }else{
                             alert("로그인 실패");
                             admin_idObj.val("");
@@ -204,7 +197,7 @@
                     <div class="col-md-7 col-lg-5">
                         <div class="login-wrap p-4 p-md-5">
                             <div class="login-logo-align">
-                                <img src="/js/img/login/loginLogo.png">
+                                <img src="/img/login/loginLogo.png">
                             </div>
                             <div class="icon d-flex align-items-center justify-content-center">
                                 <span class="fa fa-user-o"></span>
@@ -212,7 +205,7 @@
                             <br>
                             <form action="/adNotice.do" name="adNotice" method="post"></form>
                             <form action="/empNotice.do" name="empNotice" method="post"></form>
-                            <form action="/loginProc.do" name="loginForm">
+                            <form action="/loginProc.do" name="loginForm" method="post">
                                 <div class="form-group">
                                     <input type="text" name="mid" class="form-control rounded-left" placeholder="ID">
                                 </div>
@@ -220,7 +213,7 @@
                                     <input type="password" name="pwd" class="form-control rounded-left" placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="loginBtn form-control btn btn-primary rounded submit px-3">Login</button>
+                                    <button type="button" class="loginBtn form-control btn btn-primary rounded submit px-3">Login</button>
                                 </div>
                                 <div class="form-group d-md-flex">
                                     <div class="w-50">
@@ -236,9 +229,5 @@
                 </div>
             </div>
         </section>
-        <script src="/js/loginjs/jquery.min.js"></script>
-        <script src="/js/loginjs/popper.js"></script>
-        <script src="/js/loginjs/bootstrap.min.js"></script>
-        <script src="/js/loginjs/main.js"></script>
     </body>
 </html>

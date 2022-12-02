@@ -8191,7 +8191,7 @@ h1, h2, h3, h4, h5,
   .login-wrap .icon {
     width: 80px;
     height: 80px;
-    background: #17282e;
+    background: #17282E;
     border-radius: 50%;
     font-size: 30px;
     margin: 0 auto;
@@ -8270,9 +8270,9 @@ textarea.form-control {
 
 /* Style the checkmark/indicator */
 .checkbox-primary {
-  color: #17282e; }
+  color: #17282E; }
   .checkbox-primary input:checked ~ .checkmark:after {
-    color: #17282e; }
+    color: #17282E; }
 
 .btn {
   cursor: pointer;
@@ -8283,22 +8283,22 @@ textarea.form-control {
   .btn:hover, .btn:active, .btn:focus {
     outline: none; }
   .btn.btn-primary {
-    background: #17282e !important;
-    border: 1px solid #17282e !important;
+    background: #17282E !important;
+    border: 1px solid #17282E !important;
     color: #fff !important; }
     .btn.btn-primary:hover {
-      border: 1px solid #17282e;
+      border: 1px solid #17282E ;
       background: transparent;
-      color: #17282e; }
+      color: #17282E; }
     .btn.btn-primary.btn-outline-primary {
-      border: 1px solid #17282e;
+      border: 1px solid #1089ff;
       background: transparent;
-      color: #17282e; }
+      color: #17282E; }
       .btn.btn-primary.btn-outline-primary:hover {
         border: 1px solid transparent;
-        background: #17282e;
+        background: #17282E;
         color: #fff; }
 
-.login-logo-align{
+.test{
   text-align: center;
 }

@@ -53,27 +53,6 @@ public class BoardController {
 //			, HttpSession session
 	) {
 		
-//		if(boardSearchDTO.getDate()!=null) {
-//			for(int i=0; i<boardSearchDTO.getDate().size(); i++){
-//				System.out.println(boardSearchDTO.getDate().get(i));
-//			}
-//		}
-//		System.out.println("getKeyword1 : " + boardSearchDTO.getKeyword1());
-//		System.out.println("getSelectPageNo : " + boardSearchDTO.getSelectPageNo());
-//		System.out.println("getRowCntPerPage : " + boardSearchDTO.getRowCntPerPage());
-//		System.out.println("getPageNoPerPage : " + boardSearchDTO.getPageNoPerPage());
-		
-//		미 로그인 시 보여줄 창 띄우기(직접설정)
-//		String mid = (String)session.getAttribute("mid");
-//		if(mid==null) {
-//			ModelAndView mav = new ModelAndView();
-//			
-//			mav.addObject("msg", "로그인을 먼저 해주세요.");
-//			mav.setViewName("error.jsp");
-//			
-//			return mav;
-//		}
-		
 		// BoardDAOImpl 객체의 
 		// getBoardListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
 		int boardTotAllCnt = this.boardDAO.getBoardListTotAllCnt(boardSearchDTO);
@@ -172,27 +151,6 @@ public class BoardController {
 //			미 로그인 시 보여줄 창 띄우기(직접설정)
 //			, HttpSession session
 	) {
-		
-//		if(boardSearchDTO.getDate()!=null) {
-//			for(int i=0; i<boardSearchDTO.getDate().size(); i++){
-//				System.out.println(boardSearchDTO.getDate().get(i));
-//			}
-//		}
-//		System.out.println("getKeyword1 : " + boardSearchDTO.getKeyword1());
-//		System.out.println("getSelectPageNo : " + boardSearchDTO.getSelectPageNo());
-//		System.out.println("getRowCntPerPage : " + boardSearchDTO.getRowCntPerPage());
-//		System.out.println("getPageNoPerPage : " + boardSearchDTO.getPageNoPerPage());
-		
-//		미 로그인 시 보여줄 창 띄우기(직접설정)
-//		String mid = (String)session.getAttribute("mid");
-//		if(mid==null) {
-//			ModelAndView mav = new ModelAndView();
-//			
-//			mav.addObject("msg", "로그인을 먼저 해주세요.");
-//			mav.setViewName("error.jsp");
-//			
-//			return mav;
-//		}
 		
 		// BoardDAOImpl 객체의 
 		// getBoardListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
