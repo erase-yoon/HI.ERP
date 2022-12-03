@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>급여명세서 조회</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- <link rel="stylesheet" href="/js/assets/fonts/material-icons/material-icons.css" /> 해당 방식으로 경로 모두 추후 변경해야함-->
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body class="side-first by-menu popup-menu-open">
+  <div id="wrapper">
+    <header id="header-bar" class="on-light">
+      <div id="header-bar-main">
+        <button class="menu-toggle float-l" onclick="$('body').addClass('mobile-menu-open')">
+          <span class="icon"><i class="Licon ico-menu"></i></span>
+        </button>
+        <div class="logo-area">
+            <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
+        </div>
+        <div class="utility-area">
+          <div class="utility-group">
+            <a class="utility">
+              <span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
+            </a>
+            <a class="utility">
+              <span class="icon"><i class="Licon ico-logout"></i></span>
+            </a>
+          </div>
+        </div>
+        <div class="user-area responsive-except-desktop">
+          <span class="user-info">윤지우 (12345)</span>
+        </div>
+      </div>
+    </header>
+
+    <aside id="side-bar" class="slim tab">
+      <button class="side-bar-toggle tab-item" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU"  onclick="$.Lithium.sideSubMenuToggle().toggleSideBar();">
+        <span class="icon"><i class="Licon ico-menu"></i></span>
+        <span class="icon"><i class="Licon ico-close"></i></span>
+      </button>
+      <div class="menu-area">
+        <div class="menu menu-vertical">
+        </div>
+      </div>
+    </aside>
+
+    <div id="side-bar-sub" class="">
+      <div class="tab-contents" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU">
+        <!-- search bar -->
+        <div class="searchbar_con"><img src="assets/images/Biglogo.png"></div>
+        <!-- menu -->
+        <ul class="menu-accordion">
+          <li>
+            <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
+            <a href="empNotice.html"><span class="label">공지사항</span></a>
+          </li>
+          <li class="tree-view">
+            <a href="#"><span class="label">인사관리</span></a>
+            <ul class="tree-view-menu">
+              <li><a href=""><span class="label">개인정보조회</span></a></li>
+            </ul>
+          </li>
+          <li class="tree-view">
+            <a href="#"><span class="label">급여관리</span></a>
+            <ul class="tree-view-menu">
+              <li><a href="empSalaryPwd.html"><span class="label">급여명세서조회</span></a></li>
+              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
+            </ul>
+          </li>
+        </ul>
+      </div>    
+    </div>
+
+    <div id="contents-wrapper">
+      <div class="content-header">
+        <div class="content-title-bar">
+          <h5>급여명세서 조회</h5>
+          <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
+          <div class="tools responsive-except-desktop" >
+            <div class="tools-group" style="cursor:none;">
+              <button class="tool-item" disabled style="cursor:default;">
+                <span class="icon"><i class="Licon ico-datareset"></i></span>
+                <span class="label">조회</span>
+              </button>
+              <button class="tool-item" disabled style="cursor:default;">
+                <span class="icon"><i class="Licon ico-save"></i></span>
+                <span class="label">저장</span>
+              </button>
+              <button class="tool-item" disabled style="cursor:default;">
+                <span class="icon"><i class="Licon ico-add"></i></span>
+                <span class="label">추가</span>
+              </button>
+              <button class="tool-item" disabled style="cursor:default;">
+                <span class="icon"><i class="Licon ico-minus"></i></span>
+                <span class="label">삭제</span>
+              </button>
+            </div>
+        </div>
+      </div>
+
+
+
+
+      <br><br><br><br>
+
+    </div>
+    
+<!-- 메인 -->
+
+<table class="dtable1" border="1">
+    <tr class="dtr1">
+			<td class="dtd1-1">회 사 명</td>
+			<td class="dtd1-2">주식회사 하이이알피</td>
+			<td class="dtd1-1">이 름</td>
+			<td class="dtd1-2">윤지우</td>
+		</tr>
+    <tr class="dtr1">
+			<td class="dtd1-1">사 번</td>
+			<td class="dtd1-2">777777</td>
+			<td class="dtd1-1">입 사 일 자</td>
+			<td class="dtd1-2">2022.02.06</td>
+		</tr>
+    <tr class="dtr1">
+			<td class="dtd1-1">부 서</td>
+			<td class="dtd1-2">DB개발부</td>
+			<td class="dtd1-1">직 급</td>
+			<td class="dtd1-2">대리</td>
+		</tr>
+</table>
+<br>
+<label style="margin-left:350px;">지 급 내 역<em class="txt-error">*</em></label>
+<br><br>
+<table class="dtable1" border="1">
+  <tr class="dtr1">
+    <td class="dtd2-1">지 급 내 역 1</td>
+    <td class="dtd2-2">5,000,000</td>
+    
+  </tr>
+  <tr class="dtr1">
+    <td class="dtd2-1">지 급 내 역 2</td>
+    <td class="dtd2-2">1,000,000</td>
+  </tr>
+  <tr class="dtr1">
+    <td class="dth">지 급 합 계</td>
+    <td class="dtd2-2">6,000,000</td>
+  </tr>
+</table>
+<br>
+<label style="margin-left:350px;">공 제 내 역<em class="txt-error">*</em></label>
+<br><br>
+<table class="dtable1" border="1">
+  <tr class="dtr1">
+    <td class="dtd2-1">공 제 내 역 1</td>
+    <td class="dtd2-2">5,000,000</td>
+    
+  </tr>
+  <tr class="dtr1">
+    <td class="dtd2-1">공 제 내 역 2</td>
+    <td class="dtd2-2">1,000,000</td>
+  </tr>
+  <tr class="dtr1">
+    <td class="dth">공 제 합 계</td>
+    <td class="dtd2-2">6,000,000</td>
+  </tr>
+</table>
+<br>
+<table class="dtable1" border="1">
+  <tr class="dtr1">
+    <td class="dth">차 인 지 급 액</td>
+    <td class="dtd2-2">0</td>
+  </tr>
+</table>
+
+<br><br>
+<br><br>
+<br><br>
+
+
+
+
+
+  </div>
+  <div class="popup-wrapper">
+    <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
+    <!-- option class / popup-warning, popup-full -->
+    <div class="popup">
+      <div class="popup-inner">
+        <div class="popup-title">
+          <div class="title-wrap">
+            <h6 class="title">내정보</h6>              
+          </div>
+        </div>
+        <div class="popup-contents" >
+          <table border="0" cellpadding="5" align="center" width="300px" style="font-size:15px; font-weight: bold;">
+            <tr align="center">
+              <td><img src="./assets/images/test_img.png"></td>
+            </tr>
+            <tr align="center">
+              <td>윤지우 대리</td>                                     
+            </tr>
+            <tr align="center">
+              <td>(DB개발팀)</td>                                     
+            </tr>
+            <tr align="center">
+              <td>010-1111-2222</td>
+            </tr>
+            <tr align="center">
+              <td>dbswldn@naver.com</td>
+            </tr>
+          </table>
+
+          
+        </div>
+
+        <div class="popup-tools txt-right" style="margin-top:-20px;">
+          
+          <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
+            <span class="label" >닫기</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

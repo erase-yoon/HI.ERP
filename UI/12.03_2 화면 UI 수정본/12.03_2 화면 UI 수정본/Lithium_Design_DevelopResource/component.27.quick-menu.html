@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Lithium Design System</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <div id="contents-wrapper">
+    <div class="content-header">
+      <div class="content-title-bar">
+        <h5>Quick Menu</h5>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="container">
+        <div class="col-container">
+          <div class="col-xs-12 col-md-4 mg-b-8u">
+            <button class="btn btn-md btn-primary btn-container btn-full" onclick="toggleIconType()">
+              <span class="icon"><i class="material-icons">support</i></span>
+              <span class="label">Toggle Icon Type</span>
+            </button>
+          </div>
+          <div class="col-xs-12 col-md-4 mg-b-8u">
+            <button class="btn btn-md btn-secondary btn-container btn-full" onclick="toggleDisable()">
+              <span class="icon"><i class="material-icons">support</i></span>
+              <span class="label">Toggle Disable</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quick-menu">
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon"><i class="material-icons">event_note</i></span>
+            <span class="label">공지사항</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon badge-container">
+              <i class="material-icons">chat</i>
+              <span class="badge">99</span>
+            </span>
+            <span class="label">세아인</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><i class="material-icons">lock</i></span>
+            <span class="label">암호변경</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon badge-container">
+              <i class="material-icons">help_outline</i>
+              <span class="badge">99</span>
+            </span>
+            <span class="label">도움말</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon">
+              <i class="material-icons">settings_applications</i></span>
+            <span class="label">게인메뉴블라블라</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><i class="material-icons">menu_book</i></span>
+            <span class="label">최근메뉴</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <script>
+      function toggleIconType () {
+        $('.quick-menu').toggleClass('type-icon')
+      }
+      function toggleDisable () {
+        $('.quick-menu').toggleClass('disabled')
+      }
+    </script>
+  </div>
+</div>
+</body>
+</html>

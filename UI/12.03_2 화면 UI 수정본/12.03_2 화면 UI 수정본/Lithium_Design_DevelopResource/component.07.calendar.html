@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsive Viewport & Fixed Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Lithium Design System</title>
+  <!-- icon font -->
+  <link rel="stylesheet" href="assets/fonts/material-icons/material-icons.css" />
+  <!-- style -->
+  <link rel="stylesheet" href="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/date-rage-picker/daterangepicker.css" />
+  <link rel="stylesheet" href="assets/js/plugins/fotorama/fotorama.min.css" />
+  <link rel="stylesheet" href="assets/css/lithium.css" />
+  <link rel="stylesheet" href="assets/css/lithium-ie.css" />
+  <!--[if gte IE 9]>
+  <link rel="stylesheet" href="assets/css/lithium-ie-9.css" />
+  <![endif]-->
+  <!-- scripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/prefix.js"></script>
+  <script src="assets/js/plugins/moment/moment-with-locales.js"></script>
+  <script src="assets/js/plugins/bootstrap/transition.js"></script>
+  <script src="assets/js/plugins/bootstrap/collapse.js"></script>
+  <script src="assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/date-rage-picker/daterangepicker.min.js"></script>
+  <script src="assets/js/plugins/fotorama/fotorama.min.js"></script>
+  <script src="assets/js/plugins/rangeslider/rangeslider.min.js"></script>
+  <script src="assets/js/plugins/split/split.js"></script>
+  <script src="assets/js/lithium.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <div id="contents-wrapper">
+    <div class="content-tab-nav">
+      <div class="content-tab-container">
+        <div class="content-header">
+          <div class="content-title-bar">
+            <h5>Calendar</h5>
+          </div>
+        </div>
+        <div class="content-body">
+          <div class="container">
+            <section class="mg-b-10u">
+              <div class="col-container mg-b-10u">
+                <div class="col-xs-12 col-md-6 mg-b-4u">
+                  <div class="input-container input-container-md">
+                    <label>기본 날짜 선택</label>
+                    <div class="input-group">
+                      <input type="text" placeholder="yyyy. mm. dd" class="input-box" id="sample-date-1">
+                      <div class="input-group-tools">
+                        <button class="option type"><i class="Licon ico-calender"></i></button>
+                        <button class="option error"><i class="Licon ico-warning"></i></button>
+                        <button class="option success"><i class="Licon ico-check"></i></button>
+                        <button class="clear"><i class="material-icons">cancel</i></button>
+                      </div>
+                    </div>
+                    <p class="status-message">상태메세지는 이곳에 쓰여집니다.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-container">
+                <div class="col-xs-12 col-md-6 mg-b-4u">
+                  <div class="input-container input-container-md">
+                    <label>기간 선택 시작 일</label>
+                    <div class="input-group">
+                      <input type="text" placeholder="yyyy. mm. dd" class="input-box" id="sample-date-2">
+                      <div class="input-group-tools">
+                        <button class="option type"><i class="Licon ico-calender"></i></button>
+                        <button class="option error"><i class="Licon ico-warning"></i></button>
+                        <button class="option success"><i class="Licon ico-check"></i></button>
+                        <button class="clear"><i class="material-icons">cancel</i></button>
+                      </div>
+                    </div>
+                    <p class="status-message">상태메세지는 이곳에 쓰여집니다.</p>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 mg-b-4u">
+                  <div class="input-container input-container-md">
+                    <label>기간 선택 마지막 일</label>
+                    <div class="input-group">
+                      <input type="text" placeholder="yyyy. mm. dd" class="input-box" id="sample-date-3">
+                      <div class="input-group-tools">
+                        <button class="option type"><i class="Licon ico-calender"></i></button>
+                        <button class="option error"><i class="Licon ico-warning"></i></button>
+                        <button class="option success"><i class="Licon ico-check"></i></button>
+                        <button class="clear"><i class="material-icons">cancel</i></button>
+                      </div>
+                    </div>
+                    <p class="status-message">상태메세지는 이곳에 쓰여집니다.</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <script type="text/javascript">
+                $(function () {
+                  // 기본
+                  $('#sample-date-1').datetimepicker({
+                    useCurrent: false,
+                    format: 'YYYY. MM. DD',
+                    dayViewHeaderFormat: 'YYYY. MM.',
+                    locale: moment.locale('ko'),
+                    icons: {
+                      time: 'Licon size-20 ico-time',
+                      date: 'Licon size-20 ico-calender',
+                      up: 'Licon size-20 ico-top',
+                      down: 'Licon size-20 ico-drop',
+                      previous: 'Licon size-20 ico-left',
+                      next: 'Licon size-20 ico-right',
+                      today: 'Licon size-20 ico-screensave',
+                      clear: 'Licon size-20 ico-delete',
+                      close: 'Licon size-20 ico-close'
+                    },
+                    tooltips: {
+                      today: '오늘로 이동',
+                      clear: '선택 항목 지우기',
+                      close: '캘린더 닫기',
+                      selectMonth: '월 선택',
+                      prevMonth: '전월',
+                      nextMonth: '다음 달',
+                      selectYear: '연도 선택',
+                      prevYear: '전년',
+                      nextYear: '내년',
+                      selectDecade: '10년 단위 선택',
+                      prevDecade: '전 10년도',
+                      nextDecade: '다음 10년도',
+                      prevCentury: '이전 세기',
+                      nextCentury: '다음 세기',
+                      pickHour: '시간 선택',
+                      incrementHour: '시간 올리기',
+                      decrementHour: '시간 내리기',
+                      pickMinute: '분 선택',
+                      incrementMinute: '분 올리기',
+                      decrementMinute: '분 내리기',
+                      pickSecond: '초 선택',
+                      incrementSecond: '초 올리기',
+                      decrementSecond: '초 내리기',
+                      togglePeriod: '기간 토글',
+                      selectTime: '시간 선택'
+                    }
+                  })
+
+
+                  // 기간 선택 시작일
+                  $('#sample-date-2').datetimepicker({
+                    useCurrent: false,
+                    keepOpen: true,
+                    sideBySide: true,
+                    format: 'YYYY. MM. DD',
+                    dayViewHeaderFormat: 'YYYY. MM.',
+                    locale: moment.locale('ko'),
+                    icons: {
+                      time: 'Licon size-20 ico-time',
+                      date: 'Licon size-20 ico-calender',
+                      up: 'Licon size-20 ico-top',
+                      down: 'Licon size-20 ico-drop',
+                      previous: 'Licon size-20 ico-left',
+                      next: 'Licon size-20 ico-right',
+                      today: 'Licon size-20 ico-screensave',
+                      clear: 'Licon size-20 ico-delete',
+                      close: 'Licon size-20 ico-close'
+                    },
+                    tooltips: {
+                      today: '오늘로 이동',
+                      clear: '선택 항목 지우기',
+                      close: '캘린더 닫기',
+                      selectMonth: '월 선택',
+                      prevMonth: '전월',
+                      nextMonth: '다음 달',
+                      selectYear: '연도 선택',
+                      prevYear: '전년',
+                      nextYear: '내년',
+                      selectDecade: '10년 단위 선택',
+                      prevDecade: '전 10년도',
+                      nextDecade: '다음 10년도',
+                      prevCentury: '이전 세기',
+                      nextCentury: '다음 세기',
+                      pickHour: '시간 선택',
+                      incrementHour: '시간 올리기',
+                      decrementHour: '시간 내리기',
+                      pickMinute: '분 선택',
+                      incrementMinute: '분 올리기',
+                      decrementMinute: '분 내리기',
+                      pickSecond: '초 선택',
+                      incrementSecond: '초 올리기',
+                      decrementSecond: '초 내리기',
+                      togglePeriod: '기간 토글',
+                      selectTime: '시간 선택'
+                    }
+                  }).on('dp.change', function (e) {
+                    $('#sample-date-3').data('DateTimePicker').minDate(e.date);
+                  });
+
+                  // 기간 선택 마지막일
+                  $('#sample-date-3').datetimepicker({
+                    useCurrent: false,
+                    format: 'YYYY. MM. DD',
+                    dayViewHeaderFormat: 'YYYY. MM.',
+                    locale: moment.locale('ko'),
+                    icons: {
+                      time: 'Licon size-20 ico-time',
+                      date: 'Licon size-20 ico-calender',
+                      up: 'Licon size-20 ico-top',
+                      down: 'Licon size-20 ico-drop',
+                      previous: 'Licon size-20 ico-left',
+                      next: 'Licon size-20 ico-right',
+                      today: 'Licon size-20 ico-screensave',
+                      clear: 'Licon size-20 ico-delete',
+                      close: 'Licon size-20 ico-close'
+                    },
+                    tooltips: {
+                      today: '오늘로 이동',
+                      clear: '선택 항목 지우기',
+                      close: '캘린더 닫기',
+                      selectMonth: '월 선택',
+                      prevMonth: '전월',
+                      nextMonth: '다음 달',
+                      selectYear: '연도 선택',
+                      prevYear: '전년',
+                      nextYear: '내년',
+                      selectDecade: '10년 단위 선택',
+                      prevDecade: '전 10년도',
+                      nextDecade: '다음 10년도',
+                      prevCentury: '이전 세기',
+                      nextCentury: '다음 세기',
+                      pickHour: '시간 선택',
+                      incrementHour: '시간 올리기',
+                      decrementHour: '시간 내리기',
+                      pickMinute: '분 선택',
+                      incrementMinute: '분 올리기',
+                      decrementMinute: '분 내리기',
+                      pickSecond: '초 선택',
+                      incrementSecond: '초 올리기',
+                      decrementSecond: '초 내리기',
+                      togglePeriod: '기간 토글',
+                      selectTime: '시간 선택'
+                    }
+                  }).on('dp.change', function (e) {
+                    $('#sample-date-2').data('DateTimePicker').maxDate(e.date);
+                  });
+                });
+
+                $( document ).ready(function() {
+
+                  // $('#sample-date').data('DateTimePicker').show();
+                })
+              </script>
+            </section>
+
+            <section>
+              <div class="input-container input-container-md">
+                <label>기본 날짜 선택</label>
+                <div class="input-group">
+                  <input type="text" placeholder="yyyy. mm. dd" class="input-box" id="date-rage-picker">
+                  <div class="input-group-tools">
+                    <button class="option type"><i class="Licon ico-calender"></i></button>
+                    <button class="option error"><i class="Licon ico-warning"></i></button>
+                    <button class="option success"><i class="Licon ico-check"></i></button>
+                    <button class="clear"><i class="material-icons">cancel</i></button>
+                  </div>
+                </div>
+                <p class="status-message">상태메세지는 이곳에 쓰여집니다.</p>
+              </div>
+              <script>
+                $('#date-rage-picker').daterangepicker({
+                  format: 'YYYY. MM. DD hh:mm A',
+                  applyButtonClasses: 'btn btn-container btn-secondary btn-sm wth-80',
+                  cancelClass: 'btn btn-container btn-gray btn-sm wth-80',
+                  // locale: moment.locale('ko'),
+                  locale: {
+                    daysOfWeek: moment.locale('ko').daysOfWeek,
+                    monthNames: moment.locale('ko').monthNames,
+                    'applyLabel': '적용',
+                    'cancelLabel': '취소'
+                  },
+                  // timePicker: true
+                });
+              </script>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
