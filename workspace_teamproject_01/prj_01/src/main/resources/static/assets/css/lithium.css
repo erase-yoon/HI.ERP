@@ -4357,7 +4357,11 @@ ul.grid-container.grid-12 > li { width: calc(100% / 12) }
 
 
 
-.data-table .checker-item { overflow: visible; }
+.data-table .checker-item {
+   overflow: visible;
+   vertical-align:middle;
+   text-align:center; 
+}
 .data-table .checker-item .label { line-height: 15px; }
 .data-table .checker-item .icon {
   top: 50%;
@@ -4482,6 +4486,15 @@ ul.grid-container.grid-12 > li { width: calc(100% / 12) }
   
   width: auto;
   min-width: 80%;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.data-table1 {
+  
+  width: auto;
+  min-width: 90%;
   max-width: 80%;
   margin-left: auto;
   margin-right: auto;
