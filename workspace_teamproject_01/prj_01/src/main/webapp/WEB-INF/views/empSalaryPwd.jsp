@@ -181,8 +181,6 @@
                 <td>dbswldn@naver.com</td>
               </tr>
             </table>
-
-            
           </div>
 
           <div class="popup-tools txt-right" style="margin-top:-20px;">

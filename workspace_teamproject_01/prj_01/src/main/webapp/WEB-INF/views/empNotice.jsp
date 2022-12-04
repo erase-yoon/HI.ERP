@@ -27,7 +27,7 @@
             <span class="icon"><i class="Licon ico-menu"></i></span>
           </button>
           <div class="logo-area">
-            <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
+              <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
           </div>
           <div class="utility-area">
             <div class="utility-group">
@@ -51,7 +51,8 @@
           <span class="icon"><i class="Licon ico-close"></i></span>
         </button>
         <div class="menu-area">
-          <div class="menu menu-vertical"></div>
+          <div class="menu menu-vertical">
+          </div>
         </div>
       </aside>
   
@@ -63,24 +64,25 @@
           <ul class="menu-accordion">
             <li>
               <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
-              <a href="empNotice.do"><span class="label">공지사항</span></a>
+              <a href="empNotice.html"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
               <a href="#"><span class="label">인사관리</span></a>
               <ul class="tree-view-menu">
-                <li><a href="adEmpReg.html"><span class="label">사원등록</span></a></li>
-                <li><a href="adUserInfoReg.html"><span class="label">사용자정보등록</span></a></li>
-                <li><a href="adEmpList.html"><span class="label">사원명부</span></a></li>
+                <li><a href="adEmpReg.html"><span class="label">개인정보조회</span></a></li>
               </ul>
             </li>
             <li class="tree-view">
               <a href="#"><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
-                <li><a href="empSalary.do"><span class="label">급여계산</span></a></li>
+                <li><a href="empSalaryPwd.html"><span class="label">급여명세서조회</span></a></li>
+                <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
               </ul>
             </li>
           </ul>
         </div>
+  
+        
       </div>
   
       <div id="contents-wrapper">
@@ -100,7 +102,7 @@
                 </button>
                 <button class="tool-item" disabled style="cursor:default;">
                   <span class="icon"><i class="Licon ico-add"></i></span>
-                  <span class="label">추가</span></a>
+                  <span class="label">추가</span>
                 </button>
                 <button class="tool-item" disabled style="cursor:default;">
                   <span class="icon"><i class="Licon ico-minus"></i></span>
@@ -108,6 +110,7 @@
                 </button>
               </div>
             </div>
+            
           </div>
         </div>
   
@@ -122,58 +125,56 @@
   
         <table class="table table-md table-top">
           <thead>
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>작성일</th>
-              <th>조회수</th>
-            </tr>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일</th>
+            <th>조회수</th>
+          </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>
-                <span class="label">5</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2022.11.25</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">4</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2021.11.25</td>
-              <td>523</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">3</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2020.11.25</td>
-              <td>5432</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">2</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2019.11.25</td>
-              <td>56432</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">1</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2018.11.25</td>
-              <td>5423453</td>
-            </tr>
+          <tr>
+            <th>
+              <span class="label">5</span>
+            </th>
+            <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
+            <td>2022.11.25</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <th>
+              <span class="label">4</span>
+            </th>
+            <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
+            <td>2021.11.25</td>
+            <td>523</td>
+          </tr>
+          <tr>
+            <th>
+              <span class="label">3</span>
+            </th>
+            <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
+            <td>2020.11.25</td>
+            <td>5432</td>
+          </tr>
+          <tr>
+            <th>
+              <span class="label">2</span>
+            </th>
+            <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
+            <td>2019.11.25</td>
+            <td>56432</td>
+          </tr>
+          <tr>
+            <th>
+              <span class="label">1</span>
+            </th>
+            <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
+            <td>2018.11.25</td>
+            <td>5423453</td>
+          </tr>
           </tbody>
         </table>
-
-
         <div class="pagination-wrapper">
           <div class="pagination">
             <div class="pagination-group direction">
@@ -201,8 +202,6 @@
         </div>
       </div>
     </div>
-
-
     <div class="popup-wrapper">
       <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
       <!-- option class / popup-warning, popup-full -->
@@ -232,6 +231,7 @@
               </tr>
             </table>
           </div>
+  
           <div class="popup-tools txt-right" style="margin-top:-20px;">
             <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
               <span class="label" >닫기</span>
@@ -241,4 +241,4 @@
       </div>
     </div>
   </body>
-</html>
+  </html>
