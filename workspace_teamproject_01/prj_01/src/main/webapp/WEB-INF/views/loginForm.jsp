@@ -169,7 +169,7 @@
                     , success : function(idCnt){
                         
                         if(idCnt==1){
-                            if(user_idVal=="abc"){
+                            if(user_idVal=="system"){
                                 document.adNotice.submit();
                             }else{
                                 document.empNotice.submit();

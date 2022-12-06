@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="user-area responsive-except-desktop">
-            <span class="user-info">윤지우 (12345)</span>
+            <span class="user-info">${requestScope.user_id} 윤지우 (12345)</span>
           </div>
         </div>
       </header>

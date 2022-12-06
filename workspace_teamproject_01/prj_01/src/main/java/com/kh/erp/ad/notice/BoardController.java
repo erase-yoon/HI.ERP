@@ -50,8 +50,10 @@ public class BoardController {
 			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
 			
 //			미 로그인 시 보여줄 창 띄우기(직접설정)
-//			, HttpSession session
+			, HttpSession session
 	) {
+		
+		String user_id = (String)session.getAttribute("user_id");
 		
 		// BoardDAOImpl 객체의 
 		// getBoardListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
@@ -97,6 +99,7 @@ public class BoardController {
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
 		
+		mav.addObject("user_id", user_id);
 		// [ModelAndView 객체]에 
 		// [게시판 목록 검색 결과]를 저장
 		mav.addObject("boardList", boardList);
