@@ -219,7 +219,7 @@
                 <td><img src="./assets/images/test_img.png"></td>
               </tr>
               <tr align="center">
-                <td>${requestScope.infoList[0].NM_EMP}</td>                                     
+                <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
               </tr>
               <tr align="center">
                 <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     

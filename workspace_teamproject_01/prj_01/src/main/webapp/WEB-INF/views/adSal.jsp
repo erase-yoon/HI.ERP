@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="user-area responsive-except-desktop">
-            <span class="user-info">${requestScope.user_id} 윤지우 (12345)</span>
+            <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
           </div>
         </div>
       </header>
@@ -731,16 +731,16 @@
                 <td><img src="./assets/images/test_img.png"></td>
               </tr>
               <tr align="center">
-                <td>윤지우 대리</td>                                     
+                <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
               </tr>
               <tr align="center">
-                <td>(DB개발팀)</td>                                     
+                <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
               </tr>
               <tr align="center">
-                <td>010-1111-2222</td>
+                <td>${requestScope.infoList[0].PHONE}</td>
               </tr>
               <tr align="center">
-                <td>dbswldn@naver.com</td>
+                <td>${requestScope.infoList[0].EMAIL}</td>
               </tr>
             </table>
           </div>

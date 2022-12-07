@@ -17,44 +17,26 @@ import com.kh.erp.ad.notice.BoardDAO;
 import com.kh.erp.ad.notice.BoardSearchDTO;
 import com.kh.erp.ad.notice.BoardService;
 import com.kh.erp.ad.notice.Util;
+import com.kh.erp.login.InfoDTO;
+import com.kh.erp.login.LoginDAO;
 
 @Controller
 public class AdSalController {
-	// boardDAO 속성변수에
-	// BoardDAO 인터페이스를 구현한 클래스를 객체화 하여
-	// 객체의 메모리 위치 주소 값을 저장한다.
-	@Autowired
-	private BoardDAO boardDAO;
-	// Autowired로 [ = new ~;]을 생략하고 선언하면
-	// BoardDAO 인터페이스를 구현할 클래스를 찾을 때(호출할 때?)
-	// 그 클래스의 이름은 무엇이든 상관없다.
-	// 단 BoardDAO 인터페이스를 구현한 클래스는 1개만 생성해야 한다.
-	
-	// boardService 속성변수에
-	// BoardService 인터페이스를 구현한 클래스를 객체화 하여
-	// 객체의 메모리 위치 주소 값을 저장한다.
-	@Autowired
-	private BoardService boardService;
-	// Autowired로 [ = new ~;]을 생략하고 선언하면
-	// BoardService 인터페이스를 구현할 클래스를 찾을 때(호출할 때?)
-	// 그 클래스의 이름은 무엇이든 상관없다.
-	// 단 BoardService 인터페이스를 구현한 클래스는 1개만 생성해야 한다.
-	
 
-	// 가상주소 /adSal.do로 접근하면 호출되는 메소드 선언
+	@Autowired
+	private LoginDAO loginDAO;
+
 	@RequestMapping(value="/adSal.do")
 	public ModelAndView adNotice(
-			
-			// 파라미터값을 저장할 [BoardSearchDTO 객체]를 매개변수로 선언
-			BoardSearchDTO boardSearchDTO
-			// [파라미터명]과 [BoardSearchDTO 객체]의 [속성변수명]이 같을 경우
-			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
-			
-//			미 로그인 시 보여줄 창 띄우기(직접설정)
-			, HttpSession session
+		InfoDTO infoDTO
+
+		, HttpSession session
 	) {
 		
 		String user_id = (String)session.getAttribute("user_id");
+		infoDTO.setUser_id(user_id);
+		
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
 		
 		// BoardDAOImpl 객체의 
 		// getBoardList 메소드 호출로 [게시판 목록] 얻기
@@ -62,8 +44,8 @@ public class AdSalController {
 		
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("user_id", user_id);
+		
+		mav.addObject("infoList", infoList);
 
 		mav.setViewName("adSal.jsp");
 		
