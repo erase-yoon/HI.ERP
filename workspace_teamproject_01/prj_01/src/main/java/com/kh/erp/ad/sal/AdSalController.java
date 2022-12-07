@@ -40,13 +40,10 @@ public class AdSalController {
 	// 그 클래스의 이름은 무엇이든 상관없다.
 	// 단 BoardService 인터페이스를 구현한 클래스는 1개만 생성해야 한다.
 	
-	// ---------------------------------------------------------------
-	// 가상주소 /boardList.do로 접근하면 호출되는 메소드 선언
-	// @RequestMapping 내부에 method="RequestMethod.POST"가 없으므로
-	// 가상주소 /boardList.do로 접근 시 get 또는 post 접근 모두 허용
-	// ---------------------------------------------------------------
+
+	// 가상주소 /adSal.do로 접근하면 호출되는 메소드 선언
 	@RequestMapping(value="/adSal.do")
-	public ModelAndView adNotice( 
+	public ModelAndView adNotice(
 			
 			// 파라미터값을 저장할 [BoardSearchDTO 객체]를 매개변수로 선언
 			BoardSearchDTO boardSearchDTO

@@ -24,5 +24,16 @@
 		<!--  # : 리턴하는 데이터가 문자라면 앞, 뒤에 ''를 붙인다. -->
 		
 	</select>
+	
+	
+	
+	<select id="getInfoList" parameterType="com.kh.erp.login.InfoDTO" resultType="java.util.HashMap" >
+
+		select * from
+			ma_emp_total
+    	where
+    		user_id = #{user_id}
+
+	</select>
 
 </mapper>

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.erp.login.InfoDTO;
+import com.kh.erp.login.LoginDAO;
+
 @Controller
 public class BoardController {
 	
@@ -25,6 +28,11 @@ public class BoardController {
 	// BoardDAO 인터페이스를 구현할 클래스를 찾을 때(호출할 때?)
 	// 그 클래스의 이름은 무엇이든 상관없다.
 	// 단 BoardDAO 인터페이스를 구현한 클래스는 1개만 생성해야 한다.
+	
+	// ---------------------------------------------
+	@Autowired
+	private LoginDAO loginDAO;
+	// ---------------------------------------------
 	
 	// boardService 속성변수에
 	// BoardService 인터페이스를 구현한 클래스를 객체화 하여
@@ -49,11 +57,25 @@ public class BoardController {
 			// [파라미터명]과 [BoardSearchDTO 객체]의 [속성변수명]이 같을 경우
 			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
 			
-//			미 로그인 시 보여줄 창 띄우기(직접설정)
+			// ---------------------------------------------
+			, InfoDTO infoDTO
 			, HttpSession session
+			// ---------------------------------------------
 	) {
 		
+//		infoDTO.setUser_id((String)session.getAttribute("user_id"));
+//		String user_id = (String)session.getAttribute("user_id");
+		
+		// ---------------------------------------------
 		String user_id = (String)session.getAttribute("user_id");
+		infoDTO.setUser_id(user_id);
+		
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+		// ---------------------------------------------
+//		System.out.println(infoList);
+		
+		
+//		String no_emp = (String)infoList.get("no_emp");
 		
 		// BoardDAOImpl 객체의 
 		// getBoardListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
@@ -99,7 +121,14 @@ public class BoardController {
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("user_id", user_id);
+//		mav.addObject("infoDTO", infoDTO);
+//		mav.addObject("user_id", user_id);
+		
+		// ---------------------------------------------
+		mav.addObject("infoList", infoList);
+		// ---------------------------------------------
+//		System.out.println(infoList.get(0).get("NM_DEPT"));
+
 		// [ModelAndView 객체]에 
 		// [게시판 목록 검색 결과]를 저장
 		mav.addObject("boardList", boardList);
@@ -120,7 +149,7 @@ public class BoardController {
 		
 		// [ModelAndView 객체]에 
 		// [보정된 선택 페이지 번호]를 저장
-		 mav.addObject("selectPageNo", (int)pagingMap.get("selectPageNo"));
+		mav.addObject("selectPageNo", (int)pagingMap.get("selectPageNo"));
 //		해당 코딩을 쓰지 않으면 boardList.jsp에서
 //		formObj.find(".selectPageNo").val("${requestScope.selectPageNo}"); 대신
 //		formObj.find(".selectPageNo").val("${requestScope.pagingMap.selectPageNo}"); 사용하여야 함
@@ -151,9 +180,14 @@ public class BoardController {
 			// [파라미터명]과 [BoardSearchDTO 객체]의 [속성변수명]이 같을 경우
 			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
 			
-//			미 로그인 시 보여줄 창 띄우기(직접설정)
-//			, HttpSession session
+			, InfoDTO infoDTO
+			, HttpSession session
 	) {
+		
+		String user_id = (String)session.getAttribute("user_id");
+		infoDTO.setUser_id(user_id);
+		
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
 		
 		// BoardDAOImpl 객체의 
 		// getBoardListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
@@ -198,6 +232,8 @@ public class BoardController {
 		
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("infoList", infoList);
 		
 		// [ModelAndView 객체]에 
 		// [게시판 목록 검색 결과]를 저장

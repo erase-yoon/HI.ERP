@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.erp.login.InfoDTO;
+
 // ---------------------------------------------------------------
 // [BoardDAOBoardDAOImpl 클래스] 선언
 // ---------------------------------------------------------------
@@ -25,6 +27,29 @@ public class BoardDAOImpl implements BoardDAO {
 	// 그 결과값을 받아오는 객체이다.
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	
+	public List<Map<String, String>> getInfoList(String user_id) {
+		
+		// SqlSessionTemplate 객체의 selectOne 메소드 호출로
+		// [1개 게시판 글 정보]를 얻는 SQL 구문을 실행하고 입력 성공한 행의 개수 얻기
+		List<Map<String, String>> infoList = this.sqlSession.selectOne(
+		// selectOne은 1행m열의 select 결과를 얻을 떄 사용하는 메소드이다.
+			
+			// 실행할 SQL SELECT 구문의 위치 지정
+			"com.kh.erp.ad.boardDAO.getInfoList"
+			// SQL 구문의 위치 : *.xml 파일 내부
+			// <mapper namespace="com.kh.erp.ad.notice.BoardBAO">
+			// <select id="getBoard"> SELECT 구문 </select>
+			// </mapper>
+			
+			// 실행할 SQL 구문에서 사용할 데이터 지정
+			, user_id
+		);
+		
+		// [1개 게시판 글 정보] 리턴
+		return infoList;
+	}
 	
 	// [검색한 게시판 목록]을 리턴하는 메소드 선언
 	public List<Map<String, String>> getBoardList(BoardSearchDTO boardSearchDTO){

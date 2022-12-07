@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.logging.log4j.util.StringBuilderFormattable;
+
+import com.kh.erp.login.InfoDTO;
 
 // ---------------------------------------------------------------
 // [BoardDAO 인터페이스] 선언
@@ -57,6 +60,7 @@ public interface BoardDAO {
 	// 게시판 삭제 명령 후 삭제 적용행의 개수를 리턴하는 메소드 선언
 	int deleteBoard(BoardDTO boardDTO);
 	
+	List<Map<String, String>> getInfoList(String user_id);
 //	// 답글을 달 게시판의 모든 후손 글들의 
 //	// print_no를 1 업데이트 하는 메소드 선언
 //	int updatePrintNo(int b_no);
