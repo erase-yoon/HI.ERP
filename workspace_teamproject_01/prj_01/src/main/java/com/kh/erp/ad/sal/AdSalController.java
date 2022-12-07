@@ -35,8 +35,10 @@ public class AdSalController {
 		
 		String user_id = (String)session.getAttribute("user_id");
 		infoDTO.setUser_id(user_id);
+//		System.out.println(infoDTO.getUser_id());
 		
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+//		System.out.println(infoList);
 		
 		// BoardDAOImpl 객체의 
 		// getBoardList 메소드 호출로 [게시판 목록] 얻기

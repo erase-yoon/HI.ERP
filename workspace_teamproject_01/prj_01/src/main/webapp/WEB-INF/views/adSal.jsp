@@ -35,7 +35,7 @@
               <a class="utility">
                 <span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
               </a>
-              <a class="utility">
+              <a class="utility logout">
                 <span class="icon"><i class="Licon ico-logout"></i></span>
               </a>
             </div>

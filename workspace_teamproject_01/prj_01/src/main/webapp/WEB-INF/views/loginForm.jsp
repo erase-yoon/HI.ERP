@@ -188,6 +188,12 @@
                     }
                 });
             }
+
+            function enterkey() {
+                if (window.event.keyCode == 13) {
+                    checkLoginForm();
+                }
+            }
         </script>
     </head>
     <body>
@@ -207,10 +213,10 @@
                             <form action="/empNotice.do" name="empNotice" method="post"></form>
                             <form action="/loginProc.do" name="loginForm" method="post">
                                 <div class="form-group">
-                                    <input type="text" name="user_id" class="form-control rounded-left" placeholder="ID">
+                                    <input type="text" name="user_id" class="form-control rounded-left" placeholder="ID" onkeyup="enterkey()">
                                 </div>
                                 <div class="form-group d-flex">
-                                    <input type="password" name="user_pwd" class="form-control rounded-left" placeholder="Password">
+                                    <input type="password" name="user_pwd" class="form-control rounded-left" placeholder="Password" onkeyup="enterkey()">
                                 </div>
                                 <div class="form-group">
                                     <button type="button" class="loginBtn form-control btn btn-primary rounded submit px-3">Login</button>
