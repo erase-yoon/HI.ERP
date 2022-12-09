@@ -45,9 +45,9 @@ public class BoardController {
 	// 단 BoardService 인터페이스를 구현한 클래스는 1개만 생성해야 한다.
 	
 	// ---------------------------------------------------------------
-	// 가상주소 /boardList.do로 접근하면 호출되는 메소드 선언
+	// 가상주소 /adNotice.do로 접근하면 호출되는 메소드 선언
 	// @RequestMapping 내부에 method="RequestMethod.POST"가 없으므로
-	// 가상주소 /boardList.do로 접근 시 get 또는 post 접근 모두 허용
+	// 가상주소 /adNotice.do로 접근 시 get 또는 post 접근 모두 허용
 	// ---------------------------------------------------------------
 	@RequestMapping(value="/adNotice.do")
 	public ModelAndView adNotice( 
@@ -63,19 +63,20 @@ public class BoardController {
 			// ---------------------------------------------
 	) {
 		
-//		infoDTO.setUser_id((String)session.getAttribute("user_id"));
-//		String user_id = (String)session.getAttribute("user_id");
-		
 		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id = (String)session.getAttribute("user_id");
+		
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
 		
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+		
+		session.setAttribute("no_emp", infoDTO.getNo_emp());
 		// ---------------------------------------------
 //		System.out.println(infoList);
-		
-		
-//		String no_emp = (String)infoList.get("no_emp");
 		
 		// BoardDAOImpl 객체의 
 		// getBoardListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
@@ -125,6 +126,7 @@ public class BoardController {
 //		mav.addObject("user_id", user_id);
 		
 		// ---------------------------------------------
+		// 쿼리의 결과 값인 infoList를 ModelAndView 객체에 추가
 		mav.addObject("infoList", infoList);
 		// ---------------------------------------------
 //		System.out.println(infoList.get(0).get("NM_DEPT"));
@@ -184,10 +186,17 @@ public class BoardController {
 			, HttpSession session
 	) {
 		
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id = (String)session.getAttribute("user_id");
+		
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
 		
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+		// ---------------------------------------------
 		
 		// BoardDAOImpl 객체의 
 		// getBoardListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
@@ -233,7 +242,10 @@ public class BoardController {
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
 		
+		// ---------------------------------------------
+		// 쿼리의 결과 값인 infoList를 ModelAndView 객체에 추가
 		mav.addObject("infoList", infoList);
+		// ---------------------------------------------
 		
 		// [ModelAndView 객체]에 
 		// [게시판 목록 검색 결과]를 저장

@@ -159,29 +159,19 @@ public class LoginController {
 		return loginDAO.getCntLogin(map);
 	}
 	
-	// /logoutProc.do로 접근하면 호출되는 메소드 선언
+	// /logout.do로 접근하면 호출되는 메소드 선언
 	@RequestMapping(value="/logout.do")
 	public ModelAndView logout(
 		HttpSession session
 	) {
 		
+		// session의 모든 값 삭제
 		session.invalidate();
 		
 		// [ModelAndView 객체] 생성
+		// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
 		ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
 		
-		// [ModelAndView 객체]의
-		// setViewName 메소드를 호출하여
-		// [호출할 JSP 페이지명]을 문자로 저장
-		// [호출할 JSP 페이지명] 앞, 뒤에 붙는 위치 경로 및 확장자는
-		// application.properties에서 
-		// spring.mvc.view.prefix=위치 경로
-		// spring.mvc.view.suffix=확장자
-		// 로 설정 가능하다.
-		// <참고> 기본 저장 경로에서 webapp까지는 설정되어 있다.
-//		mav.setViewName("loginForm.jsp");
-		
-		// [ModelAndView 객체] 리턴
 		return mav;
 	}
 

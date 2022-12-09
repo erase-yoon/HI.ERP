@@ -33,16 +33,17 @@ public class AdSalController {
 		, HttpSession session
 	) {
 		
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id = (String)session.getAttribute("user_id");
+		
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
-//		System.out.println(infoDTO.getUser_id());
 		
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
-//		System.out.println(infoList);
-		
-		// BoardDAOImpl 객체의 
-		// getBoardList 메소드 호출로 [게시판 목록] 얻기
-//		List<Map<String, String>> boardList = this.boardDAO.getBoardList(boardSearchDTO);
+		// ---------------------------------------------
 		
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
