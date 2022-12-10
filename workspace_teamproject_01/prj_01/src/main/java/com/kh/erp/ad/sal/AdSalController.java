@@ -25,6 +25,9 @@ public class AdSalController {
 
 	@Autowired
 	private LoginDAO loginDAO;
+	
+	@Autowired
+	private AdSalDAO adSalDAO;
 
 	@RequestMapping(value="/adSal.do")
 	public ModelAndView adNotice(
@@ -45,8 +48,12 @@ public class AdSalController {
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
 		// ---------------------------------------------
 		
+		List<Map<String, String>> empList = this.adSalDAO.getEmpList();
+		
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("empList", empList);
 		
 		mav.addObject("infoList", infoList);
 

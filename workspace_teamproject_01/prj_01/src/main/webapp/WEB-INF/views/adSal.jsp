@@ -17,6 +17,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Responsive Viewport & Fixed Scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <script>
+
+      // 오늘 날짜 관련 각종 데이터를 저장한 
+      // JSON 객체를 리턴하는 함수 선언
+      function json_today(){
+          var today = new Date();
+          var weeks = ["일", "월", "화", "수", "목", "금", "토"];
+          var week = weeks[today.getDay()];
+          var json = {
+              "year":today.getFullYear()
+              , "month":today.getMonth()+1
+              , "date":today.getDate()
+              , "week":week
+              , "ymd":today.getFullYear() + "-" + today.getMonth()+1 + "-" + today.getDate()
+          }
+          return json;
+      }
+
+      
+      $(function (){
+
+        // 귀속년 삽입(3년치)
+        var thisYear = json_today()["year"];
+        var year_obj = $("[name='year']");
+
+        maxYear = thisYear;
+        minYear = maxYear-2;
+
+        for(var i=maxYear; i>=minYear; i--){
+          year_obj.append("<option value='" + i + "'>" + i + "</option>");
+        }
+
+
+      });
+
+
+    </script>
     <title>급여명세서</title>
   </head>
 
@@ -118,14 +155,6 @@
 
       <!-- 메인 -->
 
-      <!-- 급여계산버튼 -->
-      <div class="txt-right margin-right1">
-        <a href=""><button class="btn btn-md btn-primary btn-container wth-100">
-          <span class="label">급여 계산</span>
-        </button></a>
-      </div>
-      <br><br>
-
       <!-- 위쪽 탭(select box) -->
       <table border="1" cellspacing="0" style="border-color:rgb(229, 229, 229);" align="center" width="85%;">
         <tr>
@@ -133,23 +162,20 @@
             <table align="center" width="90%" cellpadding="10" >
               <tr>
                 <td width="5%">
-                  <label>사업장</label>
+                  <label>회사명</label>
                   <td width="10%">
-                    <select name="" >           
-                      <option value="서울">서울</option>
-                      <option value="인천">인천</option>
-                      <option value="부산">부산</option>
-                    </select>
+					하이이알피
                   </td>
                 </td>
 
                 <td width="5%">
                   <label>귀속년</label>
                   <td width="10%">
-                    <select name="">
-                      <option value="재직">재직</option>
-                      <option value="퇴직">퇴직</option>
-                      <option value="휴직">휴직</option>
+                    <select name="year">
+                      <option value="">    </option>
+                      <!-- <option value="2022">2022</option>
+                      <option value="2021">2021</option>
+                      <option value="2020">2020</option> -->
                     </select>
                   </td>
                 </td>
@@ -158,9 +184,19 @@
                   <label>귀속월</label>
                   <td width="10%">
                   <select name="">
-                    <option value="재직">재직</option>
-                    <option value="퇴직">퇴직</option>
-                    <option value="휴직">휴직</option>
+                    <option value="">  </option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
                   </select>
                   </td>
                 </td>
@@ -170,7 +206,8 @@
                 <td>
                   <label>부서</label>
                   <td>
-                    <select name=""> 
+                    <select name="">
+                      <option value="">        </option>
                       <option value="UI개발부">UI개발부</option>
                       <option value="DB개발부">DB개발부</option>
                       <option value="암튼개발부">암튼개발부</option>    
@@ -181,7 +218,8 @@
                 <td>
                   <label>재직구분</label>
                   <td>
-                    <select name="">      
+                    <select name="">
+                      <option value="">    </option>
                       <option value="재직">재직</option>
                       <option value="퇴직">퇴직</option>
                       <option value="휴직">휴직</option>
@@ -210,345 +248,40 @@
             <div id="top" class="split">
               <div class="data-table-wrapper">
                 <div class="data-table-container">
-                  
+                
                   <!-- 총액 테이블 -->
-                  <table class="data-table data-table1 data-table-sm">
-                    <colgroup></colgroup>
-                    <thead>
-                    <tr>
-                      <th></th>
-                      <th class="with-tools">
-                        checkbox
-                        <div class="tools overflow overflow-sm overflow-right">
-                          <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
-                            <span class="icon"><i></i></span>
-                          </button>
-                          <div class="overflow-menu">
-                            <ul>
-                              <li><a href="#" class="overflow-menu-item">없음</a></li>
-                              <li><a href="#" class="overflow-menu-item">오름차순</a></li>
-                              <li><a href="#" class="overflow-menu-item">내림차순</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </th>
-                      <th class="with-tools">
-                        사번
-                        <div class="tools overflow overflow-sm overflow-right">
-                          <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
-                            <span class="icon"><i></i></span>
-                          </button>
-                          <div class="overflow-menu">
-                            <ul>
-                              <li><a href="#" class="overflow-menu-item">없음</a></li>
-                              <li><a href="#" class="overflow-menu-item">오름차순</a></li>
-                              <li><a href="#" class="overflow-menu-item">내림차순</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </th>
-                      <th class="with-tools">
-                        성명
-                        <div class="tools overflow overflow-sm overflow-right">
-                          <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
-                            <span class="icon"><i></i></span>
-                          </button>
-                          <div class="overflow-menu">
-                            <ul>
-                              <li><a href="#" class="overflow-menu-item">없음</a></li>
-                              <li><a href="#" class="overflow-menu-item">오름차순</a></li>
-                              <li><a href="#" class="overflow-menu-item">내림차순</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </th>
-                      <th class="with-tools">
-                        부서
-                        <div class="tools overflow overflow-sm overflow-right">
-                          <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
-                            <span class="icon"><i></i></span>
-                          </button>
-                          <div class="overflow-menu">
-                            <ul>
-                              <li><a href="#" class="overflow-menu-item">없음</a></li>
-                              <li><a href="#" class="overflow-menu-item">오름차순</a></li>
-                              <li><a href="#" class="overflow-menu-item">내림차순</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </th>
-                      <th class="with-tools">
-                        차인지급액
-                        <div class="tools overflow overflow-sm overflow-right">
-                          <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
-                            <span class="icon"><i></i></span>
-                          </button>
-                          <div class="overflow-menu">
-                            <ul>
-                              <li><a href="#" class="overflow-menu-item">없음</a></li>
-                              <li><a href="#" class="overflow-menu-item">오름차순</a></li>
-                              <li><a href="#" class="overflow-menu-item">내림차순</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <th>1</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>2</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>3</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>4</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>4</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>4</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>4</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>4</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>4</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>4</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>4</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    <tr>
-                      <th>4</th>
-                      <td>
-                        <!-- 체크박스 -->
-                        <div class="check_align_vertical col-xs-12 col-md-3">
-                          <label class="checker-item">
-                            <input type="checkbox"/>
-                            <span class="label-group">
-                              <span class="icon">
-                                  <i class="material-icons">check_box_outline_blank</i>
-                                  <i class="material-icons">check_box</i>
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>2020. 4. 6.</td>
-                      <td>일반문구텍스트</td>
-                      <td>1,415,000</td>
-                      <td>180</td>
-                    </tr>
-                    </tbody>
-                  </table>
+        			<table class="data-table data-table-sm" id="empListTable">
+						<colgroup></colgroup>
+						<thead>
+							<tr>
+								<th></th>
+								<th>사원명</th>
+								<th>사원번호</th>
+								<th>입사일</th>
+								<th>퇴사일</th>
+								<th>재직구분</th>
+								<th>부서</th>
+								<th>직급</th>
+								<th>이메일</th>
+								<th>연락처</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="empList" items="${requestScope.empList}" varStatus="status">
+								<tr style="cursor: pointer;" onclick="adEmpListCorr(${empList.no_emp})">
+									<th>${status.count}</th>
+									<td>${empList.nm_emp}
+									<td>${empList.no_emp}
+									<td>${empList.enter_date}
+									<td>${empList.retire_date}
+									<td>${empList.nm_cd_emp}
+									<td>${empList.nm_dept}
+									<td>${empList.nm_jik}
+									<td>${empList.email}
+									<td>${empList.phone}
+							</c:forEach>
+						</tbody>
+					</table>
                 </div>
               </div>
             </div>
@@ -599,8 +332,8 @@
                       <tbody>
                       <tr>
                         <th>1</th>
-                        <td>B57828</td>
-                        <td>2020. 4. 6.</td>
+                        <td>기본급</td>
+                        <td><input type="text"></td>
                       </tr>
                       <tr>
                         <th>2</th>
@@ -669,7 +402,7 @@
                         <tbody>
                         <tr>
                           <th>1</th>
-                          <td>B57828</td>
+                          <td>건강보험</td>
                           <td>2020. 4. 6.</td>
                         </tr>
                         <tr>
