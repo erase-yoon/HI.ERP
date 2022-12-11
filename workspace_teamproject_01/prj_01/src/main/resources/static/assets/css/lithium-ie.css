@@ -80,16 +80,16 @@
   cursor: none;
  }
 
-.check_align_vertical{
+.test{
   width: 100%;
 }
-.check_align_vertical > .left{
+.test > .left{
 
   width: 50%;
   float: left;
   box-sizing: border-box;
 }
-.check_align_vertical > .right{
+.test > .right{
 
   width: 50%;
   float: right;
@@ -179,6 +179,12 @@
 }
 
 /* 급여명세서 첫째 테이블 td */
+.dtd1-3{
+  width:10%;
+  background-color:#E9E9E9;
+}
+
+/* 급여명세서 첫째 테이블 td */
 .dtd1-2{
   width:40%;
   background-color:#f8f8f8;
@@ -208,7 +214,7 @@
   background-color:#E9E9E9;
 }
 
-.check_align_vertical{
+.test{
   align-items: center;
   vertical-align:middle;
 }
@@ -216,4 +222,14 @@
 /* 개인정보조회 하단 테이블 높이 조절 */
 .dtr2{
   height:80px;
+}
+
+.dtd3-1{
+  width:10%;
+  background-color:#cacaca;
+}
+
+.index1{
+  position: inherit;
+  z-index: 5 !important;
 }

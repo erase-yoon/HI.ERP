@@ -107,9 +107,9 @@
             <li class="tree-view">
               <a href="#"><span class="label">인사관리</span></a>
               <ul class="tree-view-menu">
-                <li><a href="adEmpReg.html"><span class="label">사원등록</span></a></li>
-                <li><a href="adUserInfoReg.html"><span class="label">사용자정보등록</span></a></li>
-                <li><a href="adEmpList.html"><span class="label">사원명부 및 수정/삭제</span></a></li>
+                <li><a href="adEmpReg.do"><span class="label">사원등록</span></a></li>
+                <li><a href="adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
+                <li><a href="adEmpList.do"><span class="label">사원명부 및 수정/삭제</span></a></li>
               </ul>
             </li>
             <li class="tree-view">
@@ -172,7 +172,7 @@
                   <label>귀속년</label>
                   <td width="10%">
                     <select name="year">
-                      <option value="">    </option>
+                      <option value=""></option>
                       <!-- <option value="2022">2022</option>
                       <option value="2021">2021</option>
                       <option value="2020">2020</option> -->
@@ -184,7 +184,7 @@
                   <label>귀속월</label>
                   <td width="10%">
                   <select name="">
-                    <option value="">  </option>
+                    <option value=""></option>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
@@ -207,7 +207,7 @@
                   <label>부서</label>
                   <td>
                     <select name="">
-                      <option value="">        </option>
+                      <option value=""></option>
                       <option value="UI개발부">UI개발부</option>
                       <option value="DB개발부">DB개발부</option>
                       <option value="암튼개발부">암튼개발부</option>    
@@ -219,7 +219,7 @@
                   <label>재직구분</label>
                   <td>
                     <select name="">
-                      <option value="">    </option>
+                      <option value=""></option>
                       <option value="재직">재직</option>
                       <option value="퇴직">퇴직</option>
                       <option value="휴직">휴직</option>

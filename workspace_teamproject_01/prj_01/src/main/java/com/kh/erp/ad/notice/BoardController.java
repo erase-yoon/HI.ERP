@@ -19,6 +19,11 @@ import com.kh.erp.login.LoginDAO;
 @Controller
 public class BoardController {
 	
+	// ---------------------------------------------
+	@Autowired
+	private LoginDAO loginDAO;
+	// ---------------------------------------------
+	
 	// boardDAO 속성변수에
 	// BoardDAO 인터페이스를 구현한 클래스를 객체화 하여
 	// 객체의 메모리 위치 주소 값을 저장한다.
@@ -28,11 +33,6 @@ public class BoardController {
 	// BoardDAO 인터페이스를 구현할 클래스를 찾을 때(호출할 때?)
 	// 그 클래스의 이름은 무엇이든 상관없다.
 	// 단 BoardDAO 인터페이스를 구현한 클래스는 1개만 생성해야 한다.
-	
-	// ---------------------------------------------
-	@Autowired
-	private LoginDAO loginDAO;
-	// ---------------------------------------------
 	
 	// boardService 속성변수에
 	// BoardService 인터페이스를 구현한 클래스를 객체화 하여
@@ -45,9 +45,9 @@ public class BoardController {
 	// 단 BoardService 인터페이스를 구현한 클래스는 1개만 생성해야 한다.
 	
 	// ---------------------------------------------------------------
-	// 가상주소 /adNotice.do로 접근하면 호출되는 메소드 선언
+	// 가상주소 /boardList.do로 접근하면 호출되는 메소드 선언
 	// @RequestMapping 내부에 method="RequestMethod.POST"가 없으므로
-	// 가상주소 /adNotice.do로 접근 시 get 또는 post 접근 모두 허용
+	// 가상주소 /boardList.do로 접근 시 get 또는 post 접근 모두 허용
 	// ---------------------------------------------------------------
 	@RequestMapping(value="/adNotice.do")
 	public ModelAndView adNotice( 
@@ -62,10 +62,26 @@ public class BoardController {
 			, HttpSession session
 			// ---------------------------------------------
 	) {
-		
 		// ---------------------------------------------
 		// session에 저장한 user_id를 user_id 변수에 저장
-		String user_id = (String)session.getAttribute("user_id");
+		String user_id;
+		if(session.getAttribute("user_id") != null) {
+			user_id = (String)session.getAttribute("user_id");
+		}else {
+			user_id = "";
+		}
+		if(!(user_id.equals("system"))) {
+			
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
+			session.invalidate();
+			
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+			
+			return mav;
+		}
 		
 		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
@@ -74,9 +90,13 @@ public class BoardController {
 		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
 		
-		session.setAttribute("no_emp", infoDTO.getNo_emp());
+		
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
+//		System.out.println(session.getAttribute("no_emp"));
+//		session.setAttribute("no_emp", infoDTO.getNo_emp(infoList.get(0).get("no_emp")));
 		// ---------------------------------------------
-//		System.out.println(infoList);
+		
+		
 		
 		// BoardDAOImpl 객체의 
 		// getBoardListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
@@ -86,34 +106,25 @@ public class BoardController {
 		// getBoardListTotCnt 메소드 호출로 [검색된 게시판 행의 개수] 얻기
 		int boardTotCnt = this.boardDAO.getBoardListTotCnt(boardSearchDTO);
 		
-		// Util 객체의 
-		// getPagingMap 메소드 호출로 
-		// paging 처리와 관련된 데이터와
-		// 기타 데이터가 저장되어 있는 HashMap 객체 얻기
-			// 기타 데이터 : DB 연동 시 필요한 데이터, 보정된 선택 페이지 번호 등
-		Map<String, Integer> pagingMap = Util.getPagingMap(
-				
-			// 선택된 페이지 번호
-			boardSearchDTO.getSelectPageNo()
-			
-			// 한 화면에 보여지는 행의 개수
-			, boardSearchDTO.getRowCntPerPage()
-			
-			// 검색된 게시판 행의 총 개수 
-			, boardTotCnt
+		//*******************************************
+		// 페이징 처리 관련 데이터와 기타 데이터(DB 연동시 필요한 데이터,보정된 선택 페이지 번호 등)가 저장된 HashMap 객체 얻기
+		// Util 객체의 getPagingMap 라는 메소드 호출로 얻는다.
+		//*******************************************
+		Map<String,Integer> pagingMap = Util.getPagingMap(
+				boardSearchDTO.getSelectPageNo()       // 선택한 페이지 번호
+				, boardSearchDTO.getRowCntPerPage()    // 한 화면에 보여지는 행의 개수
+				, boardTotCnt                          // 검색된 게시판의 총개수
 		);
+
+		//*******************************************
+		// BoardSearchDTO 객체의 selectPageNo 속성변수 보정된 선택페이지 번호 재 저장하기
+		// BoardSearchDTO 객체의 begin_rowNo 속성변수에 검색 결과물에서 페이지번호 맞게 부분을 가져올 때 시작행 번호를 저장하기
+		// BoardSearchDTO 객체의 end_rowNo 속성변수에 검색 결과물에서 페이지번호 맞게 부분을 가져올 때 끝행 번호를 저장하기
+		//*******************************************
+		boardSearchDTO.setSelectPageNo( (int)pagingMap.get("selectPageNo")  );
+		boardSearchDTO.setBegin_rowNo( (int)pagingMap.get("begin_rowNo")  ); 
+		boardSearchDTO.setEnd_rowNo( (int)pagingMap.get("end_rowNo")  );
 		
-		// boardSearchDTO 객체의 
-		// setSelectPageNo 메소드 호출로 [선택된 페이지 번호] 보정
-		boardSearchDTO.setSelectPageNo((int)pagingMap.get("selectPageNo"));
-		
-		// boardSearchDTO 객체의 
-		// setBegin_rowNo 메소드 호출로 [보여지는 시작 페이지 번호] 보정
-		boardSearchDTO.setBegin_rowNo((int)pagingMap.get("begin_rowNo"));
-		
-		// boardSearchDTO 객체의 
-		// setEnd_rowNo 메소드 호출로 [보여지는 끝 페이지 번호] 보정
-		boardSearchDTO.setEnd_rowNo((int)pagingMap.get("end_rowNo"));
 		
 		// BoardDAOImpl 객체의 
 		// getBoardList 메소드 호출로 [게시판 목록] 얻기
@@ -122,35 +133,17 @@ public class BoardController {
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
 		
-//		mav.addObject("infoDTO", infoDTO);
-//		mav.addObject("user_id", user_id);
-		
 		// ---------------------------------------------
 		// 쿼리의 결과 값인 infoList를 ModelAndView 객체에 추가
 		mav.addObject("infoList", infoList);
 		// ---------------------------------------------
-//		System.out.println(infoList.get(0).get("NM_DEPT"));
-
+//		System.out.println(infoList);
 		// [ModelAndView 객체]에 
 		// [게시판 목록 검색 결과]를 저장
-		mav.addObject("boardList", boardList);
-		// [ModelAndView 객체]에 저장된 객체는
-		// HttpServletRequest 객체에도 저장된다.
-		
-		// [ModelAndView 객체]에 
-		// [게시판 목록 검색 결과 개수]를 저장
-		mav.addObject("boardTotCnt", boardTotCnt);
-		
-		// [ModelAndView 객체]에 
-		// [게시판 목록 검색 총 결과]를 저장
-		mav.addObject("boardTotAllCnt", boardTotAllCnt);
-		
-		// [ModelAndView 객체]에 
-		// [페이징 처리 관련 HashMap 객체]를 저장
-		mav.addObject("pagingMap", pagingMap);
-		
-		// [ModelAndView 객체]에 
-		// [보정된 선택 페이지 번호]를 저장
+		mav.addObject("boardList", boardList);	
+		mav.addObject("boardTotCnt", boardTotCnt);		
+		mav.addObject("boardTotAllCnt", boardTotAllCnt);		
+		mav.addObject("pagingMap", pagingMap);		
 		mav.addObject("selectPageNo", (int)pagingMap.get("selectPageNo"));
 //		해당 코딩을 쓰지 않으면 boardList.jsp에서
 //		formObj.find(".selectPageNo").val("${requestScope.selectPageNo}"); 대신
@@ -182,10 +175,12 @@ public class BoardController {
 			// [파라미터명]과 [BoardSearchDTO 객체]의 [속성변수명]이 같을 경우
 			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
 			
+			// ---------------------------------------------
 			, InfoDTO infoDTO
 			, HttpSession session
+			// ---------------------------------------------
 	) {
-		
+//		System.out.println("boardListForm 컨트롤러 시작");
 		// ---------------------------------------------
 		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id = (String)session.getAttribute("user_id");
@@ -198,6 +193,7 @@ public class BoardController {
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
 		// ---------------------------------------------
 		
+		
 		// BoardDAOImpl 객체의 
 		// getBoardListTotAllCnt 메소드 호출로 [게시판 행의 총 개수] 얻기
 		int boardTotAllCnt = this.boardDAO.getBoardListTotAllCnt(boardSearchDTO);
@@ -206,34 +202,24 @@ public class BoardController {
 		// getBoardListTotCnt 메소드 호출로 [검색된 게시판 행의 개수] 얻기
 		int boardTotCnt = this.boardDAO.getBoardListTotCnt(boardSearchDTO);
 		
-		// Util 객체의 
-		// getPagingMap 메소드 호출로 
-		// paging 처리와 관련된 데이터와
-		// 기타 데이터가 저장되어 있는 HashMap 객체 얻기
-			// 기타 데이터 : DB 연동 시 필요한 데이터, 보정된 선택 페이지 번호 등
-		Map<String, Integer> pagingMap = Util.getPagingMap(
-				
-			// 선택된 페이지 번호
-			boardSearchDTO.getSelectPageNo()
-			
-			// 한 화면에 보여지는 행의 개수
-			, boardSearchDTO.getRowCntPerPage()
-			
-			// 검색된 게시판 행의 총 개수 
-			, boardTotCnt
+		//*******************************************
+		// 페이징 처리 관련 데이터와 기타 데이터(DB 연동시 필요한 데이터,보정된 선택 페이지 번호 등)가 저장된 HashMap 객체 얻기
+		// Util 객체의 getPagingMap 라는 메소드 호출로 얻는다.
+		//*******************************************
+		Map<String,Integer> pagingMap = Util.getPagingMap(
+				boardSearchDTO.getSelectPageNo()       // 선택한 페이지 번호
+				, 10    // 한 화면에 보여지는 행의 개수
+				, boardTotCnt                          // 검색된 게시판의 총개수
 		);
-		
-		// boardSearchDTO 객체의 
-		// setSelectPageNo 메소드 호출로 [선택된 페이지 번호] 보정
-		boardSearchDTO.setSelectPageNo((int)pagingMap.get("selectPageNo"));
-		
-		// boardSearchDTO 객체의 
-		// setBegin_rowNo 메소드 호출로 [보여지는 시작 페이지 번호] 보정
-		boardSearchDTO.setBegin_rowNo((int)pagingMap.get("begin_rowNo"));
-		
-		// boardSearchDTO 객체의 
-		// setEnd_rowNo 메소드 호출로 [보여지는 끝 페이지 번호] 보정
-		boardSearchDTO.setEnd_rowNo((int)pagingMap.get("end_rowNo"));
+
+		//*******************************************
+		// BoardSearchDTO 객체의 selectPageNo 속성변수 보정된 선택페이지 번호 재 저장하기
+		// BoardSearchDTO 객체의 begin_rowNo 속성변수에 검색 결과물에서 페이지번호 맞게 부분을 가져올 때 시작행 번호를 저장하기
+		// BoardSearchDTO 객체의 end_rowNo 속성변수에 검색 결과물에서 페이지번호 맞게 부분을 가져올 때 끝행 번호를 저장하기
+		//*******************************************
+		boardSearchDTO.setSelectPageNo( (int)pagingMap.get("selectPageNo")  );
+		boardSearchDTO.setBegin_rowNo( (int)pagingMap.get("begin_rowNo")  ); 
+		boardSearchDTO.setEnd_rowNo( (int)pagingMap.get("end_rowNo")  );
 		
 		// BoardDAOImpl 객체의 
 		// getBoardList 메소드 호출로 [게시판 목록] 얻기
@@ -246,6 +232,7 @@ public class BoardController {
 		// 쿼리의 결과 값인 infoList를 ModelAndView 객체에 추가
 		mav.addObject("infoList", infoList);
 		// ---------------------------------------------
+		
 		
 		// [ModelAndView 객체]에 
 		// [게시판 목록 검색 결과]를 저장
@@ -283,7 +270,7 @@ public class BoardController {
 		// 로 설정 가능하다.
 		// <참고> 기본 저장 경로에서 webapp까지는 설정되어 있다.
 		mav.setViewName("empNotice.jsp");
-		
+//		System.out.println("boardListForm 컨트롤러 종료");
 		// [ModelAndView 객체] 리턴
 		return mav;
 		// Spring은 ModelAndView 객체 리턴 시
@@ -295,11 +282,33 @@ public class BoardController {
 	// @RequestMapping 내부에 method="RequestMethod.POST"가 없으므로
 	// 가상주소 /boardRegForm.do로 접근 시 get 또는 post 접근 모두 허용
 	// ---------------------------------------------------------------
-	@RequestMapping(value="/boardRegForm.do")
-	public ModelAndView boardRegForm(){
+	@RequestMapping(value="/adNoticeReg.do")
+	public ModelAndView boardRegForm(
+		// ---------------------------------------------
+		InfoDTO infoDTO
+		, HttpSession session
+		// ---------------------------------------------
+	){
+		
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
+		String user_id = (String)session.getAttribute("user_id");
+		
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
+		infoDTO.setUser_id(user_id);
+		
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+		// ---------------------------------------------
 
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
+		
+		// ---------------------------------------------
+		// 쿼리의 결과 값인 infoList를 ModelAndView 객체에 추가
+		mav.addObject("infoList", infoList);
+		// ---------------------------------------------
 		
 		// [ModelAndView 객체]의
 		// setViewName 메소드를 호출하여
@@ -310,7 +319,7 @@ public class BoardController {
 		// spring.mvc.view.suffix=확장자
 		// 로 설정 가능하다.
 		// <참고> 기본 저장 경로에서 webapp까지는 설정되어 있다.
-		mav.setViewName("boardRegForm.jsp");
+		mav.setViewName("adNoticeReg.jsp");
 
 		// [ModelAndView 객체] 리턴
 		return mav;
@@ -322,7 +331,7 @@ public class BoardController {
 	// /boardRegProc.do로 접근하면 호출되는 메소드 선언
 	// ---------------------------------------------------------------
 	@RequestMapping( 
-			value="/boardRegProc.do" 
+			value="/boardRegProc.do"
 			,method=RequestMethod.POST
 			,produces="application/json;charset=UTF-8"
 	)
@@ -331,9 +340,16 @@ public class BoardController {
 			
 			// 파라미터값을 저장할 [BoardDTO 객체]를 매개변수로 선언
 			BoardDTO boardDTO
+			,@RequestParam(value = "subject") String subject
+            ,@RequestParam(value = "content") String content
 			// [파라미터명]과 [BoardDTO 객체]의 [속성변수명]이 같을 경우
 			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
+            , HttpSession session
+
 	){
+		boardDTO.setNo_emp((String)session.getAttribute("no_emp"));
+		
+//		System.out.println(boardDTO.getNo_emp());
 		
 		// [boardServiceDAOImpl 객체]의 insertBoard 메소드를 호출하여 
 		// 게시판 글을 입력하고 [입력이 적용될 행의 개수] 얻기
@@ -343,16 +359,129 @@ public class BoardController {
 		return boardRegCnt;
 	}
 	
+	
 	// ---------------------------------------------------------------
-	// /boardDetailForm.do로 접근하면 호출되는 메소드 선언
+	// /boardComProc.do로 접근하면 호출되는 메소드 선언 (댓글입력관련)
 	// ---------------------------------------------------------------
-	@RequestMapping(value="/boardDetailForm.do")
-	public ModelAndView boardDetailForm(
+	@RequestMapping( 
+			value="/boardComProc.do"
+			,method=RequestMethod.POST
+			,produces="application/json;charset=UTF-8"
+	)
+	@ResponseBody
+	public int boardComProc( 
+			
+			BoardDTO boardDTO
+			,@RequestParam(value = "b_no") int b_no
+			,@RequestParam(value = "no_emp") String no_emp
+            ,@RequestParam(value = "content_com") String content_com
+            ,HttpSession session
+
+	){
+//		System.out.println("boardComProc 컨트롤러 시작");
+		boardDTO.setNo_emp((String)session.getAttribute("no_emp"));
+
+//		System.out.println(boardDTO.getNo_emp());
+		
+		// [boardServiceDAOImpl 객체]의 insertBoard 메소드를 호출하여 
+		// 게시판 글을 입력하고 [입력이 적용될 행의 개수] 얻기
+		int boardComCnt = this.boardService.insertComment(boardDTO);
+			
+		// [입력 적용행의 개수] 얻기
+//		System.out.println("boardComProc 컨트롤러 종료");
+		return boardComCnt; 
+	}
+	
+	
+	// ---------------------------------------------------------------
+	// /adNoticeDetail.do로 접근하면 호출되는 메소드 선언
+	// ---------------------------------------------------------------
+	@RequestMapping(value="/adNoticeDetail.do")
+	public ModelAndView adNoticeDetail(
 			
 		// "b_no"라는 파라미터 명에 해당하는 파라미터 값을 꺼내 int b_no에 저장
 		@RequestParam(value = "b_no") int b_no
 		// 상세보기 할 게시판 고유번호가 들어오는 매개변수 선언
+		
+		// ---------------------------------------------
+		, InfoDTO infoDTO
+		, HttpSession session
+		// ---------------------------------------------
 	){
+		
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
+		String user_id = (String)session.getAttribute("user_id");
+		
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
+		infoDTO.setUser_id(user_id);
+		
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+		
+		;
+		// ---------------------------------------------
+		
+		// [BoardServiceImpl 객체]의 getBoard 메소드를 호출하여 
+		// [1개의 게시판 글]을 boardDTO 객체에 담아오기
+		BoardDTO boardDTO = this.boardService.getBoard(b_no, true);
+		// BoardDTO boardDTO를 BoardVO boardVO로도 사용
+		// VO : Value Object
+		// DTO : Data Transfer Object
+		
+		List<Map<String, String>> comment = this.boardDAO.getComment(b_no);
+		
+		// [ModelAndView 객체] 생성
+		ModelAndView mav = new ModelAndView();
+		
+		// ---------------------------------------------
+		// 쿼리의 결과 값인 infoList를 ModelAndView 객체에 추가
+		mav.addObject("infoList", infoList);
+		// ---------------------------------------------
+		
+		// [ModelAndView 객체]의
+		// setViewName 메소드를 호출하여
+		// [호출할 JSP 페이지명]을 문자로 저장
+		mav.setViewName("adNoticeDetail.jsp");
+		
+		// [ModelAndView 객체]에 1개의 게시판 글을 저장한
+		// BoardDTO 객체 저장하기
+		mav.addObject("boardDTO", boardDTO);
+		mav.addObject("comment", comment);
+		// [ModelAndView 객체] 리턴
+		return mav;
+		// Spring은 ModelAndView 객체 리턴 시
+		// 저장된 [JSP 페이지명]에 있는 [JSP 페이지]를 호출한다.
+	}
+	
+	
+	// ---------------------------------------------------------------
+	// /empNoticeDetail.do로 접근하면 호출되는 메소드 선언
+	// ---------------------------------------------------------------
+	@RequestMapping(value="/empNoticeDetail.do")
+	public ModelAndView empNoticeDetail(
+			
+		// "b_no"라는 파라미터 명에 해당하는 파라미터 값을 꺼내 int b_no에 저장
+		@RequestParam(value = "b_no") int b_no
+		// 상세보기 할 게시판 고유번호가 들어오는 매개변수 선언
+		// ---------------------------------------------
+		, InfoDTO infoDTO
+		, HttpSession session
+		// ---------------------------------------------
+	){
+		
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
+		String user_id = (String)session.getAttribute("user_id");
+		
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
+		infoDTO.setUser_id(user_id);
+		
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+		// ---------------------------------------------
 		
 		// [BoardServiceImpl 객체]의 getBoard 메소드를 호출하여 
 		// [1개의 게시판 글]을 boardDTO 객체에 담아오기
@@ -364,10 +493,15 @@ public class BoardController {
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
 		
+		// ---------------------------------------------
+		// 쿼리의 결과 값인 infoList를 ModelAndView 객체에 추가
+		mav.addObject("infoList", infoList);
+		// ---------------------------------------------
+		
 		// [ModelAndView 객체]의
 		// setViewName 메소드를 호출하여
 		// [호출할 JSP 페이지명]을 문자로 저장
-		mav.setViewName("boardDetailForm.jsp");
+		mav.setViewName("empNoticeDetail.jsp");
 		
 		// [ModelAndView 객체]에 1개의 게시판 글을 저장한
 		// BoardDTO 객체 저장하기
@@ -380,15 +514,31 @@ public class BoardController {
 	}
 	
 	// ---------------------------------------------------------------
-	// /boardUpDelForm.do로 접근하면 호출되는 메소드 선언
+	// /adNoticeUpdate.do로 접근하면 호출되는 메소드 선언
 	// ---------------------------------------------------------------
-	@RequestMapping(value="/boardUpDelForm.do")
-	public ModelAndView boardUpDelForm(
+	@RequestMapping(value="/adNoticeUpdate.do")
+	public ModelAndView adNoticeUpdate(
 			
 		// "b_no"라는 파라미터 명에 해당하는 파라미터 값을 꺼내 int b_no에 저장
 		@RequestParam(value = "b_no") int b_no
 		// 수정/삭제 할 게시판 고유번호가 들어오는 매개변수 선언
+		// ---------------------------------------------
+		, InfoDTO infoDTO
+		, HttpSession session
+		// ---------------------------------------------
 	){
+		
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
+		String user_id = (String)session.getAttribute("user_id");
+		
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
+		infoDTO.setUser_id(user_id);
+		
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+		// ---------------------------------------------
 		
 		// [BoardServiceImpl 객체]의 getBoard 메소드를 호출하여 
 		// [1개의 게시판 글]을 boardDTO 객체에 담아오기
@@ -400,10 +550,15 @@ public class BoardController {
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
 		
+		// ---------------------------------------------
+		// 쿼리의 결과 값인 infoList를 ModelAndView 객체에 추가
+		mav.addObject("infoList", infoList);
+		// ---------------------------------------------
+		
 		// [ModelAndView 객체]의
 		// setViewName 메소드를 호출하여
 		// [호출할 JSP 페이지명]을 문자로 저장
-		mav.setViewName("boardUpDelForm.jsp");
+		mav.setViewName("adNoticeUpdate.jsp");
 		
 		// [ModelAndView 객체]에 1개의 게시판 글을 저장한
 		// BoardDTO 객체 저장하기
@@ -428,6 +583,8 @@ public class BoardController {
 			
 			// 파라미터값을 저장할 [BoardDTO 객체]를 매개변수로 선언
 			BoardDTO boardDTO
+			,@RequestParam(value = "subject") String subject
+            ,@RequestParam(value = "content") String content
 			// [파라미터명]과 [BoardDTO 객체]의 [속성변수명]이 같을 경우
 			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
 	){
@@ -459,8 +616,38 @@ public class BoardController {
 		// 게시판 글을 삭제하고 [삭제가 적용될 행의 개수] 얻기
 		int deleteBoardCnt = this.boardService.deleteBoard(boardDTO);
 		
+		// b_no 가 같은 댓글들 모두 삭제
+		int deleteCommentCnt1 = this.boardService.deleteComment1(boardDTO);
+		
 		// [삭제 적용행의 개수] 얻기
 		return deleteBoardCnt;
+	}
+	
+	// ---------------------------------------------------------------
+	// /commentDelProc.do로 접근하면 호출되는 메소드 선언
+	// ---------------------------------------------------------------
+	@RequestMapping( 
+			value="/commentDelProc.do" 
+			,method=RequestMethod.POST
+			,produces="application/json;charset=UTF-8"
+	)
+	@ResponseBody
+	public int commentDelProc( 
+			
+			// 파라미터값을 저장할 [BoardDTO 객체]를 매개변수로 선언
+			BoardDTO boardDTO
+			// [파라미터명]과 [BoardDTO 객체]의 [속성변수명]이 같을 경우
+			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
+	){
+//		System.out.println("commentDelProc.do 컨트롤러 시작");
+//		System.out.println(boardDTO.getPrint_level());
+//		System.out.println(boardDTO.getB_no());
+		
+		int deleteCommentCnt = this.boardService.deleteComment(boardDTO);
+		
+		// [삭제 적용행의 개수] 얻기
+//		System.out.println("commentDelProc.do 컨트롤러에서 종료");
+		return deleteCommentCnt;
 	}
 	
 //	// ---------------------------------------------------------------
