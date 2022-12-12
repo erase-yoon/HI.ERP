@@ -66,13 +66,13 @@
               <a href="empNotice.do"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
-              <a href="#"><span class="label">인사관리</span></a>
+              <a><span class="label">인사관리</span></a>
               <ul class="tree-view-menu">
                 <li><a href="empUserInfo.do"><span class="label">개인정보조회</span></a></li>
               </ul>
             </li>
             <li class="tree-view">
-              <a href="#"><span class="label">급여관리</span></a>
+              <a><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
                 <li><a href="empSalary.do"><span class="label">급여명세서 조회</span></a></li>
               </ul>
@@ -176,23 +176,23 @@
           <div class="pagination">
             <div class="pagination-group direction">
               <ul>
-                <li class="disabled"><a href="#" class="pagination-item prev"><i class="Licon ico-prev"></i></a></li>
-                <li class="disabled"><a href="#" class="pagination-item left"><i class="Licon ico-left"></i></a></li>
+                <li class="disabled"><a class="pagination-item prev"><i class="Licon ico-prev"></i></a></li>
+                <li class="disabled"><a class="pagination-item left"><i class="Licon ico-left"></i></a></li>
               </ul>
             </div>
             <div class="pagination-group">
               <ul>
-                <li class="on"><a href="#" class="pagination-item"><i>1</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>2</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>3</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>4</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>5</i></a></li>
+                <li class="on"><a class="pagination-item"><i>1</i></a></li>
+                <li class=""><a class="pagination-item"><i>2</i></a></li>
+                <li class=""><a class="pagination-item"><i>3</i></a></li>
+                <li class=""><a class="pagination-item"><i>4</i></a></li>
+                <li class=""><a class="pagination-item"><i>5</i></a></li>
               </ul>
             </div>
             <div class="pagination-group direction">
               <ul>
-                <li class=""><a href="#" class="pagination-item right"><i class="Licon ico-right"></i></a></li>
-                <li class=""><a href="#" class="pagination-item next"><i class="Licon ico-next"></i></a></li>
+                <li class=""><a class="pagination-item right"><i class="Licon ico-right"></i></a></li>
+                <li class=""><a class="pagination-item next"><i class="Licon ico-next"></i></a></li>
               </ul>
             </div>
           </div>

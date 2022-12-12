@@ -5,6 +5,8 @@ import java.util.Map;
 
 public interface AdSalDAO {
 	
-	List<Map<String, String>> getEmpList();
+	List<Map<String, String>> getEmpSalList();
+	
+	List<Map<String, String>> payList();
 
 }

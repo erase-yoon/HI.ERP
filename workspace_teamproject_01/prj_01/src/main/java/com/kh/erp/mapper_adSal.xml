@@ -6,23 +6,43 @@
 <!--[원하는 인터페이스 저장 패키지 경로]와 동일해야 한다. -->
 <mapper namespace="com.kh.erp.ad.sal.AdSalDAO">
 
-	<select id="getEmpList" resultType="hashmap">
+	<select id="getEmpSalList" resultType="hashmap">
 
 		select
-		e.nm_emp as "nm_emp",
-		e.no_emp as "no_emp",
-		to_char(e.enter_date,'YYYY"년 "MM"월 "DD"일"') as "enter_date",
-		to_char(e.retire_date,'YYYY"년 "MM"월 "DD"일"') as "retire_date",
-		c.nm_cd_emp as "nm_cd_emp",
-		d.nm_dept as "nm_dept",
-		j.nm_jik as "nm_jik",
-		p.email as "email",
-		SUBSTR(p.phone,0,3)||' - '||SUBSTR(p.phone,4,4)||' - '||SUBSTR(p.phone,8,4) as "phone"
+		  e.nm_emp as "nm_emp",
+		  e.no_emp as "no_emp",
+		  c.nm_cd_emp as "nm_cd_emp",
+		  d.nm_dept as "nm_dept",
+		  j.nm_jik as "nm_jik",
+		  SUBSTR(pm.ym,0,4)||'년 '||SUBSTR(pm.ym,5,2)||'월' as "ym"
 		from
-		ma_emp e, ma_emp_private p, ma_dept d, ma_jikup j, ma_code_emp c
+		    ma_emp e, ma_emp_private p, ma_dept d, ma_jikup j, ma_code_emp c, hr_ampayment pm
 		where
-		e.no_emp=p.no_emp and e.cd_dept=d.cd_dept and e.cd_jik=j.cd_jik and e.cd_emp=c.cd_emp
+		    e.no_emp=p.no_emp and e.cd_dept=d.cd_dept and e.cd_jik=j.cd_jik and e.cd_emp=c.cd_emp and pm.no_emp=e.no_emp and e.nm_emp != 'system'
 		order by e.no_emp
+
+	</select>
+	
+	<select id="payList" resultType="hashmap">
+
+		select
+		    nm_pay01 as "nm_pay01",
+		    nm_pay02 as "nm_pay02", 
+		    nm_pay03 as "nm_pay03", 
+		    nm_pay04 as "nm_pay04", 
+		    nm_pay05 as "nm_pay05", 
+		    nm_pay06 as "nm_pay06", 
+		    nm_pay07 as "nm_pay07", 
+		    nm_pay08 as "nm_pay08",
+		    nm_deduct01 as "nm_deduct01",
+		    nm_deduct02 as "nm_deduct02", 
+		    nm_deduct03 as "nm_deduct03", 
+		    nm_deduct04 as "nm_deduct04", 
+		    nm_deduct05 as "nm_deduct05", 
+		    nm_deduct06 as "nm_deduct06", 
+		    nm_deduct07 as "nm_deduct07", 
+		    nm_deduct08 as "nm_deduct08"
+		from hr_cdpayment;
 
 	</select>
 

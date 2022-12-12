@@ -48,12 +48,16 @@ public class AdSalController {
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
 		// ---------------------------------------------
 		
-		List<Map<String, String>> empList = this.adSalDAO.getEmpList();
+		List<Map<String, String>> empSalList = this.adSalDAO.getEmpSalList();
+		
+//		List<Map<String, String>> payList = this.adSalDAO.payList();
 		
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
 
-		mav.addObject("empList", empList);
+		mav.addObject("empList", empSalList);
+		
+//		mav.addObject("payList", payList);
 		
 		mav.addObject("infoList", infoList);
 

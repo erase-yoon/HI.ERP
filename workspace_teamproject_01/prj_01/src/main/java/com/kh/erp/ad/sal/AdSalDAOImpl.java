@@ -13,10 +13,18 @@ public class AdSalDAOImpl implements AdSalDAO{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public List<Map<String, String>> getEmpList() {
+	public List<Map<String, String>> getEmpSalList() {
 		List<Map<String, String>> data = this.sqlSession.selectList(
 
-				"com.kh.erp.ad.sal.AdSalDAO.getEmpList");
+				"com.kh.erp.ad.sal.AdSalDAO.getEmpSalList");
+
+		return data;
+	}
+	
+	public List<Map<String, String>> payList() {
+		List<Map<String, String>> data = this.sqlSession.selectList(
+
+				"com.kh.erp.ad.sal.AdSalDAO.payList");
 
 		return data;
 	}

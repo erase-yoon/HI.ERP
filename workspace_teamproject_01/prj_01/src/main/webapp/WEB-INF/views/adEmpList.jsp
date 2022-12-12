@@ -117,13 +117,13 @@
 						<!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함--> <a
 						href="/adNotice.do"><span class="label">공지사항</span></a>
 					</li>
-					<li class="tree-view"><a href="#"><span class="label">인사관리</span></a>
+					<li class="tree-view"><a><span class="label">인사관리</span></a>
 						<ul class="tree-view-menu">
 							<li><a href="/adEmpReg.do"> <span class="label">사원등록</span></a></li>
 							<li><a href="/adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
 							<li><a href="/adEmpList.do"><span class="label">사원명부</span></a></li>
 						</ul></li>
-					<li class="tree-view"><a href="#"><span class="label">급여관리</span></a>
+					<li class="tree-view"><a><span class="label">급여관리</span></a>
 						<ul class="tree-view-menu">
 							<li><a href="adSal.do"><span class="label">급여계산</span></a></li>
 							<!--<li><a href="#"><span class="label">Menu3-1</span></a></li>-->
@@ -172,7 +172,7 @@
 						<form name="searchForm">
 							<!-- 사업장 셀렉트박스 -->
 
-							<label>사업장 &nbsp;</label>
+							<label>회사명 &nbsp;</label>
 							<label>하이이알피 &nbsp;</label>
 
 							<!-- 부서 셀렉트박스 -->

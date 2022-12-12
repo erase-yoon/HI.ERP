@@ -101,6 +101,26 @@
                     // checkLoginForm() 함수 종료
                     return;
                 }
+
+                // user_idVal 데이터가
+                // 공백이 포함되어 있을 경우
+                if(user_idVal.split(" ").join("")!=user_idVal){
+
+                    // confirm창 띄우기
+                    if(confirm("아이디에 공백이 있습니다.\n공백만 지울 경우 [확인]\nID를 모두 지울 경우 [취소]")){
+
+                        // 아이디에 공백 삭제
+                        user_idObj.val(user_idVal.split(" ").join(""));
+
+                        return;
+                    }else{
+
+                        user_idObj.val("");
+                        user_idObj.focus();
+
+                        return;
+                    }
+                }
                 
                 // -----------------------
                 // 암호 유효성 체크
@@ -136,6 +156,26 @@
 
                     // checkLoginForm() 함수 종료
                     return;
+                }
+
+                // user_pwdVal 데이터가
+                // 공백이 포함되어 있을 경우
+                if(user_pwdVal.split(" ").join("")!=user_pwdVal){
+
+                    // confirm창 띄우기
+                    if(confirm("암호에 공백이 포함되어 있습니다.\n공백만 지울 경우 [확인]\n암호를 모두 지울 경우 [취소]")){
+
+                        // 암호에 공백 삭제
+                        user_pwdObj.val(user_pwdVal.split(" ").join(""));
+
+                        return;
+                    }else{
+
+                        user_pwdObj.val("");
+                        user_pwdObj.focus();
+
+                        return;
+                    }
                 }
 
                 // -----------------------

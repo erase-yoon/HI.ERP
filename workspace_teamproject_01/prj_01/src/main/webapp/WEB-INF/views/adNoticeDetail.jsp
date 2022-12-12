@@ -265,7 +265,7 @@
             <a href="adNotice.do"><span class="label">공지사항</span></a>
           </li>
           <li class="tree-view">
-            <a href="#"><span class="label">인사관리</span></a>
+            <a><span class="label">인사관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="adEmpReg.do"><span class="label">사원등록</span></a></li>
               <li><a href="adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
@@ -273,10 +273,10 @@
             </ul>
           </li>
           <li class="tree-view">
-            <a href="#"><span class="label">급여관리</span></a>
+            <a><span class="label">급여관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="adSal.do"><span class="label">급여계산</span></a></li>
-              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
+              <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
             </ul>
           </li>
         </ul>
@@ -289,7 +289,7 @@
 	<div id="contents-wrapper">
 	  <div class="content-header">
 	    <div class="content-title-bar">
-	      <h5>공지사항 상세보기<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
+	      <h5>공지사항 상세보기<span class="icon"></span></button></h5>
 	      <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
 	      <div class="tools responsive-except-desktop" >
 	        <div class="tools-group" style="cursor:none;">
@@ -371,9 +371,9 @@
 			    <td width="50%" bgcolor="white">${comment.content}</td>
 			    <td width="10%" bgcolor="white" align="center">${comment.reg_date}</td>
 		        <td width="3%" align="center" onClick="commentDelBtn(${comment.b_no},${comment.print_level});">
-		        	<input type="text" class="b_no" name="b_no" value="${comment.b_no}">
-                   	<input type="text" class="print_level" name="print_level" value="${comment.print_level}">
-                   	삭제
+		        	<input type="hidden" class="b_no" name="b_no" value="${comment.b_no}">
+							<input type="hidden" class="print_level" name="print_level" value="${comment.print_level}">
+							삭제
 		        </td>
          	</c:forEach>
          	</tr>

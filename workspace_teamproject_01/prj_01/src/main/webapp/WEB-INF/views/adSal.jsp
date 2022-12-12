@@ -105,7 +105,7 @@
               <a href="adNotice.do"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
-              <a href="#"><span class="label">인사관리</span></a>
+              <a><span class="label">인사관리</span></a>
               <ul class="tree-view-menu">
                 <li><a href="adEmpReg.do"><span class="label">사원등록</span></a></li>
                 <li><a href="adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
@@ -113,10 +113,10 @@
               </ul>
             </li>
             <li class="tree-view">
-              <a href="#"><span class="label">급여관리</span></a>
+              <a><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
                 <li><a href="adSal.do"><span class="label">급여계산</span></a></li>
-                <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
+                <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
               </ul>
             </li>
           </ul>
@@ -227,12 +227,12 @@
                   </td>
                 </td>
 
-                <td>
+                <!-- <td>
                   <label>급여제목</label>
                   <td>
                     <input type="text">
                   </td>
-                </td>
+                </td> -->
               </tr>
             </table>
           </td>
@@ -250,38 +250,31 @@
                 <div class="data-table-container">
                 
                   <!-- 총액 테이블 -->
-        			<table class="data-table data-table-sm" id="empListTable">
-						<colgroup></colgroup>
-						<thead>
-							<tr>
-								<th></th>
-								<th>사원명</th>
-								<th>사원번호</th>
-								<th>입사일</th>
-								<th>퇴사일</th>
-								<th>재직구분</th>
-								<th>부서</th>
-								<th>직급</th>
-								<th>이메일</th>
-								<th>연락처</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="empList" items="${requestScope.empList}" varStatus="status">
-								<tr style="cursor: pointer;" onclick="adEmpListCorr(${empList.no_emp})">
-									<th>${status.count}</th>
-									<td>${empList.nm_emp}
-									<td>${empList.no_emp}
-									<td>${empList.enter_date}
-									<td>${empList.retire_date}
-									<td>${empList.nm_cd_emp}
-									<td>${empList.nm_dept}
-									<td>${empList.nm_jik}
-									<td>${empList.email}
-									<td>${empList.phone}
-							</c:forEach>
-						</tbody>
-					</table>
+                  <table class="data-table data-table-sm" id="empListTable">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>사원명</th>
+                        <th>사원번호</th>
+                        <th>부서</th>
+                        <th>직급</th>
+                        <th>지급년월</th>
+                        <th>재직구분</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <c:forEach var="empList" items="${requestScope.empList}" varStatus="status">
+                        <tr style="cursor: pointer;" onclick="adEmpListCorr(${empList.no_emp})">
+                          <th>${status.count}</th>
+                          <td>${empList.nm_emp}</td>
+                          <td>${empList.no_emp}</td>
+                          <td>${empList.nm_dept}</td>
+                          <td>${empList.nm_jik}</td>
+                          <td>${empList.ym}</td>
+                          <td>${empList.nm_cd_emp}</td>
+                      </c:forEach>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -305,9 +298,9 @@
                             </button>
                             <div class="overflow-menu">
                               <ul>
-                                <li><a href="#" class="overflow-menu-item">없음</a></li>
-                                <li><a href="#" class="overflow-menu-item">오름차순</a></li>
-                                <li><a href="#" class="overflow-menu-item">내림차순</a></li>
+                                <li><a class="overflow-menu-item">없음</a></li>
+                                <li><a class="overflow-menu-item">오름차순</a></li>
+                                <li><a class="overflow-menu-item">내림차순</a></li>
                               </ul>
                             </div>
                           </div>
@@ -320,9 +313,9 @@
                             </button>
                             <div class="overflow-menu">
                               <ul>
-                                <li><a href="#" class="overflow-menu-item">없음</a></li>
-                                <li><a href="#" class="overflow-menu-item">오름차순</a></li>
-                                <li><a href="#" class="overflow-menu-item">내림차순</a></li>
+                                <li><a class="overflow-menu-item">없음</a></li>
+                                <li><a class="overflow-menu-item">오름차순</a></li>
+                                <li><a class="overflow-menu-item">내림차순</a></li>
                               </ul>
                             </div>
                           </div>
@@ -330,26 +323,13 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr>
-                        <th>1</th>
-                        <td>기본급</td>
-                        <td><input type="text"></td>
-                      </tr>
-                      <tr>
-                        <th>2</th>
-                        <td>B57828</td>
-                        <td>2020. 4. 6.</td>
-                      </tr>
-                      <tr>
-                        <th>3</th>
-                        <td>B57828</td>
-                        <td>2020. 4. 6.</td>
-                      </tr>
-                      <tr>
-                        <th>4</th>
-                        <td>B57828</td>
-                        <td>2020. 4. 6.</td>
-                      </tr>
+                        <c:forEach var="empList" items="${requestScope.empList}" varStatus="status">
+                          <tr style="cursor: default;" onclick="adEmpListCorr(${empList.no_emp})">
+                            <th>${status.count}</th>
+                            <td>${empList.nm_emp}</td>
+                            <td><input type="text"></td>
+                          </tr>
+                        </c:forEach>
                       </tbody>
                     </table>
                   </div>
@@ -375,9 +355,9 @@
                               </button>
                               <div class="overflow-menu">
                                 <ul>
-                                  <li><a href="#" class="overflow-menu-item">없음</a></li>
-                                  <li><a href="#" class="overflow-menu-item">오름차순</a></li>
-                                  <li><a href="#" class="overflow-menu-item">내림차순</a></li>
+                                  <li><a class="overflow-menu-item">없음</a></li>
+                                  <li><a class="overflow-menu-item">오름차순</a></li>
+                                  <li><a class="overflow-menu-item">내림차순</a></li>
                                 </ul>
                               </div>
                             </div>
@@ -390,9 +370,9 @@
                               </button>
                               <div class="overflow-menu">
                                 <ul>
-                                  <li><a href="#" class="overflow-menu-item">없음</a></li>
-                                  <li><a href="#" class="overflow-menu-item">오름차순</a></li>
-                                  <li><a href="#" class="overflow-menu-item">내림차순</a></li>
+                                  <li><a class="overflow-menu-item">없음</a></li>
+                                  <li><a class="overflow-menu-item">오름차순</a></li>
+                                  <li><a class="overflow-menu-item">내림차순</a></li>
                                 </ul>
                               </div>
                             </div>
@@ -400,26 +380,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                          <th>1</th>
-                          <td>건강보험</td>
-                          <td>2020. 4. 6.</td>
-                        </tr>
-                        <tr>
-                          <th>2</th>
-                          <td>B57828</td>
-                          <td>2020. 4. 6.</td>
-                        </tr>
-                        <tr>
-                          <th>3</th>
-                          <td>B57828</td>
-                          <td>2020. 4. 6.</td>
-                        </tr>
-                        <tr>
-                          <th>4</th>
-                          <td>B57828</td>
-                          <td>2020. 4. 6.</td>
-                        </tr>
+                          <c:forEach var="empList" items="${requestScope.empList}" varStatus="status">
+                            <tr style="cursor: default;" onclick="adEmpListCorr(${empList.no_emp})">
+                              <th>${status.count}</th>
+                              <td>${empList.nm_emp}</td>
+                              <td><input type="text"></td>
+                            </tr>
+                          </c:forEach>
                         </tbody>
                       </table>
                     </div>

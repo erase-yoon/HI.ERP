@@ -268,7 +268,7 @@
 					</div>
 				</div>
 				<div class="user-area responsive-except-desktop">
-					<span class="user-info">윤지우 (12345)</span>
+					<span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
 				</div>
 			</div>
 		</header>
@@ -296,13 +296,13 @@
 						<!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함--> <a
 						href="adNotice.jsp"><span class="label">공지사항</span></a>
 					</li>
-					<li class="tree-view"><a href="#"><span class="label">인사관리</span></a>
+					<li class="tree-view"><a><span class="label">인사관리</span></a>
 						<ul class="tree-view-menu">
 							<li><a href="adEmpReg.do"><span class="label">사원등록</span></a></li>
 							<li><a href="adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
 							<li><a href="adEmpList.do"><span class="label">사원명부 및 수정/삭제</span></a></li>
 						</ul></li>
-					<li class="tree-view"><a href="#"><span class="label">급여관리</span></a>
+					<li class="tree-view"><a><span class="label">급여관리</span></a>
 						<ul class="tree-view-menu">
 							<li><a href="adSal.do"><span class="label">급여계산</span></a></li>
 							<!--<li><a href="#"><span class="label">Menu3-1</span></a></li>-->
@@ -318,29 +318,28 @@
 				<div class="content-title-bar" style="z-index: 2; cursor: default;">
 					<h5>
 						사원등록
-						<button class="btn btn-sm btn-icon">
 							<span class="icon"></span>
 						</button>
 					</h5>
 					<!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
 					<div class="tools responsive-except-desktop" style="z-index: 3; cursor: default;">
 						<div class="tools-group" style="z-index: 4; cursor: default;">
-							<a href="#" class="tool-item">
+							<a class="tool-item">
 								<button class="tool-item" disabled
 									style="cursor: default; position: inherit; z-index: 5 !important;">
 									<span class="icon"><i class="Licon ico-datareset"></i></span> <span class="label">조회</span>
 								</button>
-							</a> <a href="#" class="tool-item saveBtn">
+							</a> <a class="tool-item saveBtn">
 								<button class="tool-item" disabled
 									style="cursor: default; position: inherit; z-index: 5 !important;">
 									<span class="icon "><i class="Licon ico-save"></i></span> <span class="label">저장</span>
 								</button>
-							</a> <a href="#" class="tool-item">
+							</a> <a class="tool-item">
 								<button class="tool-item" disabled
 									style="cursor: default; position: inherit; z-index: 5 !important;">
 									<span class="icon"><i class="Licon ico-add"></i></span> <span class="label">추가</span>
 								</button>
-							</a> <a href="#" class="tool-item">
+							</a> <a class="tool-item">
 								<button class="tool-item" disabled
 									style="cursor: default; position: inherit; z-index: 5 !important;">
 									<span class="icon"><i class="Licon ico-minus"></i></span> <span class="label">삭제</span>
@@ -637,7 +636,7 @@
 									<a href="javascript:location.reload();"><button type="button"
 											class="btn btn-md btn-gray btn-container wth-100">
 											<span class="label">취소</span>
-										</button></a> <a class="regBtn" href="#"><button type="button"
+										</button></a> <a class="regBtn"><button type="button"
 											class="btn btn-md btn-primary btn-container wth-100">
 											<span class="label">등록</span>
 										</button></a>
@@ -667,16 +666,16 @@
 								<td><img src="./assets/images/test_img.png"></td>
 							</tr>
 							<tr align="center">
-								<td>윤지우 대리</td>
+								<td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
 							</tr>
 							<tr align="center">
-								<td>(DB개발팀)</td>
+								<td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
 							</tr>
 							<tr align="center">
-								<td>010-1111-2222</td>
+								<td>${requestScope.infoList[0].PHONE}</td>
 							</tr>
 							<tr align="center">
-								<td>dbswldn@naver.com</td>
+								<td>${requestScope.infoList[0].EMAIL}</td>
 							</tr>
 						</table>
 
