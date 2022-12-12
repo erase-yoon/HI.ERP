@@ -33,6 +33,8 @@
 			// 삭제버튼
 			$(".boardDelBtn").bind("click",function(){
 				
+				commentDelBtn2();
+				
 				boardDelFormCheck();
 				
 			});
@@ -81,11 +83,11 @@
 
 					// 댓글 입력 성공 시
 					if(comCnt==1){
-						alert("게시글이 등록되었습니다.");
+						alert("댓글이 등록되었습니다.");
 						
 					}
 					else{
-						alert("게시글 등록에 실패했습니다.");
+						alert("댓글 등록에 실패했습니다.");
 					}
 				}
 				
@@ -152,11 +154,51 @@
 				}
 			});
 		}
-
+		
 		function goBoardDetailForm(b_no){
 			document.boardDetailForm.submit();
 		}
 		
+		
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		// 게시판 글 삭제시 b_no 가 같은 모든 댓글이 삭제되는 함수
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		
+		function commentDelBtn2(){
+			
+			var formObj = $("[name='boardUpDelForm']") 
+	
+			// -----------------------
+			// 비동기 방식으로 웹 서버에 접근하여
+			// 게시판 [삭제] 관련 입력양식의 데이터 전송
+			// -----------------------
+			$.ajax({
+
+				url : "/commentDelProc2.do"
+
+				, type : "post"
+
+				, data : $("[name='boardUpDelForm']").serialize()
+
+				// 웹 서버와 통신 후 
+				// 웹 서버의 응답을 성공적으로 받을 경우 
+				// 실행할 익명함수 설정
+				// 익명함수의 매개변수에는 웹 서버에서 받은
+				// [삭제 적용행의 개수]가 들어온다.
+				, success : function(commentDelCnt2){
+					
+					if(commentDelCnt2==1){
+
+					}
+				}
+				
+				, error : function(){
+					alert("웹 서버 접속에 실패했습니다.");
+				}
+			});
+		}
+
+
 		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 		// 댓글 삭제 버튼 관련 함수
 		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -265,7 +307,7 @@
             <a href="adNotice.do"><span class="label">공지사항</span></a>
           </li>
           <li class="tree-view">
-            <a><span class="label">인사관리</span></a>
+            <a href="#"><span class="label">인사관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="adEmpReg.do"><span class="label">사원등록</span></a></li>
               <li><a href="adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
@@ -273,10 +315,10 @@
             </ul>
           </li>
           <li class="tree-view">
-            <a><span class="label">급여관리</span></a>
+            <a href="#"><span class="label">급여관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="adSal.do"><span class="label">급여계산</span></a></li>
-              <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
+              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
             </ul>
           </li>
         </ul>
@@ -289,7 +331,7 @@
 	<div id="contents-wrapper">
 	  <div class="content-header">
 	    <div class="content-title-bar">
-	      <h5>공지사항 상세보기<span class="icon"></span></button></h5>
+	      <h5>공지사항 상세보기<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
 	      <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
 	      <div class="tools responsive-except-desktop" >
 	        <div class="tools-group" style="cursor:none;">
@@ -302,7 +344,7 @@
 	            <span class="icon"><i class="Licon ico-save"></i></span>
 	            <span class="label">저장</span>
 	          </button>
-	          <button class="tool-item">
+	          <button class="tool-item" disabled>
 	            <a href="adNoticeReg.do">
 	            <span class="icon"><i class="Licon ico-add"></i></span>
 	            <span class="label">추가</span></a>
@@ -323,7 +365,7 @@
 		<!-- 수정버튼 -->
 		
 		<div class="txt-right margin-right">
-		  <button class="boardUpBtn btn btn-md btn-primary btn-container wth-100" style="margin-right:5%;">
+		  <button class="boardUpBtn btn btn-md btn-primary btn-container wth-100" style="margin-right:5.5%;">
 		    <span class="label">수정</span>
 		  </button></a>
 		</div>
@@ -370,10 +412,10 @@
 				<td width="7%" align="center">${comment.nm_emp}</td>
 			    <td width="50%" bgcolor="white">${comment.content}</td>
 			    <td width="10%" bgcolor="white" align="center">${comment.reg_date}</td>
-		        <td width="3%" align="center" onClick="commentDelBtn(${comment.b_no},${comment.print_level});">
+		        <td bgcolor="white"  style="cursor:pointer" width="1%" align="center" onClick="commentDelBtn(${comment.b_no},${comment.print_level});">
 		        	<input type="hidden" class="b_no" name="b_no" value="${comment.b_no}">
-							<input type="hidden" class="print_level" name="print_level" value="${comment.print_level}">
-							삭제
+                   	<input type="hidden" class="print_level" name="print_level" value="${comment.print_level}">
+                   	x
 		        </td>
          	</c:forEach>
          	</tr>
@@ -386,7 +428,7 @@
 
         <!-- 공지사항 댓글입력폼 -->
         
-        <form name="boardComForm" class="boardComForm" action="">
+        <form name="boardComForm" class="boardComForm">
 	        <table align="center" style="width:80%;">
 	          	<tr>	          		
 	            	<td align="center">

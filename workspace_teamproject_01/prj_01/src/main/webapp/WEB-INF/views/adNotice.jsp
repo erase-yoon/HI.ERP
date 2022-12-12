@@ -120,7 +120,7 @@
               <a href="adNotice.do"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
-              <a><span class="label">인사관리</span></a>
+              <a href="#"><span class="label">인사관리</span></a>
               <ul class="tree-view-menu">
                 <li><a href="adEmpReg.do"><span class="label">사원등록</span></a></li>
                 <li><a href="adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
@@ -128,7 +128,7 @@
               </ul>
             </li>
             <li class="tree-view">
-              <a><span class="label">급여관리</span></a>
+              <a href="#"><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
                 <li><a href="adSal.do"><span class="label">급여계산</span></a></li>
               </ul>
@@ -142,7 +142,7 @@
       <div id="contents-wrapper">
         <div class="content-header">
           <div class="content-title-bar">
-            <h5>공지사항<span class="icon"></span></button></h5>
+            <h5>공지사항<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
             <div class="tools responsive-except-desktop" >
               <div class="tools-group" style="cursor:none;">
                 <button class="tool-item" disabled style="cursor:default;">
@@ -188,7 +188,7 @@
         </thead>
         <tbody>
         <c:forEach var="board" items="${requestScope.boardList}" varStatus="loopTagStatus">
-        <tr style="cursor:pointer" onClick="goEmpNoticeDetail(${board.b_no})">
+        <tr style="cursor:pointer;" onClick="goEmpNoticeDetail(${board.b_no})">
           <th>
             <span class="label">${requestScope.pagingMap.serialNo_desc - loopTagStatus.index}</span>
           </th>

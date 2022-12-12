@@ -370,23 +370,15 @@ public class BoardController {
 	)
 	@ResponseBody
 	public int boardComProc( 
-			
 			BoardDTO boardDTO
-			,@RequestParam(value = "b_no") int b_no
-			,@RequestParam(value = "no_emp") String no_emp
-            ,@RequestParam(value = "content_com") String content_com
-            ,HttpSession session
-
+            , HttpSession session
 	){
-//		System.out.println("boardComProc 컨트롤러 시작");
-		boardDTO.setNo_emp((String)session.getAttribute("no_emp"));
-
-//		System.out.println(boardDTO.getNo_emp());
 		
 		// [boardServiceDAOImpl 객체]의 insertBoard 메소드를 호출하여 
 		// 게시판 글을 입력하고 [입력이 적용될 행의 개수] 얻기
 		int boardComCnt = this.boardService.insertComment(boardDTO);
-			
+		
+//		System.out.println(boardComCnt);
 		// [입력 적용행의 개수] 얻기
 //		System.out.println("boardComProc 컨트롤러 종료");
 		return boardComCnt; 
@@ -408,7 +400,6 @@ public class BoardController {
 		, HttpSession session
 		// ---------------------------------------------
 	){
-		
 		// ---------------------------------------------
 		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id = (String)session.getAttribute("user_id");
@@ -420,9 +411,7 @@ public class BoardController {
 		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
 		
-		;
-		// ---------------------------------------------
-		
+		// ---------------------------------------------	
 		// [BoardServiceImpl 객체]의 getBoard 메소드를 호출하여 
 		// [1개의 게시판 글]을 boardDTO 객체에 담아오기
 		BoardDTO boardDTO = this.boardService.getBoard(b_no, true);
@@ -461,19 +450,11 @@ public class BoardController {
 	// ---------------------------------------------------------------
 	@RequestMapping(value="/empNoticeDetail.do")
 	public ModelAndView empNoticeDetail(
-			
-		// "b_no"라는 파라미터 명에 해당하는 파라미터 값을 꺼내 int b_no에 저장
 		@RequestParam(value = "b_no") int b_no
-		// 상세보기 할 게시판 고유번호가 들어오는 매개변수 선언
-		// ---------------------------------------------
 		, InfoDTO infoDTO
-		, HttpSession session
-		// ---------------------------------------------
-	){
-		
-		// ---------------------------------------------
-		// session에 저장한 user_id를 user_id 변수에 저장
-		String user_id = (String)session.getAttribute("user_id");
+		, HttpSession session		
+	){		
+String user_id = (String)session.getAttribute("user_id");
 		
 		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
@@ -481,15 +462,17 @@ public class BoardController {
 		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
 		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
-		// ---------------------------------------------
 		
+		// ---------------------------------------------	
 		// [BoardServiceImpl 객체]의 getBoard 메소드를 호출하여 
 		// [1개의 게시판 글]을 boardDTO 객체에 담아오기
 		BoardDTO boardDTO = this.boardService.getBoard(b_no, true);
 		// BoardDTO boardDTO를 BoardVO boardVO로도 사용
 		// VO : Value Object
 		// DTO : Data Transfer Object
-
+		
+		List<Map<String, String>> comment = this.boardDAO.getComment(b_no);
+		
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
 		
@@ -506,7 +489,7 @@ public class BoardController {
 		// [ModelAndView 객체]에 1개의 게시판 글을 저장한
 		// BoardDTO 객체 저장하기
 		mav.addObject("boardDTO", boardDTO);
-
+		mav.addObject("comment", comment);
 		// [ModelAndView 객체] 리턴
 		return mav;
 		// Spring은 ModelAndView 객체 리턴 시
@@ -616,8 +599,6 @@ public class BoardController {
 		// 게시판 글을 삭제하고 [삭제가 적용될 행의 개수] 얻기
 		int deleteBoardCnt = this.boardService.deleteBoard(boardDTO);
 		
-		// b_no 가 같은 댓글들 모두 삭제
-		int deleteCommentCnt1 = this.boardService.deleteComment1(boardDTO);
 		
 		// [삭제 적용행의 개수] 얻기
 		return deleteBoardCnt;
@@ -649,6 +630,37 @@ public class BoardController {
 //		System.out.println("commentDelProc.do 컨트롤러에서 종료");
 		return deleteCommentCnt;
 	}
+	
+	
+	
+	
+	// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	// /commentDelProc2.do로 접근하면 호출되는 메소드 선언(게시글 댓글 모두 삭제하는 메소드)
+	// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	@RequestMapping( 
+			value="/commentDelProc2.do" 
+			,method=RequestMethod.POST
+			,produces="application/json;charset=UTF-8"
+	)
+	@ResponseBody
+	public int commentDelProc2( 
+			
+			BoardDTO boardDTO
+	){
+//		System.out.println("commentDelProc.do 컨트롤러 시작");
+//		System.out.println(boardDTO.getPrint_level());
+//		System.out.println(boardDTO.getB_no());
+		
+		// b_no 가 같은 댓글들 모두 삭제
+		int deleteCommentCnt1 = this.boardService.deleteComment1(boardDTO);
+		
+		// [삭제 적용행의 개수] 얻기
+//		System.out.println("commentDelProc.do 컨트롤러에서 종료");
+		return 1;
+	}
+	
+	
+	
 	
 //	// ---------------------------------------------------------------
 //	// 가상주소 /boardReplyForm.do로 접근하면 호출되는 메소드 선언

@@ -104,6 +104,9 @@ public class BoardServiceImpl implements BoardService{
 		return deleteBoardCnt;
 	}
 	
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	// 댓글 삭제
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	public int deleteComment(BoardDTO boardDTO) {
 		System.out.println(boardDTO.getPrint_level());
 		System.out.println(boardDTO.getB_no());
@@ -128,18 +131,12 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println("deleteComment 보드서비스임플 종료");
 		return deleteCommentCnt;
 	}
+
 	
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	// 게시글 삭제시 b_no가 같은 댓글 모두 삭제하는 메소드
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	public int deleteComment1(BoardDTO boardDTO) {
-		
-		// 삭제할 게시판의 개수 얻기
-		int commentCnt1 = this.boardDAO.getCommentCnt(boardDTO);
-		
-		if(commentCnt1==0) {
-			return 0;
-		}
-		
-		// 삭제될 게시글의 동생 글의 출력순서 번호를 1씩 감소시키기
-		//this.boardDAO.updateCommentPrintNoDown(boardDTO);
 		
 		// 삭제 실행 후 삭제 적용행의 개수 얻기
 		int deleteCommentCnt1 = this.boardDAO.deleteComment1(boardDTO);

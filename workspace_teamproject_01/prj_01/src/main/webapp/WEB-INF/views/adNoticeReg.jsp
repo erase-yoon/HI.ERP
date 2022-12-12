@@ -202,7 +202,7 @@
             <a href="adNotice.do"><span class="label">공지사항</span></a>
           </li>
           <li class="tree-view">
-            <a><span class="label">인사관리</span></a>
+            <a href="#"><span class="label">인사관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="adEmpReg.do"><span class="label">사원등록</span></a></li>
               <li><a href="adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
@@ -210,10 +210,10 @@
             </ul>
           </li>
           <li class="tree-view">
-            <a><span class="label">급여관리</span></a>
+            <a href="#"><span class="label">급여관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="adSal.do"><span class="label">급여계산</span></a></li>
-              <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
+              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
             </ul>
           </li>
         </ul>
@@ -225,7 +225,7 @@
     <div id="contents-wrapper">
       <div class="content-header">
         <div class="content-title-bar">
-          <h5>공지사항 등록<span class="icon"></span></button></h5>
+          <h5>공지사항 등록<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
           <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
           <div class="tools responsive-except-desktop" >
             <div class="tools-group" style="cursor:none;">

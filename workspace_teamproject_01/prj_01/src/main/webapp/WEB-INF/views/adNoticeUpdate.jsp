@@ -206,7 +206,7 @@
           </div>
         </div>
         <div class="user-area responsive-except-desktop">
-          <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
+          <span class="user-info">윤지우 (12345)</span>
         </div>
       </div>
     </header>
@@ -233,7 +233,7 @@
             <a href="adNotice.do"><span class="label">공지사항</span></a>
           </li>
           <li class="tree-view">
-            <a><span class="label">인사관리</span></a>
+            <a href="#"><span class="label">인사관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="adEmpReg.do"><span class="label">사원등록</span></a></li>
               <li><a href="adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
@@ -241,10 +241,10 @@
             </ul>
           </li>
           <li class="tree-view">
-            <a><span class="label">급여관리</span></a>
+            <a href="#"><span class="label">급여관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="adSal.do"><span class="label">급여계산</span></a></li>
-              <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
+              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
             </ul>
           </li>
         </ul>
@@ -256,7 +256,7 @@
     <div id="contents-wrapper">
       <div class="content-header">
         <div class="content-title-bar">
-          <h5>공지사항 수정<span class="icon"></span></button></h5>
+          <h5>공지사항 수정<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
           <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
           <div class="tools responsive-except-desktop" >
             <div class="tools-group" style="cursor:none;">
@@ -337,16 +337,16 @@
               <td><img src="./assets/images/test_img.png"></td>
             </tr>
             <tr align="center">
-              <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
+              <td>윤지우 대리</td>                                     
             </tr>
             <tr align="center">
-              <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
+              <td>(DB개발팀)</td>                                     
             </tr>
             <tr align="center">
-              <td>${requestScope.infoList[0].PHONE}</td>
+              <td>010-1111-2222</td>
             </tr>
             <tr align="center">
-              <td>${requestScope.infoList[0].EMAIL}</td>
+              <td>dbswldn@naver.com</td>
             </tr>
           </table>
 

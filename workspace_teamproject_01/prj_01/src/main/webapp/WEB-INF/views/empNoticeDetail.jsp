@@ -18,6 +18,235 @@
     <!-- Responsive Viewport & Fixed Scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>공지사항 상세보기</title>
+     <script>
+    
+		$(function(){
+			
+			
+
+			// 삭제버튼
+			$(".boardDelBtn").bind("click",function(){
+				
+				commentDelBtn2();
+				
+				boardDelFormCheck();
+				
+			});
+
+			// 댓글등록버튼
+			$(".boardComBtn").bind("click",function(){
+				
+				boardComFormCheck();
+				
+			});
+			
+			
+		});
+		
+		function boardComFormCheck(){
+			
+			var formObj = $("[name='boardComForm']");
+			
+			var content_com = formObj.find(".content_com").val();
+	
+			if(content_com.length==0){
+				alert("내용을 입력해주세요.");
+				return;
+			}
+
+			if(content_com.toUpperCase().indexOf(("<script>").toUpperCase())>=0){
+
+				alert("댓글에 <script>는 사용할 수 없습니다.");
+				formObj.find(".content_com").val("");
+				return;
+			}
+			
+			if(confirm("댓글을 등록하시겠습니까?")==false){
+				return;
+			}
+			
+			$.ajax({
+
+				url : "/boardComProc.do"
+				
+				, type : "post"
+				
+				, data : $("[name='boardComForm']").serialize()
+
+				, success : function(comCnt){
+
+					// 댓글 입력 성공 시
+					if(comCnt==1){
+						alert("댓글이 등록되었습니다.");
+						
+					}
+					else{
+						alert("댓글 등록에 실패했습니다.");
+					}
+				}
+				
+				, error : function(){
+					alert("웹 서버 접속 실패");
+				}
+			});
+			
+		}
+		
+		
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		// 게시판 수정/삭제 화면으로 이동하는 함수 선언
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		function goBoardUpDelForm(){
+
+			document.boardUpDelForm.submit();
+		}
+
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		// 게시판 글 삭제 관련 함수 설정
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		function boardDelFormCheck(){
+			
+			var formObj = $("[name='boardUpDelForm']") 
+			
+			if(confirm("삭제하시겠습니까?")==false){
+				return;
+			}
+
+			// -----------------------
+			// 비동기 방식으로 웹 서버에 접근하여
+			// 게시판 [삭제] 관련 입력양식의 데이터 전송
+			// -----------------------
+			$.ajax({
+
+				url : "/boardDelProc.do"
+
+				, type : "post"
+
+				, data : $("[name='boardUpDelForm']").serialize()
+
+				// 웹 서버와 통신 후 
+				// 웹 서버의 응답을 성공적으로 받을 경우 
+				// 실행할 익명함수 설정
+				// 익명함수의 매개변수에는 웹 서버에서 받은
+				// [삭제 적용행의 개수]가 들어온다.
+				, success : function(boardDelCnt){
+
+					if(boardDelCnt==1){
+						alert("게시글이 삭제되었습니다.");
+						document.boardListForm.submit();
+					}
+					
+					else if(boardDelCnt==0){
+						alert("이미 삭제된 게시글입니다.");
+						document.boardListForm.submit();
+						
+					}
+				}
+				
+				, error : function(){
+					alert("웹 서버 접속에 실패했습니다.");
+				}
+			});
+		}
+		
+		function goBoardDetailForm(b_no){
+			document.boardDetailForm.submit();
+		}
+		
+		
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		// 게시판 글 삭제시 b_no 가 같은 모든 댓글이 삭제되는 함수
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		
+		function commentDelBtn2(){
+			
+			var formObj = $("[name='boardUpDelForm']") 
+	
+			// -----------------------
+			// 비동기 방식으로 웹 서버에 접근하여
+			// 게시판 [삭제] 관련 입력양식의 데이터 전송
+			// -----------------------
+			$.ajax({
+
+				url : "/commentDelProc2.do"
+
+				, type : "post"
+
+				, data : $("[name='boardUpDelForm']").serialize()
+
+				// 웹 서버와 통신 후 
+				// 웹 서버의 응답을 성공적으로 받을 경우 
+				// 실행할 익명함수 설정
+				// 익명함수의 매개변수에는 웹 서버에서 받은
+				// [삭제 적용행의 개수]가 들어온다.
+				, success : function(commentDelCnt2){
+					
+					if(commentDelCnt2==1){
+
+					}
+				}
+				
+				, error : function(){
+					alert("웹 서버 접속에 실패했습니다.");
+				}
+			});
+		}
+
+
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		// 댓글 삭제 버튼 관련 함수
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		function commentDelBtn(b_no, print_level){
+			
+			var formObj = $("[name='boardPrintComForm']") 
+			
+			var inputData = {
+				b_no : b_no
+				,print_level : print_level
+			};
+			
+			if(confirm("삭제하시겠습니까?")==false){
+				return;
+			}
+
+			// -----------------------
+			// 비동기 방식으로 웹 서버에 접근하여
+			// 게시판 [삭제] 관련 입력양식의 데이터 전송
+			// -----------------------
+			$.ajax({
+
+				url : "/commentDelProc.do"
+
+				, type : "post"
+
+				, data : inputData
+				
+				, dataType : "json"
+				
+				// 웹 서버와 통신 후 
+				// 웹 서버의 응답을 성공적으로 받을 경우 
+				// 실행할 익명함수 설정
+				// 익명함수의 매개변수에는 웹 서버에서 받은
+				// [삭제 적용행의 개수]가 들어온다.
+				, success : function(commentDelCnt){
+					
+					if(commentDelCnt==1){
+						alert("댓글이 삭제되었습니다.");
+						location.reload();
+					}
+					
+					else if(commentDelCnt==0){
+						alert("이미 삭제된 댓글입니다.");
+					}
+				}
+				, error : function(){
+					alert("웹 서버 접속에 실패했습니다.");
+				}
+			});
+			
+		}
+
+	</script>
   </head>
   <body class="side-first by-menu popup-menu-open">
   <div id="wrapper">
@@ -40,7 +269,7 @@
           </div>
         </div>
         <div class="user-area responsive-except-desktop">
-          <span class="user-info">윤지우 (12345)</span>
+          <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
         </div>
       </div>
     </header>
@@ -56,6 +285,8 @@
       </div>
     </aside>
 
+	<!-- 사이드 바 메뉴 -->
+
     <div id="side-bar-sub" class="">
       <div class="tab-contents" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU">
         <!-- search bar -->
@@ -67,23 +298,23 @@
             <a href="empNotice.do"><span class="label">공지사항</span></a>
           </li>
           <li class="tree-view">
-            <a><span class="label">인사관리</span></a>
+            <a href="#"><span class="label">인사관리</span></a>
             <ul class="tree-view-menu">
               <li><a href=""><span class="label">개인정보조회</span></a></li>
             </ul>
           </li>
           <li class="tree-view">
-            <a><span class="label">급여관리</span></a>
+            <a href="#"><span class="label">급여관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="empSalary.do"><span class="label">급여명세서조회</span></a></li>
-              <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
+              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
             </ul>
           </li>
         </ul>
       </div>
-
-      
     </div>
+
+<!-- 위쪽 버튼 -->
 
     <div id="contents-wrapper">
       <div class="content-header">
@@ -111,88 +342,81 @@
               </button>
             </div>
           </div>
-          
         </div>
       </div>
 
-
-
-
-      <br><br>
-
-      <!-- 공지사항 테이블 -->
-      <table align="center" width="80%" border="1" cellspacing="0" cellpadding="10" style="border-color:white;" >
-        <tr align="left">
-          <td width="3%" align="center">번호</td>
-          <td width="3%" bgcolor="white">${requestScope.boardDTO.b_no}</td>
-          <td width="3%" align="center">제목</td>
-          <td width="20%" bgcolor="white">${requestScope.boardDTO.subject}</td>
-          <td width="3%" align="center">작성일</td>
-          <td width="10%" bgcolor="white">${requestScope.boardDTO.reg_date}</td>
-          <td width="3%" align="center">조회수</td>
-          <td width="10%" bgcolor="white">${requestScope.boardDTO.readcount}</td>
-        </tr>
-        <tr>
-          <td colspan="8" height="400px" bgcolor="white">${requestScope.boardDTO.content}</td>
-        </tr>
-      </table>
       <br><br>
 
 
+     <!-- 공지사항 테이블 -->
+		
+		<form name="boardDetailForm" class="boardDetailForm" action="">
+		 <table align="center" width="80%" border="1" cellspacing="0" cellpadding="10" style="border-color:lightgray;" >
+		   <tr align="left">
+		     <td width="3%" align="center">제목</td>
+		     <td width="30%" bgcolor="white">${requestScope.boardDTO.subject}</td>
+		     <td width="3%" align="center">작성일</td>
+		     <td width="10%" bgcolor="white">${requestScope.boardDTO.reg_date}</td>
+		     <td width="3%" align="center">조회수</td>
+		     <td width="10%" bgcolor="white">${requestScope.boardDTO.readcount}</td>
+		   </tr>
+		   <tr>
+		     <td colspan="8" height="400px" bgcolor="white">${requestScope.boardDTO.content}</td>
+		   </tr>
+		 </table>
+		 <!-- (${requestScope.infoList[0].NO_EMP}) -->
+		</form>
+		
+		<!-- 웹 서버에 action="/boardUpDelForm.do" URL 주소로 접속하기 위한 from 태그 선언 -->
+		<form action="/adNoticeUpdate.do" name="boardUpDelForm" method="post">
+			<input type="hidden" name="b_no" value="${requestScope.boardDTO.b_no}">
+		</form>
+		    
+	 	<br>
 
 
-      <!-- 공지사항 댓글 테이블 -->
-      
-      <table width="80%" align="center" border="1" cellspacing="0" cellpadding="10" style="border-color:white">
-          
-        <tr>
-          <td width="7%" align="center">강하경</td>
-          <td bgcolor="white">댓글댓글댓글댓글 댓글 댓 글 댓 글 댓글댓글 댓 글 댓글 댓글</td>
-        </tr>
-        <tr>
-          <td width="7%" align="center">고지훈</td>
-          <td bgcolor="white">가나다라마바사아자차카타파하 가나다라마바사 아자차카타파하가나다라라라라라라라</td>
-        </tr>
-        <tr>
-          <td width="7%" align="center">윤지우</td>
-          <td bgcolor="white">공지사항공지사항 댓글 댓글</td>
-        </tr>
-        <tr>
-          <td width="7%" align="center">김영찬</td>
-          <td bgcolor="white">댓글댓글댓글댓글 댓글 댓 글 댓 글 댓글댓글 댓 글 댓글 댓글</td>
-        </tr>
-        <tr>
-          <td width="7%" align="center">유은희</td>
-          <td bgcolor="white">댓글댓글댓글댓글 댓글 댓 글 댓 글 댓글댓글 댓 글 댓글 댓글</td>
-        </tr>
-        <tr>
-          <td width="7%" align="center">윤동림</td>
-          <td bgcolor="white">로아고수</td>
-        </tr>
-        <tr>
-          <td width="7%" align="center">박종윤</td>
-          <td bgcolor="white">공지사항 수정버튼 추가하기 / 공지사항 댓글에 삭제버튼 추가하기</td>
-        </tr>
-      </table>
 
-        <br><br>
+    <!-- 공지사항 댓글 테이블 -->
+      	
+		<form name="boardPrintComForm" class="boardPrintComForm">
+		<table width="80%" align="center" border="1" cellspacing="0" cellpadding="10" style="border-color:lightgray">
+		    
+			<c:forEach var="comment" items="${requestScope.comment}" varStatus="loopTagStatus">
+			<tr>
+				<td width="7%" align="center">${comment.nm_emp}</td>
+			    <td width="50%" bgcolor="white">${comment.content}</td>
+			    <td width="10%" bgcolor="white" align="center">${comment.reg_date}</td>
+		        
+         	</c:forEach>
+         	</tr>
+		</table>
+		
+		</form>
+		<br>
 
 
-        <!-- 공지사항 댓글입력폼 -->
-        <table align="center" style="width:80%;">
-          <tr>
-            <td align="center">
-              <div class="textarea" style="width:100%;">
-                <textarea class="textarea" placeholder="댓글을 입력하세요." rows="5" maxlength="500"></textarea>
-              </div>
-            </td>
-            <td align="right" style="width:10%;">
-              <button class="btn btn-primary btn-xl btn-container btn-floating">
-                <span class="label">등록</span>
-              </button>
-            </td>
-          </tr>
-        </table>
+       <!-- 공지사항 댓글입력폼 -->
+        
+        <form name="boardComForm" class="boardComForm">
+	        <table align="center" style="width:80%;">
+	          	<tr>	          		
+	            	<td align="center">
+		            	<div class="textarea" style="width:100%;">
+		                	<textarea name="content_com" class="content_com" placeholder="댓글을 입력하세요." rows="5" maxlength="200"></textarea>
+		              	</div>
+		            </td>
+		            <td align="right" style="width:10%;">
+		              	<button class="boardComBtn btn btn-primary btn-xl btn-container btn-floating">
+		                	<span class="label">등록</span>
+		              	</button>
+	            	</td>
+	          	</tr>
+	        </table>
+			<input type="hidden" name="no_emp" value="${requestScope.infoList[0].NO_EMP}">
+			<input type="hidden" name="b_no" value="${requestScope.boardDTO.b_no}">
+        </form>
+        <form name="boardListForm" class="boardListForm" action="/empNotice.do"></form>
+        
         <br><br>
         <br><br>
         <br><br>
@@ -202,6 +426,7 @@
 
 
   <!-- 내정보 팝업 -->
+  
   <div class="popup-wrapper">
     <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
     <!-- option class / popup-warning, popup-full -->
@@ -218,20 +443,18 @@
               <td><img src="./assets/images/test_img.png"></td>
             </tr>
             <tr align="center">
-              <td>윤지우 대리</td>                                     
+              <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
             </tr>
             <tr align="center">
-              <td>(DB개발팀)</td>                                     
+              <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
             </tr>
             <tr align="center">
-              <td>010-1111-2222</td>
+              <td>${requestScope.infoList[0].PHONE}</td>
             </tr>
             <tr align="center">
-              <td>dbswldn@naver.com</td>
+              <td>${requestScope.infoList[0].EMAIL}</td>
             </tr>
           </table>
-
-          
         </div>
 
         <div class="popup-tools txt-right" style="margin-top:-20px;">
@@ -239,9 +462,11 @@
           <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
             <span class="label" >닫기</span>
           </button>
+          
         </div>
       </div>
     </div>
   </div>
+  
 </body>
 </html>

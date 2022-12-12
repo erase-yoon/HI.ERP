@@ -18,16 +18,10 @@
     <!-- Responsive Viewport & Fixed Scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>공지사항</title>
-    <script>
-//******************************************************** 
-// body 태그 안의 모든 내용을 읽어들인 이후 호출할 자스 코딩 설정하기
-//******************************************************** 
-
-
-
-
-	
-	
+     <script>
+	//******************************************************** 
+	// body 태그 안의 모든 내용을 읽어들인 이후 호출할 자스 코딩 설정하기
+	//******************************************************** 
 		
 		function goEmpNoticeDetail(
 				b_no	//클릭한 행의 게시판 번호가 들어오는 매개변수
@@ -74,121 +68,118 @@
 	</script>
   </head>
   <body class="side-first by-menu popup-menu-open">
-  <div id="wrapper">
-    <header id="header-bar" class="on-light">
-      <div id="header-bar-main">
-        <button class="menu-toggle float-l" onclick="$('body').addClass('mobile-menu-open')">
-          <span class="icon"><i class="Licon ico-menu"></i></span>
-        </button>
-        <div class="logo-area">
+    <div id="wrapper">
+      <header id="header-bar" class="on-light">
+        <div id="header-bar-main">
+          <button class="menu-toggle float-l" onclick="$('body').addClass('mobile-menu-open')">
+            <span class="icon"><i class="Licon ico-menu"></i></span>
+          </button>
+          <div class="logo-area">
             <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
-        </div>
-        <div class="utility-area">
-          <div class="utility-group">
-            <a class="utility">
-              <span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
-            </a>
-            <a class="utility logout">
-              <span class="icon"><i class="Licon ico-logout"></i></span>
-            </a>
           </div>
-        </div>
-        <div class="user-area responsive-except-desktop">
-          <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
-        </div>
-      </div>
-    </header>
-
-    <aside id="side-bar" class="slim tab">
-      <button class="side-bar-toggle tab-item" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU"  onclick="$.Lithium.sideSubMenuToggle().toggleSideBar();">
-        <span class="icon"><i class="Licon ico-menu" ></i></span>
-        <span class="icon"><i class="Licon ico-close"></i></span>
-      </button>
-      <div class="menu-area">
-        <div class="menu menu-vertical">
-        </div>
-      </div>
-    </aside>
-
-    <div id="side-bar-sub" class="">
-      <div class="tab-contents" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU">
-        <!-- search bar -->
-        <div class="searchbar_con"><img src="assets/images/Biglogo.png"></div>
-        <!-- menu -->
-        <ul class="menu-accordion">
-          <li>
-            <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
-            <a href="empNotice.do"><span class="label">공지사항</span></a>
-          </li>
-          <li class="tree-view">
-            <a href="#"><span class="label">인사관리</span></a>
-            <ul class="tree-view-menu">
-              <li><a href="adEmpReg.do"><span class="label">개인정보조회</span></a></li>
-            </ul>
-          </li>
-          <li class="tree-view">
-            <a href="#"><span class="label">급여관리</span></a>
-            <ul class="tree-view-menu">
-              <li><a href="empSalary.do"><span class="label">급여명세서조회</span></a></li>
-              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      
-    </div>
-
-    <div id="contents-wrapper">
-      <div class="content-header">
-        <div class="content-title-bar">
-          <h5>공지사항<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
-          <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
-          <div class="tools responsive-except-desktop" >
-            <div class="tools-group" style="cursor:none;">
-              <button class="tool-item" disabled style="cursor:default;">
-                <span class="icon"><i class="Licon ico-datareset"></i></span>
-                <span class="label">조회</span>
-              </button>
-              <button class="tool-item" disabled style="cursor:default;">
-                <span class="icon"><i class="Licon ico-save"></i></span>
-                <span class="label">저장</span>
-              </button>
-              <button class="tool-item" disabled style="cursor:default;">
-                <span class="icon"><i class="Licon ico-add"></i></span>
-                <span class="label">추가</span>
-              </button>
-              <button class="tool-item" disabled style="cursor:default;">
-                <span class="icon"><i class="Licon ico-minus"></i></span>
-                <span class="label">삭제</span>
-              </button>
+          <div class="utility-area">
+            <div class="utility-group">
+              <a class="utility">
+                <span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
+              </a>
+              <a class="utility logout">
+                <span class="icon"><i class="Licon ico-logout"></i></span>
+              </a>
             </div>
           </div>
-          
+          <div class="user-area responsive-except-desktop">
+            <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
+          </div>
+        </div>
+      </header>
+  
+      <aside id="side-bar" class="slim tab">
+        <button class="side-bar-toggle tab-item" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU"  onclick="$.Lithium.sideSubMenuToggle().toggleSideBar();">
+          <span class="icon"><i class="Licon ico-menu" ></i></span>
+          <span class="icon"><i class="Licon ico-close"></i></span>
+        </button>
+        <div class="menu-area">
+          <div class="menu menu-vertical"></div>
+        </div>
+      </aside>
+  
+      <div id="side-bar-sub" class="">
+        <div class="tab-contents" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU">
+          <!-- search bar -->
+          <div class="searchbar_con"><img src="assets/images/Biglogo.png"></div>
+          <!-- menu -->
+          <ul class="menu-accordion">
+            <li>
+              <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
+              <a href="empNotice.do"><span class="label">공지사항</span></a>
+            </li>
+            <li class="tree-view">
+              <a href="#"><span class="label">인사관리</span></a>
+              <ul class="tree-view-menu">
+                <li><a href="empUserInfo.do"><span class="label">개인정보조회</span></a></li>
+              </ul>
+            </li>
+            <li class="tree-view">
+              <a href="#"><span class="label">급여관리</span></a>
+              <ul class="tree-view-menu">
+                <li><a href="empSalary.do"><span class="label">급여명세서 조회</span></a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
-
-
-
-
-      <br><br><br><br><br><br><br><br>
-
-
-
-
-
+  
+      <div id="contents-wrapper">
+        <div class="content-header">
+          <div class="content-title-bar">
+            <h5>공지사항<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
+            <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
+            <div class="tools responsive-except-desktop" >
+              <div class="tools-group" style="cursor:none;">
+                <button class="tool-item" disabled style="cursor:default;">
+                  <span class="icon"><i class="Licon ico-datareset"></i></span>
+                  <span class="label">조회</span>
+                </button>
+                <button class="tool-item" disabled style="cursor:default;">
+                  <span class="icon"><i class="Licon ico-save"></i></span>
+                  <span class="label">저장</span>
+                </button>
+                <button class="tool-item" disabled style="cursor:default;">
+                  <span class="icon"><i class="Licon ico-add"></i></span>
+                  <span class="label">추가</span></a>
+                </button>
+                <button class="tool-item" disabled style="cursor:default;">
+                  <span class="icon"><i class="Licon ico-minus"></i></span>
+                  <span class="label">삭제</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+        <br><br><br><br><br><br><br><br>
+  
+  
+  
+  
+  
+       <!-- 공지사항 테이블 -->
+  
       <table class="table table-md table-top">
-        <thead>
-        <tr>
-          <th>번호</th>
-          <th>제목</th>
-          <th>작성일</th>
-          <th>조회수</th>
+        <thead align="center">
+        <tr align="center">
+          <th width=6%>번호</th>
+          <th width=25%>제목</th>
+          <th width=10%>작성일</th>
+          <th width=8%>조회수</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="board" items="${requestScope.boardList}" varStatus="loopTagStatus">
-        <tr style="cursor:pointer" onClick="goEmpNoticeDetail(${board.b_no})">
+        <tr style="cursor:pointer;" onClick="goEmpNoticeDetail(${board.b_no})">
           <th>
             <span class="label">${requestScope.pagingMap.serialNo_desc - loopTagStatus.index}</span>
           </th>
@@ -200,15 +191,18 @@
         
         </tbody>
       </table>
+      
       <form name="empNoticeDetail" method="post" action="/empNoticeDetail.do">  
-        <input type="hidden" name="b_no">		
+        <input type="hidden" name="b_no">	
       </form>
+      
       <form name="boardSearchForm" method="post" action="">
       	<input type="hidden" name="selectPageNo" class="selectPageNo" value="1"> 
       	<input type="hidden" name="pageNoCntPerPage" class="pageNoCntPerPage" value="10">
       	<input type="hidden" name="rowCntPerPage" class="rowCntPerPage" value="10">
       </form>
       
+      <!-- 페이징처리 -->
       <center>
       <c:if test="${requestScope.boardTotCnt>0}">
 									
@@ -253,6 +247,10 @@
 </center><br><br><br><br>
     </div>
   </div>
+  
+  
+  <!--  내정보 팝업 -->
+  
   <div class="popup-wrapper">
     <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
     <!-- option class / popup-warning, popup-full -->

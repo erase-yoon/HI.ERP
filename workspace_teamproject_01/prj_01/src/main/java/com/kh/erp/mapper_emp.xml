@@ -3,8 +3,6 @@
 
 <mapper namespace="com.kh.erp.ad.emp.EmpDAO">
 
-
-
 	<insert id="adUserInfoReg"
 		parameterType="com.kh.erp.ad.emp.UserInfoDTO">
 		insert into MA_USER(
@@ -72,20 +70,9 @@
 		,#{emp_detailloc}
 		,#{emp_phone}
 		,#{emp_jumin}
-
 		)
 
 	</insert>
-
-
-
-
-
-
-
-
-
-
 
 	<select id="searchForm"
 		parameterType="com.kh.erp.ad.emp.EmpListDTO"
@@ -101,9 +88,7 @@
 	</select>
 
 
-
 	<select id="getEmpList" resultType="hashmap">
-
 		select
 		e.nm_emp as "nm_emp",
 		e.no_emp as "no_emp",
@@ -119,7 +104,6 @@
 		where
 		e.no_emp=p.no_emp and e.cd_dept=d.cd_dept and e.cd_jik=j.cd_jik and e.cd_emp=c.cd_emp and e.nm_emp != 'system'
 		order by e.no_emp
-
 	</select>
 	
 	<select id="getEmpListCorr" parameterType="String" resultType="com.kh.erp.ad.emp.RegDTO">
@@ -143,19 +127,15 @@
 	</select>
 	
 	<select id="getPartList" resultType="hashmap">
-
 		select NM_DEPT
 		from MA_DEPT
 		order by CD_DEPT
-
 	</select>
 	
 	<select id="getJikupList" resultType="hashmap">
-
 		select NM_JIK
 		from MA_JIKUP
 		order by CD_JIK
-
 	</select>
 
 	<select id = "getUpDelCnt" parameterType="String" resultType="int">
@@ -183,14 +163,5 @@
         ,PHONE = #{emp_phone}                                              
 		where no_emp = #{emp_no}
 	</update>
-
-
-
-
-
-
-
-
-
 
 </mapper>

@@ -190,7 +190,7 @@
 					 -->
 				<if test="sort==null or sort.length()==0">
 					order by
-					group_no desc, print_no asc
+					group_no desc, print_no asc, b_no desc
 				</if>
 				<if test="sort!=null and sort.length()>0">
 					order by
@@ -561,6 +561,9 @@
 		
 		where 
 			r.no_emp = e.no_emp and #{b_no} = r.b_no
+			
+		order by
+			reg_date asc
 		
 	</select>
 	
@@ -600,19 +603,7 @@
 			print_level=#{print_level} and b_no=#{b_no}
 		
 	</delete>
-	 
-	<!--  b_no 가 같은 댓글을 모조리 지우는 구문 -->
-	
-	<delete id="deleteComment1" parameterType="com.kh.erp.ad.notice.BoardDTO">
-	
-		delete
-		
-		from
-			ma_re_board
-		where 
-			b_no=#{b_no}
-		
-	</delete>
+
 	
 	<!--  수정하는 -->
 
@@ -641,19 +632,23 @@
 			#{print_level}=print_level and b_no=#{b_no}
 		
 	</select>
+		 
+			 
+	<!--  공지사항 게시글 삭제 시 b_no 가 같은 댓글을 모두 삭제하는 구문 -->
 	
+	<delete id="deleteComment1" parameterType="com.kh.erp.ad.notice.BoardDTO">
 	
-	<select id="getCommentCnt1" parameterType="com.kh.erp.ad.notice.BoardDTO" resultType="int">
-	
-		select 
-			count(*) 
-			
+		delete
+		
 		from
 			ma_re_board
 			
-		where
+		where 
 			b_no=#{b_no}
 		
-	</select>
+		
+	</delete>
+	
+
 
 </mapper>

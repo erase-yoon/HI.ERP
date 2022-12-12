@@ -35,11 +35,62 @@
         return json;
       }
 
-      function test(){
-        alert("T");
+      function insertPay(){
+        var year_obj = $("[name='year']");
+        var month_obj = $("[name='month']");
+        var no_emp_obj = $("[name='no_emp']");
+        var year_val = year_obj.val();
+        var month_val = month_obj.val();
+        var no_emp_val = no_emp_obj.val();
+        var year_month_val = '' + year_val + month_val;
+
+        // var test = '$ {requestScope.noEmp.no_emp}';
+        // alert(test);
+        // if(no_emp_val.equals()){
+        //   alert(test);
+        // }
+        // $ {empList.no_emp} $ {empList.ym}
+        
+        // return;
+
+        $.ajax({
+          url : "/insertPayProc.do"
+          , type : "post"
+          , data : $("[name='insertPayForm']").serialize()
+          , success : function(Cnt){
+            if(Cnt==1){
+              alert("추가 성공");
+              location.replace("/adSal.do");
+            }else if(Cnt==-1){
+              alert("이미 있는 귀속년월 입니다.");
+              year_obj.val("");
+              month_obj.val("");
+              no_emp_obj.val("");
+            }else{
+              alert("에러입니다.");
+              return;
+            }
+          }
+          , error : function(){
+              alert("웹 서버 접속 실패");
+          }
+        });
       }
 
-      $(function (){
+      function getNo_erpYM(no_emp, ym){
+
+        alert(no_emp + ", " + ym);
+        // alert(test);
+      }
+
+      $(function (nm_emp){
+
+        // // 사원번호 삽입
+        // var nmemp_obj = $("[name='nmemp']");
+
+        // for(var i=maxYear; i>=minYear; i--){
+        //   year_obj.append("<option value='" + i + "'>" + i + "</option>");
+        // }
 
         // 귀속년 삽입(3년치)
         var thisYear = json_today()["year"];
@@ -51,7 +102,6 @@
         for(var i=maxYear; i>=minYear; i--){
           year_obj.append("<option value='" + i + "'>" + i + "</option>");
         }
-
       });
 
     </script>
@@ -124,7 +174,7 @@
             <h5>급여계산<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
             <div class="tools responsive-except-desktop" >
               <div class="tools-group" style="cursor:none;">
-                <button class="tool-item" disabled>
+                <button class="tool-item">
                   <span class="icon"><i class="Licon ico-datareset"></i></span>
                   <span class="label">조회</span>
                 </button>
@@ -132,11 +182,11 @@
                   <span class="icon"><i class="Licon ico-save"></i></span>
                   <span class="label">저장</span>
                 </button>
-                <button class="tool-item" disabled>
+                <button class="tool-item" onclick="insertPay();">
                   <span class="icon"><i class="Licon ico-add"></i></span>
                   <span class="label">추가</span>
                 </button>
-                <button class="tool-item" disabled>
+                <button class="tool-item">
                   <span class="icon"><i class="Licon ico-minus"></i></span>
                   <span class="label">삭제</span>
                 </button>
@@ -159,36 +209,50 @@
                     <label>회사명</label>
                     <td width="10%">하이이알피</td>
                   </td>
-
-                  <td width="5%">
-                    <label>귀속년</label>
-                    <td width="10%">
-                      <select name="year">
-                        <option value=""></option>
-                      </select>
+                  <form action="/asSal.do" name="asSal" method="post"></form>
+                  <form action="/insertPayProc.do" name="insertPayForm" method="post">
+                    <td width="5%">
+                      <label>사원번호</label>
+                      <td width="10%">
+                        <select name="no_emp">
+                          <option value=""></option>
+                          <c:forEach var="noEmp" items="${requestScope.noEmp}" varStatus="status">
+                            <option value="${noEmp.no_emp}">${noEmp.no_emp}</option>
+                          </c:forEach>
+                        </select>
+                      </td>
                     </td>
-                  </td>
 
-                  <td width="5%">
-                    <label>귀속월</label>
-                    <td width="10%">
-                      <select name="">
-                        <option value=""></option>
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                      </select>
+                    <td width="5%">
+                      <label>귀속년</label>
+                      <td width="10%">
+                        <select name="year">
+                          <option value=""></option>
+                        </select>
+                      </td>
                     </td>
-                  </td>
+
+                    <td width="5%">
+                      <label>귀속월</label>
+                      <td width="10%">
+                        <select name="month">
+                          <option value=""></option>
+                          <option value="01">01</option>
+                          <option value="02">02</option>
+                          <option value="03">03</option>
+                          <option value="04">04</option>
+                          <option value="05">05</option>
+                          <option value="06">06</option>
+                          <option value="07">07</option>
+                          <option value="08">08</option>
+                          <option value="09">09</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                        </select>
+                      </td>
+                    </td>
+                  </form>
                 </tr>
 
                 <!-- <tr>
@@ -250,20 +314,20 @@
                             <th>사원번호</th>
                             <th>부서</th>
                             <th>직급</th>
-                            <th>지급년월</th>
-                            <th>재직구분</th>
+                            <th>귀속년월</th>
+                            <!-- <th>재직구분</th> -->
                           </tr>
                         </thead>
                         <tbody>
                           <c:forEach var="empList" items="${requestScope.empList}" varStatus="status">
-                            <tr style="cursor: pointer;" onclick="test();">
+                            <tr style="cursor: pointer;" onclick="getNo_erpYM('${empList.no_emp}', '${empList.ym}');">
                               <th>${status.count}</th>
                               <td>${empList.nm_emp}</td>
                               <td>${empList.no_emp}</td>
                               <td>${empList.nm_dept}</td>
                               <td>${empList.nm_jik}</td>
                               <td>${empList.ym}</td>
-                              <td>${empList.nm_cd_emp}</td>
+                              <!-- <td>${empList.nm_cd_emp}</td> -->
                             </tr>
                           </c:forEach>
                         </tbody>
@@ -465,7 +529,6 @@
             </section>
           </div>
         </div>
-        <br><br><br><br><br>
       </div>
 
       <!-- 내정보 팝업 -->

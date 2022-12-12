@@ -1,8 +1,11 @@
 package com.kh.erp.ad.sal;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +35,6 @@ public class AdSalController {
 	@RequestMapping(value="/adSal.do")
 	public ModelAndView adNotice(
 		InfoDTO infoDTO
-
 		, HttpSession session
 	) {
 		
@@ -52,7 +54,7 @@ public class AdSalController {
 		
 		List<Map<String, String>> payList = this.adSalDAO.getPayList();
 		
-//		System.out.println(payList);
+		List<Map<String, String>> noEmp = this.adSalDAO.getNoEmp();
 		
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
@@ -60,10 +62,31 @@ public class AdSalController {
 		mav.addObject("empList", empSalList);
 		mav.addObject("payList", payList);
 		mav.addObject("infoList", infoList);
+		mav.addObject("noEmp", noEmp);
 		mav.setViewName("adSal.jsp");
 		
 		// [ModelAndView 객체] 리턴
 		return mav;
 
+	}
+	
+	// 가상주소 /insertPayProc.do 접근 시 호출되는 메소드 선언
+	@RequestMapping(value="/insertPayProc.do", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public int insertPayProc(
+
+		AmpaymentDTO ampaymentDTO
+		, HttpSession session
+		, HttpServletResponse response
+	){
+		int searchPay = this.adSalDAO.searchPay(ampaymentDTO);
+		
+		if(searchPay>=1) {
+			return -1;
+		}else {
+			int inesertPay = this.adSalDAO.insertPay(ampaymentDTO);
+			
+			return inesertPay;
+		}
 	}
 }
