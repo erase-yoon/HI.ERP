@@ -7,6 +7,6 @@ public interface AdSalDAO {
 	
 	List<Map<String, String>> getEmpSalList();
 	
-	List<Map<String, String>> payList();
+	List<Map<String, String>> getPayList();
 
 }

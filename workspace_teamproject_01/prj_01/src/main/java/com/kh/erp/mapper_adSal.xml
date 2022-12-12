@@ -42,7 +42,7 @@
 		    nm_deduct06 as "nm_deduct06", 
 		    nm_deduct07 as "nm_deduct07", 
 		    nm_deduct08 as "nm_deduct08"
-		from hr_cdpayment;
+		from hr_cdpayment
 
 	</select>
 

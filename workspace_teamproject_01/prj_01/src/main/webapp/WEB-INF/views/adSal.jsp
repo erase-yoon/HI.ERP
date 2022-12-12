@@ -22,20 +22,23 @@
       // 오늘 날짜 관련 각종 데이터를 저장한 
       // JSON 객체를 리턴하는 함수 선언
       function json_today(){
-          var today = new Date();
-          var weeks = ["일", "월", "화", "수", "목", "금", "토"];
-          var week = weeks[today.getDay()];
-          var json = {
-              "year":today.getFullYear()
-              , "month":today.getMonth()+1
-              , "date":today.getDate()
-              , "week":week
-              , "ymd":today.getFullYear() + "-" + today.getMonth()+1 + "-" + today.getDate()
-          }
-          return json;
+        var today = new Date();
+        var weeks = ["일", "월", "화", "수", "목", "금", "토"];
+        var week = weeks[today.getDay()];
+        var json = {
+          "year" : today.getFullYear()
+          , "month" : today.getMonth()+1
+          , "date" : today.getDate()
+          , "week" : week
+          , "ymd" : today.getFullYear() + "-" + today.getMonth()+1 + "-" + today.getDate()
+        }
+        return json;
       }
 
-      
+      function test(){
+        alert("T");
+      }
+
       $(function (){
 
         // 귀속년 삽입(3년치)
@@ -49,9 +52,7 @@
           year_obj.append("<option value='" + i + "'>" + i + "</option>");
         }
 
-
       });
-
 
     </script>
     <title>급여명세서</title>
@@ -65,7 +66,7 @@
             <span class="icon"><i class="Licon ico-menu"></i></span>
           </button>
           <div class="logo-area">
-              <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
+            <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
           </div>
           <div class="utility-area">
             <div class="utility-group">
@@ -88,10 +89,6 @@
           <span class="icon"><i class="Licon ico-menu"></i></span>
           <span class="icon"><i class="Licon ico-close"></i></span>
         </button>
-        <div class="menu-area">
-          <div class="menu menu-vertical">
-          </div>
-        </div>
       </aside>
 
       <div id="side-bar-sub" class="">
@@ -101,7 +98,6 @@
           <!-- menu -->
           <ul class="menu-accordion">
             <li>
-              <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
               <a href="adNotice.do"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
@@ -116,7 +112,6 @@
               <a><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
                 <li><a href="adSal.do"><span class="label">급여계산</span></a></li>
-                <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
               </ul>
             </li>
           </ul>
@@ -127,10 +122,9 @@
         <div class="content-header">
           <div class="content-title-bar">
             <h5>급여계산<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
-            <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
             <div class="tools responsive-except-desktop" >
               <div class="tools-group" style="cursor:none;">
-                <button class="tool-item">
+                <button class="tool-item" disabled>
                   <span class="icon"><i class="Licon ico-datareset"></i></span>
                   <span class="label">조회</span>
                 </button>
@@ -138,253 +132,138 @@
                   <span class="icon"><i class="Licon ico-save"></i></span>
                   <span class="label">저장</span>
                 </button>
-                <button class="tool-item">
+                <button class="tool-item" disabled>
                   <span class="icon"><i class="Licon ico-add"></i></span>
                   <span class="label">추가</span>
                 </button>
-                <button class="tool-item">
+                <button class="tool-item" disabled>
                   <span class="icon"><i class="Licon ico-minus"></i></span>
                   <span class="label">삭제</span>
                 </button>
               </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <br><br>
+        <br><br>
 
-      <!-- 메인 -->
+        <!-- 메인 -->
 
-      <!-- 위쪽 탭(select box) -->
-      <table border="1" cellspacing="0" style="border-color:rgb(229, 229, 229);" align="center" width="85%;">
-        <tr>
-          <td>
-            <table align="center" width="90%" cellpadding="10" >
-              <tr>
-                <td width="5%">
-                  <label>회사명</label>
-                  <td width="10%">
-					하이이알피
+        <!-- 위쪽 탭(select box) -->
+        <table border="1" cellspacing="0" style="border-color:rgb(229, 229, 229);" align="center" width="85%;">
+          <tr>
+            <td>
+              <table align="center" width="90%" cellpadding="10" >
+                <tr>
+                  <td width="5%">
+                    <label>회사명</label>
+                    <td width="10%">하이이알피</td>
                   </td>
-                </td>
 
-                <td width="5%">
-                  <label>귀속년</label>
-                  <td width="10%">
-                    <select name="year">
-                      <option value=""></option>
-                      <!-- <option value="2022">2022</option>
-                      <option value="2021">2021</option>
-                      <option value="2020">2020</option> -->
-                    </select>
+                  <td width="5%">
+                    <label>귀속년</label>
+                    <td width="10%">
+                      <select name="year">
+                        <option value=""></option>
+                      </select>
+                    </td>
                   </td>
-                </td>
 
-                <td width="5%">
-                  <label>귀속월</label>
-                  <td width="10%">
-                  <select name="">
-                    <option value=""></option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                  </select>
+                  <td width="5%">
+                    <label>귀속월</label>
+                    <td width="10%">
+                      <select name="">
+                        <option value=""></option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                      </select>
+                    </td>
                   </td>
-                </td>
-              </tr>
+                </tr>
 
-              <tr>
-                <td>
-                  <label>부서</label>
+                <!-- <tr>
                   <td>
-                    <select name="">
-                      <option value=""></option>
-                      <option value="UI개발부">UI개발부</option>
-                      <option value="DB개발부">DB개발부</option>
-                      <option value="암튼개발부">암튼개발부</option>    
-                    </select>
+                    <label>부서</label>
+                    <td>
+                      <select name="">
+                        <option value=""></option>
+                        <option value="000">관리부</option>
+                        <option value="001">인사부</option>
+                        <option value="002">총무부</option>
+                        <option value="003">회계부</option>
+                        <option value="004">기획부</option>
+                        <option value="005">영업부</option>     
+                      </select>
+                    </td>
                   </td>
-                </td>
-            
-                <td>
-                  <label>재직구분</label>
+              
                   <td>
-                    <select name="">
-                      <option value=""></option>
-                      <option value="재직">재직</option>
-                      <option value="퇴직">퇴직</option>
-                      <option value="휴직">휴직</option>
-                    </select>
+                    <label>재직구분</label>
+                    <td>
+                      <select name="">
+                        <option value=""></option>
+                        <option value="재직">재직</option>
+                        <option value="퇴직">퇴직</option>
+                        <option value="휴직">휴직</option>
+                      </select>
+                    </td>
                   </td>
-                </td>
 
-                <!-- <td>
-                  <label>급여제목</label>
                   <td>
-                    <input type="text">
+                    <label>급여제목</label>
+                    <td>
+                      <input type="text">
+                    </td>
                   </td>
-                </td> -->
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
+                </tr> -->
+              </table>
+            </td>
+          </tr>
+        </table>
 
 
-    <!-- 급여계산 테이블 -->
-    <div class="content-body">
-      <div class="container">
-        <section>
-          <div style="height: 444px;">
-            <div id="top" class="split">
-              <div class="data-table-wrapper">
-                <div class="data-table-container">
+        <!-- 급여계산 테이블 -->
+        <div class="content-body">
+          <div class="container">
+            <section>
+              <div style="height: 444px;">
+                <div id="top" class="split">
+                  <div class="data-table-wrapper">
+                    <div class="data-table-container">
                 
-                  <!-- 총액 테이블 -->
-                  <table class="data-table data-table-sm" id="empListTable">
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>사원명</th>
-                        <th>사원번호</th>
-                        <th>부서</th>
-                        <th>직급</th>
-                        <th>지급년월</th>
-                        <th>재직구분</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <c:forEach var="empList" items="${requestScope.empList}" varStatus="status">
-                        <tr style="cursor: pointer;" onclick="adEmpListCorr(${empList.no_emp})">
-                          <th>${status.count}</th>
-                          <td>${empList.nm_emp}</td>
-                          <td>${empList.no_emp}</td>
-                          <td>${empList.nm_dept}</td>
-                          <td>${empList.nm_jik}</td>
-                          <td>${empList.ym}</td>
-                          <td>${empList.nm_cd_emp}</td>
-                      </c:forEach>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-            <!-- 지급내역 테이블 -->
-            <div id="bottom" class="split">
-              <div id="bottom-left" class="split split-horizontal">
-                <div class="data-table-wrapper">
-                  <div class="data-table-container">
-                    <label style="margin-left:60px;"><em class="txt-error">*</em> 지 급 내 역<br></label>
-                    <table class="data-table data-table-sm">
-                      <colgroup></colgroup>
-                      <thead>
-                      <tr>
-                        <th></th>
-                        <th class="with-tools">
-                          지급내역
-                          <div class="tools overflow overflow-sm overflow-right">
-                            <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
-                              <span class="icon"><i></i></span>
-                            </button>
-                            <div class="overflow-menu">
-                              <ul>
-                                <li><a class="overflow-menu-item">없음</a></li>
-                                <li><a class="overflow-menu-item">오름차순</a></li>
-                                <li><a class="overflow-menu-item">내림차순</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                        </th>
-                        <th class="with-tools">
-                          금 액
-                          <div class="tools overflow overflow-sm overflow-right">
-                            <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
-                              <span class="icon"><i></i></span>
-                            </button>
-                            <div class="overflow-menu">
-                              <ul>
-                                <li><a class="overflow-menu-item">없음</a></li>
-                                <li><a class="overflow-menu-item">오름차순</a></li>
-                                <li><a class="overflow-menu-item">내림차순</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                        </th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                        <c:forEach var="empList" items="${requestScope.empList}" varStatus="status">
-                          <tr style="cursor: default;" onclick="adEmpListCorr(${empList.no_emp})">
-                            <th>${status.count}</th>
-                            <td>${empList.nm_emp}</td>
-                            <td><input type="text"></td>
-                          </tr>
-                        </c:forEach>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-
-
-              <!-- 공제내역 테이블 -->
-              <div id="bottom-right" class="split split-horizontal">
-                <div class="data-table-wrapper">
-                  <div class="data-table-container">
-                    <label style="margin-left:60px;"><em class="txt-error">*</em> 공 제 내 역<br></label>
-                      <table class="data-table data-table-sm">
-                        <colgroup></colgroup>
+                      <!-- 총액 테이블 -->
+                      <table class="data-table data-table-sm" id="empListTable">
                         <thead>
-                        <tr>
-                          <th></th>
-                          <th class="with-tools">
-                            공제내역
-                            <div class="tools overflow overflow-sm overflow-right">
-                              <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
-                                <span class="icon"><i></i></span>
-                              </button>
-                              <div class="overflow-menu">
-                                <ul>
-                                  <li><a class="overflow-menu-item">없음</a></li>
-                                  <li><a class="overflow-menu-item">오름차순</a></li>
-                                  <li><a class="overflow-menu-item">내림차순</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </th>
-                          <th class="with-tools">
-                            금 액
-                            <div class="tools overflow overflow-sm overflow-right">
-                              <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
-                                <span class="icon"><i></i></span>
-                              </button>
-                              <div class="overflow-menu">
-                                <ul>
-                                  <li><a class="overflow-menu-item">없음</a></li>
-                                  <li><a class="overflow-menu-item">오름차순</a></li>
-                                  <li><a class="overflow-menu-item">내림차순</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </th>
-                        </tr>
+                          <tr>
+                            <th></th>
+                            <th>사원명</th>
+                            <th>사원번호</th>
+                            <th>부서</th>
+                            <th>직급</th>
+                            <th>지급년월</th>
+                            <th>재직구분</th>
+                          </tr>
                         </thead>
                         <tbody>
                           <c:forEach var="empList" items="${requestScope.empList}" varStatus="status">
-                            <tr style="cursor: default;" onclick="adEmpListCorr(${empList.no_emp})">
+                            <tr style="cursor: pointer;" onclick="test();">
                               <th>${status.count}</th>
                               <td>${empList.nm_emp}</td>
-                              <td><input type="text"></td>
+                              <td>${empList.no_emp}</td>
+                              <td>${empList.nm_dept}</td>
+                              <td>${empList.nm_jik}</td>
+                              <td>${empList.ym}</td>
+                              <td>${empList.nm_cd_emp}</td>
                             </tr>
                           </c:forEach>
                         </tbody>
@@ -392,63 +271,239 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- 지급내역 테이블 -->
+                <div id="bottom" class="split">
+                  <div id="bottom-left" class="split split-horizontal">
+                    <div class="data-table-wrapper">
+                      <div class="data-table-container">
+                        <label style="margin-left:60px;"><em class="txt-error">*</em> 지 급 내 역<br></label>
+                        <table class="data-table data-table-sm">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th class="with-tools">
+                                지급내역
+                                <div class="tools overflow overflow-sm overflow-right">
+                                  <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
+                                    <span class="icon"><i></i></span>
+                                  </button>
+                                  <div class="overflow-menu">
+                                    <ul>
+                                      <li><a class="overflow-menu-item">없음</a></li>
+                                      <li><a class="overflow-menu-item">오름차순</a></li>
+                                      <li><a class="overflow-menu-item">내림차순</a></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </th>
+                              <th class="with-tools">
+                                금 액
+                                <div class="tools overflow overflow-sm overflow-right">
+                                  <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
+                                    <span class="icon"><i></i></span>
+                                  </button>
+                                  <div class="overflow-menu">
+                                    <ul>
+                                      <li><a class="overflow-menu-item">없음</a></li>
+                                      <li><a class="overflow-menu-item">오름차순</a></li>
+                                      <li><a class="overflow-menu-item">내림차순</a></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr style="cursor: default;">
+                              <th>1</th>
+                              <td>${requestScope.payList[0].nm_pay01}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>2</th>
+                              <td>${requestScope.payList[0].nm_pay02}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>3</th>
+                              <td>${requestScope.payList[0].nm_pay03}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>4</th>
+                              <td>${requestScope.payList[0].nm_pay04}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>5</th>
+                              <td>${requestScope.payList[0].nm_pay05}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>6</th>
+                              <td>${requestScope.payList[0].nm_pay06}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>7</th>
+                              <td>${requestScope.payList[0].nm_pay07}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>8</th>
+                              <td>${requestScope.payList[0].nm_pay08}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 공제내역 테이블 -->
+                  <div id="bottom-right" class="split split-horizontal">
+                    <div class="data-table-wrapper">
+                      <div class="data-table-container">
+                        <label style="margin-left:60px;"><em class="txt-error">*</em> 공 제 내 역<br></label>
+                        <table class="data-table data-table-sm">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th class="with-tools">
+                                공제내역
+                                <div class="tools overflow overflow-sm overflow-right">
+                                  <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
+                                    <span class="icon"><i></i></span>
+                                  </button>
+                                  <div class="overflow-menu">
+                                    <ul>
+                                      <li><a class="overflow-menu-item">없음</a></li>
+                                      <li><a class="overflow-menu-item">오름차순</a></li>
+                                      <li><a class="overflow-menu-item">내림차순</a></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </th>
+                              <th class="with-tools">
+                                금 액
+                                <div class="tools overflow overflow-sm overflow-right">
+                                  <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
+                                    <span class="icon"><i></i></span>
+                                  </button>
+                                  <div class="overflow-menu">
+                                    <ul>
+                                      <li><a class="overflow-menu-item">없음</a></li>
+                                      <li><a class="overflow-menu-item">오름차순</a></li>
+                                      <li><a class="overflow-menu-item">내림차순</a></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr style="cursor: default;">
+                              <th>1</th>
+                              <td>${requestScope.payList[0].nm_deduct01}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>2</th>
+                              <td>${requestScope.payList[0].nm_deduct02}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>3</th>
+                              <td>${requestScope.payList[0].nm_deduct03}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>4</th>
+                              <td>${requestScope.payList[0].nm_deduct04}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>5</th>
+                              <td>${requestScope.payList[0].nm_deduct05}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>6</th>
+                              <td>${requestScope.payList[0].nm_deduct06}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>7</th>
+                              <td>${requestScope.payList[0].nm_deduct07}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                            <tr style="cursor: default;">
+                              <th>8</th>
+                              <td>${requestScope.payList[0].nm_deduct08}</td>
+                              <td><input type="text" style="width:100%;"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <script>
+                Split(['#top', '#bottom'], {
+                  direction: 'vertical',
+                  gutterSize: 12,
+                  sizes: [50, 50]
+                })
+
+                Split(['#bottom-left', '#bottom-right'], {
+                  gutterSize: 12,
+                  sizes: [50, 50]
+                })
+              </script>
+            </section>
+          </div>
+        </div>
+        <br><br><br><br><br>
+      </div>
+
+      <!-- 내정보 팝업 -->
+      <div class="popup-wrapper">
+        <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
+        <!-- option class / popup-warning, popup-full -->
+        <div class="popup">
+          <div class="popup-inner">
+            <div class="popup-title">
+              <div class="title-wrap">
+                <h6 class="title">내정보</h6>              
               </div>
             </div>
-            <script>
-              Split(['#top', '#bottom'], {
-                direction: 'vertical',
-                gutterSize: 12,
-                sizes: [50, 50]
-              })
-
-              Split(['#bottom-left', '#bottom-right'], {
-                gutterSize: 12,
-                sizes: [50, 50]
-              })
-            </script>
-          </section>
-        </div>
-      </div>
-      <br><br><br><br><br>
-    </div>
-
-    <!-- 내정보 팝업 -->
-
-
-    <div class="popup-wrapper">
-      <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
-      <!-- option class / popup-warning, popup-full -->
-      <div class="popup">
-        <div class="popup-inner">
-          <div class="popup-title">
-            <div class="title-wrap">
-              <h6 class="title">내정보</h6>              
+            <div class="popup-contents" >
+              <table border="0" cellpadding="5" align="center" width="300px" style="font-size:15px; font-weight: bold;">
+                <tr align="center">
+                  <td><img src="./assets/images/test_img.png"></td>
+                </tr>
+                <tr align="center">
+                  <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
+                </tr>
+                <tr align="center">
+                  <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
+                </tr>
+                <tr align="center">
+                  <td>${requestScope.infoList[0].PHONE}</td>
+                </tr>
+                <tr align="center">
+                  <td>${requestScope.infoList[0].EMAIL}</td>
+                </tr>
+              </table>
             </div>
-          </div>
-          <div class="popup-contents" >
-            <table border="0" cellpadding="5" align="center" width="300px" style="font-size:15px; font-weight: bold;">
-              <tr align="center">
-                <td><img src="./assets/images/test_img.png"></td>
-              </tr>
-              <tr align="center">
-                <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
-              </tr>
-              <tr align="center">
-                <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
-              </tr>
-              <tr align="center">
-                <td>${requestScope.infoList[0].PHONE}</td>
-              </tr>
-              <tr align="center">
-                <td>${requestScope.infoList[0].EMAIL}</td>
-              </tr>
-            </table>
-          </div>
 
-          <div class="popup-tools txt-right" style="margin-top:-20px;">
-            <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
-              <span class="label" >닫기</span>
-            </button>
+            <div class="popup-tools txt-right" style="margin-top:-20px;">
+              <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
+                <span class="label" >닫기</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

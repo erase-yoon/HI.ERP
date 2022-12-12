@@ -50,17 +50,16 @@ public class AdSalController {
 		
 		List<Map<String, String>> empSalList = this.adSalDAO.getEmpSalList();
 		
-//		List<Map<String, String>> payList = this.adSalDAO.payList();
+		List<Map<String, String>> payList = this.adSalDAO.getPayList();
+		
+//		System.out.println(payList);
 		
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("empList", empSalList);
-		
-//		mav.addObject("payList", payList);
-		
+		mav.addObject("payList", payList);
 		mav.addObject("infoList", infoList);
-
 		mav.setViewName("adSal.jsp");
 		
 		// [ModelAndView 객체] 리턴

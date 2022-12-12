@@ -21,7 +21,7 @@ public class AdSalDAOImpl implements AdSalDAO{
 		return data;
 	}
 	
-	public List<Map<String, String>> payList() {
+	public List<Map<String, String>> getPayList() {
 		List<Map<String, String>> data = this.sqlSession.selectList(
 
 				"com.kh.erp.ad.sal.AdSalDAO.payList");
