@@ -39,10 +39,6 @@
         var year_obj = $("[name='year']");
         var month_obj = $("[name='month']");
         var no_emp_obj = $("[name='no_emp']");
-        // var year_val = year_obj.val();
-        // var month_val = month_obj.val();
-        // var no_emp_val = no_emp_obj.val();
-        // var year_month_val = '' + year_val + month_val;
 
         $.ajax({
           url : "/insertPayProc.do"
@@ -80,18 +76,24 @@
           , type : "post"
           , data : {no_emp, ym}
           , success : function(selectPayList){
-            // if(Cnt==1){
-              alert("select 성공");
-            //   location.replace("/adSal.do");
-            // }else if(Cnt==-1){
-            //   alert("이미 있는 귀속년월 입니다.");
-            //   year_obj.val("");
-            //   month_obj.val("");
-            //   no_emp_obj.val("");
-            // }else{
-            //   alert("에러입니다.");
-            //   return;
-            // }
+            alert("${requestScope.selectPayList[0].am_pay01}");
+            $(".am_pay01").val("1");
+            $(".am_pay02").val("1");
+            $(".am_pay03").val("1");
+            $(".am_pay04").val("1");
+            $(".am_pay05").val("1");
+            $(".am_pay06").val("1");
+            $(".am_pay07").val("1");
+            $(".am_pay08").val("1");
+            $(".am_deduct01").val("1");
+            $(".am_deduct02").val("1");
+            $(".am_deduct03").val("1");
+            $(".am_deduct04").val("1");
+            $(".am_deduct05").val("1");
+            $(".am_deduct06").val("1");
+            $(".am_deduct07").val("1");
+            $(".am_deduct08").val("1");
+            alert(selectPayList.am_pay01);
           }
           , error : function(){
             alert("웹 서버 접속 실패");
@@ -400,42 +402,42 @@
                             <tr style="cursor: default;">
                               <th>1</th>
                               <td>${requestScope.payList[0].nm_pay01}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_pay01" value="" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>2</th>
                               <td>${requestScope.payList[0].nm_pay02}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_pay02" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>3</th>
                               <td>${requestScope.payList[0].nm_pay03}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_pay03" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>4</th>
                               <td>${requestScope.payList[0].nm_pay04}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_pay04" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>5</th>
                               <td>${requestScope.payList[0].nm_pay05}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_pay05" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>6</th>
                               <td>${requestScope.payList[0].nm_pay06}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_pay06" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>7</th>
                               <td>${requestScope.payList[0].nm_pay07}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_pay07" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>8</th>
                               <td>${requestScope.payList[0].nm_pay08}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_pay08" style="width:100%;"></td>
                             </tr>
                           </tbody>
                         </table>
@@ -488,42 +490,42 @@
                             <tr style="cursor: default;">
                               <th>1</th>
                               <td>${requestScope.payList[0].nm_deduct01}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_deduct01" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>2</th>
                               <td>${requestScope.payList[0].nm_deduct02}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_deduct02" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>3</th>
                               <td>${requestScope.payList[0].nm_deduct03}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_deduct03" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>4</th>
                               <td>${requestScope.payList[0].nm_deduct04}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_deduct04" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>5</th>
                               <td>${requestScope.payList[0].nm_deduct05}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_deduct05" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>6</th>
                               <td>${requestScope.payList[0].nm_deduct06}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_deduct06" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>7</th>
                               <td>${requestScope.payList[0].nm_deduct07}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_deduct07" style="width:100%;"></td>
                             </tr>
                             <tr style="cursor: default;">
                               <th>8</th>
                               <td>${requestScope.payList[0].nm_deduct08}</td>
-                              <td><input type="text" style="width:100%;"></td>
+                              <td><input type="text" class="am_deduct08" style="width:100%;"></td>
                             </tr>
                           </tbody>
                         </table>

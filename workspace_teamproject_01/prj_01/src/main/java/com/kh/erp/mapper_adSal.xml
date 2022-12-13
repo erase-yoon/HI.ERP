@@ -114,9 +114,7 @@
 	<select id="selectPayList" parameterType="com.kh.erp.ad.sal.AmpaymentDTO" resultType="hashmap">
 
 		select
-			no_emp as "no_emp"
-			, ym as "ym"
-			, am_pay01 as "am_pay01"
+			am_pay01 as "am_pay01"
 		    , am_pay02 as "am_pay02"
 		    , am_pay03 as "am_pay03"
 		    , am_pay04 as "am_pay04"
