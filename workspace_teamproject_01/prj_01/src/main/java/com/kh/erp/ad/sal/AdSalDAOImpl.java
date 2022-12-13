@@ -74,5 +74,14 @@ public class AdSalDAOImpl implements AdSalDAO{
 		
 		return insertPay;
 	}
+	
+	public List<Map<String, String>> selectPayList(AmpaymentDTO ampaymentDTO) {
+		
+		List<Map<String, String>> selectPayList = this.sqlSession.selectList(
+
+				"com.kh.erp.ad.sal.AdSalDAO.selectPayList");
+
+		return selectPayList;
+	}
 
 }

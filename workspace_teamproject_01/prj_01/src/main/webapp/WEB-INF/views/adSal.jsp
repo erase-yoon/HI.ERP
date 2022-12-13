@@ -39,19 +39,10 @@
         var year_obj = $("[name='year']");
         var month_obj = $("[name='month']");
         var no_emp_obj = $("[name='no_emp']");
-        var year_val = year_obj.val();
-        var month_val = month_obj.val();
-        var no_emp_val = no_emp_obj.val();
-        var year_month_val = '' + year_val + month_val;
-
-        // var test = '$ {requestScope.noEmp.no_emp}';
-        // alert(test);
-        // if(no_emp_val.equals()){
-        //   alert(test);
-        // }
-        // $ {empList.no_emp} $ {empList.ym}
-        
-        // return;
+        // var year_val = year_obj.val();
+        // var month_val = month_obj.val();
+        // var no_emp_val = no_emp_obj.val();
+        // var year_month_val = '' + year_val + month_val;
 
         $.ajax({
           url : "/insertPayProc.do"
@@ -77,10 +68,36 @@
         });
       }
 
-      function getNo_erpYM(no_emp, ym){
+      function getNo_erpYM(no_emp, sel_ym){
+        
+        var year = sel_ym.substr(0, 4);
+        var month = sel_ym.substr(6, 2);
+        var ym = sel_ym.substr(0, 4) + sel_ym.substr(6, 2);
 
-        alert(no_emp + ", " + ym);
-        // alert(test);
+        // return;
+        $.ajax({
+          url : "/selPayProc.do"
+          , type : "post"
+          , data : {no_emp, ym}
+          , success : function(selectPayList){
+            // if(Cnt==1){
+              alert("select 성공");
+            //   location.replace("/adSal.do");
+            // }else if(Cnt==-1){
+            //   alert("이미 있는 귀속년월 입니다.");
+            //   year_obj.val("");
+            //   month_obj.val("");
+            //   no_emp_obj.val("");
+            // }else{
+            //   alert("에러입니다.");
+            //   return;
+            // }
+          }
+          , error : function(){
+            alert("웹 서버 접속 실패");
+          }
+        });
+
       }
 
       $(function (nm_emp){
@@ -330,6 +347,7 @@
                               <!-- <td>${empList.nm_cd_emp}</td> -->
                             </tr>
                           </c:forEach>
+
                         </tbody>
                       </table>
                     </div>

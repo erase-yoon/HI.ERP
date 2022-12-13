@@ -15,5 +15,6 @@ public interface AdSalDAO {
 	
 	int insertPay(AmpaymentDTO ampaymentDTO);
 	
-
+	List<Map<String, String>> selectPayList(AmpaymentDTO ampaymentDTO);
+	
 }
