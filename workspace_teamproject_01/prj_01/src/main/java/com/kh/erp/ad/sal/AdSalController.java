@@ -91,18 +91,25 @@ public class AdSalController {
 			return inesertPay;
 		}
 	}
-	
-	// 가상주소 /selectPayProc.do 접근 시 호출되는 메소드 선언
+
+	// 가상주소 /selPayProc.do 접근 시 호출되는 메소드 선언
 	@RequestMapping(value="/selPayProc.do", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public ModelAndView selPayProc(
 
 		AmpaymentDTO ampaymentDTO
+		, HttpSession session
+		, HttpServletResponse response
 	){
+		
 		List<Map<String, String>> selectPayList = this.adSalDAO.selectPayList(ampaymentDTO);
 		
 		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("selectPayList", selectPayList);
+		mav.setViewName("adSal.jsp");
+		
+		System.out.println(selectPayList);
 		
 		return mav;
 	}

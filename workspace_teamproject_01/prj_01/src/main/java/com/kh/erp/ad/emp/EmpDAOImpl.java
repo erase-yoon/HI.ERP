@@ -7,8 +7,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.erp.login.InfoDTO;
+import com.kh.erp.login.LoginDAO;
+
 @Repository
 public class EmpDAOImpl implements EmpDAO {
+
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
@@ -27,6 +32,14 @@ public class EmpDAOImpl implements EmpDAO {
 
 		return data;
 	}
+	
+	public int checkNo(String emp_no) {
+		int data = this.sqlSession.selectOne(
+
+				"com.kh.erp.ad.emp.EmpDAO.checkNo", emp_no);
+
+		return data;
+	}
 
 	public List<Map<String, String>> searchForm(EmpListDTO empListDTO) {
 		List<Map<String, String>> data = this.sqlSession.selectList(
@@ -36,16 +49,15 @@ public class EmpDAOImpl implements EmpDAO {
 		return data;
 	}
 
-	public List<Map<String, String>> getEmpList() {
+	public List<Map<String, String>> getEmpList(EmpListDTO empListDTO) {
 		List<Map<String, String>> data = this.sqlSession.selectList(
 
-				"com.kh.erp.ad.emp.EmpDAO.getEmpList");
+				"com.kh.erp.ad.emp.EmpDAO.getEmpList", empListDTO);
 
 		return data;
 	}
 
 	public int adEmpRegForm(RegDTO regDTO) {
-		System.out.println("3333333333333333333333333333333333");
 		int data = this.sqlSession.insert(
 
 				"com.kh.erp.ad.emp.EmpDAO.adEmpRegForm", regDTO);
@@ -68,6 +80,14 @@ public class EmpDAOImpl implements EmpDAO {
 
 		return data;
 	}
+	
+	public List<Map<String, String>> getProofList() {
+		List<Map<String, String>> data = this.sqlSession.selectList(
+
+				"com.kh.erp.ad.emp.EmpDAO.getProofList");
+
+		return data;
+	}
 
 	public List<Map<String, String>> getJikupList() {
 		List<Map<String, String>> data = this.sqlSession.selectList(
@@ -82,27 +102,42 @@ public class EmpDAOImpl implements EmpDAO {
 
 				"com.kh.erp.ad.emp.EmpDAO.getEmpListCorr", no_emp);
 		return data;
-	}
-	
-	public int getUpDelCnt(String emp_no) {
-
-		int updelCnt = this.sqlSession.selectOne(
-				"com.kh.erp.ad.notice.BoardDAO.getUpDelCnt"
-
-				, emp_no
-		);
-		return updelCnt;
-	}
+	}	
 	
 	public int adEmpListUp1(RegDTO regDTO) {
 		int data = this.sqlSession.update(
-				"com.kh.erp.ad.emp.EmpDAO.adEmpRegForm", regDTO);
+				"com.kh.erp.ad.emp.EmpDAO.adEmpListUp1", regDTO);
 		return data;
 	}
 	
 	public int adEmpListUp2(RegDTO regDTO) {
 		int data = this.sqlSession.update(
-				"com.kh.erp.ad.emp.EmpDAO.adEmpRegForm", regDTO);
+				"com.kh.erp.ad.emp.EmpDAO.adEmpListUp2", regDTO);
+		return data;
+	}
+	
+	public int adEmpListDel1(RegDTO regDTO) {
+		int data = this.sqlSession.delete(
+				"com.kh.erp.ad.emp.EmpDAO.adEmpListDel1", regDTO);
+		return data;
+	}
+	
+	public int adEmpListDel2(RegDTO regDTO) {
+		int data = this.sqlSession.delete(
+				"com.kh.erp.ad.emp.EmpDAO.adEmpListDel2", regDTO);
+		return data;
+	}
+
+	public int adEmpListDel3(RegDTO regDTO) {
+		int data = this.sqlSession.delete(
+				"com.kh.erp.ad.emp.EmpDAO.adEmpListDel3", regDTO);
+		return data;
+	}
+	
+	public RegDTO getUserInfo(String no_emp) {
+		RegDTO data = this.sqlSession.selectOne(
+
+				"com.kh.erp.ad.emp.EmpDAO.getUserInfo", no_emp);
 		return data;
 	}
 

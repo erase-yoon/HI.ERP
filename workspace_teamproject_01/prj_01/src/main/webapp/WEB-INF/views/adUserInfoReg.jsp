@@ -21,6 +21,12 @@
 <title>사용자 정보 등록</title>
 <script type="text/javascript">
 	$(function() {
+		$("#emp_id_div").removeClass("checked");
+
+		$("#check_no").bind("click", function() {
+			checkOverlappedNo();
+		});
+		
 		$("#check_id").bind("click", function() {
 			checkOverlappedId();
 		});
@@ -28,14 +34,22 @@
 		$("#bigRedButton").bind("click", function() {
 			if ($("#emp_no_div").hasClass("error")) {
 				$("[name='emp_no']").focus()
+				return;
 			} else if ($("#emp_id_div").hasClass("error")) {
 				$("[name='emp_id']").focus()
+				return;
 			} else if ($("#emp_pwd_div").hasClass("error")) {
 				$("[name='emp_pwd']").focus()
+				return;
 			} else if ($("#emp_pwdChk_div").hasClass("error")) {
 				$("[name='emp_pwdChk']").focus()
+				return;
 			} else if ($("#emp_name_div").hasClass("error")) {
 				$("[name='emp_name']").focus()
+				return;
+			} else if (	!$("#emp_id_div").hasClass("checked")){
+				alert("중복체크를 해주세요")
+				return;
 			} else {
 				adUserInfoReg();
 			}
@@ -175,12 +189,28 @@
 	})
 
 	function emp_no_check(data) {
-		var regex = /^[0-9]{2,14}$/;
+		var regex = /^[A-Za-z0-9]{1,10}$/;
+		let checkedNo = $("[name='checked_emp_no']").val();
+		let ID = $("[name='emp_no']").val();
+		
+		if(checkedID.equals(ID)){
+			$("#emp_no_div").addClass("checked");
+		}else{
+			$("#emp_no_div").removeClass("checked");
+		}
 		return (data != '' && data != 'undefined' && regex.test(data));
 	}
 
 	function emp_id_check(data) {
-		var regex = /^[a-z][a-z0-9_]{5,14}$/;
+		var regex = /^[a-z][a-z0-9_]{3,14}$/;
+		let checkedID = $("[name='checked_emp_id']").val();
+		let ID = $("[name='emp_id']").val();
+		
+		if(checkedID.equals(ID)){
+			$("#emp_id_div").addClass("checked");
+		}else{
+			$("#emp_id_div").removeClass("checked");
+		}
 		return (data != '' && data != 'undefined' && regex.test(data));
 	}
 
@@ -221,6 +251,36 @@
 			}
 		});
 	}
+	function checkOverlappedNo() {
+		var noObj = $("[name='emp_no']");
+		var emp_no = noObj.val();
+		if (emp_no == null || emp_no == "")
+			return;
+		$.ajax({
+			url : "/checkNo.do",
+			type : "post",
+			data : {
+				emp_no : emp_no
+			},
+			datatype : 'json',
+			success : function(data) {
+				if (data >= 1) {
+					$("#emp_no_msg").text("이미 등록이 되어있는 사원번호입니다.");
+					$("#emp_no_div").addClass("error");
+					$("#emp_no_div").removeClass("success");
+				} else {
+					$("#emp_no_msg").text("등록 가능한 사원번호입니다.");
+					$("#emp_no_div").addClass("success");
+					$("#emp_no_div").removeClass("error");
+					$("#emp_no_div").addClass("checked");
+					$("[name='checked_emp_no']").val($("[name='emp_no']").val())
+				}
+			},
+			error : function() {
+				alert("서버 요청 실패");
+			}
+		})
+	}
 
 	function checkOverlappedId() {
 		var idObj = $("[name='emp_id']");
@@ -235,7 +295,7 @@
 			},
 			datatype : 'json',
 			success : function(data) {
-				if (data == 1) {
+				if (data >= 1) {
 					$("#emp_id_msg").text("이미 사용중인 ID 입니다.");
 					$("#emp_id_div").addClass("error");
 					$("#emp_id_div").removeClass("success");
@@ -243,6 +303,8 @@
 					$("#emp_id_msg").text("사용 가능한 ID 입니다.");
 					$("#emp_id_div").addClass("success");
 					$("#emp_id_div").removeClass("error");
+					$("#emp_id_div").addClass("checked");
+					$("[name='checked_emp_id']").val($("[name='emp_id']").val())
 				}
 			},
 			error : function() {
@@ -267,7 +329,7 @@
 					<div class="utility-group">
 						<a class="utility"> <span class="icon"><i class="Licon ico-my"
 								onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
-						</a> <a class="utility logout"> <span class="icon"><i class="Licon ico-logout"></i></span>
+						</a> <a class="utility"> <span class="icon"><i class="Licon ico-logout"></i></span>
 						</a>
 					</div>
 				</div>
@@ -300,16 +362,16 @@
 						<!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함--> <a
 						href="/adNotice.do"><span class="label">공지사항</span></a>
 					</li>
-					<li class="tree-view"><a><span class="label">인사관리</span></a>
+					<li class="tree-view"><a href="#"><span class="label">인사관리</span></a>
 						<ul class="tree-view-menu">
 							<li><a href="/adEmpReg.do"> <span class="label">사원등록</span></a></li>
 							<li><a href="/adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
-							<li><a href="/adEmpList.do"><span class="label">사원명부</span></a></li>
+							<li><a href="/adEmpList.do"><span class="label">사원명부 및 수정/삭제</span></a></li>
 						</ul></li>
-					<li class="tree-view"><a><span class="label">급여관리</span></a>
+					<li class="tree-view"><a href="#"><span class="label">급여관리</span></a>
 						<ul class="tree-view-menu">
-							<li><a href="adSal.do"><span class="label">급여계산</span></a></li>
-							<!--<li><a><span class="label">Menu3-1</span></a></li>-->
+							<li><a href="adSalary.html"><span class="label">급여계산</span></a></li>
+							<!--<li><a href="#"><span class="label">Menu3-1</span></a></li>-->
 						</ul></li>
 				</ul>
 			</div>
@@ -325,19 +387,6 @@
 						</button>
 					</h5>
 					<!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
-					<div class="tools responsive-except-desktop">
-						<div class="tools-group">
-							<a class="tool-item"> <span class="icon"><i class="Licon ico-datareset"></i></span>
-								<span class="label">조회</span>
-							</a> <a class="tool-item"> <span class="icon"><i class="Licon ico-save"></i></span>
-								<span class="label">저장</span>
-							</a> <a class="tool-item"> <span class="icon"><i class="Licon ico-add"></i></span> <span
-								class="label">추가</span>
-							</a> <a class="tool-item"> <span class="icon"><i class="Licon ico-minus"></i></span>
-								<span class="label">삭제</span>
-							</a>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -356,31 +405,40 @@
 					<div class="box signup">
 						<form name="registryFormat">
 
-							<div class="input-container input-container-md mg-t-4u error" id="emp_no_div">
-								<label>사원번호<em class="txt-error">*</em></label>
-								<div class="input-group">
-									<input type="text" placeholder="사원번호를 입력해주세요." class="input-box" name="emp_no">
-									<div class="input-group-tools">
-										<button type="button" class="option error">
-											<i class="Licon size-24 ico-warning"></i>
-										</button>
-										<button type="button" class="option success">
-											<i class="Licon size-24 ico-check"></i>
-										</button>
-										<button type="button" class="clear">
-											<i class="material-icons">cancel</i>
-										</button>
+							<div class="fix-width-column right bottom w-100 mg-t-4u">
+								<div class="input-container input-container-md" id="emp_no_div">
+									<label>사원번호<em class="txt-error">*</em></label>
+									<div class="input-group">
+										<input type="text" placeholder="사원번호를 입력해주세요." class="input-box" name="emp_no">
+										<input type="hidden" name="checked_emp_no">
+										<div class="input-group-tools">
+											<button type="button" class="option error">
+												<i class="Licon size-24 ico-warning"></i>
+											</button>
+											<button type="button" class="option success">
+												<i class="Licon size-24 ico-check"></i>
+											</button>
+											<button type="button" class="clear">
+												<i class="material-icons">cancel</i>
+											</button>
+										</div>
 									</div>
+									<p class="status-message" id="emp_no_msg">사원번호 중복확인을 해주세요.</p>
 								</div>
-								<p class="status-message" id="emp_no_msg">필수 입력 항목입니다.</p>
+
+								<div class="pd-l-2u">
+									<button type="button" class="btn btn-md btn-secondary btn-container btn-full" id="check_no">
+										<span class="label">중복확인</span>
+									</button>
+								</div>
 							</div>
 
-
 							<div class="fix-width-column right bottom w-100 mg-t-4u">
-								<div class="input-container input-container-md error" id="emp_id_div">
+								<div class="input-container input-container-md" id="emp_id_div">
 									<label>아이디<em class="txt-error">*</em></label>
 									<div class="input-group">
 										<input type="text" placeholder="아이디를 입력해주세요." class="input-box" name="emp_id">
+										<input type="hidden" name="checked_emp_id">
 										<div class="input-group-tools">
 											<button type="button" class="option error">
 												<i class="Licon size-24 ico-warning"></i>
@@ -404,7 +462,7 @@
 							</div>
 
 
-							<div class="input-container input-container-md mg-t-4u error" id="emp_pwd_div">
+							<div class="input-container input-container-md mg-t-4u" id="emp_pwd_div">
 								<label>비밀번호<em class="txt-error">*</em></label>
 								<div class="input-group">
 									<input type="password" placeholder="8~32자의 영문 대소문자,숫자,특수문자를 조합해서 입력해주세요." class="input-box"
@@ -428,7 +486,7 @@
 							</div>
 
 
-							<div class="input-container input-container-md mg-t-4u error" id="emp_pwdChk_div">
+							<div class="input-container input-container-md mg-t-4u" id="emp_pwdChk_div">
 								<label>비밀번호 확인<em class="txt-error">*</em></label>
 								<div class="input-group">
 									<input type="password" placeholder="확인을 위하여 위와 동일하게 입력해주세요." class="input-box"
@@ -451,38 +509,14 @@
 								<p class="status-message" id="emp_pwdChk_msg">필수 입력 항목입니다.</p>
 							</div>
 
-
-							<div class="input-container input-container-md mg-t-4u error" id="emp_name_div">
-								<label>이름<em class="txt-error">*</em></label>
-								<div class="input-group">
-									<input type="text" placeholder="한글/영문으로 입력해주세요." class="input-box" name="emp_name">
-									<div class="input-group-tools">
-										<button type="button" class="option error">
-											<i class="Licon size-24 ico-warning"></i>
-										</button>
-										<button type="button" class="option success">
-											<i class="Licon size-24 ico-check"></i>
-										</button>
-										<button type="button" class="clear">
-											<i class="material-icons">cancel</i>
-										</button>
-									</div>
-								</div>
-								<p class="status-message" id="emp_name_msg">필수 입력 항목입니다.</p>
-							</div>
-
-
 							<div class="divider mg-t-10u mg-b-6u"></div>
 
 							<div class="txt-right">
-
-								<button type="button" class="testBtn">test</button>
-
 								<a href="javascript:location.reload();">
 									<button type="button" class="btn btn-md btn-gray btn-container wth-100">
 										<span class="label">취소</span>
 									</button>
-								</a> <a>
+								</a> <a href="#">
 									<button type="button" class="btn btn-md btn-primary btn-container wth-100"
 										id="bigRedButton">
 										<span class="label">등록</span>

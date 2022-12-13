@@ -79,7 +79,11 @@ public class AdSalDAOImpl implements AdSalDAO{
 		
 		List<Map<String, String>> selectPayList = this.sqlSession.selectList(
 
-				"com.kh.erp.ad.sal.AdSalDAO.selectPayList");
+				"com.kh.erp.ad.sal.AdSalDAO.selectPayList"
+				
+				// 실행할 SQL 구문에서 사용할 데이터 지정
+				, ampaymentDTO
+		);
 
 		return selectPayList;
 	}

@@ -14,14 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.erp.login.InfoDTO;
-import com.kh.erp.login.LoginDAO;
-
 @Controller
 public class EmpController {
-	
-	@Autowired
-	private LoginDAO loginDAO;
 
 	@Autowired
 	private EmpDAO empDAO;
@@ -30,46 +24,8 @@ public class EmpController {
 	private EmpService empService;
 
 	@RequestMapping(value = "/adEmpReg.do")
-	public ModelAndView AdEmpReg(
-		InfoDTO infoDTO
-		, HttpSession session
-	) {
-		
-		// ---------------------------------------------
-		// session에 저장한 user_id를 user_id 변수에 저장
-		String user_id;
-		if(session.getAttribute("user_id") != null) {
-			user_id = (String)session.getAttribute("user_id");
-		}else {
-			user_id = "";
-		}
-		if(!(user_id.equals("system"))) {
-			
-			// session의 모든 값 삭제
-			session.invalidate();
-			
-			// [ModelAndView 객체] 생성
-			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
-			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
-			
-			return mav;
-		}
-		
-		// user_id 변수의 값을 infoDTO의 user_id에 저장
-		infoDTO.setUser_id(user_id);
-		
-		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
-		// 실행한 결과 값을 infoList에 저장
-		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
-		
-		
-		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
-//		System.out.println(session.getAttribute("no_emp"));
-//		session.setAttribute("no_emp", infoDTO.getNo_emp(infoList.get(0).get("no_emp")));
-		// ---------------------------------------------
-		
+	public ModelAndView AdEmpReg() {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("infoList", infoList);
 		List<Map<String, String>> partList = this.empDAO.getPartList();
 		mav.addObject("partList", partList);
 		List<Map<String, String>> jikupList = this.empDAO.getJikupList();
@@ -80,15 +36,17 @@ public class EmpController {
 	}
 
 	@RequestMapping(value = "/adEmpList.do")
-	public ModelAndView AdEmpList() {
+	public ModelAndView AdEmpList(EmpListDTO empListDTO
+			,HttpSession httpSession) {
 		ModelAndView mav = new ModelAndView();
-		List<Map<String, String>> empList = this.empDAO.getEmpList();
+		List<Map<String, String>> empList = this.empDAO.getEmpList(empListDTO);
 		List<Map<String, String>> partList = this.empDAO.getPartList();
+		List<Map<String, String>> proofList = this.empDAO.getProofList();
 		List<Map<String, String>> jikupList = this.empDAO.getJikupList();
-
-		mav.addObject("partList", partList);
-		mav.addObject("jikupList", jikupList);
 		mav.addObject("empList", empList);
+		mav.addObject("partList", partList);
+		mav.addObject("proofList", proofList);
+		mav.addObject("jikupList", jikupList);
 		mav.setViewName("adEmpList.jsp");
 		return mav;
 	}
@@ -133,6 +91,13 @@ public class EmpController {
 		int data = this.empDAO.checkId(emp_id);
 		return data;
 	}
+	
+	@RequestMapping(value = "/checkNo.do")
+	@ResponseBody
+	public int checkNo(String emp_no) {
+		int data = this.empDAO.checkNo(emp_no);
+		return data;
+	}
 
 	@RequestMapping(value = "/searchForm.do")
 	@ResponseBody
@@ -173,7 +138,7 @@ public class EmpController {
 		this.empDAO.adEmpRegForm(regDTO);
 
 		this.empDAO.adEmpRegPrivate(regDTO);
-
+		
 		return regDateMap;
 
 	}
@@ -182,25 +147,24 @@ public class EmpController {
 	@ResponseBody
 	public int adEmpListUp(
 			RegDTO regDTO
-			,@RequestParam(value="emp_no") String emp_no
-			,@RequestParam(value="emp_name") String emp_name
-			,@RequestParam(value="emp_retire") String emp_retire
-			,@RequestParam(value="emp_part") String emp_part
-			,@RequestParam(value="emp_jikup") String emp_jikup
-			,@RequestParam(value="emp_email") String emp_email
-			,@RequestParam(value="emp_loc") String emp_loc
-			,@RequestParam(value="emp_detailloc") String emp_detailloc
-			,@RequestParam(value="emp_phone") String emp_phone
+			
 			) {
 		
-		System.out.println(regDTO.getEmp_hire());
-		
+
 		int updateListCnt = this.empService.updateList(regDTO);
 		System.out.println(updateListCnt);
 		return updateListCnt;
+	}
+	
+	@RequestMapping(value = "/adEmpListDel.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int adEmpListDel(
+			RegDTO regDTO
+			
+			) {
 
-		
-
+		int deleteListCnt = this.empService.deleteList(regDTO);
+		return deleteListCnt;
 	}
 	
 }

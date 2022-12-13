@@ -1,4 +1,4 @@
-<!-- 아래JSP 기술의 한 종류인 [Page Directive]를 이용하여 현 JSP 페이지 처리 방식 선언하기 -->
+<!-- JSP 기술의 한 종류인 [Page Directive]를 이용하여 현 JSP 페이지 처리 방식 선언하기 -->
 <!-- 현재 이 JSP 페이지 실행 후 생성되는 문서는 HTML 이고,이 문서 안의 데이터는 UTF-8 방식으로 인코딩한다 라고 설정함 -->
 <!-- 현재 이 JSP 페이지는 UTF-8 방식으로 인코딩 한다 -->
 <!-- UTF-8 인코딩 방식은 한글을 포함 전 세계 모든 문자열을 부호화할 수 있는 방법이다. -->
@@ -22,49 +22,27 @@
 <script type="text/javascript">
 	$(function() {
 		$("#searchBtn").bind("click", function() {
-			//data = $("[name='searchForm']").serialize();
-			//alert(data);
-			test('asqwe111d');
+			search();
 		});
 
 	})
 
 	function search() {
-		var keyword = $("[name='keyword']");
+		var keyword = $("[name='keyword']").val();
 		if (typeof (keyword) != "string") {
 			keyword = "";
 		}
 
-		$.ajax({
-			type : 'GET',
-			url : "/searchForm.do",
-			data : $("[name='searchForm']").serialize(),
-			success : function(data) {
-				//테이블 초기화
-				$('#empListTable > tbody').empty();
-				if (data.length >= 1) {
-					data.forEach(function(item, index) {
-						str = '<tr>'
-						str += "<th>" + index + "</th>";
-						str += "<td>" + item.nm_emp + "</td>";
+		keyword = $.trim(keyword);
+		$("[name='keyword']").val(keyword);
 
-						str += "</tr>"
-						$('#empListTable').append(str);
-					})
-				}
-			},
-			error : function() {
-				alert("웹 서버 접속 실패");
-			}
-		})
+		document.searchForm.submit();
+
 	}
 
 	function adEmpListCorr(data) {
 		$("[name='adEmpListProc']").find("[name='no_emp']").val(data);
 		document.adEmpListProc.submit();
-	}
-	function test(data) {
-		alert(data)
 	}
 </script>
 
@@ -84,7 +62,7 @@
 					<div class="utility-group">
 						<a class="utility"> <span class="icon"><i class="Licon ico-my "
 								onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
-						</a> <a class="utility logout"> <span class="icon"><i class="Licon ico-logout"></i></span>
+						</a> <a class="utility"> <span class="icon"><i class="Licon ico-logout"></i></span>
 						</a>
 					</div>
 				</div>
@@ -117,15 +95,15 @@
 						<!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함--> <a
 						href="/adNotice.do"><span class="label">공지사항</span></a>
 					</li>
-					<li class="tree-view"><a><span class="label">인사관리</span></a>
+					<li class="tree-view"><a href="#"><span class="label">인사관리</span></a>
 						<ul class="tree-view-menu">
 							<li><a href="/adEmpReg.do"> <span class="label">사원등록</span></a></li>
 							<li><a href="/adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
-							<li><a href="/adEmpList.do"><span class="label">사원명부</span></a></li>
+							<li><a href="/adEmpList.do"><span class="label">사원명부 및 수정/삭제</span></a></li>
 						</ul></li>
-					<li class="tree-view"><a><span class="label">급여관리</span></a>
+					<li class="tree-view"><a href="#"><span class="label">급여관리</span></a>
 						<ul class="tree-view-menu">
-							<li><a href="adSal.do"><span class="label">급여계산</span></a></li>
+							<li><a href="adSalary.html"><span class="label">급여계산</span></a></li>
 							<!--<li><a href="#"><span class="label">Menu3-1</span></a></li>-->
 						</ul></li>
 				</ul>
@@ -136,7 +114,7 @@
 			<div class="content-header">
 				<div class="content-title-bar">
 					<h5>
-						사원명부
+						사원명부 및 수정/삭제
 						<button class="btn btn-sm btn-icon">
 							<span class="icon"></span>
 						</button>
@@ -144,18 +122,9 @@
 					<!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
 					<div class="tools responsive-except-desktop">
 						<div class="tools-group" style="cursor: none;">
-							<button class="tool-item" disabled style="cursor: default;">
+							<a href="/adEmpList.do"><button class="tool-item"  style="cursor: pointer;">
 								<span class="icon"><i class="Licon ico-datareset"></i></span> <span class="label">조회</span>
-							</button>
-							<button class="tool-item" disabled style="cursor: default;">
-								<span class="icon"><i class="Licon ico-save"></i></span> <span class="label">저장</span>
-							</button>
-							<button class="tool-item" disabled style="cursor: default;">
-								<span class="icon"><i class="Licon ico-add"></i></span> <span class="label">추가</span>
-							</button>
-							<button class="tool-item" disabled style="cursor: default;">
-								<span class="icon"><i class="Licon ico-minus"></i></span> <span class="label">삭제</span>
-							</button>
+							</button></a>							
 						</div>
 					</div>
 				</div>
@@ -169,10 +138,10 @@
 
 				<div class="split detailserch content" style="max-height: 15%;">
 					<div class="selectbox">
-						<form name="searchForm">
+						<form name="searchForm" method="post" action="/adEmpList.do">
 							<!-- 사업장 셀렉트박스 -->
 
-							<label>회사명 &nbsp;</label>
+							<label>사업장 &nbsp;</label>
 							<label>하이이알피 &nbsp;</label>
 
 							<!-- 부서 셀렉트박스 -->
@@ -186,9 +155,9 @@
 							<!-- 재직구분 셀렉트박스 -->
 							<label class="select1">재직구분 &nbsp;</label> <select name="proof">
 								<option value="">전체</option>
-								<option value="재직">재직</option>
-								<option value="퇴직">퇴직</option>
-								<option value="휴직">휴직</option>
+								<c:forEach var="proofList" items="${requestScope.proofList}" varStatus="status">
+										<option value="${proofList.NM_CD_EMP}">${proofList.NM_CD_EMP}</option>
+								</c:forEach>
 							</select>
 
 							<!-- 직급 셀렉트박스 -->

@@ -57,7 +57,7 @@
 
 	</select>
 	
-	<select id="searchPay" parameterType="com.kh.erp.ad.sal.AdSalDAO" resultType="int">
+	<select id="searchPay" parameterType="com.kh.erp.ad.sal.AmpaymentDTO" resultType="int">
 
 		select
 			count(*)
@@ -68,7 +68,7 @@
 
 	</select>
 	
-	<insert id="insertPay" parameterType="com.kh.erp.ad.sal.AdSalDAO">
+	<insert id="insertPay" parameterType="com.kh.erp.ad.sal.AmpaymentDTO">
 		insert into hr_ampayment(
 			no_emp
 			, ym
@@ -111,7 +111,7 @@
 		)
 	</insert>
 	
-	<select id="selectPayList" parameterType="com.kh.erp.ad.sal.AdSalDAO" resultType="hashmap">
+	<select id="selectPayList" parameterType="com.kh.erp.ad.sal.AmpaymentDTO" resultType="hashmap">
 
 		select
 			no_emp as "no_emp"

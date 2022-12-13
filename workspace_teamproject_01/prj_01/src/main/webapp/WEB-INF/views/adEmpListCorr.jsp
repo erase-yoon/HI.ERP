@@ -27,6 +27,10 @@
 			checkRegForm();
 		});
 
+		$(".delBtn").click(function(){
+			delCheck();
+		});
+
 	})
 
 	//다음 주소검색 API 
@@ -200,44 +204,51 @@
 			return;
 		}
 
-
-		    $.ajax(
-			{
-				//------------------------------------------
-				// 웹서버에 접속할 떄 사용할 URL 주소 지정
-				//------------------------------------------
-				url:"/adEmpListUp.do"
-				//------------------------------------------
-				// 웹서버에 전송할 데이터를 보내는 방법 지정
-				// 즉, 파라미터명(입력양식name값)과 파라미터값(입력양식value값)을 보내는 방법 지정
-				//------------------------------------------
-				,type:"post"
-				//----------------------------------------------------------
-				// 웹서버로 보낼 파라미터명(입력양식name값)과 파라미터값(입력양식value값)을 
-				// 아래와 같은 형식의 문자열로 조합해서 설정하기
-					// "파라미터명1=파라미터값1&파라미터명2=파라미터값2&~"
-				//----------------------------------------------------------
-				,data:$("[name='adEmpUpDel']").serialize() 
-					// , data:{"admin_id":admin_idVal,"pwd":pwdVal }
-					// , data:"admin_id="+admin_idVal+"&pwd="+pwdVal
-				//----------------------------------------------------------
-				// 웹서버와 통신한 후 웹서버의 응답을 성공적으로 받았을 경우 실행할 익명함수 설정.
-				// 익명함수의 매개변수에는 웹서버가 보내온 [아이디 암호의 존재 개수]가 들어온다
-				//----------------------------------------------------------
-				,success:function(updateListCnt){ 
-					if(updateListCnt==2){
-						document.adEmpListForm.submit();
-					}
-					
+		
+		$.ajax({
+			url : "/adEmpListUp.do",
+			type : "post",
+			data : $("[name='adEmpUpDel']").serialize(),
+			success : function(cnt) {
+				if(cnt==1){
+					alert("수정 완료");
+					// 
+					document.adEmpListForm.submit();
+				}else{
+					alert("수정할 사원 정보가 없습니다.")
 				}
-				//----------------------------------------------------------
-				// 웹서버와 통신이 실패했을 경우 실행할 익명함수 설정.
-				//----------------------------------------------------------
-				,error:function( ){
-					alert("웹서버 접속 실패");
-				}
+				
+			},
+			error : function() {
+				alert("웹서버 접속 실패");
 			}
-		);
+		});
+	}
+
+	function delCheck(){
+		var formObj = $("[name='adEmpUpDel']");
+		if(confirm("정말로 삭제하시겠습니까?")==false){
+			return;
+		}
+
+		$.ajax({
+			url : "/adEmpListDel.do",
+			type : "post",
+			data : $("[name='adEmpUpDel']").serialize(),
+			success : function(cnt) {
+				if(cnt==1){
+					alert("삭제 완료");
+					// 
+					document.adEmpListForm.submit();
+				}else{
+					alert("수정할 사원 정보가 없습니다.")
+				}
+				
+			},
+			error : function() {
+				alert("웹서버 접속 실패");
+			}
+		});
 	}
 </script>
 </head>
@@ -256,7 +267,7 @@
 					<div class="utility-group">
 						<a class="utility"> <span class="icon"><i class="Licon ico-my"
 								onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
-						</a> <a class="utility logout"> <span class="icon"><i class="Licon ico-logout"></i></span>
+						</a> <a class="utility"> <span class="icon"><i class="Licon ico-logout"></i></span>
 						</a>
 					</div>
 				</div>
@@ -287,7 +298,7 @@
 				<ul class="menu-accordion">
 					<li>
 						<!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함--> <a
-						href="adNotice.jsp"><span class="label">공지사항</span></a>
+						href="adNotice.do"><span class="label">공지사항</span></a>
 					</li>
 					<li class="tree-view"><a><span class="label">인사관리</span></a>
 						<ul class="tree-view-menu">
@@ -297,7 +308,7 @@
 						</ul></li>
 					<li class="tree-view"><a><span class="label">급여관리</span></a>
 						<ul class="tree-view-menu">
-							<li><a href="adSal.do"><span class="label">급여계산</span></a></li>
+							<li><a href="adSalary.html"><span class="label">급여계산</span></a></li>
 							<!--<li><a href="#"><span class="label">Menu3-1</span></a></li>-->
 						</ul></li>
 				</ul>
@@ -318,7 +329,7 @@
 					<!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
 					<div class="tools responsive-except-desktop" style="z-index: 3; cursor: default;">
 						<div class="tools-group" style="z-index: 4; cursor: default;">
-							<a class="tool-item">
+							<a class="tool-item delBtn">
 								<button class="tool-item" style="cursor: pointer; position: inherit; z-index: 5 !important;">
 									<span class="icon"><i class="Licon ico-minus"></i></span> <span class="label">삭제</span>
 								</button>
@@ -444,7 +455,7 @@
 											<div class="input-container input-container-sm" id="c_size_single">
 												<label>부서명<em class="txt-error">*</em></label>
 												<div class="input-group dropdown dropdown-bottom">
-													<input class="dummy" type="text" name="emp_part"
+													<input class="dummy emp_part" type="text" name="emp_part"
 														value="${requestScope.regDTO.emp_part}">
 													<button type="button" class="input-box">${requestScope.regDTO.emp_part}</button>
 													<div class="dropdown-menu" style="transform: translate3d(0px, 34px, 0px);">
@@ -467,7 +478,7 @@
 											<div class="input-container input-container-sm" id="c_size_single">
 												<label>직급명<em class="txt-error">*</em></label>
 												<div class="input-group dropdown dropdown-bottom">
-													<input class="dummy" type="text" name="emp_jikup"
+													<input class="dummy emp_jikup" type="text" name="emp_jikup"
 														value="${requestScope.regDTO.emp_jikup}">
 													<button type="button" class="input-box">${requestScope.regDTO.emp_jikup}</button>
 													<div class="dropdown-menu" style="transform: translate3d(0px, 34px, 0px);">

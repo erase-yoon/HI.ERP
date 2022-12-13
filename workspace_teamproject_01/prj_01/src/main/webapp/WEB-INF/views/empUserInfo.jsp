@@ -18,6 +18,7 @@
   <!-- Responsive Viewport & Fixed Scaling -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>개인정보조회</title>
+
 </head>
 <body class="side-first by-menu popup-menu-open">
   <div id="wrapper">
@@ -34,7 +35,7 @@
             <a class="utility">
               <span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
             </a>
-            <a class="utility logout">
+            <a class="utility">
               <span class="icon"><i class="Licon ico-logout"></i></span>
             </a>
           </div>
@@ -64,19 +65,19 @@
         <ul class="menu-accordion">
           <li>
             <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
-            <a href="adNotice.do"><span class="label">공지사항</span></a>
+            <a href="adNotice.html"><span class="label">공지사항</span></a>
           </li>
           <li class="tree-view">
-            <a><span class="label">인사관리</span></a>
+            <a href="#"><span class="label">인사관리</span></a>
             <ul class="tree-view-menu">
-              <li><a href="empUserInfo.do"><span class="label">개인정보조회</span></a></li>
+              <li><a href="empUserInfo.html"><span class="label">개인정보조회</span></a></li>
             </ul>
           </li>
           <li class="tree-view">
-            <a><span class="label">급여관리</span></a>
+            <a href="#"><span class="label">급여관리</span></a>
             <ul class="tree-view-menu">
-              <li><a href="empSalary.do"><span class="label">급여계산</span></a></li>
-              <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
+              <li><a href="adSalary.html"><span class="label">급여계산</span></a></li>
+              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
             </ul>
           </li>
         </ul>
@@ -88,26 +89,6 @@
         <div class="content-title-bar">
           <h5>개인정보조회<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
           <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
-          <div class="tools responsive-except-desktop" >
-            <div class="tools-group" style="cursor:none;">
-              <button class="tool-item" disabled style="cursor:default;">
-                <span class="icon"><i class="Licon ico-datareset"></i></span>
-                <span class="label">조회</span>
-              </button>
-              <button class="tool-item" disabled style="cursor:default;">
-                <span class="icon"><i class="Licon ico-save"></i></span>
-                <span class="label">저장</span>
-              </button>
-              <button class="tool-item" disabled style="cursor:default;">
-                <span class="icon"><i class="Licon ico-add"></i></span>
-                <span class="label">추가</span>
-              </button>
-              <button class="tool-item" disabled style="cursor:default;">
-                <span class="icon"><i class="Licon ico-minus"></i></span>
-                <span class="label">삭제</span>
-              </button>
-            </div>
-        </div>
       </div>
     </div>
 
@@ -120,31 +101,31 @@
   <tr class="dtr2">
     <td rowspan=5 class="dtd1-3"><image style="position: inherit; width: 200px; height: 240px;" src="assets/images/고양이.png"></td>
     <td class="dtd3-1">사 원 명</td>
-    <td class="dtd1-2">윤지우</td>
-    <td class="dtd3-1">사 번</td>
-    <td class="dtd1-2">777777</td>
+    <td class="dtd1-2">${requestScope.regDTO.emp_name}</td>
+    <td class="dtd3-1">사 원 번 호</td>
+    <td class="dtd1-2">${requestScope.regDTO.emp_no}</td>
   </tr>
   <tr class="dtr2">
     <td class="dtd3-1">생 년 월 일</td>
-    <td class="dtd1-2">1994.01.01</td>
+    <td class="dtd1-2">${requestScope.regDTO.emp_birth}</td>
     <td class="dtd3-1">입 사 일 자</td>
-    <td class="dtd1-2">2022.02.06</td>
+    <td class="dtd1-2">${requestScope.regDTO.emp_hire}</td>
   </tr>
   <tr class="dtr2">
     <td class="dtd3-1">부 서</td>
-    <td class="dtd1-2">DB개발부</td>
+    <td class="dtd1-2">${requestScope.regDTO.emp_part}</td>
     <td class="dtd3-1">직 급</td>
-    <td class="dtd1-2">대리</td>
+    <td class="dtd1-2">${requestScope.regDTO.emp_jikup}</td>
   </tr>
   <tr class="dtr2">
     <td class="dtd3-1">이 메 일</td>
-    <td class="dtd1-2">dbswldn@naver.com</td>
+    <td class="dtd1-2">${requestScope.regDTO.emp_email}</td>
     <td class="dtd3-1">연 락 처</td>
-    <td class="dtd1-2">010-1111-2222</td>
+    <td class="dtd1-2">${requestScope.regDTO.emp_phone}</td>
   </tr>
   <tr class="dtr2">
     <td class="dtd3-1">주 소</td>
-    <td colspan=3 class="dtd1-2">경기도 어딜까 어딘가 어느곳에</td>
+    <td colspan=3 class="dtd1-2">${requestScope.regDTO.emp_loc}</td>
   </tr>
 </table>
 
@@ -199,5 +180,8 @@
       </div>
     </div>
   </div>
+  <form action="/empUserInfo.do" name="empUserInfoForm" method="post">
+    <input type="hidden" name="emp_no" value="${requestScope.regDTO.emp_no}">
+  </form>
 </body>
 </html>
