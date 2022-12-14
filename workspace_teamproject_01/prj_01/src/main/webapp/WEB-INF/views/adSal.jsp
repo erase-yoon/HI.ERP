@@ -18,7 +18,7 @@
     <!-- Responsive Viewport & Fixed Scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <script>
-
+      
       // 오늘 날짜 관련 각종 데이터를 저장한 
       // JSON 객체를 리턴하는 함수 선언
       function json_today(){
@@ -48,26 +48,23 @@
           , data : {no_emp, ym}
           , success : function(selPayList){
             
-            
-            alert("${am_pay03}");
-
-            // alert("${requestScope.selPayList}");
-            $(".am_pay01").val("1");
-            $(".am_pay02").val("2");
-            $(".am_pay03").val("${requestScope.selPayList[0].am_pay03}");
-            $(".am_pay04").val("4");
-            $(".am_pay05").val("5");
-            $(".am_pay06").val("6");
-            $(".am_pay07").val("7");
-            $(".am_pay08").val("8");
-            $(".am_deduct01").val("1");
-            $(".am_deduct02").val("2");
-            $(".am_deduct03").val("3");
-            $(".am_deduct04").val("4");
-            $(".am_deduct05").val("5");
-            $(".am_deduct06").val("6");
-            $(".am_deduct07").val("7");
-            $(".am_deduct08").val("8");
+            alert(selPayList["am_pay01"]);
+            $(".am_pay01").val(selPayList["am_pay01"]);
+            $(".am_pay02").val(selPayList["am_pay02"]);
+            $(".am_pay03").val(selPayList["am_pay03"]);
+            $(".am_pay04").val(selPayList["am_pay04"]);
+            $(".am_pay05").val(selPayList["am_pay05"]);
+            $(".am_pay06").val(selPayList["am_pay06"]);
+            $(".am_pay07").val(selPayList["am_pay07"]);
+            $(".am_pay08").val(selPayList["am_pay08"]);
+            $(".am_deduct01").val(selPayList["am_deduct01"]);
+            $(".am_deduct02").val(selPayList["am_deduct02"]);
+            $(".am_deduct03").val(selPayList["am_deduct03"]);
+            $(".am_deduct04").val(selPayList["am_deduct04"]);
+            $(".am_deduct05").val(selPayList["am_deduct05"]);
+            $(".am_deduct06").val(selPayList["am_deduct06"]);
+            $(".am_deduct07").val(selPayList["am_deduct07"]);
+            $(".am_deduct08").val(selPayList["am_deduct08"]);
             // alert(typeof(selectPayList));
           }
           , error : function(){

@@ -110,7 +110,7 @@ public class AdSalController {
 
 	@RequestMapping(value = "/selPayProc.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public ModelAndView selPayProc(
+	public Map<String, String> selPayProc(
 
 			// 파라미터값을 저장할 [BoardDTO 객체]를 매개변수로 선언
 			AmpaymentDTO ampaymentDTO
@@ -120,19 +120,13 @@ public class AdSalController {
 
 	) {
 
-		List<Map<String, String>> selPayList = this.adSalDAO.selPay(ampaymentDTO);
+		List<Map<String, String>> selPayList1 = this.adSalDAO.selPay(ampaymentDTO);
+		Map<String, String> selPayList = selPayList1.get(0);
 
-		System.out.println(selPayList.get(0));
-
-		session.setAttribute("selPayList", selPayList);
-
-		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("selPayList", selPayList.get(0));
-		mav.setViewName("adSal.jsp");
+		System.out.println(selPayList);
 
 		// [ModelAndView 객체] 리턴
-		return mav;
+		return selPayList;
 	}
 
 //	// 가상주소 /selPayProc.do 접근 시 호출되는 메소드 선언
