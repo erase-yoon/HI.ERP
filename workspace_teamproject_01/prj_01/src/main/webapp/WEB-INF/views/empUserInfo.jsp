@@ -35,13 +35,13 @@
             <a class="utility">
               <span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
             </a>
-            <a class="utility">
+            <a class="utility logout">
               <span class="icon"><i class="Licon ico-logout"></i></span>
             </a>
           </div>
         </div>
         <div class="user-area responsive-except-desktop">
-          <span class="user-info">윤지우 (12345)</span>
+          <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
         </div>
       </div>
     </header>
@@ -68,16 +68,16 @@
             <a href="adNotice.html"><span class="label">공지사항</span></a>
           </li>
           <li class="tree-view">
-            <a href="#"><span class="label">인사관리</span></a>
+            <a><span class="label">인사관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="empUserInfo.html"><span class="label">개인정보조회</span></a></li>
             </ul>
           </li>
           <li class="tree-view">
-            <a href="#"><span class="label">급여관리</span></a>
+            <a><span class="label">급여관리</span></a>
             <ul class="tree-view-menu">
-              <li><a href="adSalary.html"><span class="label">급여계산</span></a></li>
-              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
+              <li><a href="empSalary.do"><span class="label">급여명세서 조회</span></a></li>
+              <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
             </ul>
           </li>
         </ul>
@@ -99,7 +99,7 @@
 
 <table class="dtable1" border="1" style="border-color:lightgray; margin-top: 100px;">
   <tr class="dtr2">
-    <td rowspan=5 class="dtd1-3"><image style="position: inherit; width: 200px; height: 240px;" src="assets/images/고양이.png"></td>
+    <!-- <td rowspan=5 class="dtd1-3"><image style="position: inherit; width: 200px; height: 240px;" src="assets/images/고양이.png"></td> -->
     <td class="dtd3-1">사 원 명</td>
     <td class="dtd1-2">${requestScope.regDTO.emp_name}</td>
     <td class="dtd3-1">사 원 번 호</td>
@@ -155,16 +155,16 @@
               <td><img src="./assets/images/test_img.png"></td>
             </tr>
             <tr align="center">
-              <td>윤지우 대리</td>                                     
+              <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
             </tr>
             <tr align="center">
-              <td>(DB개발팀)</td>                                     
+              <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
             </tr>
             <tr align="center">
-              <td>010-1111-2222</td>
+              <td>${requestScope.infoList[0].PHONE}</td>
             </tr>
             <tr align="center">
-              <td>dbswldn@naver.com</td>
+              <td>${requestScope.infoList[0].EMAIL}</td>
             </tr>
           </table>
 

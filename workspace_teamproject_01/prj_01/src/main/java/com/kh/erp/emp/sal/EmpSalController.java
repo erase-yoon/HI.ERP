@@ -48,28 +48,33 @@ public class EmpSalController {
 	) {
 		// ---------------------------------------------
 		// session에 저장한 user_id를 user_id 변수에 저장
-		String user_id = (String)session.getAttribute("user_id");
-		
+		String user_id;
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
+			user_id = "";
+		}
+		if (user_id.equals("")) {
+
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
+			session.invalidate();
+
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+
+			return mav;
+		}
+
 		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
-		
-		//infoDTO.setNo_emp(user_id);
-		
+
 		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
 		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
-		
+
 		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
-		//System.out.println(empSalDTO.getYear());
-		//System.out.println(empSalDTO.getMonth());
-		
-		//session.setAttribute("year", empSalDTO.getYear() );
-		//session.setAttribute("month", empSalDTO.getMonth() );
-		
-		
-		
-		
-		
 		// ---------------------------------------------
 		
 		//System.out.println(infoList);
@@ -95,47 +100,34 @@ public class EmpSalController {
 		
 		// ---------------------------------------------
 		// session에 저장한 user_id를 user_id 변수에 저장
-		String user_id = (String)session.getAttribute("user_id");
-		String no_emp = (String)session.getAttribute("no_emp");
-		
-		
-		
-		//System.out.println(session.getAttribute("user_id"));
+		String user_id;
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
+			user_id = "";
+		}
+		if (user_id.equals("")) {
+
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
+			session.invalidate();
+
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+
+			return mav;
+		}
+
 		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
-		empSalDTO.setUser_id(user_id);
-		infoDTO.setNo_emp(no_emp);
-		empSalDTO.setNo_emp(no_emp);
-		
-		String year = (String)session.getAttribute("year");
-		String month = (String)session.getAttribute("month");
-		
-		String ym = year + month ;
-		
-		empSalDTO.setYm(ym);
-		
-		//System.out.println(ym);
-		
-		
-		
+
 		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
 		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
-		
-		empSalDTO.setNo_emp(infoList.get(0).get("NO_EMP"));
-		
-		//System.out.println("no_emp : " + infoList.get(0).get("NO_EMP"));
+
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
 		// ---------------------------------------------
-//		String user_id = (String)session.getAttribute("user_id");
-//		String no_emp = (String)session.getAttribute("no_emp");
-//		empSalDTO.setUser_id(user_id);
-//		empSalDTO.setNo_emp(no_emp);
-		
-		//System.out.println(empSalDTO.getUser_id());
-		
-		//System.out.println(empSalDTO.getYear());
-		//System.out.println(empSalDTO.getMonth());
-		//System.out.println(empSalDTO.getNo_emp());
 		
 		
 		
@@ -227,31 +219,6 @@ public class EmpSalController {
 		
 	}
 
-	
-	
-	/*
-	// 급여조회 유효성 체크
-	// /isCheckedSalProc.do 접근시 호출되는 메소드 선언
-	@RequestMapping(value="/isCheckedSalProc.do", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
-	@ResponseBody
-	public int isCheckedSalProc(
-			EmpSalDTO empSalDTO
-			, HttpSession session
-			, HttpServletResponse response
-	) {
-		session.setAttribute("year", empSalDTO.getYear() );
-		session.setAttribute("month", empSalDTO.getMonth() );
-		
-		
-		
-		int checkSalPwdCnt = empSalDAO.checkSalPwd(empSalDTO);
-		
-		int checkSal = this.empSalDAO.getCheckSal(empSalDTO);
-		
-		if(checkSal==0) {return -1;}
-		else {return checkSalPwdCnt;}
-	}
-	*/
 	
 }
 	

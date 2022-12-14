@@ -329,12 +329,12 @@
 					<div class="utility-group">
 						<a class="utility"> <span class="icon"><i class="Licon ico-my"
 								onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
-						</a> <a class="utility"> <span class="icon"><i class="Licon ico-logout"></i></span>
+						</a> <a class="utility logout"> <span class="icon"><i class="Licon ico-logout"></i></span>
 						</a>
 					</div>
 				</div>
 				<div class="user-area responsive-except-desktop">
-					<span class="user-info">윤지우 (12345)</span>
+					<span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
 				</div>
 			</div>
 		</header>
@@ -362,16 +362,16 @@
 						<!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함--> <a
 						href="/adNotice.do"><span class="label">공지사항</span></a>
 					</li>
-					<li class="tree-view"><a href="#"><span class="label">인사관리</span></a>
+					<li class="tree-view"><a><span class="label">인사관리</span></a>
 						<ul class="tree-view-menu">
 							<li><a href="/adEmpReg.do"> <span class="label">사원등록</span></a></li>
 							<li><a href="/adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
 							<li><a href="/adEmpList.do"><span class="label">사원명부 및 수정/삭제</span></a></li>
 						</ul></li>
-					<li class="tree-view"><a href="#"><span class="label">급여관리</span></a>
+					<li class="tree-view"><a><span class="label">급여관리</span></a>
 						<ul class="tree-view-menu">
-							<li><a href="adSalary.html"><span class="label">급여계산</span></a></li>
-							<!--<li><a href="#"><span class="label">Menu3-1</span></a></li>-->
+							<li><a href="adSal.do"><span class="label">급여계산</span></a></li>
+							<!--<li><a><span class="label">Menu3-1</span></a></li>-->
 						</ul></li>
 				</ul>
 			</div>
@@ -516,7 +516,7 @@
 									<button type="button" class="btn btn-md btn-gray btn-container wth-100">
 										<span class="label">취소</span>
 									</button>
-								</a> <a href="#">
+								</a> <a>
 									<button type="button" class="btn btn-md btn-primary btn-container wth-100"
 										id="bigRedButton">
 										<span class="label">등록</span>
@@ -545,18 +545,18 @@
 						<tr align="center">
 							<td><img src="./assets/images/test_img.png"></td>
 						</tr>
-						<tr align="center">
-							<td>윤지우 대리</td>
-						</tr>
-						<tr align="center">
-							<td>(DB개발팀)</td>
-						</tr>
-						<tr align="center">
-							<td>010-1111-2222</td>
-						</tr>
-						<tr align="center">
-							<td>dbswldn@naver.com</td>
-						</tr>
+            <tr align="center">
+              <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
+            </tr>
+            <tr align="center">
+              <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
+            </tr>
+            <tr align="center">
+              <td>${requestScope.infoList[0].PHONE}</td>
+            </tr>
+            <tr align="center">
+              <td>${requestScope.infoList[0].EMAIL}</td>
+            </tr>
 					</table>
 				</div>
 				<div class="popup-tools txt-right" style="margin-top: -20px;">

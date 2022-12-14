@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.erp.login.InfoDTO;
+import com.kh.erp.login.LoginDAO;
+
 @Controller
 public class EmpController {
 
@@ -23,21 +26,46 @@ public class EmpController {
 	
 	@Autowired
 	private EmpService empService;
+	
+	@Autowired
+	private LoginDAO loginDAO;
 
 	@RequestMapping(value = "/adEmpReg.do")
-	public ModelAndView AdEmpReg(HttpSession session) {
+	public ModelAndView AdEmpReg(HttpSession session, InfoDTO infoDTO) {
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id;
-		if(session.getAttribute("user_id") != null) {
-			user_id = (String)session.getAttribute("user_id");
-		}else {
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
 			user_id = "";
 		}
-		if(!(user_id.equals("system"))) {
+		if (!(user_id.equals("system"))) {
+
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
 			session.invalidate();
-			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");		
+
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+
 			return mav;
 		}
+
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
+		infoDTO.setUser_id(user_id);
+
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
+		// ---------------------------------------------
 		ModelAndView mav = new ModelAndView();
+		// ---------------------------------------------
+		mav.addObject("infoList", infoList);
+		// ---------------------------------------------
 		List<Map<String, String>> partList = this.empDAO.getPartList();
 		mav.addObject("partList", partList);
 		List<Map<String, String>> jikupList = this.empDAO.getJikupList();
@@ -49,30 +77,43 @@ public class EmpController {
 
 	@RequestMapping(value = "/adEmpList.do")
 	public ModelAndView AdEmpList(EmpListDTO empListDTO
-			,HttpSession httpSession) {
+			,HttpSession session, InfoDTO infoDTO) {
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id;
-		if(httpSession.getAttribute("user_id") != null) {
-			user_id = (String)httpSession.getAttribute("user_id");
-		}else {
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
 			user_id = "";
 		}
-		if(!(user_id.equals("system"))) {
-			
+		if (!(user_id.equals("system"))) {
+
 //			System.out.println(user_id);
 			// session의 모든 값 삭제
-			httpSession.invalidate();
-			
+			session.invalidate();
+
 			// [ModelAndView 객체] 생성
 			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
 			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
-			
+
 			return mav;
 		}
+
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
+		infoDTO.setUser_id(user_id);
+
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
+		// ---------------------------------------------
 		ModelAndView mav = new ModelAndView();
 		List<Map<String, String>> empList = this.empDAO.getEmpList(empListDTO);
 		List<Map<String, String>> partList = this.empDAO.getPartList();
 		List<Map<String, String>> proofList = this.empDAO.getProofList();
 		List<Map<String, String>> jikupList = this.empDAO.getJikupList();
+		mav.addObject("infoList", infoList);
 		mav.addObject("empList", empList);
 		mav.addObject("partList", partList);
 		mav.addObject("proofList", proofList);
@@ -83,19 +124,39 @@ public class EmpController {
 
 	@RequestMapping(value = "/adEmpListCorr.do")
 	public ModelAndView AdEmpListCorr(@RequestParam(value = "no_emp", required = false) String no_emp
-			,HttpSession session) {
+			,HttpSession session, InfoDTO infoDTO) {
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id;
-		if(session.getAttribute("user_id") != null) {
-			user_id = (String)session.getAttribute("user_id");
-		}else {
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
 			user_id = "";
 		}
-		if(!(user_id.equals("system"))) {
+		if (!(user_id.equals("system"))) {
+
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
 			session.invalidate();
-			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");		
+
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+
 			return mav;
 		}
+
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
+		infoDTO.setUser_id(user_id);
+
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
+		// ---------------------------------------------
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("infoList", infoList);
 		RegDTO regDTO = this.empDAO.getEmpListCorr(no_emp);		
 		List<Map<String, String>> partList = this.empDAO.getPartList();
 		mav.addObject("partList", partList);
@@ -107,37 +168,77 @@ public class EmpController {
 	}
 
 	@RequestMapping(value = "/adUserInfoReg.do")
-	public ModelAndView AdUserInfoReg(HttpSession session) {
+	public ModelAndView AdUserInfoReg(HttpSession session, InfoDTO infoDTO) {
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id;
-		if(session.getAttribute("user_id") != null) {
-			user_id = (String)session.getAttribute("user_id");
-		}else {
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
 			user_id = "";
 		}
-		if(!(user_id.equals("system"))) {
+		if (!(user_id.equals("system"))) {
+
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
 			session.invalidate();
-			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");		
+
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+
 			return mav;
 		}
+
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
+		infoDTO.setUser_id(user_id);
+
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
+		// ---------------------------------------------
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("infoList", infoList);
 		mav.setViewName("adUserInfoReg.jsp");
 		return mav;
 	}
 
 	@RequestMapping(value = "/adUserInfoRegConfirm.do")
-	public ModelAndView AdUserInfoRegConfirm(HttpSession session) {
+	public ModelAndView AdUserInfoRegConfirm(HttpSession session, InfoDTO infoDTO) {
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id;
-		if(session.getAttribute("user_id") != null) {
-			user_id = (String)session.getAttribute("user_id");
-		}else {
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
 			user_id = "";
 		}
-		if(!(user_id.equals("system"))) {
+		if (!(user_id.equals("system"))) {
+
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
 			session.invalidate();
-			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");		
+
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+
 			return mav;
 		}
+
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
+		infoDTO.setUser_id(user_id);
+
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
+		// ---------------------------------------------
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("infoList", infoList);
 		mav.setViewName("adUserInfoRegConfirm.jsp");
 		return mav;
 	}
@@ -165,19 +266,39 @@ public class EmpController {
 
 
 	@RequestMapping(value = "/adEmpRegConfirm.do")
-	public ModelAndView AdEmpRegConfirm(HttpSession session) {
+	public ModelAndView AdEmpRegConfirm(HttpSession session, InfoDTO infoDTO) {
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
 		String user_id;
-		if(session.getAttribute("user_id") != null) {
-			user_id = (String)session.getAttribute("user_id");
-		}else {
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
 			user_id = "";
 		}
-		if(!(user_id.equals("system"))) {
+		if (!(user_id.equals("system"))) {
+
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
 			session.invalidate();
-			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");		
+
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+
 			return mav;
 		}
+
+		// user_id 변수의 값을 infoDTO의 user_id에 저장
+		infoDTO.setUser_id(user_id);
+
+		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
+		// 실행한 결과 값을 infoList에 저장
+		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
+		// ---------------------------------------------
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("infoList", infoList);
 		mav.setViewName("adEmpRegConfirm.jsp");
 		return mav;
 	}

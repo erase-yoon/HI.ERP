@@ -90,8 +90,6 @@ public class BoardController {
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
 
 		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
-//		System.out.println(session.getAttribute("no_emp"));
-//		session.setAttribute("no_emp", infoDTO.getNo_emp(infoList.get(0).get("no_emp")));
 		// ---------------------------------------------
 
 		// BoardDAOImpl 객체의
@@ -170,12 +168,28 @@ public class BoardController {
 
 			// ---------------------------------------------
 			, InfoDTO infoDTO, HttpSession session
-	// ---------------------------------------------
+			// ---------------------------------------------
 	) {
-//		System.out.println("boardListForm 컨트롤러 시작");
 		// ---------------------------------------------
 		// session에 저장한 user_id를 user_id 변수에 저장
-		String user_id = (String) session.getAttribute("user_id");
+		String user_id;
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
+			user_id = "";
+		}
+		if (user_id.equals("")) {
+
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
+			session.invalidate();
+
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+
+			return mav;
+		}
 
 		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
@@ -183,6 +197,8 @@ public class BoardController {
 		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
 		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
 		// ---------------------------------------------
 
 		// BoardDAOImpl 객체의
@@ -340,7 +356,7 @@ public class BoardController {
 
 			// 파라미터값을 저장할 [BoardDTO 객체]를 매개변수로 선언
 			BoardDTO boardDTO, @RequestParam(value = "subject") String subject,
-			@RequestParam(value = "content") String content
+			@RequestParam(value = "content", required = false) String content
 			// [파라미터명]과 [BoardDTO 객체]의 [속성변수명]이 같을 경우
 			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
 			, HttpSession session
@@ -382,7 +398,7 @@ public class BoardController {
 	public ModelAndView adNoticeDetail(
 
 			// "b_no"라는 파라미터 명에 해당하는 파라미터 값을 꺼내 int b_no에 저장
-			@RequestParam(value = "b_no") int b_no
+			@RequestParam(value = "b_no", required = false) int b_no
 			// 상세보기 할 게시판 고유번호가 들어오는 매개변수 선언
 
 			// ---------------------------------------------
@@ -454,8 +470,27 @@ public class BoardController {
 	// /empNoticeDetail.do로 접근하면 호출되는 메소드 선언
 	// ---------------------------------------------------------------
 	@RequestMapping(value = "/empNoticeDetail.do")
-	public ModelAndView empNoticeDetail(@RequestParam(value = "b_no") int b_no, InfoDTO infoDTO, HttpSession session) {
-		String user_id = (String) session.getAttribute("user_id");
+	public ModelAndView empNoticeDetail(@RequestParam(value = "b_no", required = false) int b_no, InfoDTO infoDTO, HttpSession session) {
+		// ---------------------------------------------
+		// session에 저장한 user_id를 user_id 변수에 저장
+		String user_id;
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
+			user_id = "";
+		}
+		if (user_id.equals("")) {
+
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
+			session.invalidate();
+
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+
+			return mav;
+		}
 
 		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
@@ -463,6 +498,9 @@ public class BoardController {
 		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
 		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
+		// ---------------------------------------------
 
 		// ---------------------------------------------
 		// [BoardServiceImpl 객체]의 getBoard 메소드를 호출하여
@@ -504,7 +542,7 @@ public class BoardController {
 	public ModelAndView adNoticeUpdate(
 
 			// "b_no"라는 파라미터 명에 해당하는 파라미터 값을 꺼내 int b_no에 저장
-			@RequestParam(value = "b_no") int b_no
+			@RequestParam(value = "b_no", required = false) int b_no
 			// 수정/삭제 할 게시판 고유번호가 들어오는 매개변수 선언
 			// ---------------------------------------------
 			, InfoDTO infoDTO, HttpSession session
@@ -578,8 +616,8 @@ public class BoardController {
 	public int boardUpProc(
 
 			// 파라미터값을 저장할 [BoardDTO 객체]를 매개변수로 선언
-			BoardDTO boardDTO, @RequestParam(value = "subject") String subject,
-			@RequestParam(value = "content") String content
+			BoardDTO boardDTO, @RequestParam(value = "subject", required = false) String subject,
+			@RequestParam(value = "content", required = false) String content
 	// [파라미터명]과 [BoardDTO 객체]의 [속성변수명]이 같을 경우
 	// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
 	) {
@@ -653,71 +691,5 @@ public class BoardController {
 //		System.out.println("commentDelProc.do 컨트롤러에서 종료");
 		return 1;
 	}
-
-//	// ---------------------------------------------------------------
-//	// 가상주소 /boardReplyForm.do로 접근하면 호출되는 메소드 선언
-//	// @RequestMapping 내부에 method="RequestMethod.POST"가 없으므로
-//	// 가상주소 /boardReplyForm.do로 접근 시 get 또는 post 접근 모두 허용
-//	// ---------------------------------------------------------------
-//	@RequestMapping(value="/boardReplyForm.do")
-//	public ModelAndView boardReplyForm(
-//			
-//		// "b_no"라는 파라미터 명에 해당하는 파라미터 값을 꺼내 int b_no에 저장
-//		@RequestParam(value = "b_no") int b_no
-//		// 답글을 달 게시판 고유번호가 들어오는 매개변수 선언
-//			
-//	){
-//		
-//		// [BoardServiceImpl 객체]의 getBoard 메소드를 호출하여 
-//		// [1개의 게시판 글]을 boardDTO 객체에 담아오기
-//		BoardDTO boardDTO = this.boardService.getBoard(b_no, false);
-//		// BoardDTO boardDTO를 BoardVO boardVO로도 사용
-//		// VO : Value Object
-//		// DTO : Data Transfer Object
-//
-//		// [ModelAndView 객체] 생성
-//		ModelAndView mav = new ModelAndView();
-//		
-//		// [ModelAndView 객체]의
-//		// setViewName 메소드를 호출하여
-//		// [호출할 JSP 페이지명]을 문자로 저장
-//		mav.setViewName("boardReplyForm.jsp");
-//		
-//		// [ModelAndView 객체]에 1개의 게시판 글을 저장한
-//		// BoardDTO 객체 저장하기
-//		mav.addObject("boardDTO", boardDTO);
-//		
-//		// [ModelAndView 객체] 리턴
-//		return mav;
-//		// Spring은 ModelAndView 객체 리턴 시
-//		// 저장된 [JSP 페이지명]에 있는 [JSP 페이지]를 호출한다.
-//	}
-//		
-//	// ---------------------------------------------------------------
-//	// /boardReplyRegProc.do로 접근하면 호출되는 메소드 선언
-//	// ---------------------------------------------------------------
-//	@RequestMapping( 
-//			value="/boardReplyRegProc.do" 
-//			,method=RequestMethod.POST
-//			,produces="application/json;charset=UTF-8"
-//	)
-//	@ResponseBody
-//	public int boardReplyRegProc( 
-//			
-//			// 파라미터값을 저장할 [BoardDTO 객체]를 매개변수로 선언
-//			BoardDTO boardDTO
-//			// [파라미터명]과 [BoardDTO 객체]의 [속성변수명]이 같을 경우
-//			// setter 메소드가 작동되어 [파라미터값]이 [속성변수]에 저장된다.
-//	){
-//		
-//		this.boardDAO.updatePrintNo(boardDTO.getB_no());
-//		
-//		// [BoardDAOImpl 객체]의 insertReplyBoard 메소드를 호출하여 
-//		// 게시판 글을 입력하고 [입력이 적용될 행의 개수] 얻기
-//		int boardReplyRegCnt = this.boardDAO.insertReplyBoard(boardDTO);
-//		
-//		// [입력 적용행의 개수] 얻기
-//		return boardReplyRegCnt;
-//	}
 
 }

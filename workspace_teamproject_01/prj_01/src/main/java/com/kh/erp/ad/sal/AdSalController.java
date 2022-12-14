@@ -39,7 +39,24 @@ public class AdSalController {
 
 		// ---------------------------------------------
 		// session에 저장한 user_id를 user_id 변수에 저장
-		String user_id = (String) session.getAttribute("user_id");
+		String user_id;
+		if (session.getAttribute("user_id") != null) {
+			user_id = (String) session.getAttribute("user_id");
+		} else {
+			user_id = "";
+		}
+		if (!(user_id.equals("system"))) {
+
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
+			session.invalidate();
+
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+
+			return mav;
+		}
 
 		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
@@ -47,6 +64,8 @@ public class AdSalController {
 		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
 		// 실행한 결과 값을 infoList에 저장
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
+
+		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
 		// ---------------------------------------------
 
 		List<Map<String, String>> empSalList = this.adSalDAO.getEmpSalList(qwe);
