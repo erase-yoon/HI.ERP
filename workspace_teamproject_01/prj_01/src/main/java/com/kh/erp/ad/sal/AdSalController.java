@@ -35,7 +35,7 @@ public class AdSalController {
 	private AdSalDAO adSalDAO;
 
 	@RequestMapping(value = "/adSal.do")
-	public ModelAndView adNotice(InfoDTO infoDTO, HttpSession session) {
+	public ModelAndView adNotice(InfoDTO infoDTO, HttpSession session, AmpaymentDTO qwe) {
 
 		// ---------------------------------------------
 		// session에 저장한 user_id를 user_id 변수에 저장
@@ -49,7 +49,7 @@ public class AdSalController {
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
 		// ---------------------------------------------
 
-		List<Map<String, String>> empSalList = this.adSalDAO.getEmpSalList();
+		List<Map<String, String>> empSalList = this.adSalDAO.getEmpSalList(qwe);
 
 		List<Map<String, String>> payList = this.adSalDAO.getPayList();
 
@@ -123,7 +123,7 @@ public class AdSalController {
 		List<Map<String, String>> selPayList1 = this.adSalDAO.selPay(ampaymentDTO);
 		Map<String, String> selPayList = selPayList1.get(0);
 
-		System.out.println(selPayList);
+//		System.out.println(selPayList);
 
 		// [ModelAndView 객체] 리턴
 		return selPayList;

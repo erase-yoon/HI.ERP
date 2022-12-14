@@ -47,8 +47,7 @@
           , type : "post"
           , data : {no_emp, ym}
           , success : function(selPayList){
-            
-            alert(selPayList["am_pay01"]);
+
             $(".am_pay01").val(selPayList["am_pay01"]);
             $(".am_pay02").val(selPayList["am_pay02"]);
             $(".am_pay03").val(selPayList["am_pay03"]);
@@ -65,7 +64,7 @@
             $(".am_deduct06").val(selPayList["am_deduct06"]);
             $(".am_deduct07").val(selPayList["am_deduct07"]);
             $(".am_deduct08").val(selPayList["am_deduct08"]);
-            // alert(typeof(selectPayList));
+
           }
           , error : function(){
             alert("웹 서버 접속 실패");
@@ -75,53 +74,56 @@
       }
 
       function search(){
-        alert("T");
-        // document.insertPayForm.submit();
+    	  document.selPayForm.method='post'
+   		  document.selPayForm.action='/adSal.do'
+		  	document.selPayForm.submit();
       }
 
       function savePay(){
-        var year_obj = $("[name='year']");
-        var month_obj = $("[name='month']");
-        var no_emp_obj = $("[name='no_emp']");
+        alert();
 
-        return;
-        if(no_emp_obj.val()==""){
-          alert("추가할 사원 번호를 선택해주세요.");
-          return;
-        }
+        // var year_obj = $("[name='year']");
+        // var month_obj = $("[name='month']");
+        // var no_emp_obj = $("[name='no_emp']");
 
-        if(year_obj.val()==""){
-          alert("추가할 귀속년을 선택해주세요.");
-          return;
-        }
+        // return;
+        // if(no_emp_obj.val()==""){
+        //   alert("추가할 사원 번호를 선택해주세요.");
+        //   return;
+        // }
 
-        if(month_obj.val()==""){
-          alert("추가할 귀속월을 선택해주세요.");
-          return;
-        }
+        // if(year_obj.val()==""){
+        //   alert("추가할 귀속년을 선택해주세요.");
+        //   return;
+        // }
 
-        $.ajax({
-          url : "/insertPayProc.do"
-          , type : "post"
-          , data : $("[name='selPayForm']").serialize()
-          , success : function(Cnt){
-            if(Cnt==1){
-              alert("추가 성공");
-              location.replace("/adSal.do");
-            }else if(Cnt==-1){
-              alert("이미 있는 귀속년월 입니다.");
-              year_obj.val("");
-              month_obj.val("");
-              no_emp_obj.val("");
-            }else{
-              alert("에러입니다.");
-              return;
-            }
-          }
-          , error : function(){
-              alert("웹 서버 접속 실패");
-          }
-        });
+        // if(month_obj.val()==""){
+        //   alert("추가할 귀속월을 선택해주세요.");
+        //   return;
+        // }
+
+        // $.ajax({
+        //   url : "/insertPayProc.do"
+        //   , type : "post"
+        //   , data : $("[name='selPayForm']").serialize()
+        //   , success : function(Cnt){
+        //     if(Cnt==1){
+        //       alert("추가 성공");
+        //       location.replace("/adSal.do");
+        //     }else if(Cnt==-1){
+        //       alert("이미 있는 귀속년월 입니다.");
+        //       year_obj.val("");
+        //       month_obj.val("");
+        //       no_emp_obj.val("");
+        //     }else{
+        //       alert("에러입니다.");
+        //       return;
+        //     }
+        //   }
+        //   , error : function(){
+        //       alert("웹 서버 접속 실패");
+        //   }
+        // });
       }
 
       function insertPay(){
@@ -602,13 +604,13 @@
                 Split(['#top', '#bottom'], {
                   direction: 'vertical',
                   gutterSize: 12,
-                  sizes: [50, 50]
-                })
+                  sizes: [50, 60]
+                });
 
                 Split(['#bottom-left', '#bottom-right'], {
                   gutterSize: 12,
                   sizes: [50, 50]
-                })
+                });
               </script>
             </section>
           </div>

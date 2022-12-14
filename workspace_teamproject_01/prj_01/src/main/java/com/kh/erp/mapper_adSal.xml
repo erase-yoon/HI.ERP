@@ -19,6 +19,21 @@
 		    ma_emp e, ma_emp_private p, ma_dept d, ma_jikup j, ma_code_emp c, hr_ampayment pm
 		where
 		    e.no_emp=p.no_emp and e.cd_dept=d.cd_dept and e.cd_jik=j.cd_jik and e.cd_emp=c.cd_emp and pm.no_emp=e.no_emp and e.nm_emp != 'system'
+		    <if test="no_emp!=null and no_emp.length()>0">
+				and(
+				e.no_emp=#{no_emp}
+				)
+			</if>
+			<if test="year!=null and year.length()>0">
+				and(
+				SUBSTR(pm.ym,0,4)=#{year}
+				)
+			</if>
+			<if test="month!=null and month.length()>0">
+				and(
+				SUBSTR(pm.ym,5,2)=#{month}
+				)
+			</if>
 		order by e.no_emp
 
 	</select>

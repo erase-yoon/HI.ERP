@@ -3,8 +3,6 @@
 
 <mapper namespace="com.kh.erp.ad.emp.EmpDAO">
 
-
-
 	<insert id="adUserInfoReg"
 		parameterType="com.kh.erp.ad.emp.UserInfoDTO">
 		insert into MA_USER(
