@@ -33,7 +33,7 @@ public class SessionInterceptor implements HandlerInterceptor{
 		// HttpSession 객체를 얻을 수 있다.
 		HttpSession session = request.getSession();
 		
-		// HttpSession 객체에서 키 값이 "mid"로 저장된 데이터 꺼내기
+		// HttpSession 객체에서 키 값이 "user_id"로 저장된 데이터 꺼내기
 		String user_id = (String)session.getAttribute("user_id");
 		
 		System.out.println(user_id);

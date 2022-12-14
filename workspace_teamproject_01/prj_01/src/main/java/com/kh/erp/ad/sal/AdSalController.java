@@ -88,6 +88,18 @@ public class AdSalController {
 			return inesertPay;
 		}
 	}
+	
+	// 가상주소 /updatePayProc.do 접근 시 호출되는 메소드 선언
+	@RequestMapping(value = "/updatePayProc.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int updatePayProc(
+
+			AmpaymentDTO ampaymentDTO, HttpSession session, HttpServletResponse response) {
+		
+		int updatePay = this.adSalDAO.updatePay(ampaymentDTO);
+		
+		return updatePay;
+	}
 
 	// 가상주소 /deletePayProc.do 접근 시 호출되는 메소드 선언
 	@RequestMapping(value = "/deletePayProc.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -129,24 +141,6 @@ public class AdSalController {
 		return selPayList;
 	}
 
-//	// 가상주소 /selPayProc.do 접근 시 호출되는 메소드 선언
-//	@RequestMapping(value="/selPayProc.do", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
-//	@ResponseBody
-//	public ModelAndView selPayProc(
-//
-//		AmpaymentDTO ampaymentDTO
-//	){
-//		
-//		List<Map<String, String>> selectPayList = this.adSalDAO.selectPayList(ampaymentDTO);
-//		
-//		ModelAndView mav = new ModelAndView();
-//		
-//		System.out.println(selectPayList);
-//
-//		mav.addObject("selectPayList", selectPayList);
-//		mav.setViewName("adSal.jsp");
-//		
-//		return mav;
-//	}
+
 
 }

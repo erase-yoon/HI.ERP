@@ -11,8 +11,6 @@ public interface EmpDAO {
 	
 	int checkNo(String emp_no);
 
-	List<Map<String, String>> searchForm(EmpListDTO empListDTO);
-
 	List<Map<String, String>> getEmpList(EmpListDTO empListDTO);
 
 	int adEmpRegForm(RegDTO regDTO);

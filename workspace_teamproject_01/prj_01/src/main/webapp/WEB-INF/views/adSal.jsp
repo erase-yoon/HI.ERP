@@ -18,7 +18,8 @@
     <!-- Responsive Viewport & Fixed Scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <script>
-      
+      var no_emp, year, month, ym;
+
       // 오늘 날짜 관련 각종 데이터를 저장한 
       // JSON 객체를 리턴하는 함수 선언
       function json_today(){
@@ -35,13 +36,14 @@
         return json;
       }
 
-      function getNo_erpYM(no_emp, sel_ym){
-        
-        var year = sel_ym.substr(0, 4);
-        var month = sel_ym.substr(6, 2);
-        var ym = sel_ym.substr(0, 4) + sel_ym.substr(6, 2);
+      function getNo_erpYM(no_emp1, sel_ym){
+        no_emp = no_emp1;
+        year = sel_ym.substr(0, 4);
+        month = sel_ym.substr(6, 2);
+        ym = sel_ym.substr(0, 4) + sel_ym.substr(6, 2);
+      }
 
-        // return;
+      function setPay(){
         $.ajax({
           url : "/selPayProc.do"
           , type : "post"
@@ -80,50 +82,196 @@
       }
 
       function savePay(){
-        alert();
 
-        // var year_obj = $("[name='year']");
-        // var month_obj = $("[name='month']");
-        // var no_emp_obj = $("[name='no_emp']");
+        if(no_emp==undefined || ym==undefined){
+          alert("귀속년월별 급여대상을 선택해주세요.");
+          return;
+        }
 
-        // return;
-        // if(no_emp_obj.val()==""){
-        //   alert("추가할 사원 번호를 선택해주세요.");
-        //   return;
-        // }
+        var am_pay01_Obj = $(".am_pay01");
+        var am_pay02_Obj = $(".am_pay02");
+        var am_pay03_Obj = $(".am_pay03");
+        var am_pay04_Obj = $(".am_pay04");
+        var am_pay05_Obj = $(".am_pay05");
+        var am_pay06_Obj = $(".am_pay06");
+        var am_pay07_Obj = $(".am_pay07");
+        var am_pay08_Obj = $(".am_pay08");
+        var am_deduct01_Obj = $(".am_deduct01");
+        var am_deduct02_Obj = $(".am_deduct02");
+        var am_deduct03_Obj = $(".am_deduct03");
+        var am_deduct04_Obj = $(".am_deduct04");
+        var am_deduct05_Obj = $(".am_deduct05");
+        var am_deduct06_Obj = $(".am_deduct06");
+        var am_deduct07_Obj = $(".am_deduct07");
+        var am_deduct08_Obj = $(".am_deduct08");
 
-        // if(year_obj.val()==""){
-        //   alert("추가할 귀속년을 선택해주세요.");
-        //   return;
-        // }
+        var am_pay01 = am_pay01_Obj.val();
+        var am_pay02 = am_pay02_Obj.val();
+        var am_pay03 = am_pay03_Obj.val();
+        var am_pay04 = am_pay04_Obj.val();
+        var am_pay05 = am_pay05_Obj.val();
+        var am_pay06 = am_pay06_Obj.val();
+        var am_pay07 = am_pay07_Obj.val();
+        var am_pay08 = am_pay08_Obj.val();
+        var am_deduct01 = am_deduct01_Obj.val();
+        var am_deduct02 = am_deduct02_Obj.val();
+        var am_deduct03 = am_deduct03_Obj.val();
+        var am_deduct04 = am_deduct04_Obj.val();
+        var am_deduct05 = am_deduct05_Obj.val();
+        var am_deduct06 = am_deduct06_Obj.val();
+        var am_deduct07 = am_deduct07_Obj.val();
+        var am_deduct08 = am_deduct08_Obj.val();
 
-        // if(month_obj.val()==""){
-        //   alert("추가할 귀속월을 선택해주세요.");
-        //   return;
-        // }
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_pay01) == false){
+          if(confirm("기본급은 숫자만 입력해주세요.\n기본급의 데이터를 삭제하시겠습니까?")){
+            am_pay01_Obj.val("");
+            am_pay01_Obj.focus();
+          }
+          return;
+        }
 
-        // $.ajax({
-        //   url : "/insertPayProc.do"
-        //   , type : "post"
-        //   , data : $("[name='selPayForm']").serialize()
-        //   , success : function(Cnt){
-        //     if(Cnt==1){
-        //       alert("추가 성공");
-        //       location.replace("/adSal.do");
-        //     }else if(Cnt==-1){
-        //       alert("이미 있는 귀속년월 입니다.");
-        //       year_obj.val("");
-        //       month_obj.val("");
-        //       no_emp_obj.val("");
-        //     }else{
-        //       alert("에러입니다.");
-        //       return;
-        //     }
-        //   }
-        //   , error : function(){
-        //       alert("웹 서버 접속 실패");
-        //   }
-        // });
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_pay02) == false){
+          if(confirm("연장근무수당은 숫자만 입력해주세요.\n연장근무수당의 데이터를 삭제하시겠습니까?")){
+            am_pay02_Obj.val("");
+            am_pay02_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_pay03) == false){
+          if(confirm("상여금은 숫자만 입력해주세요.\n상여금의 데이터를 삭제하시겠습니까?")){
+            am_pay03_Obj.val("");
+            am_pay03_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_pay04) == false){
+          if(confirm("직무수당은 숫자만 입력해주세요.\n직무수당의 데이터를 삭제하시겠습니까?")){
+            am_pay04_Obj.val("");
+            am_pay04_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_pay05) == false){
+          if(confirm("식대는 숫자만 입력해주세요.\n식대의 데이터를 삭제하시겠습니까?")){
+            am_pay05_Obj.val("");
+            am_pay05_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_pay06) == false){
+          if(confirm("자격수당은 숫자만 입력해주세요.\n자격수당의 데이터를 삭제하시겠습니까?")){
+            am_pay06_Obj.val("");
+            am_pay06_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_pay07) == false){
+          if(confirm("기타수당은 숫자만 입력해주세요.\n기타수당의 데이터를 삭제하시겠습니까?")){
+            am_pay07_Obj.val("");
+            am_pay07_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_pay08) == false){
+          if(confirm("소급금은 숫자만 입력해주세요.\n소급금의 데이터를 삭제하시겠습니까?")){
+            am_pay08_Obj.val("");
+            am_pay08_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_deduct01) == false){
+          if(confirm("국민연금은 숫자만 입력해주세요.\n국민연금의 데이터를 삭제하시겠습니까?")){
+            am_deduct01_Obj.val("");
+            am_deduct01_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_deduct02) == false){
+          if(confirm("건강보험은 숫자만 입력해주세요.\n건강보험의 데이터를 삭제하시겠습니까?")){
+            am_deduct02_Obj.val("");
+            am_deduct02_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_deduct03) == false){
+          if(confirm("고용보험는 숫자만 입력해주세요.\n고용보험의 데이터를 삭제하시겠습니까?")){
+            am_deduct03_Obj.val("");
+            am_deduct03_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_deduct04) == false){
+          if(confirm("동호회비는 숫자만 입력해주세요.\n동호회비의 데이터를 삭제하시겠습니까?")){
+            am_deduct04_Obj.val("");
+            am_deduct04_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_deduct05) == false){
+          if(confirm("정산소득세는 숫자만 입력해주세요.\n정산소득세의 데이터를 삭제하시겠습니까?")){
+            am_deduct05_Obj.val("");
+            am_deduct05_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_deduct06) == false){
+          if(confirm("정산주민세는 숫자만 입력해주세요.\n정산주민세의 데이터를 삭제하시겠습니까?")){
+            am_deduct06_Obj.val("");
+            am_deduct06_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_deduct07) == false){
+          if(confirm("소득세는 숫자만 입력해주세요.\n소득세의 데이터를 삭제하시겠습니까?")){
+            am_deduct07_Obj.val("");
+            am_deduct07_Obj.focus();
+          }
+          return;
+        }
+
+        if(new RegExp(/^[0-9]{1,20}$/).test(am_deduct08) == false){
+          if(confirm("주민세는 숫자만 입력해주세요.\n주민세의 데이터를 삭제하시겠습니까?")){
+            am_deduct08_Obj.val("");
+            am_deduct08_Obj.focus();
+          }
+          return;
+        }
+        
+        $.ajax({
+          url : "/updatePayProc.do"
+          , type : "post"
+          , data : {no_emp, ym, am_pay01, am_pay02, am_pay03, am_pay04, am_pay05, am_pay06, am_pay07, am_pay08, am_deduct01, am_deduct02, am_deduct03, am_deduct04, am_deduct05, am_deduct06, am_deduct07, am_deduct08}
+          , success : function(Cnt){
+            if(Cnt==1){
+              alert("저장 성공");
+              location.replace("/adSal.do");
+            }else if(Cnt==-1){
+              alert("이미 있는 귀속년월 입니다.");
+              year_obj.val("");
+              month_obj.val("");
+              no_emp_obj.val("");
+            }else{
+              alert("에러입니다.");
+              return;
+            }
+          }
+          , error : function(){
+              alert("웹 서버 접속 실패");
+          }
+        });
       }
 
       function insertPay(){
@@ -392,7 +540,7 @@
                 <div id="top" class="split">
                   <div class="data-table-wrapper">
                     <div class="data-table-container">
-                
+                      <label style="margin-left:5%;"><em class="txt-error">*</em> 귀속년월별 급여대상 <br></label>
                       <!-- 총액 테이블 -->
                       <table class="data-table data-table1 data-table-sm" id="empListTable">
                         <thead>
@@ -408,7 +556,7 @@
                         </thead>
                         <tbody>
                           <c:forEach var="empList" items="${requestScope.empList}" varStatus="status">
-                            <tr style="cursor: pointer;" onclick="getNo_erpYM('${empList.no_emp}', '${empList.ym}');">
+                            <tr style="cursor: pointer;" onclick="getNo_erpYM('${empList.no_emp}', '${empList.ym}'); setPay();">
                               <th>${status.count}</th>
                               <td>${empList.nm_emp}</td>
                               <td>${empList.no_emp}</td>

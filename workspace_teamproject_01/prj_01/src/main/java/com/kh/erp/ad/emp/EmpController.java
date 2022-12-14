@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +20,23 @@ public class EmpController {
 
 	@Autowired
 	private EmpDAO empDAO;
-
+	
 	@Autowired
 	private EmpService empService;
 
 	@RequestMapping(value = "/adEmpReg.do")
-	public ModelAndView AdEmpReg() {
+	public ModelAndView AdEmpReg(HttpSession session) {
+		String user_id;
+		if(session.getAttribute("user_id") != null) {
+			user_id = (String)session.getAttribute("user_id");
+		}else {
+			user_id = "";
+		}
+		if(!(user_id.equals("system"))) {
+			session.invalidate();
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");		
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView();
 		List<Map<String, String>> partList = this.empDAO.getPartList();
 		mav.addObject("partList", partList);
@@ -36,7 +48,26 @@ public class EmpController {
 	}
 
 	@RequestMapping(value = "/adEmpList.do")
-	public ModelAndView AdEmpList(EmpListDTO empListDTO, HttpSession httpSession) {
+	public ModelAndView AdEmpList(EmpListDTO empListDTO
+			,HttpSession httpSession) {
+		String user_id;
+		if(httpSession.getAttribute("user_id") != null) {
+			user_id = (String)httpSession.getAttribute("user_id");
+		}else {
+			user_id = "";
+		}
+		if(!(user_id.equals("system"))) {
+			
+//			System.out.println(user_id);
+			// session의 모든 값 삭제
+			httpSession.invalidate();
+			
+			// [ModelAndView 객체] 생성
+			// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+			
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView();
 		List<Map<String, String>> empList = this.empDAO.getEmpList(empListDTO);
 		List<Map<String, String>> partList = this.empDAO.getPartList();
@@ -51,9 +82,21 @@ public class EmpController {
 	}
 
 	@RequestMapping(value = "/adEmpListCorr.do")
-	public ModelAndView AdEmpListCorr(@RequestParam(value = "no_emp") String no_emp) {
+	public ModelAndView AdEmpListCorr(@RequestParam(value = "no_emp", required = false) String no_emp
+			,HttpSession session) {
+		String user_id;
+		if(session.getAttribute("user_id") != null) {
+			user_id = (String)session.getAttribute("user_id");
+		}else {
+			user_id = "";
+		}
+		if(!(user_id.equals("system"))) {
+			session.invalidate();
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");		
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView();
-		RegDTO regDTO = this.empDAO.getEmpListCorr(no_emp);
+		RegDTO regDTO = this.empDAO.getEmpListCorr(no_emp);		
 		List<Map<String, String>> partList = this.empDAO.getPartList();
 		mav.addObject("partList", partList);
 		List<Map<String, String>> jikupList = this.empDAO.getJikupList();
@@ -64,14 +107,36 @@ public class EmpController {
 	}
 
 	@RequestMapping(value = "/adUserInfoReg.do")
-	public ModelAndView AdUserInfoReg() {
+	public ModelAndView AdUserInfoReg(HttpSession session) {
+		String user_id;
+		if(session.getAttribute("user_id") != null) {
+			user_id = (String)session.getAttribute("user_id");
+		}else {
+			user_id = "";
+		}
+		if(!(user_id.equals("system"))) {
+			session.invalidate();
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");		
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("adUserInfoReg.jsp");
 		return mav;
 	}
 
 	@RequestMapping(value = "/adUserInfoRegConfirm.do")
-	public ModelAndView AdUserInfoRegConfirm() {
+	public ModelAndView AdUserInfoRegConfirm(HttpSession session) {
+		String user_id;
+		if(session.getAttribute("user_id") != null) {
+			user_id = (String)session.getAttribute("user_id");
+		}else {
+			user_id = "";
+		}
+		if(!(user_id.equals("system"))) {
+			session.invalidate();
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");		
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("adUserInfoRegConfirm.jsp");
 		return mav;
@@ -90,7 +155,7 @@ public class EmpController {
 		int data = this.empDAO.checkId(emp_id);
 		return data;
 	}
-
+	
 	@RequestMapping(value = "/checkNo.do")
 	@ResponseBody
 	public int checkNo(String emp_no) {
@@ -98,17 +163,20 @@ public class EmpController {
 		return data;
 	}
 
-	@RequestMapping(value = "/searchForm.do")
-	@ResponseBody
-	public ModelAndView searchForm(EmpListDTO empListDTO) {
-		ModelAndView mav = new ModelAndView();
-		List<Map<String, String>> data = this.empDAO.searchForm(empListDTO);
-		mav.addObject("searchResult", data);
-		return mav;
-	}
 
 	@RequestMapping(value = "/adEmpRegConfirm.do")
-	public ModelAndView AdEmpRegConfirm() {
+	public ModelAndView AdEmpRegConfirm(HttpSession session) {
+		String user_id;
+		if(session.getAttribute("user_id") != null) {
+			user_id = (String)session.getAttribute("user_id");
+		}else {
+			user_id = "";
+		}
+		if(!(user_id.equals("system"))) {
+			session.invalidate();
+			ModelAndView mav = new ModelAndView("redirect:/loginForm.do");		
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("adEmpRegConfirm.jsp");
 		return mav;
@@ -119,6 +187,7 @@ public class EmpController {
 	public Map<String, String> adEmpRegProc(RegDTO regDTO) {
 
 		Map<String, String> regDateMap = new HashMap<String, String>();
+		
 
 		regDateMap.put("emp_no", regDTO.getEmp_no());
 		regDateMap.put("emp_name", regDTO.getEmp_name());
@@ -132,33 +201,35 @@ public class EmpController {
 		regDateMap.put("emp_detailloc", regDTO.getEmp_detailloc());
 		regDateMap.put("emp_hire", regDTO.getEmp_hire());
 
+
 		this.empDAO.adEmpRegForm(regDTO);
 
 		this.empDAO.adEmpRegPrivate(regDTO);
-
+		
 		return regDateMap;
 
 	}
 
 	@RequestMapping(value = "/adEmpListUp.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public int adEmpListUp(RegDTO regDTO
-
-	) {
-
+	public int adEmpListUp(
+			RegDTO regDTO
+			
+			) {
+		
 		int updateListCnt = this.empService.updateList(regDTO);
-		System.out.println(updateListCnt);
 		return updateListCnt;
 	}
-
+	
 	@RequestMapping(value = "/adEmpListDel.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public int adEmpListDel(RegDTO regDTO
-
-	) {
+	public int adEmpListDel(
+			RegDTO regDTO
+			
+			) {
 
 		int deleteListCnt = this.empService.deleteList(regDTO);
 		return deleteListCnt;
 	}
-
+	
 }

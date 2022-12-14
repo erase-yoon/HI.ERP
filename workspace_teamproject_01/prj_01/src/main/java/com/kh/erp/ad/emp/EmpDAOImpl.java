@@ -41,13 +41,6 @@ public class EmpDAOImpl implements EmpDAO {
 		return data;
 	}
 
-	public List<Map<String, String>> searchForm(EmpListDTO empListDTO) {
-		List<Map<String, String>> data = this.sqlSession.selectList(
-
-				"com.kh.erp.ad.emp.EmpDAO.searchForm", empListDTO);
-
-		return data;
-	}
 
 	public List<Map<String, String>> getEmpList(EmpListDTO empListDTO) {
 		List<Map<String, String>> data = this.sqlSession.selectList(
@@ -136,7 +129,6 @@ public class EmpDAOImpl implements EmpDAO {
 	
 	public RegDTO getUserInfo(String no_emp) {
 		RegDTO data = this.sqlSession.selectOne(
-
 				"com.kh.erp.ad.emp.EmpDAO.getUserInfo", no_emp);
 		return data;
 	}

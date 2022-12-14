@@ -15,6 +15,8 @@ public interface AdSalDAO {
 	
 	int insertPay(AmpaymentDTO ampaymentDTO);
 	
+	int updatePay(AmpaymentDTO ampaymentDTO);
+	
 	int deletePay(AmpaymentDTO ampaymentDTO);
 	
 	List<Map<String, String>> selPay(AmpaymentDTO ampaymentDTO);
