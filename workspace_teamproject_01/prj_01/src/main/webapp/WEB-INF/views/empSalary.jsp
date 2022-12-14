@@ -19,7 +19,43 @@
 <head>
 <meta charset="UTF-8">
 <title>급여명세서</title>
+
+<script>
+/*
+// 오늘 날짜 관련 각종 데이터를 저장한 
+// JSON 객체를 리턴하는 함수 선언
+function json_today(){
+    var today = new Date();
+    var weeks = ["일", "월", "화", "수", "목", "금", "토"];
+    var week = weeks[today.getDay()];
+    var json = {
+        "year":today.getFullYear()
+        , "month":today.getMonth()+1
+        , "date":today.getDate()
+        , "week":week
+        , "ymd":today.getFullYear() + "-" + today.getMonth()+1 + "-" + today.getDate()
+    }
+    return json;
+}
+	// 귀속 3년치
+	 $(function (){
+		 var thisYear = json_today()["year"];
+	        var year_obj = $("[name='year']");
+
+	        maxYear = thisYear;
+	        minYear = maxYear-2;
+
+	        for(var i=maxYear; i>=minYear; i--){
+	          year_obj.append("<option value='" + i + "'>" + i + "</option>");
+	        }
+
+
+	  });
+	
+	*/
+	 </script>
 </head>
+
 
 <body class="side-first by-menu popup-menu-open">
   <div id="wrapper">
@@ -42,7 +78,7 @@
           </div>
         </div>
         <div class="user-area responsive-except-desktop">
-          <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
+          <span class="user-info">윤지우 (${requestScope.infoList[0].NO_EMP})</span>
         </div>
       </div>
     </header>
@@ -69,16 +105,16 @@
             <a href="empNotice.do"><span class="label">공지사항</span></a>
           </li>
           <li class="tree-view">
-            <a><span class="label">인사관리</span></a>
+            <a href="#"><span class="label">인사관리</span></a>
             <ul class="tree-view-menu">
               <li><a href=""><span class="label">개인정보조회</span></a></li>
             </ul>
           </li>
           <li class="tree-view">
-            <a><span class="label">급여관리</span></a>
+            <a href="#"><span class="label">급여관리</span></a>
             <ul class="tree-view-menu">
               <li><a href="empSalary.do"><span class="label">급여명세서 조회</span></a></li>
-              <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
+              <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
             </ul>
           </li>
         </ul>
@@ -119,8 +155,17 @@
 
     </div>
     
-<!-- 메인 -->
+<!-- 메인
 
+
+<table class="dtable1" border="0" style="margin-bottom:-15px;">
+  <tr align="left">
+    <td><label><b>귀 속 년 월 : year</b><em class="txt-error"></em></label></td>
+  </tr>
+</table> 
+		
+<br><br>	
+-->   
 <table class="dtable1" border="1">
     <tr class="dtr1">
 			<td class="dtd1-1">회 사 명</td>
@@ -164,41 +209,41 @@
 <table class="dtable1" border="1">
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_PAY01 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_PAY01 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_PAY01 }</td>
     
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_PAY02 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_PAY02 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_PAY02 }</td>
   </tr>
    <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_PAY03 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_PAY03 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_PAY03 }</td>
   </tr>
    <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_PAY04 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_PAY04 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_PAY04 }</td>
   </tr>
    <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_PAY05 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_PAY05 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_PAY05 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_PAY06 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_PAY06 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_PAY06 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_PAY07 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_PAY07 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_PAY07 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_PAY08 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_PAY08 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_PAY08 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dth"><b>지 급 총 액</b></td>
     <td class="dtd2-2">
-    	<b>${requestScope.empSalList[0].AM_TOT_PAY }</b>
+    	<b>${requestScope.empSalWithYM[0].AM_TOT_PAY }</b>
     </td>
   </tr>
 </table>
@@ -212,41 +257,41 @@
 <table class="dtable1" border="1">
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_DEDUCT01 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_DEDUCT01 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_DEDUCT01 }</td>
     
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_DEDUCT02 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_DEDUCT02 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_DEDUCT02 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_DEDUCT03 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_DEDUCT03 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_DEDUCT03 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_DEDUCT04 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_DEDUCT04 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_DEDUCT04 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_DEDUCT05 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_DEDUCT05 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_DEDUCT05 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_DEDUCT06 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_DEDUCT06 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_DEDUCT06 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_DEDUCT07 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_DEDUCT07 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_DEDUCT07 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dtd2-1">${requestScope.empSalAmountInfoList[0].NM_DEDUCT08 }</td>
-    <td class="dtd2-2">${requestScope.empSalList[0].AM_DEDUCT08 }</td>
+    <td class="dtd2-2">${requestScope.empSalWithYM[0].AM_DEDUCT08 }</td>
   </tr>
   <tr class="dtr1">
     <td class="dth"><b>공 제 총 액</b></td>
     <td class="dtd2-2">
-    	<b>${requestScope.empSalList[0].AM_TOT_DEDUCT }</b>
+    	<b>${requestScope.empSalWithYM[0].AM_TOT_DEDUCT }</b>
     </td>
   </tr>
 </table>
@@ -255,7 +300,7 @@
   <tr class="dtr1">
     <td class="dth"><b>차 인 지 급 액</b></td>
     <td class="dtd2-2">
-    	<b>${requestScope.empSalList[0].AM_TOT }</b>
+    	<b>${requestScope.empSalWithYM[0].AM_TOT }</b>
     </td>
   </tr>
 </table>
@@ -285,16 +330,16 @@
               <td><img src="./assets/images/test_img.png"></td>
             </tr>
             <tr align="center">
-              <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
+              <td>윤지우 대리</td>                                     
             </tr>
             <tr align="center">
-              <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
+              <td>(DB개발팀)</td>                                     
             </tr>
             <tr align="center">
-              <td>${requestScope.infoList[0].PHONE}</td>
+              <td>010-1111-2222</td>
             </tr>
             <tr align="center">
-              <td>${requestScope.infoList[0].EMAIL}</td>
+              <td>dbswldn@naver.com</td>
             </tr>
           </table>
 

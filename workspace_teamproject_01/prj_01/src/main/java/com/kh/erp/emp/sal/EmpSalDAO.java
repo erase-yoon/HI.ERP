@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface EmpSalDAO {
 	
-	public int checkSalPwd(Map<String, String> salPwd);
+	public int checkSalPwd(EmpSalDTO empSalDTO);
 	
 //	EmpSalDTO getNo_emp(String no_res);
 	
@@ -16,8 +16,11 @@ public interface EmpSalDAO {
 	
 	List<Map<String, String>> getEmpSalAmountInfoList(EmpSalDTO empSalDTO);
 	
-	List<Map<String, String>> getEmpSalList(EmpSalDTO empSalDTO);
+	//List<Map<String, String>> getEmpSalList(EmpSalDTO empSalDTO);
 	
 	
+	List<Map<String, String>> getEmpSalWithYM(EmpSalDTO empSalDTO);
+	
+	public int getCheckSal(EmpSalDTO empSalDTO);
 
 }

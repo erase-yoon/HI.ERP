@@ -37,8 +37,6 @@ public class EmpSalController {
 	@Autowired
 	private EmpSalDAO empSalDAO;
 	
-	@Autowired
-	private EmpSalService empSalService;
 	
 	
 	// 급여명세서 조회 화면
@@ -46,6 +44,7 @@ public class EmpSalController {
 	public ModelAndView empSalaryPwd(
 		InfoDTO infoDTO
 		, HttpSession session
+		, EmpSalDTO empSalDTO
 	) {
 		// ---------------------------------------------
 		// session에 저장한 user_id를 user_id 변수에 저장
@@ -61,6 +60,16 @@ public class EmpSalController {
 		List<Map<String, String>> infoList = this.loginDAO.getInfoList(infoDTO);
 		
 		session.setAttribute("no_emp", infoList.get(0).get("NO_EMP"));
+		//System.out.println(empSalDTO.getYear());
+		//System.out.println(empSalDTO.getMonth());
+		
+		//session.setAttribute("year", empSalDTO.getYear() );
+		//session.setAttribute("month", empSalDTO.getMonth() );
+		
+		
+		
+		
+		
 		// ---------------------------------------------
 		
 		//System.out.println(infoList);
@@ -89,12 +98,25 @@ public class EmpSalController {
 		String user_id = (String)session.getAttribute("user_id");
 		String no_emp = (String)session.getAttribute("no_emp");
 		
+		
+		
 		//System.out.println(session.getAttribute("user_id"));
 		// user_id 변수의 값을 infoDTO의 user_id에 저장
 		infoDTO.setUser_id(user_id);
 		empSalDTO.setUser_id(user_id);
 		infoDTO.setNo_emp(no_emp);
 		empSalDTO.setNo_emp(no_emp);
+		
+		String year = (String)session.getAttribute("year");
+		String month = (String)session.getAttribute("month");
+		
+		String ym = year + month ;
+		
+		empSalDTO.setYm(ym);
+		
+		//System.out.println(ym);
+		
+		
 		
 		// infoDTO의 정보를 매개변수로 하여 getInfoList 메소드 실행
 		// 실행한 결과 값을 infoList에 저장
@@ -111,13 +133,24 @@ public class EmpSalController {
 		
 		//System.out.println(empSalDTO.getUser_id());
 		
+		//System.out.println(empSalDTO.getYear());
+		//System.out.println(empSalDTO.getMonth());
+		//System.out.println(empSalDTO.getNo_emp());
+		
+		
+		
 		List<Map<String, String>> empSalInfoList = this.empSalDAO.getEmpSalInfoList(empSalDTO);
 
 		
 		List<Map<String, String>> empSalAmountInfoList = this.empSalDAO.getEmpSalAmountInfoList(empSalDTO);
 		
 		
-		List<Map<String, String>> empSalList = this.empSalDAO.getEmpSalList(empSalDTO);
+		//List<Map<String, String>> empSalList = this.empSalDAO.getEmpSalList(empSalDTO);
+		
+		List<Map<String, String>> empSalWithYM = this.empSalDAO.getEmpSalWithYM(empSalDTO);
+		
+		
+		
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -128,16 +161,18 @@ public class EmpSalController {
 		
 		
 		mav.addObject("empSalInfoList", empSalInfoList);
-		//empSalInfoList.set(0).setEnter_date(enterdate);
-		//empSalInfoList.set(0, enterdate);
+		
 		
 		mav.addObject("empSalAmountInfoList",empSalAmountInfoList);
 		
 		//System.out.println(empSalAmountInfoList);
 		
-		//mav.addObject("empSalList", 0) ;
-		mav.addObject("empSalList", empSalList);
 		//System.out.println(empSalList);
+		
+		mav.addObject("empSalWithYM", empSalWithYM);
+		
+		//System.out.println(empSalWithYM);
+		
 		
 		mav.setViewName("empSalary.jsp");
 		
@@ -152,40 +187,71 @@ public class EmpSalController {
 	
 	
 	
-	// 가상주소 /loginProc.do 접근 시 호출되는 메소드 선언
+	// 가상주소 /empSalPwdProc.do 접근 시 호출되는 메소드 선언
 	@RequestMapping(value="/empSalPwdProc.do", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public int empSalPwdProc(
 
 			@RequestParam(value = "no_emp") String no_emp
 			, @RequestParam(value = "no_res") String no_res
+			, @RequestParam(value = "ym") String ym
 			, HttpSession session
 			, HttpServletResponse response
+			, EmpSalDTO empSalDTO
 	){
 		
-		// HashMap 객체 생성
-		Map<String, String> map = new HashMap<String, String>();
 		
-		// [로그인 아이디] 저장
-		map.put("no_emp", no_emp);
+		session.setAttribute("year", empSalDTO.getYear() );
+		session.setAttribute("month", empSalDTO.getMonth() );
 		
-		// [로그인 암호] 저장
-		map.put("no_res", no_res);
+		int checkSalPwdCnt = empSalDAO.checkSalPwd(empSalDTO);
 		
-		// ---------------------------------------------------------------
-		// [로그인 아이디]와 [로그인 암호]의 DB 존재 개수를
-		// 저장할 변수 loginIdCnt 선언하고
-		// LoginDAOImpl 객체의 getCntLogin 메소드를 호출하여 얻은 데이터 저장
-		// ---------------------------------------------------------------
-		// 이 메소드는 [로그인 아이디]와 [로그인 암호]의 DB 존재 개수를 구해주는 메소드이다.
-		// 이 메소드 호출 시 매개변수로 던져지는 HashMap 객체에는 
-		// [로그인 아이디]와 [로그인 암호]가 저장되어 있다.
-		int checkSalPwdCnt = empSalDAO.checkSalPwd(map);
-
-
-		return checkSalPwdCnt;
+		int checkSal = empSalDAO.getCheckSal(empSalDTO);
+		
+		int resultCnt=0;
+		
+		// resultCnt => 0 : no_emp, pw 안맞을 때 
+		
+		// resultCnt => 1 : no_emp랑 pw가 맞고, 데이터도 있을 때
+		// resultCnt => 2 : no_emp랑 pw가 맞는데, 데이터가 없을 때
+		if(checkSalPwdCnt==1) {
+			
+			if(checkSal==1) {
+				resultCnt=1;
+			}else if(checkSal==0) {
+				resultCnt=2;
+			}
+		}else {resultCnt=0;}
+		
+		return resultCnt;
+		
 	}
 
+	
+	
+	/*
+	// 급여조회 유효성 체크
+	// /isCheckedSalProc.do 접근시 호출되는 메소드 선언
+	@RequestMapping(value="/isCheckedSalProc.do", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public int isCheckedSalProc(
+			EmpSalDTO empSalDTO
+			, HttpSession session
+			, HttpServletResponse response
+	) {
+		session.setAttribute("year", empSalDTO.getYear() );
+		session.setAttribute("month", empSalDTO.getMonth() );
+		
+		
+		
+		int checkSalPwdCnt = empSalDAO.checkSalPwd(empSalDTO);
+		
+		int checkSal = this.empSalDAO.getCheckSal(empSalDTO);
+		
+		if(checkSal==0) {return -1;}
+		else {return checkSalPwdCnt;}
+	}
+	*/
 	
 }
 	

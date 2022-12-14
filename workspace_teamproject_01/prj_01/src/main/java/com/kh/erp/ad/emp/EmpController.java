@@ -19,7 +19,7 @@ public class EmpController {
 
 	@Autowired
 	private EmpDAO empDAO;
-	
+
 	@Autowired
 	private EmpService empService;
 
@@ -36,8 +36,7 @@ public class EmpController {
 	}
 
 	@RequestMapping(value = "/adEmpList.do")
-	public ModelAndView AdEmpList(EmpListDTO empListDTO
-			,HttpSession httpSession) {
+	public ModelAndView AdEmpList(EmpListDTO empListDTO, HttpSession httpSession) {
 		ModelAndView mav = new ModelAndView();
 		List<Map<String, String>> empList = this.empDAO.getEmpList(empListDTO);
 		List<Map<String, String>> partList = this.empDAO.getPartList();
@@ -91,7 +90,7 @@ public class EmpController {
 		int data = this.empDAO.checkId(emp_id);
 		return data;
 	}
-	
+
 	@RequestMapping(value = "/checkNo.do")
 	@ResponseBody
 	public int checkNo(String emp_no) {
@@ -120,7 +119,6 @@ public class EmpController {
 	public Map<String, String> adEmpRegProc(RegDTO regDTO) {
 
 		Map<String, String> regDateMap = new HashMap<String, String>();
-		
 
 		regDateMap.put("emp_no", regDTO.getEmp_no());
 		regDateMap.put("emp_name", regDTO.getEmp_name());
@@ -134,37 +132,33 @@ public class EmpController {
 		regDateMap.put("emp_detailloc", regDTO.getEmp_detailloc());
 		regDateMap.put("emp_hire", regDTO.getEmp_hire());
 
-
 		this.empDAO.adEmpRegForm(regDTO);
 
 		this.empDAO.adEmpRegPrivate(regDTO);
-		
+
 		return regDateMap;
 
 	}
 
 	@RequestMapping(value = "/adEmpListUp.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public int adEmpListUp(
-			RegDTO regDTO
-			
-			) {
-		
+	public int adEmpListUp(RegDTO regDTO
+
+	) {
 
 		int updateListCnt = this.empService.updateList(regDTO);
 		System.out.println(updateListCnt);
 		return updateListCnt;
 	}
-	
+
 	@RequestMapping(value = "/adEmpListDel.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public int adEmpListDel(
-			RegDTO regDTO
-			
-			) {
+	public int adEmpListDel(RegDTO regDTO
+
+	) {
 
 		int deleteListCnt = this.empService.deleteList(regDTO);
 		return deleteListCnt;
 	}
-	
+
 }

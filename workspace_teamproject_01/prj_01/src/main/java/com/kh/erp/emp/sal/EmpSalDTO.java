@@ -7,6 +7,17 @@ public class EmpSalDTO {
 	private String nm_emp;
 	private String no_emp;
 	private String enter_date;
+	
+	// 주민번호
+	private String no_res;
+	
+	
+	public String getNo_res() {
+		return no_res;
+	}
+	public void setNo_res(String no_res) {
+		this.no_res = no_res;
+	}
 	public String getNm_emp() {
 		return nm_emp;
 	}
@@ -229,6 +240,32 @@ public class EmpSalDTO {
 	}
 	
 	
+	// 급여쪽 귀속년월 받아오는 값.?
+	// ym
+	private String year;
+	private String month;
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
+	
+	private String ym;
+
+
+	public String getYm() {
+		return ym;
+	}
+	public void setYm(String ym) {
+		this.ym = ym;
+	}
 	
 	
 	

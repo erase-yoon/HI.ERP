@@ -103,7 +103,7 @@
 						</ul></li>
 					<li class="tree-view"><a href="#"><span class="label">급여관리</span></a>
 						<ul class="tree-view-menu">
-							<li><a href="adSalary.html"><span class="label">급여계산</span></a></li>
+							<li><a href="adSal.do"><span class="label">급여계산</span></a></li>
 							<!--<li><a href="#"><span class="label">Menu3-1</span></a></li>-->
 						</ul></li>
 				</ul>

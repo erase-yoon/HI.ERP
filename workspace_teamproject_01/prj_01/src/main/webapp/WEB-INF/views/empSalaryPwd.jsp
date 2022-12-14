@@ -31,14 +31,29 @@
 	});
 	
 	function checkPwd(){
-		var checkPwdFormObj = $(".checkPwdForm");
+		var checkPwdFormObj = $("[name=checkPwdForm]");
 		
 		var no_emp = checkPwdFormObj.find(".no_emp").val();
 		var no_res = checkPwdFormObj.find(".no_res").val();
 		
+		var year = checkPwdFormObj.find(".year").val();
+		var month = checkPwdFormObj.find(".month").val();
+		
+		var ym = year + month ;
+		
+		//alert(ym);
+		
+		//alert(year + "," + month);
+		//return;
+		
 		// alert(no_res);
 		// 주민등록번호 유효성 체크
 		var regExp = new RegExp(/^[0-9]{7}$/);
+		
+		if(year==""||month==""){
+			alert("귀속년월을 선택하세요.")
+			return;
+		}
 		
 		if(regExp.test(no_res)==false){
 			alert("주민등록번호 뒷자리가 일치하지 않습니다.")
@@ -47,34 +62,70 @@
 			checkPwdFormObj.find(".no_emp").focus();
 			return;
 		}
+	
+		  $.ajax({
+		      
+		      url : "/empSalPwdProc.do"
+		      , type : "post"
+		      , data : $("[name='checkPwdForm']").serialize()
+
+		      , success : function(Cnt){
+		       // alert(salPwdCnt);
+		        if(Cnt==1){ document.empSalary.submit();} 
+		        else if(Cnt==2){alert("해당 귀속년월에 데이터가 없습니다.")}
+		        else if(Cnt==0){
+		          //alert(no_emp);
+		          alert("사원번호 또는 주민등록번호 뒷자리를 다시 확인해주세요.");
+		          checkPwdFormObj.find(".no_emp").val("");
+		          checkPwdFormObj.find(".no_res").val(""); }
+		      }
+
+		      // 웹 서버와 통신이 실패할 경우 
+		      // 실행할 익명함수 설정
+		      , error : function(){
+		          alert("웹 서버 접속 실패");}
+		    });
+
+		
+	}
+	
+		
+	
+		
+		
+		
+		// 오늘 날짜 관련 각종 데이터를 저장한 
+		// JSON 객체를 리턴하는 함수 선언
+	function json_today(){
+		    var today = new Date();
+		    var weeks = ["일", "월", "화", "수", "목", "금", "토"];
+		    var week = weeks[today.getDay()];
+		    var json = {
+		        "year":today.getFullYear()
+		        , "month":today.getMonth()+1
+		        , "date":today.getDate()
+		        , "week":week
+		        , "ymd":today.getFullYear() + "-" + today.getMonth()+1 + "-" + today.getDate()
+		    }
+		    return json;
+		}
+	// 귀속 3년치
+	$(function (){
+		var thisYear = json_today()["year"];
+		var year_obj = $("[name='year']");
+
+		maxYear = thisYear;
+		minYear = maxYear-2;
+
+		for(var i=maxYear; i>=minYear; i--){
+			year_obj.append("<option value='" + i + "'>" + i + "</option>");
+		}
 
 
+	});
+			
 
-    $.ajax({
-      
-      url : "/empSalPwdProc.do"
-      , type : "post"
-      , data : $("[name='checkPwdForm']").serialize()
 
-      , success : function(salPwdCnt){
-       // alert(salPwdCnt);
-        if(salPwdCnt==1){
-        	document.empSalary.submit();
-        }else{
-          alert(no_emp);
-          alert("사원번호 또는 주민등록번호 뒷자리를 다시 확인해주세요.");
-          checkPwdFormObj.find(".no_emp").val("");
-          checkPwdFormObj.find(".no_res").val("");
-        }
-      }
-
-      // 웹 서버와 통신이 실패할 경우 
-      // 실행할 익명함수 설정
-      , error : function(){
-          alert("웹 서버 접속 실패");
-      }
-    });
-};
 
 function enterkey(){
 	if(window.event.keyCode == 13){
@@ -108,7 +159,7 @@ function enterkey(){
             </div>
           </div>
           <div class="user-area responsive-except-desktop">
-            <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
+            <span class="user-info">김철수 (${requestScope.infoList[0].NO_EMP})</span>
           </div>
         </div>
       </header>
@@ -146,7 +197,7 @@ function enterkey(){
               <a><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
                 <li><a href="empSalary.do"><span class="label">급여명세서 조회</span></a></li>
-                <!--<li><a><span class="label">Menu3-1</span></a></li>--> 
+                <!--<li><a href="#"><span class="label">Menu3-1</span></a></li>--> 
               </ul>
             </li>
           </ul>
@@ -189,20 +240,47 @@ function enterkey(){
       
   <!-- 메인 -->
 
-  <div style="background-color:white; height:200px; width: 300px; text-align: left; margin-left: auto; margin-right: auto;">
+  <div style="background-color:white; height:250px; width: 300px; text-align: left; margin-left: auto; margin-right: auto;">
 
   <br>
   
   
   
-  <!-- form -->
+  <!-- form  -->
   <form action="/empSal.do" name="empSalary" method="post"></form>
+
+  
   
   <form action="/empSalPwdProc.do" method="post" name="checkPwdForm" class="checkPwdForm">
   <div style="text-align:center;">
   
-  <!-- <label >사원번호를 입력해주세요.<em class="txt-error lable-margin" ></em></label>
-   -->
+   <label >귀속년월을 선택하세요.<em class="txt-error lable-margin" ></em></label>
+   	<div class="input-container input-container-md mg-t-4u" style="margin-left:10px; margin-right:10px;">
+    	<div class="input-group">
+    	<label>귀 속 <em class="txt-error"></em></label>
+    		<select name="year" id="year" class="year">
+    			<option value=""></option>
+    		</select>년
+    	<label><em class="txt-error"></em></label>
+    		<select name="month" id="month" class="month">
+    			<option value=""></option>
+ 				<option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+    		</select>월  			
+    	</div>
+    </div>
+    <input type = "hidden" class="ym" name="ym">
+    
   <div class="input-container input-container-md mg-t-4u" style="margin-left:10px; margin-right:10px;">
     <div class="input-group">
   <input type="hidden" name="no_emp" class="no_emp input-box" value="${requestScope.infoList[0].NO_EMP}" onkeyup="enterkey()">
@@ -244,6 +322,9 @@ function enterkey(){
      
     
     </form>
+    
+    
+    
   </div>
   </div>
     </div>
@@ -263,16 +344,16 @@ function enterkey(){
                 <td><img src="./assets/images/test_img.png"></td>
               </tr>
               <tr align="center">
-                <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
+                <td>윤지우 대리</td>                                     
               </tr>
               <tr align="center">
-                <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
+                <td>(DB개발팀)</td>                                     
               </tr>
               <tr align="center">
-                <td>${requestScope.infoList[0].PHONE}</td>
+                <td>010-1111-2222</td>
               </tr>
               <tr align="center">
-                <td>${requestScope.infoList[0].EMAIL}</td>
+                <td>dbswldn@naver.com</td>
               </tr>
             </table>
 

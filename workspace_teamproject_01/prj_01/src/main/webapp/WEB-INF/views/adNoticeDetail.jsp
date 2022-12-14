@@ -344,10 +344,9 @@
 	            <span class="icon"><i class="Licon ico-save"></i></span>
 	            <span class="label">저장</span>
 	          </button>
-	          <button class="tool-item" disabled>
-	            <a href="adNoticeReg.do">
+	          <button class="tool-item" disabled style="cursor:default;">
 	            <span class="icon"><i class="Licon ico-add"></i></span>
-	            <span class="label">추가</span></a>
+	            <span class="label">추가</span>
 	          </button>
 	          <button class="boardDelBtn tool-item">
 	            <span class="icon"><i class="Licon ico-minus"></i></span>

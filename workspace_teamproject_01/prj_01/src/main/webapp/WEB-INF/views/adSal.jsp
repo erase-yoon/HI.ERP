@@ -35,15 +35,78 @@
         return json;
       }
 
-      function insertPay(){
+      function getNo_erpYM(no_emp, sel_ym){
+        
+        var year = sel_ym.substr(0, 4);
+        var month = sel_ym.substr(6, 2);
+        var ym = sel_ym.substr(0, 4) + sel_ym.substr(6, 2);
+
+        // return;
+        $.ajax({
+          url : "/selPayProc.do"
+          , type : "post"
+          , data : {no_emp, ym}
+          , success : function(selPayList){
+            
+            
+            alert("${am_pay03}");
+
+            // alert("${requestScope.selPayList}");
+            $(".am_pay01").val("1");
+            $(".am_pay02").val("2");
+            $(".am_pay03").val("${requestScope.selPayList[0].am_pay03}");
+            $(".am_pay04").val("4");
+            $(".am_pay05").val("5");
+            $(".am_pay06").val("6");
+            $(".am_pay07").val("7");
+            $(".am_pay08").val("8");
+            $(".am_deduct01").val("1");
+            $(".am_deduct02").val("2");
+            $(".am_deduct03").val("3");
+            $(".am_deduct04").val("4");
+            $(".am_deduct05").val("5");
+            $(".am_deduct06").val("6");
+            $(".am_deduct07").val("7");
+            $(".am_deduct08").val("8");
+            // alert(typeof(selectPayList));
+          }
+          , error : function(){
+            alert("웹 서버 접속 실패");
+          }
+        });
+
+      }
+
+      function search(){
+        alert("T");
+        // document.insertPayForm.submit();
+      }
+
+      function savePay(){
         var year_obj = $("[name='year']");
         var month_obj = $("[name='month']");
         var no_emp_obj = $("[name='no_emp']");
 
+        return;
+        if(no_emp_obj.val()==""){
+          alert("추가할 사원 번호를 선택해주세요.");
+          return;
+        }
+
+        if(year_obj.val()==""){
+          alert("추가할 귀속년을 선택해주세요.");
+          return;
+        }
+
+        if(month_obj.val()==""){
+          alert("추가할 귀속월을 선택해주세요.");
+          return;
+        }
+
         $.ajax({
           url : "/insertPayProc.do"
           , type : "post"
-          , data : $("[name='insertPayForm']").serialize()
+          , data : $("[name='selPayForm']").serialize()
           , success : function(Cnt){
             if(Cnt==1){
               alert("추가 성공");
@@ -64,52 +127,95 @@
         });
       }
 
-      function getNo_erpYM(no_emp, sel_ym){
-        
-        var year = sel_ym.substr(0, 4);
-        var month = sel_ym.substr(6, 2);
-        var ym = sel_ym.substr(0, 4) + sel_ym.substr(6, 2);
+      function insertPay(){
+        var year_obj = $("[name='year']");
+        var month_obj = $("[name='month']");
+        var no_emp_obj = $("[name='no_emp']");
 
-        // return;
+        if(no_emp_obj.val()==""){
+          alert("추가할 사원 번호를 선택해주세요.");
+          return;
+        }
+
+        if(year_obj.val()==""){
+          alert("추가할 귀속년을 선택해주세요.");
+          return;
+        }
+
+        if(month_obj.val()==""){
+          alert("추가할 귀속월을 선택해주세요.");
+          return;
+        }
+
         $.ajax({
-          url : "/selPayProc.do"
+          url : "/insertPayProc.do"
           , type : "post"
-          , data : {no_emp, ym}
-          , success : function(selectPayList){
-            alert("${requestScope.selectPayList[0].am_pay01}");
-            $(".am_pay01").val("1");
-            $(".am_pay02").val("1");
-            $(".am_pay03").val("1");
-            $(".am_pay04").val("1");
-            $(".am_pay05").val("1");
-            $(".am_pay06").val("1");
-            $(".am_pay07").val("1");
-            $(".am_pay08").val("1");
-            $(".am_deduct01").val("1");
-            $(".am_deduct02").val("1");
-            $(".am_deduct03").val("1");
-            $(".am_deduct04").val("1");
-            $(".am_deduct05").val("1");
-            $(".am_deduct06").val("1");
-            $(".am_deduct07").val("1");
-            $(".am_deduct08").val("1");
-            alert(selectPayList.am_pay01);
+          , data : $("[name='selPayForm']").serialize()
+          , success : function(Cnt){
+            if(Cnt==1){
+              alert("추가 성공");
+              location.replace("/adSal.do");
+            }else if(Cnt==-1){
+              alert("이미 있는 귀속년월 입니다.");
+              year_obj.val("");
+              month_obj.val("");
+              no_emp_obj.val("");
+            }else{
+              alert("에러입니다.");
+              return;
+            }
           }
           , error : function(){
-            alert("웹 서버 접속 실패");
+              alert("웹 서버 접속 실패");
           }
         });
-
       }
 
-      $(function (nm_emp){
+      function deletePay(no_emp, sel_ym){
+        var year_obj = $("[name='year']");
+        var month_obj = $("[name='month']");
+        var no_emp_obj = $("[name='no_emp']");
 
-        // // 사원번호 삽입
-        // var nmemp_obj = $("[name='nmemp']");
+        if(no_emp_obj.val()==""){
+          alert("삭제할 사원 번호를 선택해주세요.");
+          return;
+        }
 
-        // for(var i=maxYear; i>=minYear; i--){
-        //   year_obj.append("<option value='" + i + "'>" + i + "</option>");
-        // }
+        if(year_obj.val()==""){
+          alert("삭제할 귀속년을 선택해주세요.");
+          return;
+        }
+
+        if(month_obj.val()==""){
+          alert("삭제할 귀속월을 선택해주세요.");
+          return;
+        }
+
+        $.ajax({
+          url : "/deletePayProc.do"
+          , type : "post"
+          , data : $("[name='selPayForm']").serialize()
+          , success : function(Cnt){
+            if(Cnt==1){
+              alert("삭제 성공");
+              location.replace("/adSal.do");
+            }else if(Cnt==-1){
+              alert("없는 귀속년월 입니다.");
+              year_obj.val("");
+              month_obj.val("");
+              no_emp_obj.val("");
+            }else{
+              alert("에러입니다.");
+              return;
+            }
+          }
+          , error : function(){
+              alert("웹 서버 접속 실패");
+          }
+        });
+      }
+
+      $(function (){
 
         // 귀속년 삽입(3년치)
         var thisYear = json_today()["year"];
@@ -193,11 +299,11 @@
             <h5>급여계산<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
             <div class="tools responsive-except-desktop" >
               <div class="tools-group" style="cursor:none;">
-                <button class="tool-item">
+                <button class="tool-item" onclick="search();">
                   <span class="icon"><i class="Licon ico-datareset"></i></span>
                   <span class="label">조회</span>
                 </button>
-                <button class="tool-item">
+                <button class="tool-item" onclick="savePay();">
                   <span class="icon"><i class="Licon ico-save"></i></span>
                   <span class="label">저장</span>
                 </button>
@@ -205,7 +311,7 @@
                   <span class="icon"><i class="Licon ico-add"></i></span>
                   <span class="label">추가</span>
                 </button>
-                <button class="tool-item">
+                <button class="tool-item" onclick="deletePay();">
                   <span class="icon"><i class="Licon ico-minus"></i></span>
                   <span class="label">삭제</span>
                 </button>
@@ -229,7 +335,7 @@
                     <td width="10%">하이이알피</td>
                   </td>
                   <form action="/asSal.do" name="asSal" method="post"></form>
-                  <form action="/insertPayProc.do" name="insertPayForm" method="post">
+                  <form action="/searchProc.do" name="selPayForm" method="post">
                     <td width="5%">
                       <label>사원번호</label>
                       <td width="10%">
@@ -273,42 +379,6 @@
                     </td>
                   </form>
                 </tr>
-
-                <!-- <tr>
-                  <td>
-                    <label>부서</label>
-                    <td>
-                      <select name="">
-                        <option value=""></option>
-                        <option value="000">관리부</option>
-                        <option value="001">인사부</option>
-                        <option value="002">총무부</option>
-                        <option value="003">회계부</option>
-                        <option value="004">기획부</option>
-                        <option value="005">영업부</option>     
-                      </select>
-                    </td>
-                  </td>
-              
-                  <td>
-                    <label>재직구분</label>
-                    <td>
-                      <select name="">
-                        <option value=""></option>
-                        <option value="재직">재직</option>
-                        <option value="퇴직">퇴직</option>
-                        <option value="휴직">휴직</option>
-                      </select>
-                    </td>
-                  </td>
-
-                  <td>
-                    <label>급여제목</label>
-                    <td>
-                      <input type="text">
-                    </td>
-                  </td>
-                </tr> -->
               </table>
             </td>
           </tr>
@@ -325,10 +395,10 @@
                     <div class="data-table-container">
                 
                       <!-- 총액 테이블 -->
-                      <table class="data-table data-table-sm" id="empListTable">
+                      <table class="data-table data-table1 data-table-sm" id="empListTable">
                         <thead>
                           <tr>
-                            <th></th>
+                            <th style="width: 30px;"></th>
                             <th>사원명</th>
                             <th>사원번호</th>
                             <th>부서</th>
@@ -349,7 +419,6 @@
                               <!-- <td>${empList.nm_cd_emp}</td> -->
                             </tr>
                           </c:forEach>
-
                         </tbody>
                       </table>
                     </div>
@@ -361,14 +430,13 @@
                   <div id="bottom-left" class="split split-horizontal">
                     <div class="data-table-wrapper">
                       <div class="data-table-container">
-                        <label style="margin-left:60px;"><em class="txt-error">*</em> 지 급 내 역<br></label>
+                        <label style="margin-left:10%;"><em class="txt-error">*</em> 지 급 내 역<br></label>
                         <table class="data-table data-table-sm">
                           <thead>
                             <tr>
-                              <th></th>
-                              <th class="with-tools">
-                                지급내역
-                                <div class="tools overflow overflow-sm overflow-right">
+                              <th style="width: 30px;"></th>
+                              <th>지급내역</th>
+                                <!-- <div class="tools overflow overflow-sm overflow-right"> class="with-tools"
                                   <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
                                     <span class="icon"><i></i></span>
                                   </button>
@@ -380,10 +448,9 @@
                                     </ul>
                                   </div>
                                 </div>
-                              </th>
-                              <th class="with-tools">
-                                금 액
-                                <div class="tools overflow overflow-sm overflow-right">
+                              </th> -->
+                              <th>금 액</th>
+                                <!-- <div class="tools overflow overflow-sm overflow-right"> class="with-tools"
                                   <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
                                     <span class="icon"><i></i></span>
                                   </button>
@@ -395,7 +462,7 @@
                                     </ul>
                                   </div>
                                 </div>
-                              </th>
+                              </th>-->
                             </tr>
                           </thead>
                           <tbody>
@@ -449,14 +516,29 @@
                   <div id="bottom-right" class="split split-horizontal">
                     <div class="data-table-wrapper">
                       <div class="data-table-container">
-                        <label style="margin-left:60px;"><em class="txt-error">*</em> 공 제 내 역<br></label>
+                        <label style="margin-left:10%;"><em class="txt-error">*</em> 공 제 내 역<br></label>
                         <table class="data-table data-table-sm">
                           <thead>
                             <tr>
-                              <th></th>
-                              <th class="with-tools">
-                                공제내역
-                                <div class="tools overflow overflow-sm overflow-right">
+                              <th style="width: 30px;"></th>
+                              <th>공제내역</th>
+                                <!--
+                                <div class="tools overflow overflow-sm overflow-right"> class="with-tools"
+                                  <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
+                                    <span class="icon"><i></i></span>
+                                  </button>
+                                  <div class="overflow-menu">
+                                    <ul>
+                                      <li><a class="overflow-menu-item">없음</a></li>
+                                      <li><a class="overflow-menu-item">오름차순</a></li>
+                                      <li><a class="overflow-menu-item">내림차순</a></li>
+                                    </ul>
+                                  </div>
+                                </div>-->
+                              
+                              <th>금 액</th>
+                                <!--
+                                <div class="tools overflow overflow-sm overflow-right"> class="with-tools"
                                   <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
                                     <span class="icon"><i></i></span>
                                   </button>
@@ -468,22 +550,7 @@
                                     </ul>
                                   </div>
                                 </div>
-                              </th>
-                              <th class="with-tools">
-                                금 액
-                                <div class="tools overflow overflow-sm overflow-right">
-                                  <button class="btn btn-icon btn-xs btn-tool btn-sorter default">
-                                    <span class="icon"><i></i></span>
-                                  </button>
-                                  <div class="overflow-menu">
-                                    <ul>
-                                      <li><a class="overflow-menu-item">없음</a></li>
-                                      <li><a class="overflow-menu-item">오름차순</a></li>
-                                      <li><a class="overflow-menu-item">내림차순</a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </th>
+                              </th>-->
                             </tr>
                           </thead>
                           <tbody>
