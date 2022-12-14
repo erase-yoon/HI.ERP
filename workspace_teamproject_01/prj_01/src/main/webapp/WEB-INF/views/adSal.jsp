@@ -74,8 +74,8 @@
       }
 
       function search(){
-    	  document.selPayForm.method='post'
-   		  document.selPayForm.action='/adSal.do'
+    	  document.selPayForm.method='post';
+   		  document.selPayForm.action='/adSal.do';
 		  	document.selPayForm.submit();
       }
 
