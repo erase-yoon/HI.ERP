@@ -126,12 +126,12 @@ public class AdSalDAOImpl implements AdSalDAO{
 	
 	
 	
-	public List<Map<String, String>> getEmpSearchList(AmpaymentDTO ampaymentDTO) {
-		List<Map<String, String>> data = this.sqlSession.selectList(
-
-				"com.kh.erp.ad.sal.AdSalDAO.getEmpSearchList");
-
-		return data;
-	}
+//	public List<Map<String, String>> getEmpSearchList(AmpaymentDTO ampaymentDTO) {
+//		List<Map<String, String>> data = this.sqlSession.selectList(
+//
+//				"com.kh.erp.ad.sal.AdSalDAO.getEmpSearchList");
+//
+//		return data;
+//	}
 
 }

@@ -246,6 +246,7 @@ public class EmpController {
 	@RequestMapping(value = "/adUserInfoRegProc.do")
 	@ResponseBody
 	public int adUserInfoRegProc(UserInfoDTO userInfoDTO) {
+
 		int data = this.empDAO.adUserInfoReg(userInfoDTO);
 		return data;
 	}

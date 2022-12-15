@@ -433,7 +433,7 @@
             <li class="tree-view">
               <a><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
-                <li><a href="adSal.do"><span class="label">급여계산</span></a></li>
+                <li><a href="adSal.do"><span class="label">급여입력</span></a></li>
               </ul>
             </li>
           </ul>
@@ -443,7 +443,7 @@
       <div id="contents-wrapper">
         <div class="content-header">
           <div class="content-title-bar">
-            <h5>급여계산<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
+            <h5>급여입력<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
             <div class="tools responsive-except-desktop" >
               <div class="tools-group" style="cursor:none;">
                 <button class="tool-item" onclick="search();">
@@ -532,7 +532,7 @@
         </table>
 
 
-        <!-- 급여계산 테이블 -->
+        <!-- 급여입력 테이블 -->
         <div class="content-body">
           <div class="container">
             <section>

@@ -21,6 +21,6 @@ public interface AdSalDAO {
 	
 	List<Map<String, String>> selPay(AmpaymentDTO ampaymentDTO);
 	
-	List<Map<String, String>> getEmpSearchList(AmpaymentDTO ampaymentDTO);
+//	List<Map<String, String>> getEmpSearchList(AmpaymentDTO ampaymentDTO);
 	
 }
