@@ -377,7 +377,7 @@
       });
 
     </script>
-    <title>급여명세서</title>
+    <title>급여입력</title>
   </head>
 
   <body class="side-first by-menu popup-menu-open">

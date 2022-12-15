@@ -18,7 +18,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>급여명세서</title>
+<title>급여명세서 조회</title>
 
 <script>
 /*
@@ -124,7 +124,7 @@ function json_today(){
     <div id="contents-wrapper">
       <div class="content-header">
         <div class="content-title-bar">
-          <h5>급여명세서</h5>
+          <h5>급여명세서 조회</h5>
           <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
           <div class="tools responsive-except-desktop" >
             <div class="tools-group" style="cursor:none;">
