@@ -18,6 +18,54 @@
     <!-- Responsive Viewport & Fixed Scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>공지사항</title>
+     <script>
+	//******************************************************** 
+	// body 태그 안의 모든 내용을 읽어들인 이후 호출할 자스 코딩 설정하기
+	//******************************************************** 
+		
+		function goEmpNoticeDetail(
+				b_no	//클릭한 행의 게시판 번호가 들어오는 매개변수
+		){
+		
+			document.empNoticeDetail.action = "/empNoticeDetail.do";
+			document.empNoticeDetail.method = "post";
+			
+			$("[name=empNoticeDetail]").find(".selectPageNo").val(
+					$("[name=boardSearchForm]").find(".selectPageNo").val()
+			);
+			$("[name=empNoticeDetail]").find(".rowCntPerPage").val(
+					$("[name=boardSearchForm]").find(".rowCntPerPage").val()
+			);
+			//-------------------------------------------------
+			// name=boardDetailForm 를 가진 form 태그 내부에 
+			// name=b_no 가진 태그에 매개변수로 들어온 게시판 번호를 삽입해라
+			//-------------------------------------------------
+			$("[name=empNoticeDetail]").find("[name=b_no]").val(b_no);
+			document.empNoticeDetail.submit();
+		}
+		
+		function boardSearch( ){
+			
+			
+			document.boardSearchForm.submit();
+		}
+		//**********************************************
+		// [페이지 번호]를 클릭하면 호출되는 함수 선언
+		//**********************************************
+		function pageNoBtn( pageNo ){
+			
+			//------------------------------------
+			// class=selectPageNo 를 가진 입력양식에 
+			// 클릭한(=선택한) 페이지 번호를 value 값으로 삽입하기
+			// 왜? 서버에로 보낼려고!
+			//------------------------------------
+			$(".selectPageNo").val(pageNo);
+			//------------------------------------
+			// boardSearch 함수 호출하기
+			//------------------------------------
+			boardSearch();
+		}
+	</script>
   </head>
   <body class="side-first by-menu popup-menu-open">
     <div id="wrapper">
@@ -34,13 +82,13 @@
               <a class="utility">
                 <span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
               </a>
-              <a class="utility">
+              <a class="utility logout">
                 <span class="icon"><i class="Licon ico-logout"></i></span>
               </a>
             </div>
           </div>
           <div class="user-area responsive-except-desktop">
-            <span class="user-info">윤지우 (12345)</span>
+            <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
           </div>
         </div>
       </header>
@@ -66,17 +114,15 @@
               <a href="empNotice.do"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
-              <a href="#"><span class="label">인사관리</span></a>
+              <a><span class="label">인사관리</span></a>
               <ul class="tree-view-menu">
-                <li><a href="adEmpReg.html"><span class="label">사원등록</span></a></li>
-                <li><a href="adUserInfoReg.html"><span class="label">사용자정보등록</span></a></li>
-                <li><a href="adEmpList.html"><span class="label">사원명부</span></a></li>
+                <li><a href="empUserInfo.do"><span class="label">개인정보조회</span></a></li>
               </ul>
             </li>
             <li class="tree-view">
-              <a href="#"><span class="label">급여관리</span></a>
+              <a><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
-                <li><a href="empSalary.do"><span class="label">급여계산</span></a></li>
+                <li><a href="empSalary.do"><span class="label">급여명세서 조회</span></a></li>
               </ul>
             </li>
           </ul>
@@ -86,7 +132,7 @@
       <div id="contents-wrapper">
         <div class="content-header">
           <div class="content-title-bar">
-            <h5>공지사항<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
+            <h5>공지사항</h5>
             <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
             <div class="tools responsive-except-desktop" >
               <div class="tools-group" style="cursor:none;">
@@ -120,125 +166,131 @@
   
   
   
-        <table class="table table-md table-top">
-          <thead>
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>작성일</th>
-              <th>조회수</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>
-                <span class="label">5</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2022.11.25</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">4</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2021.11.25</td>
-              <td>523</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">3</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2020.11.25</td>
-              <td>5432</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">2</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2019.11.25</td>
-              <td>56432</td>
-            </tr>
-            <tr>
-              <th>
-                <span class="label">1</span>
-              </th>
-              <td>목록 텍스트텍스트 목록 텍스트텍스트 목록 텍스트텍스트</td>
-              <td>2018.11.25</td>
-              <td>5423453</td>
-            </tr>
-          </tbody>
-        </table>
-
-
-        <div class="pagination-wrapper">
-          <div class="pagination">
-            <div class="pagination-group direction">
-              <ul>
-                <li class="disabled"><a href="#" class="pagination-item prev"><i class="Licon ico-prev"></i></a></li>
-                <li class="disabled"><a href="#" class="pagination-item left"><i class="Licon ico-left"></i></a></li>
-              </ul>
-            </div>
-            <div class="pagination-group">
-              <ul>
-                <li class="on"><a href="#" class="pagination-item"><i>1</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>2</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>3</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>4</i></a></li>
-                <li class=""><a href="#" class="pagination-item"><i>5</i></a></li>
-              </ul>
-            </div>
-            <div class="pagination-group direction">
-              <ul>
-                <li class=""><a href="#" class="pagination-item right"><i class="Licon ico-right"></i></a></li>
-                <li class=""><a href="#" class="pagination-item next"><i class="Licon ico-next"></i></a></li>
-              </ul>
-            </div>
+       <!-- 공지사항 테이블 -->
+  
+      <table class="table table-md table-top">
+        <thead align="center">
+        <tr align="center">
+          <th width=6%>번호</th>
+          <th width=25%>제목</th>
+          <th width=10%>작성일</th>
+          <th width=8%>조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="board" items="${requestScope.boardList}" varStatus="loopTagStatus">
+        <tr style="cursor:pointer;" onClick="goEmpNoticeDetail(${board.b_no})">
+          <th>
+            <span class="label">${requestScope.pagingMap.serialNo_desc - loopTagStatus.index}</span>
+          </th>
+          <td>${board.subject}</td>
+          <td>${board.reg_date}</td>
+          <td>${board.readcount}</td>
+         </c:forEach>
+        </tr>
+        
+        </tbody>
+      </table>
+      
+      <form name="empNoticeDetail" method="post" action="/empNoticeDetail.do">  
+        <input type="hidden" name="b_no">	
+      </form>
+      
+      <form name="boardSearchForm" method="post" action="">
+      	<input type="hidden" name="selectPageNo" class="selectPageNo" value="1"> 
+      	<input type="hidden" name="pageNoCntPerPage" class="pageNoCntPerPage" value="10">
+      	<input type="hidden" name="rowCntPerPage" class="rowCntPerPage" value="10">
+      </form>
+      
+      <!-- 페이징처리 -->
+      <center>
+      <c:if test="${requestScope.boardTotCnt>0}">
+									
+		<!----------------------------------------------------------->
+		<!-- [처음] 문자 출력--->
+		<!----------------------------------------------------------->
+		<span style="cursor:pointer" onclick="pageNoBtn(1);">[처음]</span>
+		<!----------------------------------------------------------->
+		<!-- [이전] 문자 출력--->
+		<!----------------------------------------------------------->
+		<span style="cursor:pointer" onclick="pageNoBtn(${requestScope.pagingMap.selectPageNo}-1);">[이전]</span>
+		
+	<!----------------------------------------------------------->
+	<!-- 선택한 페이지 번호에 대응하는 페이지 번호들을 출력--->
+	<!----------------------------------------------------------->
+	<c:forEach  var="no"  begin="${requestScope.pagingMap.begin_pageNo_perPage}"  
+						  end="${requestScope.pagingMap.end_pageNo_perPage}" step="1"> 
+		<!----------------------------------------------------------->
+		<!-- 만약에 선택한 페이지 번호와 출력되는 페이지번호 다르면--->
+		<!----------------------------------------------------------->
+		<c:if test="${requestScope.pagingMap.selectPageNo!=no}">
+			<span style="cursor:pointer" onclick="pageNoBtn(${no});">[${no}]</span>&nbsp;
+		</c:if>
+		<!----------------------------------------------------------->
+		<!-- 만약에 선택한 페이지 번호와 출력되는 페이지번호 같으면--->
+		<!----------------------------------------------------------->
+		<c:if test="${requestScope.pagingMap.selectPageNo==no}">				     
+			${no}&nbsp;
+		</c:if>
+	</c:forEach>
+		
+		<!----------------------------------------------------------->
+		<!-- [다음] 문자 출력--->
+		<!----------------------------------------------------------->
+		<span style="cursor:pointer" onclick="pageNoBtn(${requestScope.pagingMap.selectPageNo}+1);">[다음]</span>
+		<!----------------------------------------------------------->
+		<!-- [마지막] 문자 출력--->
+		<!----------------------------------------------------------->
+		<span style="cursor:pointer" onclick="pageNoBtn(${requestScope.pagingMap.last_pageNo});">[마지막]</span>
+		
+</c:if>  
+</center><br><br><br><br>
+    </div>
+  </div>
+  
+  
+  <!--  내정보 팝업 -->
+  
+  <div class="popup-wrapper">
+    <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
+    <!-- option class / popup-warning, popup-full -->
+    <div class="popup">
+      <div class="popup-inner">
+        <div class="popup-title">
+          <div class="title-wrap">
+            <h6 class="title">내정보</h6>              
           </div>
+        </div>
+        <div class="popup-contents" >
+          <table border="0" cellpadding="5" align="center" width="300px" style="font-size:15px; font-weight: bold;">
+            <tr align="center">
+              <td><img src="./assets/images/test_img.png"></td>
+            </tr>
+            <tr align="center">
+              <td>${requestScope.infoList[0].NM_EMP} ${requestScope.infoList[0].NM_JIK}</td>                                     
+            </tr>
+            <tr align="center">
+              <td>(${requestScope.infoList[0].NM_DEPT})</td>                                     
+            </tr>
+            <tr align="center">
+              <td>${requestScope.infoList[0].PHONE}</td>
+            </tr>
+            <tr align="center">
+              <td>${requestScope.infoList[0].EMAIL}</td>
+            </tr>
+          </table>
+
+          
+        </div>
+
+        <div class="popup-tools txt-right" style="margin-top:-20px;">
+          
+          <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
+            <span class="label" >닫기</span>
+          </button>
         </div>
       </div>
     </div>
-
-
-    <div class="popup-wrapper">
-      <div class="popup-dim" onclick="$.Lithium.popupHandler.close()"></div>
-      <!-- option class / popup-warning, popup-full -->
-      <div class="popup">
-        <div class="popup-inner">
-          <div class="popup-title">
-            <div class="title-wrap">
-              <h6 class="title">내정보</h6>              
-            </div>
-          </div>
-          <div class="popup-contents" >
-            <table border="0" cellpadding="5" align="center" width="300px" style="font-size:15px; font-weight: bold;">
-              <tr align="center">
-                <td><img src="./assets/images/test_img.png"></td>
-              </tr>
-              <tr align="center">
-                <td>윤지우 대리</td>                                     
-              </tr>
-              <tr align="center">
-                <td>(DB개발팀)</td>                                     
-              </tr>
-              <tr align="center">
-                <td>010-1111-2222</td>
-              </tr>
-              <tr align="center">
-                <td>dbswldn@naver.com</td>
-              </tr>
-            </table>
-          </div>
-          <div class="popup-tools txt-right" style="margin-top:-20px;">
-            <button class="btn btn-md btn-primary btn-container mg-l-2u" onclick="$.Lithium.popupHandler.close()">
-              <span class="label" >닫기</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+  </div>
+</body>
 </html>

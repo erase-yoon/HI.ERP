@@ -1,8 +1,11 @@
 package com.kh.erp.login;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.kh.erp.ad.notice.BoardSearchDTO;
 
 // ---------------------------------------------------------------
 // [LoginDAO 인터페이스] 선언
@@ -41,5 +44,10 @@ public interface LoginDAO {
 		// 로그인 아이디와 암호가 HashMap 객체가 들어오는 매개변수 선언
 		Map<String, String> idPwd
 	);
+	
+	
+	// ---------------------------------------------
+	List<Map<String, String>> getInfoList(InfoDTO infoDTO);
+	// ---------------------------------------------
 
 }

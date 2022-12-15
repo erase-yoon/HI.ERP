@@ -18,5 +18,5 @@ public class MvcConfiguration implements WebMvcConfigurer{
 		// excludePathPatterns 메소드를 호출하여 예외되는 URL 주소 패턴을 등록
 		registry.addInterceptor(new SessionInterceptor()).excludePathPatterns("/loginForm.do", "/loginProc.do", "/**");
 	}
-	
+
 }

@@ -1,10 +1,13 @@
 package com.kh.erp.login;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.kh.erp.ad.notice.BoardSearchDTO;
 
 // ---------------------------------------------------------------
 // [LoginDAOImpl 클래스] 선언
@@ -71,4 +74,33 @@ public class LoginDAOImpl implements LoginDAO{
 		// [로그인 아이디, 로그인 암호의 존재 개수] 리턴
 		return login_idCnt;
 	}
+	
+	// ---------------------------------------------
+	public List<Map<String, String>> getInfoList(InfoDTO infoDTO){
+
+		// SqlSessionTemplate 객체의 selectList 메소드 호출로
+		// n행 m열 게시판 글을 List<Map<String, String>>으로 받아오기
+		List<Map<String, String>> infoList = this.sqlSession.selectList(
+				
+			// 실행할 SQL SELECT 구문의 위치 지정
+			"com.kh.erp.login.LoginDAO.getInfoList"
+			// SQL 구문의 위치 : *.xml 파일 내부
+			// <mapper namespace="com.kh.erp.ad.notice.BoardBAO">
+			// <select id="getBoardList"> SELECT 구문 </select>
+			// </mapper>
+			
+			// 실행할 SQL 구문에서 사용할 데이터 지정
+			, infoDTO
+		);
+		
+//		List<Map<String, String>> boardList = new ArrayList<String, String>();
+//		Map<String, String> map1 = new HashMap<String, String>();
+//		map1.put("b_no", 1);
+//		map1.put("subject", "제목1");
+//		map1.put("content", "내용1");
+//		boardList.add(map1);
+		
+		return infoList;
+	}
+	// ---------------------------------------------
 }

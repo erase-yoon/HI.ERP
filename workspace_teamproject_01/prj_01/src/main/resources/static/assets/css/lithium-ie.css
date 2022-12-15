@@ -103,11 +103,11 @@
 /* adEmpList 상세검색창 */
 .detailserch{
   height: calc(50% - 6px); 
-  min-height: 170px;
   max-width: 80%; 
   margin-left: auto; 
   margin-right: auto;
 }
+
 
 /* adEmpList 셀렉트박스 */
 .selectbox{
@@ -117,10 +117,17 @@
   text-align: center;
 }
 
+/* adSalary 셀렉트박스 */
+.selectbox1{
+  text-align: center;
+  margin-left: auto; 
+  margin-right: auto;
+}
+
 /* adEmpList 서치바 위치 및 크기 조정 */
 .serch-loc{
-  margin-top: 70px;
-  width:50%;
+  margin-top: 30px;
+  width:30%;
   margin-left: auto; 
   margin-right: auto;
   margin-bottom: 20px;
@@ -131,9 +138,23 @@
   margin-right: 5px;
   margin-bottom: 30px;
 }
+
 /* 설렉트 마진 */
 .select1{
   margin-left: 10%;
+}
+
+.select2{
+  margin-left: 50px;
+}
+
+/* 공지사항 수정버튼 오른쪽마진 */
+.margin-right{
+  margin-right: 70px;
+}
+
+.margin-right1{
+  margin-right: 7.5%;
 }
 
 /* 급여명세서 첫째 테이블 */
@@ -151,26 +172,64 @@
   height:45px;
 }
 
+/* 급여명세서 첫째 테이블 td */
 .dtd1-1{
   width:10%;
   background-color:#E9E9E9;
 }
 
+/* 급여명세서 첫째 테이블 td */
+.dtd1-3{
+  width:10%;
+  background-color:#E9E9E9;
+}
+
+/* 급여명세서 첫째 테이블 td */
 .dtd1-2{
   width:40%;
   background-color:#f8f8f8;
 }
 
+/* 급여명세서 합계란 */
 .dth{
+  width:30%;
   background-color:#E9E9E9;
 }
 
+/* 급여명세서 둘째 테이블 td */
 .dtd2-1{
   width:30%;
   background-color:#f8f8f8;
 }
 
+/* 급여명세서 둘째 테이블 td */
 .dtd2-2{
   width:70%;
   background-color:#f8f8f8;
+}
+
+/* 급여명세서 둘째 테이블 td */
+.dt2-1{
+  width:30%;
+  background-color:#E9E9E9;
+}
+
+.test{
+  align-items: center;
+  vertical-align:middle;
+}
+
+/* 개인정보조회 하단 테이블 높이 조절 */
+.dtr2{
+  height:80px;
+}
+
+.dtd3-1{
+  width:10%;
+  background-color:#cacaca;
+}
+
+.index1{
+  position: inherit;
+  z-index: 5 !important;
 }
