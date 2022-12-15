@@ -443,7 +443,7 @@
       <div id="contents-wrapper">
         <div class="content-header">
           <div class="content-title-bar">
-            <h5>급여입력<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
+            <h5>급여입력</h5>
             <div class="tools responsive-except-desktop" >
               <div class="tools-group" style="cursor:none;">
                 <button class="tool-item" onclick="search();">

@@ -87,7 +87,7 @@
     <div id="contents-wrapper">
       <div class="content-header">
         <div class="content-title-bar">
-          <h5>개인정보조회<button class="btn btn-sm btn-icon"><span class="icon"></span></button></h5>
+          <h5>개인정보조회</h5>
           <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
       </div>
     </div>

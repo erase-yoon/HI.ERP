@@ -316,12 +316,7 @@
 		<div id="contents-wrapper">
 			<div class="content-header" style="z-index: 1; cursor: default;">
 				<div class="content-title-bar" style="z-index: 2; cursor: default;">
-					<h5>
-						사원등록
-						<button class="btn btn-sm btn-icon">
-							<span class="icon"></span>
-						</button>
-					</h5>
+					<h5>사원등록</h5>
 					<!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->			
 				</div>
 			</div>
@@ -338,16 +333,6 @@
 						<form name="adEmpReg" method="post" action="/adEmpReg.do">
 							<p class="h7 mg-b-4u">
 							<div class="box signup">
-								<div class="input-container input-container-md mg-t-4u mar">
-									<label>프로필사진<em class="txt-error">*</em></label> <input type="file" accept="image/*"
-										id="imageFile">
-								</div>
-								<div>
-									<img src="" id="output">
-								</div>
-								<div style="margin-top: 10px">
-									<input type="button" value="미리보기" onclick="ResizeImage()" />
-								</div>
 								<div class="input-container input-container-md mg-t-4u">
 									<label>사원번호<em class="txt-error">*</em></label>
 									<div class="input-group">

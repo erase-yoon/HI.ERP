@@ -320,12 +320,7 @@
 		<div id="contents-wrapper">
 			<div class="content-header" style="z-index: 1; cursor: default;">
 				<div class="content-title-bar" style="z-index: 2; cursor: default;">
-					<h5>
-						사원정보수정
-						<button class="btn btn-sm btn-icon">
-							<span class="icon"></span>
-						</button>
-					</h5>
+					<h5>사원정보수정</h5>
 					<!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
 					<div class="tools responsive-except-desktop" style="z-index: 3; cursor: default;">
 						<div class="tools-group" style="z-index: 4; cursor: default;">

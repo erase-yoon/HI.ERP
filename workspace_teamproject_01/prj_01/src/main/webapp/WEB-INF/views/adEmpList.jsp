@@ -113,12 +113,7 @@
 		<div id="contents-wrapper">
 			<div class="content-header">
 				<div class="content-title-bar">
-					<h5>
-						사원명부 및 수정/삭제
-						<button class="btn btn-sm btn-icon">
-							<span class="icon"></span>
-						</button>
-					</h5>
+					<h5>사원명부 및 수정/삭제</h5>
 					<!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
 					<div class="tools responsive-except-desktop">
 						<div class="tools-group" style="cursor: none;">
