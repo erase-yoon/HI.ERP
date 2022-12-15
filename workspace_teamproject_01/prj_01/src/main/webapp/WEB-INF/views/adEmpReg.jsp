@@ -399,7 +399,7 @@
 									<div class="input-container input-container-md">
 										<label>주민등록번호<em class="txt-error">*</em></label>
 										<div class="input-group">
-											<input type="text" placeholder="주민등록번호를 입력해주세요." class="input-box emp_jumin"
+											<input type="text" placeholder="주민등록번호를 '-'없이 입력해 주세요." class="input-box emp_jumin"
 												name="emp_jumin">
 											<div class="input-group-tools">
 												<button type="button" class="option error">
