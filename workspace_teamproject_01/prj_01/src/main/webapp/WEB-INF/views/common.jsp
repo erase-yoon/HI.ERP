@@ -39,3 +39,13 @@
 <script src="/assets/js/plugins/rangeslider/rangeslider.min.js"></script>
 <script src="/assets/js/plugins/split/split.js"></script>
 <script src="/assets/js/lithium.js"></script>
+
+<script>
+$(function(){
+    $(".logout").click(
+        function(){
+            location.replace("/logout.do");
+        }
+    );
+});
+</script>

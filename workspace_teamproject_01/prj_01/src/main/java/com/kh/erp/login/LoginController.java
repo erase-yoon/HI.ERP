@@ -65,8 +65,8 @@ public class LoginController {
 	@ResponseBody
 	public int loginProc(
 
-			@RequestParam(value = "mid") String mid
-			, @RequestParam(value = "pwd") String pwd
+			@RequestParam(value = "user_id") String user_id
+			, @RequestParam(value = "user_pwd") String user_pwd
 			, @RequestParam(value = "is_login", required = false) String is_login
 			, HttpSession session
 			, HttpServletResponse response
@@ -76,10 +76,10 @@ public class LoginController {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		// [로그인 아이디] 저장
-		map.put("mid", mid);
+		map.put("user_id", user_id);
 		
 		// [로그인 암호] 저장
-		map.put("pwd", pwd);
+		map.put("user_pwd", user_pwd);
 		
 		// ---------------------------------------------------------------
 		// [로그인 아이디]와 [로그인 암호]의 DB 존재 개수를
@@ -100,21 +100,21 @@ public class LoginController {
 			// 접속 이후에도 바로 제거되지 않고 일정기간 살아있다.
 			// <참고> HttpServletRequest, HttpServletResponse 객체는 
 			// 접속 시 생성되고 응답 이후 삭제된다.
-			session.setAttribute("mid", mid);
+			session.setAttribute("user_id", user_id);
 			
 			// is_login에 null이 저장되어 있을 경우(ID, PW 기억 X)
 			if(is_login==null) {
 				
 				// Cookie 객체 생성 후 쿠키명-쿠키값을
-				// ["mid"-null]로 설정
-				Cookie cookie1 = new Cookie("mid", mid);
+				// ["user_id"-null]로 설정
+				Cookie cookie1 = new Cookie("user_id", user_id);
 				
 				// Cookie 객체의 수명 0으로 설정
 				cookie1.setMaxAge(0);
 				
 				// Cookie 객체 생성 후 쿠키명-쿠키값을
-				// ["pwd"-null]로 설정
-				Cookie cookie2 = new Cookie("pwd", pwd);
+				// ["user_pwd"-null]로 설정
+				Cookie cookie2 = new Cookie("user_pwd", user_pwd);
 				
 				// Cookie 객체의 수명 0으로 설정
 				cookie2.setMaxAge(0);
@@ -133,15 +133,15 @@ public class LoginController {
 				// [응답 메시지]에 쿠키명-쿠키값으로 저장
 				// ---------------------------------------------------------------
 				// Cookie 객체 생성 후 쿠키명-쿠키값을
-				// ["mid"-"입력 아이디"]로 설정
-				Cookie cookie1 = new Cookie("mid", mid);
+				// ["user_id"-"입력 아이디"]로 설정
+				Cookie cookie1 = new Cookie("user_id", user_id);
 				
 				// Cookie 객체의 수명 설정
 				cookie1.setMaxAge(86400);
 
 				// Cookie 객체 생성 후 쿠키명-쿠키값을
-				// ["pwd"-"입력 암호"]로 설정
-				Cookie cookie2 = new Cookie("pwd", pwd);
+				// ["user_pwd"-"입력 암호"]로 설정
+				Cookie cookie2 = new Cookie("user_pwd", user_pwd);
 				
 				// Cookie 객체의 수명 설정
 				cookie2.setMaxAge(86400);
@@ -153,10 +153,26 @@ public class LoginController {
 				response.addCookie(cookie2);
 
 			}
-			
+
 		}
 
 		return loginDAO.getCntLogin(map);
+	}
+	
+	// /logout.do로 접근하면 호출되는 메소드 선언
+	@RequestMapping(value="/logout.do")
+	public ModelAndView logout(
+		HttpSession session
+	) {
+		
+		// session의 모든 값 삭제
+		session.invalidate();
+		
+		// [ModelAndView 객체] 생성
+		// 로그아웃 버튼 클릭 시 로그인 화면으로 redirect
+		ModelAndView mav = new ModelAndView("redirect:/loginForm.do");
+		
+		return mav;
 	}
 
 }

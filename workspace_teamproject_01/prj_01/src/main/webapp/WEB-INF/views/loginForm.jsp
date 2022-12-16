@@ -41,16 +41,16 @@
                 // 아이디와 암호 입력란에 삽입
                 // -----------------------
                 // 접속한 클라이언트가 가져온 쿠키 중
-                // 쿠키명 "mid"에 대응하는 쿠키값을
-                // {cookie.mid.value}에 삽입하여
-                // name='mid' 태그의 value 값으로 입력
-                $("[name='mid']").val("${cookie.mid.value}");
+                // 쿠키명 "user_id"에 대응하는 쿠키값을
+                // {cookie.user_id.value}에 삽입하여
+                // name='user_id' 태그의 value 값으로 입력
+                $("[name='user_id']").val("${cookie.user_id.value}");
 
                 // 접속한 클라이언트가 가져온 쿠키 중
-                // 쿠키명 "pwd"에 대응하는 쿠키값을
-                // {cookie.pwd.value}에 삽입하여
-                // name='pwd' 태그의 value 값으로 입력
-                $("[name='pwd']").val("${cookie.pwd.value}");
+                // 쿠키명 "user_pwd"에 대응하는 쿠키값을
+                // {cookie.user_pwd.value}에 삽입하여
+                // name='user_pwd' 태그의 value 값으로 입력
+                $("[name='user_pwd']").val("${cookie.user_pwd.value}");
 
                 // -----------------------
                 // 접속한 클라이언트가 가져온 쿠키 값은
@@ -70,72 +70,112 @@
                 // 아이디 유효성 체크
                 // -----------------------
 
-                // name='mid'를 가진 태그를 관리하는
+                // name='user_id'를 가진 태그를 관리하는
                 // JQuery 객체의 메모리 위치 주소 값을 얻어
-                // midObj 변수에 저장
-                var midObj = $("[name='mid']");
+                // user_idObj 변수에 저장
+                var user_idObj = $("[name='user_id']");
 
                 // 화면에서 입력한 데이터를 가져와
-                // midVal 변수에 저장
-                var midVal = midObj.val();
+                // user_idVal 변수에 저장
+                var user_idVal = user_idObj.val();
 
-                // midVal 데이터가 문자가 아닐 경우
-                // 비어있는 문자열("")을 midVal 변수에 저장
-                if(typeof(midVal)!="string"){
-                    midVal="";
+                // user_idVal 데이터가 문자가 아닐 경우
+                // 비어있는 문자열("")을 user_idVal 변수에 저장
+                if(typeof(user_idVal)!="string"){
+                    user_idVal="";
                 }
 
-                // midVal 데이터가
+                // user_idVal 데이터가
                 // 길이가 없거나 공백으로만 이루어져 있을 경우
-                if(midVal.split(" ").join("")==""){
+                if(user_idVal.split(" ").join("")==""){
 
                     // 경고창 띄우기
                     // alert("아이디를 입력해 주세요.");
 
                     // 비어있는 문자열("")로 변경
-                    midObj.val("");
+                    user_idObj.val("");
 
                     // 커서를 올림
-                    midObj.focus();
+                    user_idObj.focus();
 
                     // checkLoginForm() 함수 종료
                     return;
+                }
+
+                // user_idVal 데이터가
+                // 공백이 포함되어 있을 경우
+                if(user_idVal.split(" ").join("")!=user_idVal){
+
+                    // confirm창 띄우기
+                    if(confirm("아이디에 공백이 있습니다.\n공백만 지울 경우 [확인]\nID를 모두 지울 경우 [취소]")){
+
+                        // 아이디에 공백 삭제
+                        user_idObj.val(user_idVal.split(" ").join(""));
+
+                        return;
+                    }else{
+
+                        user_idObj.val("");
+                        user_idObj.focus();
+
+                        return;
+                    }
                 }
                 
                 // -----------------------
                 // 암호 유효성 체크
                 // -----------------------
 
-                // name='pwd'를 가진 태그를 관리하는
+                // name='user_pwd'를 가진 태그를 관리하는
                 // JQuery 객체의 메모리 위치 주소 값을 얻어
-                // pwdObj 변수에 저장
-                var pwdObj = $("[name='pwd']");
+                // user_pwdObj 변수에 저장
+                var user_pwdObj = $("[name='user_pwd']");
 
                 // 화면에서 입력한 데이터를 가져와
-                // pwdVal 변수에 저장
-                var pwdVal = pwdObj.val();
+                // user_pwdVal 변수에 저장
+                var user_pwdVal = user_pwdObj.val();
                 
-                // pwdObj 데이터가 문자가 아닐 경우
-                // 비어있는 문자열("")을 pwdObj 변수에 저장
-                if(typeof(pwdVal)!="string"){
-                    pwdVal="";
+                // user_pwdObj 데이터가 문자가 아닐 경우
+                // 비어있는 문자열("")을 user_pwdObj 변수에 저장
+                if(typeof(user_pwdVal)!="string"){
+                    user_pwdVal="";
                 }
 
-                // pwdVal 데이터가
+                // user_pwdVal 데이터가
                 // 길이가 없거나 공백으로만 이루어져 있을 경우
-                if(pwdVal.split(" ").join("")==""){
+                if(user_pwdVal.split(" ").join("")==""){
 
                     // 경고창 띄우기
                     // alert("암호를 입력해 주세요.");
 
                     // 비어있는 문자열("")로 변경
-                    pwdObj.val("");
+                    user_pwdObj.val("");
 
                     // 커서를 올림
-                    pwdObj.focus();
+                    user_pwdObj.focus();
 
                     // checkLoginForm() 함수 종료
                     return;
+                }
+
+                // user_pwdVal 데이터가
+                // 공백이 포함되어 있을 경우
+                if(user_pwdVal.split(" ").join("")!=user_pwdVal){
+
+                    // confirm창 띄우기
+                    if(confirm("암호에 공백이 포함되어 있습니다.\n공백만 지울 경우 [확인]\n암호를 모두 지울 경우 [취소]")){
+
+                        // 암호에 공백 삭제
+                        user_pwdObj.val(user_pwdVal.split(" ").join(""));
+
+                        return;
+                    }else{
+
+                        user_pwdObj.val("");
+                        user_pwdObj.focus();
+
+                        return;
+                    }
                 }
 
                 // -----------------------
@@ -158,8 +198,8 @@
                     // 아래 형식의 문자열로 조합해서 설정
                     // "파라미터명1=파라미터값1 & 파라미터명2=파라미터값2 & ~"
                     , data : $("[name='loginForm']").serialize()
-                    // , data : {"admin_id" : admin_idVal, "pwd" : pwdVal}
-                    // , data : "admin_id = " + admin_idVal + "& pwd = " + pwdVal
+                    // , data : {"admin_id" : admin_idVal, "user_pwd" : user_pwdVal}
+                    // , data : "admin_id = " + admin_idVal + "& user_pwd = " + user_pwdVal
 
                     // 웹 서버와 통신 후 
                     // 웹 서버의 응답을 성공적으로 받을 경우 
@@ -169,7 +209,7 @@
                     , success : function(idCnt){
                         
                         if(idCnt==1){
-                            if(midVal=="abc"){
+                            if(user_idVal=="system"){
                                 document.adNotice.submit();
                             }else{
                                 document.empNotice.submit();
@@ -177,7 +217,7 @@
                         }else{
                             alert("로그인 실패");
                             admin_idObj.val("");
-                            pwdObj.val("");
+                            user_pwdObj.val("");
                         }
                     }
 
@@ -187,6 +227,12 @@
                         alert("웹 서버 접속 실패");
                     }
                 });
+            }
+
+            function enterkey() {
+                if (window.event.keyCode == 13) {
+                    checkLoginForm();
+                }
             }
         </script>
     </head>
@@ -207,10 +253,10 @@
                             <form action="/empNotice.do" name="empNotice" method="post"></form>
                             <form action="/loginProc.do" name="loginForm" method="post">
                                 <div class="form-group">
-                                    <input type="text" name="mid" class="form-control rounded-left" placeholder="ID">
+                                    <input type="text" name="user_id" class="form-control rounded-left" placeholder="ID" onkeyup="enterkey()">
                                 </div>
                                 <div class="form-group d-flex">
-                                    <input type="password" name="pwd" class="form-control rounded-left" placeholder="Password">
+                                    <input type="password" name="user_pwd" class="form-control rounded-left" placeholder="Password" onkeyup="enterkey()">
                                 </div>
                                 <div class="form-group">
                                     <button type="button" class="loginBtn form-control btn btn-primary rounded submit px-3">Login</button>
@@ -218,7 +264,7 @@
                                 <div class="form-group d-md-flex">
                                     <div class="w-50">
                                         <label class="checkbox-wrap checkbox-primary">정보 기억
-                                            <input type="checkbox" value="yes" name="is_login" class="is_login" ${empty cookie.mid.value?'':'checked'}>
+                                            <input type="checkbox" value="yes" name="is_login" class="is_login" ${empty cookie.user_id.value?'':'checked'}>
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
