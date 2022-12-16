@@ -17,4 +17,9 @@ public interface BoardService {
 	// 수정 적용행의 개수를 리턴하는 메소드 선언
 	int deleteBoard(BoardDTO boardDTO);
 	
+	int insertComment(BoardDTO boardDTO);
+	
+	int deleteComment(BoardDTO boardDTO);
+	
+	int deleteComment1(BoardDTO boardDTO);
 }

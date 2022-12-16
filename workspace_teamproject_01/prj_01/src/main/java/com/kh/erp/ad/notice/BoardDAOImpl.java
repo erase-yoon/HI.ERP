@@ -1,5 +1,6 @@
 package com.kh.erp.ad.notice;
 
+import java.awt.print.Printable;
 import java.util.List;
 import java.util.Map;
 
@@ -121,6 +122,29 @@ public class BoardDAOImpl implements BoardDAO {
 		return boardRegCnt;
 	}
 	
+
+	// [댓글 입력 후 적용될 행의 개수]를 리턴하는 메소드 선언
+	public int insertComment(BoardDTO boardDTO){
+		// SqlSessionTemplate 객체의 insert 메소드 호출로
+		// 게시판 글을 입력하는 SQL 구문을 실행하고 입력 성공한 행의 개수 얻기
+		int boardComCnt = sqlSession.insert(
+				
+			// 실행할 SQL INSERT 구문의 위치 지정
+			"com.kh.erp.ad.notice.BoardDAO.insertComment"
+			// SQL 구문의 위치 : *.xml 파일 내부
+			// <mapper namespace="com.kh.erp.ad.notice.BoardBAO">
+			// <insert id="insertBoard"> INSERT 구문 </insert>
+			// </mapper>
+				
+			// 실행할 SQL 구문에서 사용할 데이터 지정
+			, boardDTO
+		);
+		return boardComCnt;
+	}
+	
+	
+	
+	
 	// 답글을 달 게시판의 모든 후손 글들의 
 	// print_no를 1 업데이트 하는 메소드 선언
 	public int updatePrintNoCnt(BoardDTO boardDTO) {
@@ -138,6 +162,7 @@ public class BoardDAOImpl implements BoardDAO {
 					
 				// 실행할 SQL 구문에서 사용할 데이터 지정
 				, boardDTO
+				
 		);
 		
 		// [수정 적용행] 리턴
@@ -176,18 +201,38 @@ public class BoardDAOImpl implements BoardDAO {
 			
 			// 실행할 SQL SELECT 구문의 위치 지정
 			"com.kh.erp.ad.notice.BoardDAO.getBoard"
-			// SQL 구문의 위치 : *.xml 파일 내부
-			// <mapper namespace="com.kh.erp.ad.notice.BoardBAO">
-			// <select id="getBoard"> SELECT 구문 </select>
-			// </mapper>
-			
-			// 실행할 SQL 구문에서 사용할 데이터 지정
+				
 			, b_no
 		);
 		
 		// [1개 게시판 글 정보] 리턴
 		return board;
 	}
+	
+	
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	// 댓글관련정보를 리턴하는 메소드 선언
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	public List<Map<String, String>> getComment(int b_no) {
+		
+		// SqlSessionTemplate 객체의 selectOne 메소드 호출로
+		// [1개 게시판 글 정보]를 얻는 SQL 구문을 실행하고 입력 성공한 행의 개수 얻기
+		List<Map<String, String>> getComment = this.sqlSession.selectOne(
+		// selectOne은 1행m열의 select 결과를 얻을 떄 사용하는 메소드이다.
+			
+			// 실행할 SQL SELECT 구문의 위치 지정
+			"com.kh.erp.ad.notice.BoardDAO.getComment"
+				
+			, b_no
+		);
+
+		// [1개 게시판 글 정보] 리턴
+		
+		return getComment;
+	}
+	
+	
+	
 	
 	// 수정할 게시판의 존재 개수를 리턴하는 메소드 선언
 	public int getBoardCnt(int b_no) {
@@ -308,8 +353,10 @@ public class BoardDAOImpl implements BoardDAO {
 		// [수정 적용행] 리턴
 		return updatePrintNoDown;
 	}
-	
+
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 게시판 삭제 명령 후 삭제 적용행을 리턴하는 메소드 선언
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	public int deleteBoard(BoardDTO boardDTO) {
 		
 		// SqlSessionTemplate 객체의 delete 메소드 호출로
@@ -327,6 +374,82 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		// [삭제 적용행] 리턴
 		return deleteBoard;
+	}
+
+	
+	
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	// 댓글 삭제 명령 후 삭제 적용행의 개수를 리턴하는 메소드 선언
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	
+	public int getCommentCnt(BoardDTO boardDTO) {
+		System.out.println("getCommentCnt 보드DAOImpl 시작");
+		System.out.println(boardDTO.getPrint_level());
+		System.out.println(boardDTO.getB_no());
+		// SqlSessionTemplate 객체의 selectOne 메소드 호출로
+		// [게시판의 존재 개수]를 얻는 SQL 구문을 실행하고 게시판의 존재 개수 얻기
+		int commentCnt = this.sqlSession.selectOne(
+
+				// 실행할 [SQL 구문의 위치 문자]를 지정
+				"com.kh.erp.ad.notice.BoardDAO.getCommentCnt"
+				// com.kh.erp.ad.notice.BoardDAO : xml 파일의 mapper 태그 안의 namespace 값
+				// getBoardCnt : mapper 태그 안의 <select id="boardCnt" ~> 태그 안의 SQL 구문
+				
+				// 실행할 SQL 구문에서 사용할 데이터 지정
+				, boardDTO
+		);
+
+		// [게시판의 존재 개수] 리턴
+		System.out.println("getCommentCnt 보드DAOImpl 종료");
+		return commentCnt;
+	}
+	
+	
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	// 댓글 삭제 명령 후 삭제 적용행을 리턴하는 메소드 선언
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	
+	public int deleteComment(BoardDTO boardDTO) {
+		System.out.println("deleteComment 보드DAOImpl 시작");
+		// SqlSessionTemplate 객체의 delete 메소드 호출로
+		// [삭제 적용행의 개수]를 얻는 SQL 구문을 실행하고 삭제 적용행 얻기
+		int deleteComment = this.sqlSession.delete(
+
+				// 실행할 [SQL 구문의 위치 문자]를 지정
+				"com.kh.erp.ad.notice.BoardDAO.deleteComment"
+				// com.kh.erp.ad.notice.BoardDAO : xml 파일의 mapper 태그 안의 namespace 값
+				// deleteBoard : mapper 태그 안의 <delete id="deleteBoard" ~> 태그 안의 SQL 구문
+				
+				// 실행할 SQL 구문에서 사용할 데이터 지정
+				, boardDTO
+		);
+		
+		// [삭제 적용행] 리턴
+		System.out.println("deleteComment 보드DAOImpl 종료");
+		return deleteComment;
+	}
+
+	
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	// 게시글 삭제 시 b_no 가 같은 모든 댓글이 삭제되게끔 하는 메소드
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	
+	public int deleteComment1(BoardDTO boardDTO) {
+		// SqlSessionTemplate 객체의 delete 메소드 호출로
+		// [삭제 적용행의 개수]를 얻는 SQL 구문을 실행하고 삭제 적용행 얻기
+		int deleteComment1 = this.sqlSession.delete(
+
+				// 실행할 [SQL 구문의 위치 문자]를 지정
+				"com.kh.erp.ad.notice.BoardDAO.deleteComment1"
+				// com.kh.erp.ad.notice.BoardDAO : xml 파일의 mapper 태그 안의 namespace 값
+				// deleteBoard : mapper 태그 안의 <delete id="deleteBoard" ~> 태그 안의 SQL 구문
+				
+				// 실행할 SQL 구문에서 사용할 데이터 지정
+				, boardDTO
+		);
+		
+		// [삭제 적용행] 리턴
+		return deleteComment1;
 	}
 	
 //	// 답글을 달 게시판의 모든 후손 글들의 
