@@ -314,7 +314,7 @@ function enterkey(){
   	<!--<input type="button" class="checkPwdBtn btn btn-md btn-primary btn-container label" placeholder="확인">-->
   	 
   	
-    <button type="button" class="checkPwdBtn btn btn-md btn-primary btn-container" >
+    <button type="button" class="checkPwdBtn btn btn-md btn-primary btn-container">
       <span class="label">확인</span>
     </button>
      

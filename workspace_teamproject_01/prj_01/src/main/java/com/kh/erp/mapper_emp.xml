@@ -196,6 +196,7 @@
 
 		select NM_JIK
 		from MA_JIKUP
+		where NM_JIK != '관리자'
 		order by CD_JIK
 	</select>
 
