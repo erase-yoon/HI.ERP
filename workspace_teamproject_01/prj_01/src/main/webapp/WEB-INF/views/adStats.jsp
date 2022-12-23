@@ -17,8 +17,140 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Responsive Viewport & Fixed Scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>공지사항</title>
-     <script>
+    <title>통계자료</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart1);
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawChart3);
+      google.charts.setOnLoadCallback(drawChart4);
+      
+      function drawChart1() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Dept', 'Dept Count'],
+          ['인사부', ${requestScope.deptCount[0].deptcount}],
+          ['총무부', ${requestScope.deptCount[1].deptcount}],
+          ['회계부', ${requestScope.deptCount[2].deptcount}],
+          ['기획부', ${requestScope.deptCount[3].deptcount}],
+          ['영업부', ${requestScope.deptCount[4].deptcount}]
+        ]);
+
+        var options = {
+          title: '부서별 사원 수'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+        chart.draw(data, options);
+      }
+
+      function drawChart2() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['jikup', 'jikup Count'],
+          ['사장', ${requestScope.jikupCount[0].jikcount}],
+          ['부사장', ${requestScope.jikupCount[1].jikcount}],
+          ['전무이사', ${requestScope.jikupCount[2].jikcount}],
+          ['상무이사', ${requestScope.jikupCount[3].jikcount}],
+          ['이사', ${requestScope.jikupCount[4].jikcount}],
+          ['부장', ${requestScope.jikupCount[5].jikcount}],
+          ['차장', ${requestScope.jikupCount[6].jikcount}],
+          ['과장', ${requestScope.jikupCount[7].jikcount}],
+          ['대리', ${requestScope.jikupCount[8].jikcount}]
+          // ['주임', ${requestScope.jikupCount[9].jikcount}],
+          // ['사원', ${requestScope.jikupCount[10].jikcount}]
+        ]);
+
+        var options = {
+          title: '직급별 사원 수'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart.draw(data, options);
+      }
+
+      function drawChart3() {
+        var sum = ${requestScope.deptCount[0].deptcount} 
+        + ${requestScope.deptCount[1].deptcount} 
+        + ${requestScope.deptCount[2].deptcount} 
+        + ${requestScope.deptCount[3].deptcount} 
+        + ${requestScope.deptCount[4].deptcount};
+        var data = google.visualization.arrayToDataTable([
+          ['Dept', 'Dept Count', { role: "style" } ],
+          ['총원', sum, "#b87333"],
+          ['인사부', ${requestScope.deptCount[0].deptcount}, "#b87333"],
+          ['총무부', ${requestScope.deptCount[1].deptcount}, "silver"],
+          ['회계부', ${requestScope.deptCount[2].deptcount}, "gold"],
+          ['기획부', ${requestScope.deptCount[3].deptcount}, "color: #e5e4e2"],
+          ['영업부', ${requestScope.deptCount[4].deptcount}, "color: #e5e4e2"]
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                        { calc: "stringify",
+                          sourceColumn: 1,
+                          type: "string",
+                          role: "annotation" },
+                        2]);
+
+        var options = {
+          title: "부서별 사원 수",
+          width: 800,
+          height: 500,
+          bar: {groupWidth: "95%"},
+          legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values1"));
+        chart.draw(view, options);
+      }
+
+      function drawChart4() {
+        var sum = ${requestScope.jikupCount[0].jikcount} 
+        + ${requestScope.jikupCount[1].jikcount} 
+        + ${requestScope.jikupCount[2].jikcount} 
+        + ${requestScope.jikupCount[3].jikcount} 
+        + ${requestScope.jikupCount[4].jikcount}
+        + ${requestScope.jikupCount[5].jikcount}
+        + ${requestScope.jikupCount[6].jikcount}
+        + ${requestScope.jikupCount[7].jikcount}
+        + ${requestScope.jikupCount[8].jikcount};
+        // + ${requestScope.jikupCount[9].deptcount}
+        // + ${requestScope.jikupCount[10].deptcount}
+        var data = google.visualization.arrayToDataTable([
+          ['Dept', 'Dept Count', { role: "style" } ],
+          ['총원', sum, "#b87333"],
+          ['사장', ${requestScope.jikupCount[0].jikcount}, "#b87333"],
+          ['부사장', ${requestScope.jikupCount[1].jikcount}, "silver"],
+          ['전무이사', ${requestScope.jikupCount[2].jikcount}, "gold"],
+          ['상무이사', ${requestScope.jikupCount[3].jikcount}, "color: #e5e4e2"],
+          ['이사', ${requestScope.jikupCount[4].jikcount}, "color: #e5e4e2"],
+          ['부장', ${requestScope.jikupCount[5].jikcount}, "color: #e5e4e2"],
+          ['차장', ${requestScope.jikupCount[6].jikcount}, "color: #e5e4e2"],
+          ['과장', ${requestScope.jikupCount[7].jikcount}, "color: #e5e4e2"],
+          ['대리', ${requestScope.jikupCount[8].jikcount}, "color: #e5e4e2"]
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                        { calc: "stringify",
+                          sourceColumn: 1,
+                          type: "string",
+                          role: "annotation" },
+                        2]);
+
+        var options = {
+          title: "직급별 사원 수",
+          width: 800,
+          height: 500,
+          bar: {groupWidth: "95%"},
+          legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values2"));
+        chart.draw(view, options);
+      }
+    </script>
+    <script>
 	//******************************************************** 
 	// body 태그 안의 모든 내용을 읽어들인 이후 호출할 자스 코딩 설정하기
 	//******************************************************** 
@@ -27,7 +159,7 @@
 				b_no	//클릭한 행의 게시판 번호가 들어오는 매개변수
 		){
 		
-			document.empNoticeDetail.action = "/empNoticeDetail.do";
+			document.empNoticeDetail.action = "/adNoticeDetail.do";
 			document.empNoticeDetail.method = "post";
 			
 			$("[name=empNoticeDetail]").find(".selectPageNo").val(
@@ -67,6 +199,8 @@
 		}
 	</script>
   </head>
+  
+  
   <body class="side-first by-menu popup-menu-open">
     <div id="wrapper">
       <header id="header-bar" class="on-light">
@@ -75,7 +209,7 @@
             <span class="icon"><i class="Licon ico-menu"></i></span>
           </button>
           <div class="logo-area">
-            <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
+              <img src="assets/images/Hierp_Logo1.png" class="on-light logo_margin">
           </div>
           <div class="utility-area">
             <div class="utility-group">
@@ -88,7 +222,7 @@
             </div>
           </div>
           <div class="user-area responsive-except-desktop">
-            <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span>
+            <span class="user-info">${requestScope.infoList[0].NM_EMP} (${requestScope.infoList[0].NO_EMP})</span> 
           </div>
         </div>
       </header>
@@ -99,9 +233,12 @@
           <span class="icon"><i class="Licon ico-close"></i></span>
         </button>
         <div class="menu-area">
-          <div class="menu menu-vertical"></div>
+          <div class="menu menu-vertical">
+          </div>
         </div>
       </aside>
+      
+  <!-- 사이드 바 메뉴 -->
   
       <div id="side-bar-sub" class="">
         <div class="tab-contents" data-tab-contents="DEFAULT" data-tab-contents-group="SIDE_MENU">
@@ -109,21 +246,26 @@
           <div class="searchbar_con"><img src="assets/images/Biglogo.png"></div>
           <!-- menu -->
           <ul class="menu-accordion">
-            <li class="active">
+            <li>
               <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
-              <a href="empNotice.do"><span class="label">공지사항</span></a>
+              <a href="adNotice.do"><span class="label">공지사항</span></a>
             </li>
             <li class="tree-view">
               <a><span class="label">인사관리</span></a>
               <ul class="tree-view-menu">
-                <li><a href="empUserInfo.do"><span class="label">개인정보조회</span></a></li>
+                <li><a href="adEmpReg.do"><span class="label">사원등록</span></a></li>
+                <li><a href="adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
+                <li><a href="adEmpList.do"><span class="label">사원명부 및 수정/삭제</span></a></li>
               </ul>
             </li>
             <li class="tree-view">
               <a><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
-                <li><a href="empSalary.do"><span class="label">급여명세서 조회</span></a></li>
+                <li><a href="adSal.do"><span class="label">급여입력</span></a></li>
               </ul>
+            </li>
+            <li class="active">
+              <a href="adStats.do"><span class="label">통계자료</span></a>
             </li>
           </ul>
         </div>
@@ -132,8 +274,7 @@
       <div id="contents-wrapper">
         <div class="content-header">
           <div class="content-title-bar">
-            <h5>공지사항</h5>
-            <!-- <h5>Menu Name 1<button class="btn btn-sm btn-icon"><span class="icon"><i class="material-icons">star</i></span></button></h5> -->
+            <h5>통계자료</h5>
             <div class="tools responsive-except-desktop" >
               <div class="tools-group" style="cursor:none;">
                 <button class="tool-item" disabled style="cursor:default;">
@@ -160,91 +301,15 @@
   
   
   
-        <br><br><br><br><br><br><br><br>
+        <br><br>
+        <!-- <br><br><br><br> -->
+        <div id="piechart1" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div>
+        <div id="piechart2" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div>
+        <div id="columnchart_values1" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div>
+        <div id="columnchart_values2" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div>
+        <br><br>
   
-  
-  
-  
-  
-       <!-- 공지사항 테이블 -->
-  
-      <table class="table table-md table-top">
-        <thead align="center">
-        <tr align="center">
-          <th width=6%>번호</th>
-          <th width=25%>제목</th>
-          <th width=10%>작성일</th>
-          <th width=8%>조회수</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="board" items="${requestScope.boardList}" varStatus="loopTagStatus">
-        <tr style="cursor:pointer;" onClick="goEmpNoticeDetail(${board.b_no})">
-          <th>
-            <span class="label">${requestScope.pagingMap.serialNo_desc - loopTagStatus.index}</span>
-          </th>
-          <td>${board.subject}</td>
-          <td>${board.reg_date}</td>
-          <td>${board.readcount}</td>
-         </c:forEach>
-        </tr>
-        
-        </tbody>
-      </table>
-      
-      <form name="empNoticeDetail" method="post" action="/empNoticeDetail.do">  
-        <input type="hidden" name="b_no">	
-      </form>
-      
-      <form name="boardSearchForm" method="post" action="">
-      	<input type="hidden" name="selectPageNo" class="selectPageNo" value="1"> 
-      	<input type="hidden" name="pageNoCntPerPage" class="pageNoCntPerPage" value="10">
-      	<input type="hidden" name="rowCntPerPage" class="rowCntPerPage" value="10">
-      </form>
-      
-      <!-- 페이징처리 -->
-      <center>
-      <c:if test="${requestScope.boardTotCnt>0}">
-									
-		<!----------------------------------------------------------->
-		<!-- [처음] 문자 출력--->
-		<!----------------------------------------------------------->
-		<span style="cursor:pointer" onclick="pageNoBtn(1);">[처음]</span>
-		<!----------------------------------------------------------->
-		<!-- [이전] 문자 출력--->
-		<!----------------------------------------------------------->
-		<span style="cursor:pointer" onclick="pageNoBtn(${requestScope.pagingMap.selectPageNo}-1);">[이전]</span>
-		
-	<!----------------------------------------------------------->
-	<!-- 선택한 페이지 번호에 대응하는 페이지 번호들을 출력--->
-	<!----------------------------------------------------------->
-	<c:forEach  var="no"  begin="${requestScope.pagingMap.begin_pageNo_perPage}"  
-						  end="${requestScope.pagingMap.end_pageNo_perPage}" step="1"> 
-		<!----------------------------------------------------------->
-		<!-- 만약에 선택한 페이지 번호와 출력되는 페이지번호 다르면--->
-		<!----------------------------------------------------------->
-		<c:if test="${requestScope.pagingMap.selectPageNo!=no}">
-			<span style="cursor:pointer" onclick="pageNoBtn(${no});">[${no}]</span>&nbsp;
-		</c:if>
-		<!----------------------------------------------------------->
-		<!-- 만약에 선택한 페이지 번호와 출력되는 페이지번호 같으면--->
-		<!----------------------------------------------------------->
-		<c:if test="${requestScope.pagingMap.selectPageNo==no}">				     
-			${no}&nbsp;
-		</c:if>
-	</c:forEach>
-		
-		<!----------------------------------------------------------->
-		<!-- [다음] 문자 출력--->
-		<!----------------------------------------------------------->
-		<span style="cursor:pointer" onclick="pageNoBtn(${requestScope.pagingMap.selectPageNo}+1);">[다음]</span>
-		<!----------------------------------------------------------->
-		<!-- [마지막] 문자 출력--->
-		<!----------------------------------------------------------->
-		<span style="cursor:pointer" onclick="pageNoBtn(${requestScope.pagingMap.last_pageNo});">[마지막]</span>
-		
-</c:if>  
-</center><br><br><br><br>
+  	<!-- <br><br><br><br> -->
     </div>
   </div>
   

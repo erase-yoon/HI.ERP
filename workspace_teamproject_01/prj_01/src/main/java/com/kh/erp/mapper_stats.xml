@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.erp.ad.stats.AdStatsDAO">
+	
+	<select id="getDeptCountList" resultType="hashmap">
+		
+		select
+			count(*) as "deptcount"
+		from
+			ma_emp
+		where
+			cd_dept!=000
+		group by
+			cd_dept
+		order by
+			cd_dept
+	
+	</select>
+	
+	<select id="getJikupCountList" resultType="hashmap">
+		
+		select
+			count(*) as "jikcount"
+		from
+			ma_emp
+		where
+			cd_jik!=000
+		group by
+			cd_jik
+		order by
+			cd_jik
+	
+	</select>
+	
+</mapper>

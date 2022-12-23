@@ -393,10 +393,10 @@
           <div class="utility-area">
             <div class="utility-group">
               <a class="utility">
-                <span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
+                <span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })" title="내정보"></i></span>
               </a>
               <a class="utility logout">
-                <span class="icon"><i class="Licon ico-logout"></i></span>
+                <span class="icon" title="로그아웃"><i class="Licon ico-logout"></i></span>
               </a>
             </div>
           </div>
@@ -430,12 +430,15 @@
                 <li><a href="adEmpList.do"><span class="label">사원명부 및 수정/삭제</span></a></li>
               </ul>
             </li>
-            <li class="tree-view">
+            <li class="tree-view open">
               <a><span class="label">급여관리</span></a>
               <ul class="tree-view-menu">
-                <li><a href="adSal.do"><span class="label">급여입력</span></a></li>
+                <li class="active"><a href="adSal.do"><span class="label">급여입력</span></a></li>
               </ul>
             </li>
+            <li>
+              <a href="adStats.do"><span class="label">통계자료</span></a>
+            </li>	
           </ul>
         </div>
       </div>
@@ -452,7 +455,7 @@
                 </button>
                 <button class="tool-item" onclick="savePay();">
                   <span class="icon"><i class="Licon ico-save"></i></span>
-                  <span class="label">저장</span>
+                  <span class="label">수정</span>
                 </button>
                 <button class="tool-item" onclick="insertPay();">
                   <span class="icon"><i class="Licon ico-add"></i></span>

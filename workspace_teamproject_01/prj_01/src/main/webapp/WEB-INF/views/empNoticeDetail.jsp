@@ -260,12 +260,12 @@
         </div>
         <div class="utility-area">
           <div class="utility-group">
-            <a class="utility">
-              <span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
-            </a>
-            <a class="utility logout">
-              <span class="icon"><i class="Licon ico-logout"></i></span>
-            </a>
+						<a class="utility">
+							<span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })" title="내정보"></i></span>
+						</a>
+						<a class="utility logout">
+							<span class="icon" title="로그아웃"><i class="Licon ico-logout"></i></span>
+						</a>
           </div>
         </div>
         <div class="user-area responsive-except-desktop">
@@ -293,7 +293,7 @@
         <div class="searchbar_con"><img src="assets/images/Biglogo.png"></div>
         <!-- menu -->
         <ul class="menu-accordion">
-          <li>
+          <li class="active">
             <!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함-->
             <a href="empNotice.do"><span class="label">공지사항</span></a>
           </li>

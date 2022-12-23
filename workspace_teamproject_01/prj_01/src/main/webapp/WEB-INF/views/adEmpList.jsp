@@ -60,9 +60,11 @@
 				</div>
 				<div class="utility-area">
 					<div class="utility-group">
-						<a class="utility"> <span class="icon"><i class="Licon ico-my "
-								onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
-						</a> <a class="utility logout"> <span class="icon"><i class="Licon ico-logout"></i></span>
+						<a class="utility">
+							<span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })" title="내정보"></i></span>
+						</a>
+						<a class="utility logout">
+							<span class="icon" title="로그아웃"><i class="Licon ico-logout"></i></span>
 						</a>
 					</div>
 				</div>
@@ -95,17 +97,21 @@
 						<!-- <a href="adNotice.do"><span class="label">공지사항</span></a> a 태그 해당 방식으로 추후 모두 변경해야함--> <a
 						href="/adNotice.do"><span class="label">공지사항</span></a>
 					</li>
-					<li class="tree-view"><a><span class="label">인사관리</span></a>
+					<li class="tree-view open"><a><span class="label">인사관리</span></a>
 						<ul class="tree-view-menu">
 							<li><a href="/adEmpReg.do"> <span class="label">사원등록</span></a></li>
 							<li><a href="/adUserInfoReg.do"><span class="label">사용자정보등록</span></a></li>
-							<li><a href="/adEmpList.do"><span class="label">사원명부 및 수정/삭제</span></a></li>
+							<li class="active"><a href="/adEmpList.do"><span class="label">사원명부 및 수정/삭제</span></a></li>
 						</ul></li>
 					<li class="tree-view"><a><span class="label">급여관리</span></a>
 						<ul class="tree-view-menu">
 							<li><a href="adSal.do"><span class="label">급여입력</span></a></li>
 							<!--<li><a><span class="label">Menu3-1</span></a></li>-->
-						</ul></li>
+						</ul>
+					</li>
+					<li>
+						<a href="adStats.do"><span class="label">통계자료</span></a>
+					</li>	
 				</ul>
 			</div>
 		</div>
