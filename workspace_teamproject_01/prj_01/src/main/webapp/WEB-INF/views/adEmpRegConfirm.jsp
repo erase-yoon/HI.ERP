@@ -28,11 +28,11 @@
 				</div>
 				<div class="utility-area">
 					<div class="utility-group">
-						<a class="utility">
-							<span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })" title="내정보"></i></span>
+						<a class="utility" title="내정보">
+							<span class="icon"><i class="Licon ico-my" onclick="$.Lithium.popupHandler.open({ full: false, warning: false })"></i></span>
 						</a>
-						<a class="utility logout">
-							<span class="icon" title="로그아웃"><i class="Licon ico-logout"></i></span>
+						<a class="utility logout" title="로그아웃">
+							<span class="icon"><i class="Licon ico-logout"></i></span>
 						</a>
 					</div>
 				</div>
