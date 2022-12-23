@@ -490,7 +490,7 @@
                       <label>사원번호</label>
                       <td width="10%">
                         <select name="no_emp">
-                          <option value=""></option>
+                          <option value="">전체</option>
                           <c:forEach var="noEmp" items="${requestScope.noEmp}" varStatus="status">
                             <option value="${noEmp.no_emp}">${noEmp.no_emp}</option>
                           </c:forEach>
@@ -502,7 +502,7 @@
                       <label>귀속년</label>
                       <td width="10%">
                         <select name="year">
-                          <option value=""></option>
+                          <option value="">전체</option>
                         </select>
                       </td>
                     </td>
@@ -511,7 +511,7 @@
                       <label>귀속월</label>
                       <td width="10%">
                         <select name="month">
-                          <option value=""></option>
+                          <option value="">전체</option>
                           <option value="01">01</option>
                           <option value="02">02</option>
                           <option value="03">03</option>

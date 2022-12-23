@@ -149,7 +149,7 @@
 							<label class="select1">부서 &nbsp;</label> <select name="part">
 								<option value="">전체</option>
 								<c:forEach var="jikupList" items="${requestScope.partList}" varStatus="status">
-										<option value="${jikupList.NM_DEPT}">${jikupList.NM_DEPT}</option>
+									<option value="${jikupList.NM_DEPT}">${jikupList.NM_DEPT}</option>
 								</c:forEach>
 							</select>
 
