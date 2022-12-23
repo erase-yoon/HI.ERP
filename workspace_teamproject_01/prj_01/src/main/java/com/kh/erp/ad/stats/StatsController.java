@@ -71,12 +71,12 @@ public class StatsController {
 		// ---------------------------------------------
 
 		List<Map<String, String>> deptCountList = this.adStatsDAO.getDeptCountList();
-//		Map<String, String> deptCount = deptCountList.get(0);
+
 		List<Map<String, String>> jikupCountList = this.adStatsDAO.getJikupCountList();
-//		Map<String, String> jikupCount = jikupCountList.get(0);
+
 		
-		System.out.println(deptCountList);
-		System.out.println(jikupCountList);
+//		System.out.println(deptCountList);
+//		System.out.println(jikupCountList);
 
 		// [ModelAndView 객체] 생성
 		ModelAndView mav = new ModelAndView();

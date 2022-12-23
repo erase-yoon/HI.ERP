@@ -57,9 +57,9 @@
           ['부장', ${requestScope.jikupCount[5].jikcount}],
           ['차장', ${requestScope.jikupCount[6].jikcount}],
           ['과장', ${requestScope.jikupCount[7].jikcount}],
-          ['대리', ${requestScope.jikupCount[8].jikcount}]
-          // ['주임', ${requestScope.jikupCount[9].jikcount}],
-          // ['사원', ${requestScope.jikupCount[10].jikcount}]
+          ['대리', ${requestScope.jikupCount[8].jikcount}],
+          ['주임', ${requestScope.jikupCount[9].jikcount}],
+          ['사원', ${requestScope.jikupCount[10].jikcount}]
         ]);
 
         var options = {
@@ -78,12 +78,12 @@
         + ${requestScope.deptCount[4].deptcount};
         var data = google.visualization.arrayToDataTable([
           ['Dept', 'Dept Count', { role: "style" } ],
-          ['총원', sum, "#b87333"],
-          ['인사부', ${requestScope.deptCount[0].deptcount}, "#b87333"],
+          ['총원', sum, "lightblue"],
+          ['인사부', ${requestScope.deptCount[0].deptcount}, "color: #e5e4e2"],
           ['총무부', ${requestScope.deptCount[1].deptcount}, "silver"],
           ['회계부', ${requestScope.deptCount[2].deptcount}, "gold"],
-          ['기획부', ${requestScope.deptCount[3].deptcount}, "color: #e5e4e2"],
-          ['영업부', ${requestScope.deptCount[4].deptcount}, "color: #e5e4e2"]
+          ['기획부', ${requestScope.deptCount[3].deptcount}, "#b87333"],
+          ['영업부', ${requestScope.deptCount[4].deptcount}, "silver"]
         ]);
 
         var view = new google.visualization.DataView(data);
@@ -114,21 +114,24 @@
         + ${requestScope.jikupCount[5].jikcount}
         + ${requestScope.jikupCount[6].jikcount}
         + ${requestScope.jikupCount[7].jikcount}
-        + ${requestScope.jikupCount[8].jikcount};
-        // + ${requestScope.jikupCount[9].deptcount}
-        // + ${requestScope.jikupCount[10].deptcount}
+        + ${requestScope.jikupCount[8].jikcount}
+        + ${requestScope.jikupCount[9].jikcount}
+        + ${requestScope.jikupCount[10].jikcount};
+
         var data = google.visualization.arrayToDataTable([
           ['Dept', 'Dept Count', { role: "style" } ],
-          ['총원', sum, "#b87333"],
-          ['사장', ${requestScope.jikupCount[0].jikcount}, "#b87333"],
-          ['부사장', ${requestScope.jikupCount[1].jikcount}, "silver"],
-          ['전무이사', ${requestScope.jikupCount[2].jikcount}, "gold"],
+          ['총원', sum, "lightblue"],
+          ['사장', ${requestScope.jikupCount[0].jikcount}, "color: #e5e4e2"],
+          ['부사장', ${requestScope.jikupCount[1].jikcount}, "#b87333"],
+          ['전무이사', ${requestScope.jikupCount[2].jikcount}, "color: #e5e4e2"],
           ['상무이사', ${requestScope.jikupCount[3].jikcount}, "color: #e5e4e2"],
-          ['이사', ${requestScope.jikupCount[4].jikcount}, "color: #e5e4e2"],
-          ['부장', ${requestScope.jikupCount[5].jikcount}, "color: #e5e4e2"],
-          ['차장', ${requestScope.jikupCount[6].jikcount}, "color: #e5e4e2"],
-          ['과장', ${requestScope.jikupCount[7].jikcount}, "color: #e5e4e2"],
-          ['대리', ${requestScope.jikupCount[8].jikcount}, "color: #e5e4e2"]
+          ['이사', ${requestScope.jikupCount[4].jikcount}, "#b87333"],
+          ['부장', ${requestScope.jikupCount[5].jikcount}, "silver"],
+          ['차장', ${requestScope.jikupCount[6].jikcount}, "#b87333"],
+          ['과장', ${requestScope.jikupCount[7].jikcount}, "#b87333"],
+          ['대리', ${requestScope.jikupCount[8].jikcount}, "silver"],
+          ['주임', ${requestScope.jikupCount[9].jikcount}, "gold"],
+          ['사원', ${requestScope.jikupCount[10].jikcount}, "color: #e5e4e2"]
         ]);
 
         var view = new google.visualization.DataView(data);

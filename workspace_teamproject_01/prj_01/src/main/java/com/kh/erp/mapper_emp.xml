@@ -179,6 +179,7 @@
 
 		select NM_DEPT
 		from MA_DEPT
+		where CD_DEPT != 000
 		order by CD_DEPT
 
 	</select>
