@@ -306,10 +306,16 @@
   
         <br><br>
         <!-- <br><br><br><br> -->
-        <div id="piechart1" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div>
-        <div id="piechart2" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div>
-        <div id="columnchart_values1" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div>
-        <div id="columnchart_values2" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div>
+        <table>
+          <tr>
+            <td><div id="piechart1" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div></td>
+            <td><div id="piechart2" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div></td>
+          </tr>
+          <tr>
+            <td><div id="columnchart_values1" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div></td>
+            <td><div id="columnchart_values2" style="width: 800px; height: 500px; margin-left: auto; margin-right: auto;"></div></td>
+          </tr>
+        </table>
         <br><br>
   
   	<!-- <br><br><br><br> -->
