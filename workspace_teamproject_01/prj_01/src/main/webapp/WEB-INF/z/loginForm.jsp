@@ -11,7 +11,7 @@
 
 <!-- JSP 기술의 한 종류인 [Include Direcctive]를 이용하여 -->
 <!-- common.jsp 파일 소스 삽입 -->
-<%@ include file="common.jsp" %>
+<!-- <%@ include file="common.jsp" %> -->
 
 <!DOCTYPE html>
 <html>

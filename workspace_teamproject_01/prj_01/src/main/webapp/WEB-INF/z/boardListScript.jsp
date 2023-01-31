@@ -635,7 +635,7 @@
                         <!-- 
                         <caption>총 개수 : ${requestScope.boardTotCnt }개</caption>
 
-                        <%
+                        <%--
                         // HttpServletRequst 객체에 게시판 목록을 꺼내서 출력 
                         List<Map<String, String>> boardList = (List<Map<String, String>>)request.getAttribute("boardList");
 
@@ -668,7 +668,7 @@
 
                             }
                         }
-                        %>
+                        --%>
                         -->
 
                         <!-- EL 문법과 C core 태그를 사용하여 -->

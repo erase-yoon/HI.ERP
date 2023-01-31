@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.erp.ad.stats.AdStatsDAO">
+	
+	<select id="getDeptCountList" resultType="hashmap">
+		
+		SELECT J.CD_DEPT, NVL(E.CNT,0) as "deptcount"
+		
+		FROM MA_DEPT J LEFT OUTER JOIN (
+		
+		    SELECT CD_DEPT, COUNT(*) AS CNT
+		    FROM MA_EMP
+		    GROUP BY CD_DEPT   
+		    ORDER BY CD_DEPT
+		) E
+		ON J.CD_DEPT = E.CD_DEPT
+		WHERE J.CD_DEPT!=000
+		ORDER BY J.CD_DEPT
+	
+	</select>
+	
+	<select id="getJikupCountList" resultType="hashmap">
+		
+		SELECT J.CD_JIK, NVL(E.CNT,0) as "jikcount"
+		
+		FROM MA_JIKUP J LEFT OUTER JOIN (
+		
+		    SELECT CD_JIK, COUNT(*) AS CNT
+		    FROM MA_EMP
+		    GROUP BY CD_JIK   
+		    ORDER BY CD_JIK
+		) E
+		ON J.CD_JIK = E.CD_JIK
+		WHERE J.CD_JIK!=000
+		ORDER BY J.CD_JIK
+	
+	</select>
+	
+</mapper>

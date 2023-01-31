@@ -3,7 +3,7 @@ package com.kh.erp.ad.notice;
 // ---------------------------------------------------------------
 // [BoardDTO 클래스] 선언
 // ---------------------------------------------------------------
-public class BoardDTO {
+public class BoardDTO {	
 	
 	private int b_no;
 	private String subject;
@@ -13,10 +13,21 @@ public class BoardDTO {
 	private String pwd;
 	private String readcount;
 	private String reg_date;
+	private String no_emp;
+	private String nm_emp;
 	private int group_no;
 	private int print_no;
-	private int print_level;
+	private int print_level; 
 	
+	private String content_com;
+	
+	
+	public String getContent_com() {
+		return content_com;
+	}
+	public void setContent_com(String content_com) {
+		this.content_com = content_com;
+	}
 	public int getB_no() {
 		return b_no;
 	}
@@ -65,6 +76,18 @@ public class BoardDTO {
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
+	public String getNo_emp() {
+		return no_emp;
+	}
+	public void setNo_emp(String no_emp) {
+		this.no_emp = no_emp;
+	}
+	public String getNm_emp() {
+		return nm_emp;
+	}
+	public void setNm_emp(String nm_emp) {
+		this.nm_emp = nm_emp;
+	}
 	public int getGroup_no() {
 		return group_no;
 	}
@@ -83,7 +106,5 @@ public class BoardDTO {
 	public void setPrint_level(int print_level) {
 		this.print_level = print_level;
 	}
-
-	
 
 }
